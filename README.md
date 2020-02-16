@@ -3,12 +3,12 @@ Project Selection: Slay the Spire
 
 Group Members
 -
-* Cem Cebeci 21703377:           [GitHub](https://github.com/CemCebeci) / Gmail: @gmail.com   
-* Can Cebeci 21703376:           [GitHub](https://github.com/CanCebeci) / Gmail: can.cebeci99@gmail.com
-* Gizem Karal 2173094:           [GitHub](https://github.com/gizemKaral) / Gmail: karalgizemm@gmail.com
-* Gökberk Boz 21602558:          [GitHub](https://github.com/jemief) / Gmail: bozgkbrk@gmail.com
-* Sena Sultan Karataş 21604078:  [GitHub](https://github.com/senakrts) / Gmail: senakrts06@gmail.com
-* Mehmet Ali Altunsoy 21702531:  [GitHub](https://github.com/malialtunsoy) / Gmail: altunsoymali@gmail.com
+* Cem Cebeci 21703377
+* Can Cebeci 21703376
+* Gizem Karal 2173094
+* Gökberk Boz 21602558
+* Sena Sultan Karataş 21604078
+* Mehmet Ali Altunsoy 21702531
 
 Project Description
 -
