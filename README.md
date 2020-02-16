@@ -3,12 +3,12 @@ CS-319 Term Project: Slay the Spire
 
 Group Members
 -
-*Cem Cebeci
-*Can Cebeci
-*Gizem Karal
-*Gökberk Boz
-*Sena Sultan Karataş
-*Mehmet Ali Altunsoy
+* Cem Cebeci
+* Can Cebeci
+* Gizem Karal
+* Gökberk Boz
+* Sena Sultan Karataş
+* Mehmet Ali Altunsoy
 
 
 
