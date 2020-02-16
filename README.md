@@ -3,10 +3,10 @@ Project Selection: Slay the Spire
 
 Group Members
 -
-* Cem Cebeci 21703377
-* Can Cebeci 21703376
-* Gizem Karal 2173094
-* Gökberk Boz 21602558
+* Cem Cebeci          21703377
+* Can Cebeci          21703376
+* Gizem Karal         2173094
+* Gökberk Boz         21602558
 * Sena Sultan Karataş 21604078
 * Mehmet Ali Altunsoy 21702531
 
