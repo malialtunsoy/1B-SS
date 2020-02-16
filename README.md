@@ -35,10 +35,10 @@ The types of vertices on the map are:
 * Treasure room: The player clicks on a treasure chest and earns a relic.
 * Mystery vertex: These vertices are revealed upon choosing them. The player may be faced with combat, a merchant, a treasure room or a series of choices that affect the character state.
 
-	Combat consists of turns. In each turn, the player draws a number of cards and has an amount of energy. Each card has an energy cost and a set of effects. The player can play any number of cards within their energy limit and then choose to end their turn. The player is aware of the intentions of their foes during their turn. When the turn ends, the remaining cards in the player’s hand are discarded and the foes realise their declared intentions. Both the player and the foes may be affected by a variety of status effects during combat.
+Combat consists of turns. In each turn, the player draws a number of cards and has an amount of energy. Each card has an energy cost and a set of effects. The player can play any number of cards within their energy limit and then choose to end their turn. The player is aware of the intentions of their foes during their turn. When the turn ends, the remaining cards in the player’s hand are discarded and the foes realise their declared intentions. Both the player and the foes may be affected by a variety of status effects during combat.
 
 
-	When the game ends, the player may be rewarded with permanent unlockables that modify the set of items the player may come upon in future runs.
+When the game ends, the player may be rewarded with permanent unlockables that modify the set of items the player may come upon in future runs.
 
 
 New Properties
