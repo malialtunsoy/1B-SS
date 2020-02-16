@@ -3,7 +3,7 @@ CS-319 Term Project: Slay the Spire
 
 Group Members
 -
-* Cem Cebeci
+* Cem Cebeci [GitHub](https://github.com/CanCebeci)
 * Can Cebeci
 * Gizem Karal
 * Gökberk Boz
