@@ -3,10 +3,10 @@ Project Selection: Slay the Spire
 
 Group Members
 -
-* Cem Cebeci          21703377
-* Can Cebeci          21703376
-* Gizem Karal         2173094
-* Gökberk Boz         21602558
+* Cem Cebeci 21703377
+* Can Cebeci 21703376
+* Gizem Karal 2173094
+* Gökberk Boz 21602558
 * Sena Sultan Karataş 21604078
 * Mehmet Ali Altunsoy 21702531
 
@@ -41,19 +41,18 @@ Combat consists of turns. In each turn, the player draws a number of cards and h
 When the game ends, the player may be rewarded with permanent unlockables that modify the set of items the player may come upon in future runs.
 
 
-New Properties
+Possible Extensions:
 -
-* Ability to play the game cooperatively
-* Giving the cards as a gift and exchanging them with friends
+* Ability to play the game cooperatively.
+* Giving the cards as a gift and exchanging them with friends.
 * As a new game mechanic, the player can call the aid of a companion/pet which helps through the fights or runs.
 * Graphical features can be added to the character and themes to the background as rewards for certain quests or achievement milestones.
 * Like Achievements, there can be run-specific quests which rewards the player with some buffs or fight-skip/flee options.
+* Cheat Mode.
 
 
-Google Docs
+Deliverables
 -
-[First Discussion](https://docs.google.com/document/d/16gchyuur-kYigfRGdAHyItlcKwQzVl3H0KmIHduNtMQ/edit?usp=sharing)
-
-
+to be added
 
 
