@@ -3,12 +3,12 @@ CS-319 Term Project: Slay the Spire
 
 Group Members
 -
-* Cem Cebeci [GitHub](https://github.com/CanCebeci)
-* Can Cebeci
-* Gizem Karal
-* Gökberk Boz
-* Sena Sultan Karataş
-* Mehmet Ali Altunsoy
+* Cem Cebeci:         [GitHub](https://github.com/CanCebeci) / Gmail: @gmail.com   
+* Can Cebeci:         [GitHub](https://github.com/CanCebeci) / Gmail: can.cebeci99@gmail.com
+* Gizem Karal:        [GitHub](https://github.com/gizemKaral) / Gmail: karalgizemm@gmail.com
+* Gökberk Boz:        [GitHub](https://github.com/jemief) / Gmail: bozgkbrk@gmail.com
+* Sena Sultan Karataş:[GitHub](https://github.com/senakrts) / Gmail: senakrts06@gmail.com
+* Mehmet Ali Altunsoy:[GitHub](https://github.com/malialtunsoy) / Gmail: altunsoymali@gmail.com
 
 
 
