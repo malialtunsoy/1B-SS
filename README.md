@@ -1,4 +1,5 @@
 # Group Name: 1B-SS
+Project Selection: Slay the Spire
 
 Group Members
 -
@@ -9,9 +10,6 @@ Group Members
 * Sena Sultan Karataş:  [GitHub](https://github.com/senakrts) / Gmail: senakrts06@gmail.com
 * Mehmet Ali Altunsoy:  [GitHub](https://github.com/malialtunsoy) / Gmail: altunsoymali@gmail.com
 
-Project Selection: Slay the Spire
--
-
 Project Description
 -
 gelecek
@@ -19,9 +17,6 @@ gelecek
 New Properties
 -
 gelecek
-
-
-
 
 Google Docs
 -
