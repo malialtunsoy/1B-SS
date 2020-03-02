@@ -31,10 +31,10 @@ The player has to repeatedly choose a vertex on the map and complete the action 
 The types of vertices on the map are:
 * Combat: The player engages in combat where they have to use their deck and inventory to defeat a number of foes. They either lose the game in combat or they are rewarded (with new cards, gold, relics or potions) upon victory.
 * Elite combat: Tougher foes that grant better relics.
+* Boss: The toughest combats, one at the end on each act.
 * Merchant: The player spends their gold to upgrade their inventory.
 * Treasure room: The player clicks on a treasure chest and earns a relic.
 * Mystery vertex: These vertices are revealed upon choosing them. The player may be faced with combat, a merchant, a treasure room or a series of choices that affect the character state.
-
 Combat consists of turns. In each turn, the player draws a number of cards and has an amount of energy. Each card has an energy cost and a set of effects. The player can play any number of cards within their energy limit and then choose to end their turn. The player is aware of the intentions of their foes during their turn. When the turn ends, the remaining cards in the player’s hand are discarded and the foes realise their declared intentions. Both the player and the foes may be affected by a variety of status effects during combat.
 
 
