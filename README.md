@@ -57,4 +57,4 @@ Deliverables
 Iteration 1 Project Analysis Report : https://docs.google.com/document/d/1aetvog87XzTkCs14IeTxf2skNKtrWLwBpwNMR0wfbOg/edit?usp=sharing
 to be added
 
-
+Iteration 1 Design Report: https://docs.google.com/document/d/1kwibgx4kkgXqmPCu-a8-ILdoIrlPrbM-X_v1eSp77J0/edit?usp=sharing
