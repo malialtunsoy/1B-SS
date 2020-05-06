@@ -27,6 +27,7 @@ public class CombatManager {
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
+
     }
 
     //called after the combat ends by the run management
@@ -42,4 +43,6 @@ public class CombatManager {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    
 }
