@@ -4,9 +4,6 @@ public class CombatManager {
 
     //constructors
     private CombatManager() {
-        turn = 1;
-        energy = 3;
-        maxEnergy = 3;
         enemies = new ArrayList<Enemy>();
     }
 
@@ -20,6 +17,10 @@ public class CombatManager {
     private ArrayList<Enemy> enemies;
     private Player player;
 
+    private ArrayList<Card> drawPile;
+    private ArrayList<Card> hand;
+    private ArrayList<Card> discardPile;
+
     //methods
     public static CombatManager getInstance() {
         return instance;
@@ -27,6 +28,59 @@ public class CombatManager {
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
+        initializeCombat();
+        playTurn();
+    }
+
+    //the tasks that should be done at the start of every combat before the first turn is taken.
+    private void initializeCombat() {
+        drawPile = player.getDeck();
+        discardPile = new ArrayList<Card>();
+        hand = new ArrayList<Card>();
+        turn = 0;
+        energy = 0;
+        maxEnergy = 0;
+    }
+
+    private void playTurn() {
+
+    }
+
+    //draws cards from the drawPile, returns the cards drawn.
+    private ArrayList<Card> draw( int number) {
+        if( number <= 0 )
+            return new ArrayList<Card>();
+
+        if(drawPile.size() <= 0){
+            drawPile = discardPile;
+            discardPile.clear();
+        }
+
+        Card drawn = drawPile.get(0);
+        drawPile.remove(0);
+        ArrayList<Card> result = draw(number-1);
+        result.add(drawn);
+        return result;
+    }
+
+    //plays the card at the given index.
+    public void playCard( int index) {
+
+    }
+
+    //uses the potion at the given index.
+    public void usePotion( int index) {
+
+    }
+
+    //adds the effect to the player.
+    public void addStatusEffect( StatusEffect effect) {
+
+    }
+
+    //ends the player's turn.
+    public void endTurn() {
+
     }
 
     //called after the combat ends by the run management
@@ -35,11 +89,12 @@ public class CombatManager {
     }
 
     //used to add the enemies before the combat starts.
-    public void addEnemy( Enemy enemy) {
-        enemies.add(enemy);
+    public void addEnemy( Enemy enemy) { enemies.add(enemy); }
+
+    public void setPlayer(Player player) { this.player = player; }
+
+    public String getCombatState() {
+        return "getCombatState() not implemented yet.";
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }
