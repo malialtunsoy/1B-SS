@@ -5,8 +5,13 @@ import java.util.ArrayList;
  * Run management may want to make this a singleton class, it's only here for testing purposes right now.
  * @version 06.05.2020 14:15
  */
-public class Player {
+public class Player extends CombatEntity{
     //constructors
+    // Test purpose constructor. Actual constructor would take the character class as input
+    public Player() {
+        super(40);  // for now, fixed starting maxHP (40). 
+        deck = new ArrayList<Card>();
+    }
 
     //attributes
     private ArrayList<Card> deck;
@@ -24,4 +29,5 @@ public class Player {
         }
         return result;
     }
+
 }

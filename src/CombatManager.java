@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// This is a singleton class.
 public class CombatManager {
 
     //constructors
@@ -21,7 +22,8 @@ public class CombatManager {
     private ArrayList<Card> hand;
     private ArrayList<Card> discardPile;
 
-    //methods
+    // -----  methods  ----
+
     public static CombatManager getInstance() {
         return instance;
     }
@@ -43,7 +45,7 @@ public class CombatManager {
     }
 
     private void playTurn() {
-
+        
     }
 
     //draws cards from the drawPile, returns the cards drawn.
@@ -92,9 +94,9 @@ public class CombatManager {
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
 
     public void setPlayer(Player player) { this.player = player; }
+    public Player getPlayer() { return player; }
 
     public String getCombatState() {
         return "getCombatState() not implemented yet.";
     }
-
 }
