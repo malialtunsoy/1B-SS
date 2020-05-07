@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Text layoutX="484.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Your Character" wrappingWidth="256.13671875">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Button layoutX="74.0" layoutY="711.0" mnemonicParsing="false" onAction="#newGame" text="Back">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <Button layoutX="1059.0" layoutY="711.0" mnemonicParsing="false" onAction="#Fight" text="Fight">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <ImageView fitHeight="460.0" fitWidth="250.0" layoutX="43.0" layoutY="193.0" onMouseClicked="#char1selected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@char1.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="250.0" layoutX="324.0" layoutY="194.0" onMouseClicked="#char2selected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@char2.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="250.0" layoutX="900.0" layoutY="194.0" onMouseClicked="#char3selected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@char4.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="250.0" layoutX="615.0" layoutY="192.0" onMouseClicked="#char4selected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@char3.PNG" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

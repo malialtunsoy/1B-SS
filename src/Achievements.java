@@ -8,6 +8,7 @@ public class Achievements {
 
     public Achievements(){
 
+
         try {
             achievementNames =  FileRead.readFile("Data.txt", "Achievements");
         }catch(FileNotFoundException ex){System.out.println("failed");}

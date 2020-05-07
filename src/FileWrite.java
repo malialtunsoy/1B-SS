@@ -1,4 +1,3 @@
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -10,15 +9,16 @@ public class FileWrite extends Game{
     String FileName;
     String[] File;
 
-    static public boolean writeFile(String fileName) throws FileNotFoundException{
+    static public boolean writeFile(String fileName, Achievements myAch, GameOptions myOpt, String playerName, String character) throws FileNotFoundException{
 
         PrintWriter out = new PrintWriter(fileName);
 
-        String[] achNames = achievements.getAchNames();
-        String[] achLocked =  achievements.getAchLocks();
-        String[] optionss = options.getOptions();
-        String[] OptionNames = options.getOptionNames();
+        String[] achNames = myAch.getAchNames();
+        String[] achLocked =  myAch.getAchLocks();
+        String[] optionss = myOpt.getOptions();
+        String[] OptionNames = myOpt.getOptionNames();
 
+        System.out.println(playerName + "is the name");
         out.println("1###PlayerName###    **" + playerName + "**");
         out.println("1###Character###    **" + character + "**");
 

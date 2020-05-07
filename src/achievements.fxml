@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Text layoutX="477.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Achievements">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Button focusTraversable="false" layoutX="99.0" layoutY="678.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" textOverrun="CLIP">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

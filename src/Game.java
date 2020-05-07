@@ -1,53 +1,27 @@
 import java.io.FileNotFoundException;
 
+
 public class Game {
 
-    static String playerName;
-    static String character;
-    static Achievements achievements;
-    static GameOptions options;
+     String playerName;
+     String character;
+     Achievements achievements;
+     GameOptions options;
 
     public Game(){
-        achievements = new Achievements();
-        options = new GameOptions();
-
-        playerName = "NULL";
-    }
-
-    public Game(String[] args){
 
         achievements = new Achievements();
         options = new GameOptions();
-
-        playerName = "NULL";
-        character = "NULL";
-
-        NavigationUI myWindow = new NavigationUI();
-        startGame(myWindow, args);
-
-        SaveAndExit.save();
     }
 
-    public static boolean startGame(NavigationUI game, String[] args){
-
-        game.launchApp(args);
-
-        return true;
-    }
-
-    static public  void setPlayerName(String playersName){
+     public  void setPlayerName(String playersName){
         playerName = playersName;
-        SaveAndExit.save();
+        SaveAndExit.save( achievements,  options,  playersName,  character);
+         System.out.println("saved" + playerName);
     }
 
-     static public String getPlayerName(){
-         String[] playerNameTemp = {};
-
-         try {
-             playerNameTemp =  FileRead.readFile("Data.txt", "PlayerName");
-         }catch(FileNotFoundException ex){System.out.println("failed");}
-
-        return playerNameTemp[0];
+      public String getPlayerName(){
+        return playerName;
     }
 
 
