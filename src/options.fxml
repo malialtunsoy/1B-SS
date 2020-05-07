@@ -21,9 +21,14 @@
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </SplitMenuButton>
-      <CheckBox layoutX="201.0" layoutY="410.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="advancedMainMenuBox" layoutX="201.0" layoutY="410.0" mnemonicParsing="Controller.advancedMainMenuSelected" text="Advanced Main Menu" />
       <ColorPicker layoutX="197.0" layoutY="461.0" />
       <Button layoutX="91.0" layoutY="719.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="175.0" layoutY="719.0" mnemonicParsing="false" onAction="#applySettings" text="Apply">
          <font>
             <Font size="20.0" />
          </font>

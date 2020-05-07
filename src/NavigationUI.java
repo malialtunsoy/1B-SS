@@ -22,14 +22,14 @@ import java.io.IOException;
 
 public class NavigationUI extends Application  {
 
-    Game myGame;
+    //Game myGame;
+
     Stage window;
 
     Scene achievementsScene;
 
     public NavigationUI(){
-
-        myGame  = new Game();
+        //myGame  = new Game();
     }
 
     public static void launchApp(String[] args){
@@ -52,9 +52,9 @@ public class NavigationUI extends Application  {
 
     }
 
-    public Game getGame(){
+  /*  public Game getGame(){
         return myGame;
-    }
+    }*/
 
 
 

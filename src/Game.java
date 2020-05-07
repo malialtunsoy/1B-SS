@@ -1,7 +1,15 @@
 import java.io.FileNotFoundException;
 
 
+
 public class Game {
+
+
+    private static Game ourInstance = new Game();
+
+    public static Game getInstance() {
+        return ourInstance;
+    }
 
      String playerName;
      String character;

@@ -1,16 +1,27 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller{
+public class Controller implements Initializable {
+
+    String mainMenuOption = "mainMenu.fxml";
+    boolean advancedMainMenuSelected = false;
+
+    @FXML
+    private CheckBox advancedMainMenuBox;
 
     @FXML
      void newGame(ActionEvent event) throws IOException {
@@ -28,15 +39,21 @@ public class Controller{
         System.out.println("Loading Game");
     }
 
+
+
     @FXML
     void drawOptions(ActionEvent event)throws IOException  {
         Parent tempParent = FXMLLoader.load(getClass().getResource("options.fxml"));
         Scene tempScene = new Scene(tempParent);
+        System.out.println(advancedMainMenuSelected);
+
+        //advancedMainMenuBox.setSelected(true);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(tempScene);
         window.show();
+
     }
 
     @FXML
@@ -67,8 +84,11 @@ public class Controller{
     private TextField playerNameText;
 
     @FXML
-    void charSelect(ActionEvent event) throws IOException  {
+    void charSelect(ActionEvent event) throws IOException  {  //go to character selection screen
         String playerName = playerNameText.getText();
+
+        Game.getInstance().setPlayerName(playerName);
+
 
         if(playerName.equals("")){
             playerNameText.setPromptText("you must enter a name");
@@ -86,8 +106,8 @@ public class Controller{
     }
 
     @FXML
-    void backToMainMenu(ActionEvent event) throws IOException {
-        Parent tempParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+    void backToMainMenu(ActionEvent event) throws IOException { //go back to main menu
+        Parent tempParent = FXMLLoader.load(getClass().getResource(mainMenuOption));
         Scene tempScene = new Scene(tempParent);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -119,4 +139,18 @@ public class Controller{
 
 
 
+
+
+    @FXML
+    void applySettings(ActionEvent event) {
+         advancedMainMenuSelected = advancedMainMenuBox.isSelected();
+        if(advancedMainMenuSelected){mainMenuOption = "experimental.fxml"; }
+        else{mainMenuOption = "mainMenu.fxml";};
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       // advancedMainMenuBox.setText("true");
+    }
 }
