@@ -56,7 +56,7 @@ public class NavigationUI extends Application  {
         myScreens.loadScreen(NavigationUI.achievementsScreen, NavigationUI.achievementsScreenFile);
         myScreens.loadScreen(NavigationUI.optionsScreen, NavigationUI.optionsScreenFile);
 
-
+        CombatManager.getInstance().setStage(primaryStage);
 
         myScreens.changeScreen(NavigationUI.mainMenuScreen);
 

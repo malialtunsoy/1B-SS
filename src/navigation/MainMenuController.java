@@ -49,10 +49,8 @@ public class MainMenuController implements Initializable, ControlledScreen {
 
     @FXML
     void testCombatManager(ActionEvent event) {
-
         CombatTest test = new CombatTest();
-        test.
-
+        test.testCombat();
     }
 
 

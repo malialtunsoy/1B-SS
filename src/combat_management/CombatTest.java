@@ -28,9 +28,10 @@ public class CombatTest /*extends Application */{
 
     }
 */
-    public void testCombat(Stage primaryStage) {
+    public void testCombat() {
+
         manager = CombatManager.getInstance();
-        initializeGUI(primaryStage);
+       // initializeGUI(primaryStage);
 
         Player player = new Player();
         manager.setPlayer(player);
@@ -74,7 +75,7 @@ public class CombatTest /*extends Application */{
             }
         });
         root.getChildren().add(startCombatBtn);
-        primaryStage.setScene();
+        //primaryStage.setScene();
         primaryStage.show();
     }
 }

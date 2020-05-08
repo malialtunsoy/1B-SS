@@ -1,3 +1,5 @@
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 // This is a singleton class.
@@ -25,6 +27,10 @@ public class CombatManager {
     private boolean playersTurn;
 
     // -----  methods  ----
+
+    public void setStage(Stage primaryStage){
+
+    }
 
     public static CombatManager getInstance() {
         return instance;
