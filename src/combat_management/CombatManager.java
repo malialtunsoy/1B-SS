@@ -28,11 +28,13 @@ public class CombatManager {
 
     private boolean playersTurn;
 
+    private CombatUIAdapter uiAdapter;
+
     // -----  methods  ----
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
-        System.out.println("Am invoked ( ͡° ͜ʖ ͡°)");
+        // System.out.println("Am invoked ( ͡° ͜ʖ ͡°)");
         initializeCombat();
         playTurn();
     }
@@ -50,7 +52,8 @@ public class CombatManager {
     private void playTurn() {
         declareIntents();
         energy = maxEnergy;
-        hand = draw(4);
+        uiAdapter.updateView();
+        // hand = draw(4); temporarily commented out in order not to run out of deck when testing
         //ui.drawCombatScreen();
         playersTurn = true;
     }
@@ -94,7 +97,17 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        playersTurn = false;
+        // discard all cards
 
+        // realize all enemy intents
+        for ( Enemy e: enemies) {
+            e.realizeAllIntents();
+        }
+
+        // restore energy
+
+        playTurn(); // play the next turn
     }
 
     //called after the combat ends by the run management
@@ -105,6 +118,9 @@ public class CombatManager {
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
 
+    // needed in UIAdapter to draw all enemies
+    public ArrayList<Enemy> getEnemies() {return enemies;}
+
     public void setPlayer(Player player) { this.player = player; }
 
     public Player getPlayer() { return player; }
@@ -114,6 +130,10 @@ public class CombatManager {
     }
 
     public Stage getStage() { return stage; }
+
+    public void createUIAdapter() {
+        uiAdapter = new CombatUIAdapter(stage);
+    }
 
     public static CombatManager getInstance() {
         return instance;
