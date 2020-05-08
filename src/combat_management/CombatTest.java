@@ -9,8 +9,26 @@ import javafx.stage.Stage;
 
 public class CombatTest extends Application {
 
+    CombatManager manager;
+
     @Override
     public void start(Stage primaryStage) {
+        manager = CombatManager.getInstance();
+        initializeGUI(primaryStage);
+
+        Player player = new Player();
+        manager.setPlayer(player);
+        Card sample = new Card();
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+
+    }
+
+    private void initializeGUI(Stage primaryStage){
         primaryStage.setTitle("Combat Testing");
 
         //initialize the scene
