@@ -13,4 +13,9 @@ public class Enemy extends CombatEntity{
         intents         = new ArrayList<Intent>();
     }
 
+    // --- methods ---
+    public void declareIntent() {
+        System.out.println(name + ": I declare my intent!");
+    }
+
 }
