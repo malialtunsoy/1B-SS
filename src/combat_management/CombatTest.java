@@ -40,7 +40,7 @@ public class CombatTest extends Application {
             }
         });
         root.getChildren().add(startCombatBtn);
-
+        primaryStage.setScene();
         primaryStage.show();
     }
 }

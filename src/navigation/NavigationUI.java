@@ -56,6 +56,8 @@ public class NavigationUI extends Application  {
         myScreens.loadScreen(NavigationUI.achievementsScreen, NavigationUI.achievementsScreenFile);
         myScreens.loadScreen(NavigationUI.optionsScreen, NavigationUI.optionsScreenFile);
 
+
+
         myScreens.changeScreen(NavigationUI.mainMenuScreen);
 
         Group root = new Group();
