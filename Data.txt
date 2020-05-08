@@ -1,5 +1,5 @@
-1###PlayerName###    **asdas**
-1###Character###    **NULL**
+1###PlayerName###    **as**
+1###Character###    **null**
 3###Achievements###    **Start new Game**Load Game**End Game**
 3###AchievementLock###    **0**0**1**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
