@@ -7,10 +7,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class CombatTest extends Application {
+public class CombatTest /*extends Application */{
 
     CombatManager manager;
-
+/*
     @Override
     public void start(Stage primaryStage) {
         manager = CombatManager.getInstance();
@@ -27,6 +27,21 @@ public class CombatTest extends Application {
         player.addToDeck(sample);
 
     }
+*/
+    public void testCombat(Stage primaryStage) {
+        manager = CombatManager.getInstance();
+        initializeGUI(primaryStage);
+
+        Player player = new Player();
+        manager.setPlayer(player);
+        Card sample = new Card();
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+    }
 
     private void initializeGUI(Stage primaryStage){
         primaryStage.setTitle("Combat Testing");
@@ -34,6 +49,7 @@ public class CombatTest extends Application {
         //initialize the scene
         FlowPane root = new FlowPane();
         primaryStage.setScene(new Scene(root, 300, 250));
+
 
         //create and add the Add Enemy button
         Button addEnemyBtn = new Button();

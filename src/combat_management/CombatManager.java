@@ -22,6 +22,8 @@ public class CombatManager {
     private ArrayList<Card> hand;
     private ArrayList<Card> discardPile;
 
+    private boolean playersTurn;
+
     // -----  methods  ----
 
     public static CombatManager getInstance() {
@@ -49,6 +51,8 @@ public class CombatManager {
         declareIntents();
         energy = maxEnergy;
         hand = draw(4);
+        //ui.drawCombatScreen();
+        playersTurn = true;
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
