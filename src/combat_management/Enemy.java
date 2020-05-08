@@ -14,8 +14,17 @@ public class Enemy extends CombatEntity{
     }
 
     // --- methods ---
+    // test purpose implementation, declares aggressive intent with 5 dmg
     public void declareIntent() {
-        System.out.println(name + ": I declare my intent!");
+        AggressiveIntent aggr = new AggressiveIntent(5);
+        intents.add(aggr);
+    }
+
+    public void realizeAllIntents() {
+        for (Intent i : intents) {
+            i.realize();
+        }
+        intents.clear();
     }
 
 }

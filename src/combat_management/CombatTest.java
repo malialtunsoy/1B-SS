@@ -76,6 +76,21 @@ public class CombatTest /*extends Application */{
             }
         });
         root.getChildren().add(startCombatBtn);
+
+        //create and add the Start Combat Button
+        Button endTurnBtn = new Button();
+        endTurnBtn.setText("End Turn");
+        endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CombatManager.getInstance().endTurn();
+                System.out.println("Turn ended...");
+
+                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
+            }
+        });
+        root.getChildren().add(endTurnBtn);
+
         //primaryStage.setScene();
         primaryStage.show();
     }

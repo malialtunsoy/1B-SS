@@ -12,14 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         NavigationUI myWindow = new NavigationUI();
-
-
         myWindow.launchApp(args);
 
     }
-
-
-
-
-
 }

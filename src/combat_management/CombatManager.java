@@ -50,7 +50,7 @@ public class CombatManager {
     private void playTurn() {
         declareIntents();
         energy = maxEnergy;
-        hand = draw(4);
+        // hand = draw(4); temporarily commented out in order not to run out of deck when testing
         //ui.drawCombatScreen();
         playersTurn = true;
     }
@@ -94,7 +94,17 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        playersTurn = false;
+        // discard all cards
 
+        // realize all enemy intents
+        for ( Enemy e: enemies) {
+            e.realizeAllIntents();
+        }
+
+        // restore energy
+
+        playTurn(); // play the next turn
     }
 
     //called after the combat ends by the run management
