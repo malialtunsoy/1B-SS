@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,20 +11,35 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OptionsController">
    <children>
-      <Text layoutX="530.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
+      <ImageView fitHeight="810.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="530.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <Slider layoutX="209.0" layoutY="238.0" prefHeight="46.0" prefWidth="472.0" />
-      <SplitMenuButton layoutX="201.0" layoutY="326.0" mnemonicParsing="false" text="SplitMenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </SplitMenuButton>
-      <CheckBox fx:id="advancedMainMenuBox" layoutX="201.0" layoutY="410.0" mnemonicParsing="Controller.advancedMainMenuSelected" text="Advanced Main Menu" />
-      <ColorPicker layoutX="197.0" layoutY="461.0" />
+      <ScrollPane layoutX="328.0" layoutY="171.0" opacity="0.7" prefHeight="292.0" prefWidth="569.0" />
+      <VBox alignment="BASELINE_LEFT" layoutX="340.0" layoutY="184.0" prefHeight="408.0" prefWidth="546.0" spacing="30.0">
+         <children>
+            <Slider prefHeight="46.0" prefWidth="510.0" />
+            <SplitMenuButton mnemonicParsing="false" text="SplitMenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
+            <CheckBox fx:id="advancedMainMenuBox" mnemonicParsing="Controller.advancedMainMenuSelected" text="Cheat Mode" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <ColorPicker />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Character Color" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
       <Button layoutX="91.0" layoutY="719.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back">
          <font>
             <Font size="20.0" />

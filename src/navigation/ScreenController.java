@@ -67,6 +67,12 @@ public class ScreenController extends StackPane {
         }
     }
 
+    public void reloadScreen(String sceneName, String sceneSource){
+        unloadScreen(sceneName);
+        loadScreen(sceneName, sceneSource);
+
+    }
+
 
 
 

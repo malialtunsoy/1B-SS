@@ -39,7 +39,6 @@ public class NewGameController implements Initializable, ControlledScreen {
         }
         else {
             Game.getInstance().setPlayerName(playerName);
-            System.out.println("player name: " + playerName);
             myController.changeScreen(NavigationUI.newGameSecondScreen);
         }
 
@@ -54,6 +53,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 
     @FXML
     void newGame(ActionEvent event) throws IOException {
+        myController.reloadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
         myController.changeScreen(NavigationUI.newGameFirstScreen);
     }
 
@@ -65,23 +65,21 @@ public class NewGameController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    void char1selected(){
-        System.out.println("character 1 selected");
-    }
+    void char1selected(){ Game.getInstance().setCharacter("character1"); }
 
     @FXML
     void char2selected(){
-        System.out.println("character 2 selected");
+        Game.getInstance().setCharacter("character2");
     }
 
     @FXML
     void char3selected(){
-        System.out.println("character 3 selected");
+        Game.getInstance().setCharacter("character3");
     }
 
     @FXML
     void char4selected(){
-        System.out.println("character 4 selected");
+        Game.getInstance().setCharacter("character4");
     }
 
 

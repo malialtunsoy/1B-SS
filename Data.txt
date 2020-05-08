@@ -1,6 +1,6 @@
 1###PlayerName###    **asd**
-1###Character###    **null**
-3###Achievements###    **Start new Game**Load Game**End Game**
-3###AchievementLock###    **0**0**1**
+1###Character###    **character4**
+7###Achievements###    **Start new Game**Load Game**End Game**Talk with Merchant**Fight with a Boss**Buy a Relic**Buy a potion**
+7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
