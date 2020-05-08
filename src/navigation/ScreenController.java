@@ -3,17 +3,33 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.event.ActionEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<String, Node>();
+    MediaPlayer mediaPlayer;
 
     public ScreenController(){
         super();
+
+        String musicFile = "music2.wav";
+        Media music = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(music);
     }
 
+    public void playMusic(){
+
+        mediaPlayer.play();
+    }
+
+    public void stopMusic(){
+        mediaPlayer.stop();
+    }
 
     public void addScreen(String screenName, Node screen){
         screens.put(screenName, screen);

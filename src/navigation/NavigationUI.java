@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -59,6 +60,8 @@ public class NavigationUI extends Application  {
         CombatManager.getInstance().setStage(primaryStage);
 
         myScreens.changeScreen(NavigationUI.mainMenuScreen);
+
+        myScreens.playMusic();
 
         Group root = new Group();
         root.getChildren().addAll(myScreens);
