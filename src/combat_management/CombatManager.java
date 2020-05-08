@@ -22,6 +22,8 @@ public class CombatManager {
     private ArrayList<Card> hand;
     private ArrayList<Card> discardPile;
 
+    private boolean playersTurn;
+
     // -----  methods  ----
 
     public static CombatManager getInstance() {
@@ -46,9 +48,18 @@ public class CombatManager {
     }
 
     private void playTurn() {
-        
+        declareIntents();
+        energy = maxEnergy;
+        hand = draw(4);
+        //ui.drawCombatScreen();
+        playersTurn = true;
     }
 
+    //Declares the intents of all enemies, called at the start of a turn.
+    private void declareIntents() {
+        for(Enemy enemy : enemies)
+            enemy.declareIntent();
+    }
     //draws cards from the drawPile, returns the cards drawn.
     private ArrayList<Card> draw( int number) {
         if( number <= 0 )
