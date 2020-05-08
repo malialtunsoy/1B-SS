@@ -13,6 +13,8 @@ public class CombatManager {
     //attributes
     private static CombatManager instance = new CombatManager();
 
+    private Stage stage;
+
     private int turn;
     private int energy;
     private int maxEnergy;
@@ -27,14 +29,6 @@ public class CombatManager {
     private boolean playersTurn;
 
     // -----  methods  ----
-
-    public void setStage(Stage primaryStage){
-
-    }
-
-    public static CombatManager getInstance() {
-        return instance;
-    }
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
@@ -112,7 +106,18 @@ public class CombatManager {
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
 
     public void setPlayer(Player player) { this.player = player; }
+
     public Player getPlayer() { return player; }
+
+    public void setStage(Stage primaryStage){
+        stage = primaryStage;
+    }
+
+    public Stage getStage() { return stage; }
+
+    public static CombatManager getInstance() {
+        return instance;
+    }
 
     public String getCombatState() {
         return "getCombatState() not implemented yet.";

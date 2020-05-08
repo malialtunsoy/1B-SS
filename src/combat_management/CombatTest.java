@@ -29,9 +29,11 @@ public class CombatTest /*extends Application */{
     }
 */
     public void testCombat() {
-
+        System.out.println("Testing combat");
         manager = CombatManager.getInstance();
-       // initializeGUI(primaryStage);
+
+
+        initializeGUI(manager.getStage());
 
         Player player = new Player();
         manager.setPlayer(player);
@@ -45,7 +47,6 @@ public class CombatTest /*extends Application */{
     }
 
     private void initializeGUI(Stage primaryStage){
-        primaryStage.setTitle("Combat Testing");
 
         //initialize the scene
         FlowPane root = new FlowPane();
