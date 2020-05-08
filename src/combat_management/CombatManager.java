@@ -30,6 +30,7 @@ public class CombatManager {
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
+        System.out.println("Am invoked ( ͡° ͜ʖ ͡°)");
         initializeCombat();
         playTurn();
     }
