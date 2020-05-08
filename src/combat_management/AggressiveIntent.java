@@ -28,4 +28,8 @@ public class AggressiveIntent extends Intent {
         // deal the damage to the player
         CombatManager.getInstance().getPlayer().loseHP(damage);
     }
+
+    public String toString() {
+        return "AggressiveIntent(" + damage + ")";
+    }
 }

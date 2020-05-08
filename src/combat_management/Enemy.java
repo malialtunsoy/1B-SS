@@ -14,6 +14,10 @@ public class Enemy extends CombatEntity{
     }
 
     // --- methods ---
+    public String toString() {
+        return name + "\n-------" + "\nHP: " + getHP() + "\n intents: " + intents;
+    }
+
     // test purpose implementation, declares aggressive intent with 5 dmg
     public void declareIntent() {
         AggressiveIntent aggr = new AggressiveIntent(5);
