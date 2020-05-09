@@ -34,6 +34,8 @@ public class Vertex {
     {
         type = temp;
     }
+    public boolean getLock()
+    {return lock;}
 
     public void changeLock()
     {

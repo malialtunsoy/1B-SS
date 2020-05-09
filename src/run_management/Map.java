@@ -50,31 +50,43 @@ public class Map {
 
     public Vertex chooseVertex( int index )
     {
-        Vertex temp = vertices[index];
-        String type = vertices[index].getType();
-        if( type.equals("Merchant") )
+        Vertex temp = vertices[index];;
+        if( temp.getLock())
         {
-            callMerchant(vertices[index]);
-        }
-        else if(type.equals("Treasure"))
-        {
-            callTreasure(vertices[index]);
-        }
-        else if(type.equals("Rest"))
-        {
-            callRest(vertices[index]);
+            String type = vertices[index].getType();
+            if (type.equals("Merchant")) {
+                callMerchant(vertices[index]);
+            } else if (type.equals("Treasure")) {
+                callTreasure(vertices[index]);
+            } else if (type.equals("Rest")) {
+                callRest(vertices[index]);
+            } else {
+                callCombat(vertices[index]);
+            }
+            System.out.println("Your vertex is " + type);
+            System.out.println(index + " choosed");
+            System.out.println("Next vertices are: " + temp.getNextIndex1() + " and " + temp.getNextIndex2());
         }
         else
-        {
-            callCombat(vertices[index]);
-        }
-        System.out.println("Your vertex is " + type );
-        System.out.println(index+" choosed");
-        System.out.println("Next vertices are: " + temp.getNextIndex1() + " and " + temp.getNextIndex2());
+            System.out.println("Locked");
         return temp;
     }
+    public void updateLocks(int opt1,int opt2,int opt3,int opt4)
+    {
+        vertices[vertices[opt1].getNextIndex1()].changeLock();
+        vertices[vertices[opt1].getNextIndex2()].changeLock();
+        vertices[opt2].changeLock();
+        vertices[opt3].changeLock();
+        vertices[opt4].changeLock();
+    }
+    public void updateLocks(int opt1, int opt2)
+    {
+        vertices[vertices[opt1].getNextIndex1()].changeLock();
+        vertices[vertices[opt1].getNextIndex2()].changeLock();
+        vertices[opt2].changeLock();
+    }
 
-
+    //will give needed properties to these vertices
     public void callMerchant( Vertex x )
     {
 
