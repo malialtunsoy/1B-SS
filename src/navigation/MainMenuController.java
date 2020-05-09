@@ -52,7 +52,7 @@ public class MainMenuController implements Initializable, ControlledScreen {
     @FXML
     void testCombatManager(ActionEvent event) {
         CombatTest test = new CombatTest();
-        test.testCombat();
+        //test.testCombat(); Commented out because of the change in the testing scheme.
     }
 
 

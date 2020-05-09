@@ -47,6 +47,7 @@ public class CombatManager {
         turn = 0;
         energy = 0;
         maxEnergy = 0;
+        uiAdapter = new CombatUIAdapter(stage);
     }
 
     private void playTurn() {
