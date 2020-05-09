@@ -15,11 +15,16 @@ public class CombatUIAdapter {
     static final int ENEMIES_VGAP = 300;
 
     // --- attributes ---
+    Stage primaryStage;
     FlowPane root;
     FlowPane enemies;
 
     // --- methods ---
     public void updateView() {
+        updateEnemies();
+    }
+
+    public void updateEnemies() {
         // for now, remove all displayed and re-add all enemies in combat
         enemies.getChildren().clear();
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
@@ -28,6 +33,9 @@ public class CombatUIAdapter {
     }
 
     public CombatUIAdapter(Stage primaryStage){
+        // set the primaryStage attribute to be able to invoke Stage.show() again
+        this.primaryStage = primaryStage;
+
         // initialize the scene
         root = new FlowPane();
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
