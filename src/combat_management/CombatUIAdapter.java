@@ -19,7 +19,7 @@ public class CombatUIAdapter {
     Stage primaryStage;
     GridPane root;
     FlowPane enemies;
-
+    FlowPane endTurn;
     // --- methods ---
     public void updateView() {
         updateEnemies();
@@ -42,40 +42,29 @@ public class CombatUIAdapter {
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
 
         enemies = new FlowPane();
+        root.add(enemies, 0, 0);
+        initalizeEnemies();
+
+        endTurn = new FlowPane();
+        root.add(endTurn,1,0);
+        initalizeEndTurn();
+
+        initializeCardPiles();
+
+        updateView();
+        primaryStage.show();
+    }
+
+    public void initializeCardPiles() {
+
+    }
+
+    public void initalizeEnemies() {
         enemies.setHgap(20);
         enemies.setVgap(20);
-        root.add(enemies,0,0);
+    }
 
-
-        //create and add the Add Enemy button
-        /* Commented out instead of deleting to revert easily.
-           These two buttons are here to set up the testing, they should be created by the CombatTest class and
-           the CombatUIAdapter should be setting its own scene, which does not include these buttons.
-
-        Button addEnemyBtn = new Button();
-        addEnemyBtn.setText("Add Enemy");
-        addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Enemy e = new Enemy("Can", 69);
-                CombatManager.getInstance().addEnemy(e);
-                enemies.getChildren().add(new Text(e.toString()));
-            }
-        });
-        root.add(addEnemyBtn,0,1);
-
-        //create and add the Start Combat Button
-        Button startCombatBtn = new Button();
-        startCombatBtn.setText("Start Combat");
-        startCombatBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                CombatManager.getInstance().playCombat();
-                System.out.println("Invoked playCombat()");
-            }
-        });
-        root.add(startCombatBtn,0,2);
-        */
+    public void initalizeEndTurn() {
         //create and add the End Turn Button
         Button endTurnBtn = new Button();
         endTurnBtn.setText("End Turn");
@@ -87,15 +76,6 @@ public class CombatUIAdapter {
                 System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
             }
         });
-        root.add(endTurnBtn,1,0);
-
-        initializeCardPiles();
-
-        updateView();
-        primaryStage.show();
-    }
-
-    public void initializeCardPiles() {
-
+        endTurn.getChildren().add(endTurnBtn);
     }
 }
