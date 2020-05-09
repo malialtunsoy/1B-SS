@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -20,9 +21,11 @@ public class CombatUIAdapter {
     GridPane root;
     FlowPane enemies;
     FlowPane endTurn;
+    GridPane cardPiles;
     // --- methods ---
     public void updateView() {
         updateEnemies();
+        updateCardPiles();
     }
 
     public void updateEnemies() {
@@ -31,6 +34,10 @@ public class CombatUIAdapter {
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
             enemies.getChildren().add(new Text(e.toString()));
         }
+    }
+
+    public void updateCardPiles() {
+        
     }
 
     public CombatUIAdapter(Stage primaryStage){
@@ -49,6 +56,10 @@ public class CombatUIAdapter {
         root.add(endTurn,1,0);
         initalizeEndTurn();
 
+        cardPiles = new GridPane();
+        root.add(cardPiles,0,1);
+        GridPane.setColumnSpan(cardPiles,2);
+        //root.setConstraints(cardPiles ,1,0,2,1);
         initializeCardPiles();
 
         updateView();
@@ -56,7 +67,13 @@ public class CombatUIAdapter {
     }
 
     public void initializeCardPiles() {
+        Text drawPileText = new Text("drawPile Text");
+        Text handText = new Text("hand Text");
+        Text discardPileText = new Text("discardPile Text");
 
+        cardPiles.add(drawPileText, 0,0);
+        cardPiles.add(handText, 1,0);
+        cardPiles.add(discardPileText,2,0);
     }
 
     public void initalizeEnemies() {
