@@ -63,7 +63,7 @@ public class CombatUIAdapter {
         });
         root.getChildren().add(startCombatBtn);
 
-        //create and add the Start Combat Button
+        //create and add the End Turn Button
         Button endTurnBtn = new Button();
         endTurnBtn.setText("End Turn");
         endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
