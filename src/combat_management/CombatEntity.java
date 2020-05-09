@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-
+// generalizes Player and Enemy
 public class CombatEntity {
     // --- attributes ---
     private int maxHP;
@@ -39,6 +39,8 @@ public class CombatEntity {
             currentHP = maxHP;
         }
     }
+
+    public int getHP() { return currentHP; }
 
     public void addStatusEffect(StatusEffect se) {
         affectedBy.add(se);

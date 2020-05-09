@@ -5,7 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class CombatTest /*extends Application */{
 
@@ -32,11 +34,12 @@ public class CombatTest /*extends Application */{
         System.out.println("Testing combat");
         manager = CombatManager.getInstance();
 
-
-        initializeGUI(manager.getStage());
+        // initializeGUI(manager.getStage());
 
         Player player = new Player();
         manager.setPlayer(player);
+        manager.createUIAdapter();      // there has to be a better way to handle that
+
         Card sample = new Card();
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -52,6 +55,11 @@ public class CombatTest /*extends Application */{
         FlowPane root = new FlowPane();
         primaryStage.setScene(new Scene(root, 300, 250));
 
+        FlowPane enemies = new FlowPane();
+        enemies.setHgap(20);
+        enemies.setVgap(20);
+        root.getChildren().add(enemies);
+
 
         //create and add the Add Enemy button
         Button addEnemyBtn = new Button();
@@ -60,6 +68,10 @@ public class CombatTest /*extends Application */{
             @Override
             public void handle(ActionEvent event) {
                 CombatManager.getInstance().addEnemy(new Enemy("Can", 69));
+                javafx.scene.text.Text enemy = new Text("||Can: HP = 69, intent = aggressive(5) ||");
+                enemies.getChildren().add(enemy);
+
+
                 System.out.println("Added Enemy");
             }
         });
@@ -76,6 +88,21 @@ public class CombatTest /*extends Application */{
             }
         });
         root.getChildren().add(startCombatBtn);
+
+        //create and add the Start Combat Button
+        Button endTurnBtn = new Button();
+        endTurnBtn.setText("End Turn");
+        endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CombatManager.getInstance().endTurn();
+                System.out.println("Turn ended...");
+
+                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
+            }
+        });
+        root.getChildren().add(endTurnBtn);
+
         //primaryStage.setScene();
         primaryStage.show();
     }

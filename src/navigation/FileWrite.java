@@ -18,7 +18,6 @@ public class FileWrite extends Game{
         String[] optionss = myOpt.getOptions();
         String[] OptionNames = myOpt.getOptionNames();
 
-        System.out.println(playerName + "is the name");
         out.println("1###PlayerName###    **" + playerName + "**");
         out.println("1###Character###    **" + character + "**");
 
