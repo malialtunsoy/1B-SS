@@ -13,14 +13,14 @@ public class Achievements {
             achievementNames =  FileRead.readFile("Data.txt", "Achievements");
         }catch(FileNotFoundException ex){System.out.println("failed");}
 
-        for(int i = 0; i < achievementNames.length ; i++){System.out.println(achievementNames[i]);}
+        //for(int i = 0; i < achievementNames.length ; i++){System.out.println(achievementNames[i]);}
 
 
         try {
             locked =  FileRead.convertToBool( FileRead.readFile("Data.txt", "AchievementLock") );
         }catch(FileNotFoundException ex){System.out.println("failed");}
 
-        for(int i = 0; i < locked.length ; i++){System.out.println(locked[i]);}
+        //for(int i = 0; i < locked.length ; i++){System.out.println(locked[i]);}
 
 
     }

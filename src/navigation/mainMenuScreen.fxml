@@ -10,26 +10,40 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenuController">
   <children>
-    <Button layoutX="500.0" layoutY="407.0" mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="200.0" text="New Game" textAlignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font></Button>
-    <Button layoutX="500.0" layoutY="475.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="50.0" prefWidth="200.0" text="Load Game" textAlignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font></Button>
-    <Button layoutX="500.0" layoutY="541.0" mnemonicParsing="false" onAction="#drawOptions" prefHeight="50.0" prefWidth="200.0" text="Options" textAlignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font></Button>
-    <Button layoutX="500.0" layoutY="607.0" mnemonicParsing="false" onAction="#drawAchievements" prefHeight="50.0" prefWidth="200.0" text="Achievements" textAlignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font></Button>
-      <ImageView fitHeight="259.0" fitWidth="338.0" layoutX="440.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="810.0" fitWidth="1210.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="162.0" layoutY="689.0" prefHeight="100.0" prefWidth="1021.0" spacing="20.0">
+         <children>
+          <Button mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="200.0" text="New Game" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+          <Button mnemonicParsing="false" onAction="#loadGame" prefHeight="50.0" prefWidth="200.0" text="Load Game" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+          <Button mnemonicParsing="false" onAction="#drawOptions" prefHeight="50.0" prefWidth="200.0" text="Options" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+          <Button mnemonicParsing="false" onAction="#drawAchievements" prefHeight="50.0" prefWidth="200.0" text="Achievements" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ImageView fitHeight="318.0" fitWidth="393.0" layoutX="390.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@slay-the-spire-logo.png" />
          </image>
       </ImageView>
+      <Button layoutX="1055.0" layoutY="32.0" mnemonicParsing="false" onAction="#testCombatManager" text="Combat Manager Test" />
   </children>
 </AnchorPane>

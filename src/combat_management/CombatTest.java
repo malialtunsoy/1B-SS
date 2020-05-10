@@ -5,16 +5,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class CombatTest /*extends Application */{
+
+public class CombatTest extends Application {
 
     CombatManager manager;
-/*
+
     @Override
     public void start(Stage primaryStage) {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
+        manager.setStage(primaryStage);
 
         Player player = new Player();
         manager.setPlayer(player);
@@ -27,13 +30,19 @@ public class CombatTest /*extends Application */{
         player.addToDeck(sample);
 
     }
-*/
-    public void testCombat(Stage primaryStage) {
+
+
+    /*  Commented out because of the change in the testing scheme
+    public void testCombat() {
+        System.out.println("Testing combat");
         manager = CombatManager.getInstance();
-        initializeGUI(primaryStage);
+
+        // initializeGUI(manager.getStage());
 
         Player player = new Player();
         manager.setPlayer(player);
+        manager.createUIAdapter();      // there has to be a better way to handle that
+
         Card sample = new Card();
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -42,14 +51,13 @@ public class CombatTest /*extends Application */{
         player.addToDeck(sample);
         player.addToDeck(sample);
     }
+    */
 
     private void initializeGUI(Stage primaryStage){
-        primaryStage.setTitle("Combat Testing");
 
         //initialize the scene
         FlowPane root = new FlowPane();
         primaryStage.setScene(new Scene(root, 300, 250));
-
 
         //create and add the Add Enemy button
         Button addEnemyBtn = new Button();
@@ -75,6 +83,7 @@ public class CombatTest /*extends Application */{
         });
         root.getChildren().add(startCombatBtn);
 
+        //primaryStage.setScene();
         primaryStage.show();
     }
 }
