@@ -26,7 +26,7 @@ public class Treasure {
 
     public int buyGold(int newGold){
         offeredGold=0;
-        return gold;
+        return newGold;
     }
     public Relic buyRelic(Relic newRelic){
         offeredRelic = null;

@@ -1,6 +1,6 @@
 package com.RunMan;
 
-public class Relic {
+
     public class Relic {
         //attributes
         private String name;
@@ -30,7 +30,7 @@ public class Relic {
 
         }
     }
-}
+
  class HPrelic extends Relic{
     int currentHP;
     Player p;
@@ -41,35 +41,76 @@ public class Relic {
     }
 
     public void affect(){
-        currentHP += currentHP;
+        currentHP += p.getHp();
         p.setHp(currentHP);
     }
 }
   class cardRelic extends Relic{
     int cardNum; //number of cards to be added
      Player p;
+     Card[] cards;
+     Combat combat;
 
-     public cardRelic(String name, int relicCost, String relicDescription , int cardNum,Player p){
+     public cardRelic(String name, int relicCost, String relicDescription , int cardNum,Player p, Card[] cards, Combat combat){
          super (name, relicCost, relicDescription );
          this. cardNum = cardNum;
          this.p = p;
+         this.cards = cards;
+         this.combat = combat;
      }
 
      public void affect(){
-
+         combat.addToHand(cards);//at the beginning of each combat new cards added to combat hand burası combata gidiyor combat sınıfını ekledim
      }
  }
 
-class dmgRelic extends Relic
-{
+class dmgRelic extends Relic {
     int dmg;
-    public dmgRelic(String name, int relicCost, String relicDescription,int dmg)
-    {
+    Combat combat;
+
+
+    public dmgRelic(String name, int relicCost, String relicDescription, int dmg,Combat combat) {
         super(name, relicCost, relicDescription);
         this.dmg = dmg;
+        this.combat = combat;
     }
+
     @Override
     public void affect() {
+        combat.decreaseHpofEnemy(dmg);
 
     }
+}
+
+class blockRelic extends Relic{
+        int block;
+        Combat combat;
+        public blockRelic(String name, int relicCost, String relicDescription, int block, Combat combat){
+            super(name,relicCost,relicDescription);
+            this.block = block;
+            this.combat = combat;
+        }
+
+    @Override
+    public void affect() {
+        combat.gainBlock(block);
+
+    }
+}
+
+class energyRelic extends Relic{
+        int energy;
+        Combat combat;
+        public energyRelic(String name, int relicCost, String relicDescription,int energy, Combat combat){
+            super(name,relicCost,relicDescription);
+            this.energy = energy;
+            this.combat = combat;
+        }
+
+    @Override
+    public void affect() {
+        combat.gainEnergy(energy);
+
+    }
+
 }

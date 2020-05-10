@@ -2,88 +2,73 @@ package com.RunMan;
 
 import java.util.ArrayList;
 
-public class Merchant {
+public class Merchant extends Vertex{
     //attributes
+    private int relicSize,potionSize,cardsSize;
     private ArrayList<Relic> offeredRelics;
-    private int relicSize;
-    private  ArrayList<Potion> offeredPotions;
-    private int potionSize;
+    private ArrayList<Potion> offeredPotions;
     private ArrayList<Card> offeredCards;
-    private int cardsSize;
 
     //methods(set methods are used for adding new items to arrays)
-    public Merchant(ArrayList<Relic> offeredRelics, ArrayList<Potion> offeredPotions, ArrayList<Card> offeredCards ){
-          offeredRelics = new ArrayList<Relic>(3);
-          offeredPotions = new ArrayList<Potion>(3);
-          offeredCards = new ArrayList<Card>(5);
+    public Merchant(ArrayList<Relic> offeredRelics, ArrayList<Potion> offeredPotions, ArrayList<Card> offeredCards) {
+        this.offeredCards = offeredCards;
+        this.offeredPotions = offeredPotions;
+        this.offeredRelics = offeredRelics;
 
     }
-    public ArrayList<Relic> getOfferedRelics(){
+
+    public ArrayList<Relic> getOfferedRelics() {
         return offeredRelics;
     }
-    public void setOfferedRelics(Relic[] newRelics){
-           for(int i =0; i < newRelics.length; i++){
-               offeredRelics.add(newRelics);
-           }
+
+    public void setOfferedRelics(Relic[] newRelics) {
+        for (int i = 0; i < newRelics.length; i++) {
+            offeredRelics.add(newRelics[i]);
+        }
     }
-    public ArrayList<Potion> getOfferedPotions(){
+
+    public ArrayList<Potion> getOfferedPotions() {
         return offeredPotions;
     }
-    public void setOfferedPotions(Potion[] newPotions){
-        for(int i =0; i < newPotions.length; i++){
-            offeredPotions.add(newPotions);
+
+    public void setOfferedPotions(Potion[] newPotions) {
+        for (int i = 0; i < newPotions.length; i++) {
+            offeredPotions.add(newPotions[i]);
         }
     }
-    public  ArrayList<Card> getOfferedCards(){
+
+    public ArrayList<Card> getOfferedCards() {
         return offeredCards;
     }
-    public void setOfferedCards(Card[] newCards){
-        for(int i =0; i < newCards.length; i++){
-            offeredCards.add(newCards);
+
+    public void setOfferedCards(Card[] newCards) {
+        for (int i = 0; i < newCards.length; i++) {
+            offeredCards.add(newCards[i]);
         }
     }
 
-    public void buyPotion(Potion newPotion){
-        for(int i =0; i < offeredPotions.size(); i++){
-            if(offeredPotions[i]==newPotion){
-                 offeredPotions.remove(i);
-
-            }
-        }
-
-        //new potion will be added to player
+    public void buyPotion(int index, Player p) {
+        Potion temp = offeredPotions.get(index);
+        p.addPot(temp);
+        offeredPotions.remove(index);
 
     }
 
-    public void buyRelic(Relic newRelic){
-        for(int i =0; i < offeredRelics.size(); i++){
-            if(offeredRelics[i]==newRelic){
-                offeredRelics.remove(i);
-
-            }
-            //new relic will be added to player
-        }
+    public void buyRelic(int index, Player p) {
+        Relic temp = offeredRelics.get(index);
+        p.addRelic(temp);
+        offeredRelics.remove(index);
     }
 
-    public void buyCard(Card newCard){
-        for(int i =0; i < offeredCards.size(); i++){
-            if(offeredCards[i]==newCard){
-                offeredCards.remove(i);
-            }
-         //new card will be added to player
-        }
+    public void buyCard(int index, Player p) {
+        Card temp = offeredCards.get(index);
+        p.addToDeck(temp);
+        offeredCards.remove(index);
     }
 
-    public void costRemovalCard(Card card){
-        static int cost =75;
-        for(int i =0; i < offeredCards.size(); i++){
-            if(offeredCards[i]==newCard){
-                offeredCards.remove(i);
-            }
-            //new card will be added to player
-        }
-        cost += 25;
+    public int costRemovalCard(int index, Player p) {
+        int cost = 75;
+        p.getDeck().remove(index);
+        return cost;
     }
-
-
 }
