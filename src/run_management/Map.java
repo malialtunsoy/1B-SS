@@ -4,10 +4,12 @@ public class Map {
     int vertexSize = 50;
     int currentPosition;
     Vertex[] vertices = new Vertex[vertexSize];
+    Player p;
 
-    public Map()
+    public Map(Player p)
     {
-
+        createVertex();
+        this.p = p;
     }
 
     public void createVertex()
@@ -15,14 +17,14 @@ public class Map {
         int nextI1, nextI2;
         nextI1 = 1;
         nextI2 = 2;
-        String type = "x";
+        String type = "Rest";
         Vertex temp = new Vertex();
         for(int i = 0; i < vertexSize; i++)
         {
             //read each row of file and define vertices
             if( type.equals("Merchant"))
             {
-                //vertices[i] = new Merchant;
+                //vertices[i] = new Merchant();
                 temp.setType("Merchant");
             }
             else if(type.equals("Treasure"))
@@ -32,7 +34,7 @@ public class Map {
             }
             else if(type.equals("Rest"))
             {
-                //vertices[i] = new Rest;
+                temp = new Rest();
                 temp.setType("Rest");
             }
             else
@@ -48,10 +50,10 @@ public class Map {
         }
     }
 
-    public Vertex chooseVertex( int index )
+    public void chooseVertex( int index )
     {
-        Vertex temp = vertices[index];;
-        if( temp.getLock())
+        System.out.println(vertices[index].getType());
+        if( vertices[index].getLock())
         {
             String type = vertices[index].getType();
             if (type.equals("Merchant")) {
@@ -59,17 +61,18 @@ public class Map {
             } else if (type.equals("Treasure")) {
                 callTreasure(vertices[index]);
             } else if (type.equals("Rest")) {
-                callRest(vertices[index]);
+                Vertex temp = vertices[index];
+                callRest( (Rest) temp );
+
             } else {
                 callCombat(vertices[index]);
             }
             System.out.println("Your vertex is " + type);
             System.out.println(index + " choosed");
-            System.out.println("Next vertices are: " + temp.getNextIndex1() + " and " + temp.getNextIndex2());
+            System.out.println("Next vertices are: " + vertices[index].getNextIndex1() + " and " + vertices[index].getNextIndex2());
         }
         else
             System.out.println("Locked");
-        return temp;
     }
     public void updateLocks(int opt1,int opt2,int opt3,int opt4)
     {
@@ -95,9 +98,10 @@ public class Map {
     {
 
     }
-    public void callRest(Vertex x)
+    public void callRest(Rest x)
     {
-
+        System.out.println("1 for rest, 2 for upgrade.");
+        x.healHP(p);
     }
     public void callCombat(Vertex x)
     {

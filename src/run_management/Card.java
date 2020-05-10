@@ -36,9 +36,8 @@ public class Card {
     public int getEffect(){
         return effect;
     }
-    public void upgrade(int index){
-        index = index*2;
-        setEffect(index);
+    public void upgrade(){
+        setEffect(getEffect()*2);
     }
     public void affect(){
 

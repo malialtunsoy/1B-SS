@@ -9,7 +9,7 @@ public class RunControl {
         maxHp = 100;
         maxPot = 3;
         gold = 50;
-        relicCount = 1;
+        relicCount = 0;
         cardCount = 10;
 
 
@@ -19,19 +19,19 @@ public class RunControl {
 
 
         testP.addPot(testPot);
+        System.out.println(testP.potCount);
         System.out.println(testP.getHp());
 
         testP.usePot(0);
 
         System.out.println(testP.getHp());
+        System.out.println(testP.potCount);
+        System.out.println(testP);
 
+        Map test = new Map(testP);
 
-        Map test = new Map();
-
-        test.createVertex();
+        //test.createVertex();
         test.chooseVertex(2);
-        test.chooseVertex(3);
-        test.chooseVertex(4);
 
 
     }

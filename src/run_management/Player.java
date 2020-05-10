@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    int hp, maxHp, pot, maxPot, gold, relicCount, cardCount;
+    int hp, maxHp, potCount, maxPot, gold, relicCount, cardCount;
     ArrayList<Potion> pots;
     ArrayList<Relic> relics;
     ArrayList<Card> deck;
@@ -20,6 +20,7 @@ public class Player {
         pots = new ArrayList<Potion>();
         relics = new ArrayList<Relic>();
         deck = new ArrayList<Card>();
+        potCount = 0;
     }
 
     //methods
@@ -86,7 +87,11 @@ public class Player {
 
     public void addPot( Potion pot )
     {
-        pots.add(pot);
+        if(potCount <= maxPot)
+        {
+            pots.add(pot);
+            potCount++;
+        }
     }
 
     public void usePot(int index)
@@ -94,6 +99,16 @@ public class Player {
         pots.get(index).affect();
         //Potion empty = new emptyPotion("Empty Potion",0,"No description");
         pots.remove(index);
+        potCount--;
     }
 
+    public void addRelic(Relic relic)
+    {
+        relics.add(relic);
+    }
+    public String toString()
+    {
+        String temp = "Hp is " + hp + " Max hp is " + maxHp + "Gold is " + gold;
+        return temp;
+    }
 }
