@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,12 +46,13 @@ public class MainMenuController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+
     }
 
     @FXML
     void testCombatManager(ActionEvent event) {
         CombatTest test = new CombatTest();
-        test.testCombat();
+        //test.testCombat(); Commented out because of the change in the testing scheme.
     }
 
 

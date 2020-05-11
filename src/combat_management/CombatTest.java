@@ -9,14 +9,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class CombatTest /*extends Application */{
+public class CombatTest extends Application {
 
     CombatManager manager;
-/*
+
     @Override
     public void start(Stage primaryStage) {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
+        manager.setStage(primaryStage);
 
         Player player = new Player();
         manager.setPlayer(player);
@@ -29,7 +30,9 @@ public class CombatTest /*extends Application */{
         player.addToDeck(sample);
 
     }
-*/
+
+
+    /*  Commented out because of the change in the testing scheme
     public void testCombat() {
         System.out.println("Testing combat");
         manager = CombatManager.getInstance();
@@ -48,18 +51,13 @@ public class CombatTest /*extends Application */{
         player.addToDeck(sample);
         player.addToDeck(sample);
     }
+    */
 
     private void initializeGUI(Stage primaryStage){
 
         //initialize the scene
         FlowPane root = new FlowPane();
         primaryStage.setScene(new Scene(root, 300, 250));
-
-        FlowPane enemies = new FlowPane();
-        enemies.setHgap(20);
-        enemies.setVgap(20);
-        root.getChildren().add(enemies);
-
 
         //create and add the Add Enemy button
         Button addEnemyBtn = new Button();
@@ -68,10 +66,6 @@ public class CombatTest /*extends Application */{
             @Override
             public void handle(ActionEvent event) {
                 CombatManager.getInstance().addEnemy(new Enemy("Can", 69));
-                javafx.scene.text.Text enemy = new Text("||Can: HP = 69, intent = aggressive(5) ||");
-                enemies.getChildren().add(enemy);
-
-
                 System.out.println("Added Enemy");
             }
         });
@@ -88,20 +82,6 @@ public class CombatTest /*extends Application */{
             }
         });
         root.getChildren().add(startCombatBtn);
-
-        //create and add the Start Combat Button
-        Button endTurnBtn = new Button();
-        endTurnBtn.setText("End Turn");
-        endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                CombatManager.getInstance().endTurn();
-                System.out.println("Turn ended...");
-
-                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
-            }
-        });
-        root.getChildren().add(endTurnBtn);
 
         //primaryStage.setScene();
         primaryStage.show();
