@@ -19,11 +19,11 @@ public class RunControl {
 
         testP.addPot(testPot);
         System.out.println(testP.potCount);
-        System.out.println(testP.getHp());
+        System.out.println(testP.getHP());
 
         testP.usePot(0);
 
-        System.out.println(testP.getHp());
+        System.out.println(testP.getHP());
         System.out.println(testP.potCount);
         System.out.println(testP);
 
