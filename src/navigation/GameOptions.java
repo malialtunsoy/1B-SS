@@ -12,14 +12,14 @@ public class GameOptions {
             optionNames =  FileRead.readFile("Data.txt", "OptionNames");
         }catch(FileNotFoundException ex){System.out.println("failed");}
 
-        for(int i = 0; i < optionNames.length ; i++){System.out.println(optionNames[i]);}
+        //for(int i = 0; i < optionNames.length ; i++){System.out.println(optionNames[i]);}
 
 
         try {
             gameOptions =  FileRead.convertToInt( FileRead.readFile("Data.txt", "Options") );
         }catch(FileNotFoundException ex){System.out.println("failed");}
 
-        for(int i = 0; i < gameOptions.length ; i++){System.out.println(gameOptions[i]);}
+        //for(int i = 0; i < gameOptions.length ; i++){System.out.println(gameOptions[i]);}
 
 
     }

@@ -21,16 +21,21 @@ public class OptionsController implements Initializable, ControlledScreen {
         myController = screenParent;
     }
 
+    @FXML
+    private CheckBox musicCheckBox;
+
+    @FXML
+    private CheckBox advancedMainMenuBox;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    @FXML
-    private CheckBox advancedMainMenuBox;
 
     private boolean advancedMainMenuSelected = false;
+    private boolean musicPlaying = true;
 
     String mainMenuOption = NavigationUI.mainMenuScreenFile;
 
@@ -44,6 +49,17 @@ public class OptionsController implements Initializable, ControlledScreen {
         advancedMainMenuSelected = advancedMainMenuBox.isSelected();
         if(advancedMainMenuSelected){mainMenuOption = "experimental.fxml"; }
         else{mainMenuOption = "mainMenu.fxml";};
+
+        if(!musicCheckBox.isSelected()){
+            myController.stopMusic();
+            musicPlaying = false;
+        }
+        else{
+            if(!musicPlaying){
+                myController.playMusic();
+            }
+        }
+
     }
 
 
