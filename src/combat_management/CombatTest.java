@@ -15,9 +15,11 @@ public class CombatTest extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        /*
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
+
 
         Player player = new Player();
         manager.setPlayer(player);
@@ -29,6 +31,7 @@ public class CombatTest extends Application {
         player.addToDeck(sample);
         player.addToDeck(sample);
 
+        */
     }
 
 
