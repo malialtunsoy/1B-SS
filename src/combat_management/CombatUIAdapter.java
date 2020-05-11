@@ -19,18 +19,24 @@ public class CombatUIAdapter {
     Stage primaryStage;
     GridPane root;
     FlowPane enemies;
+    FlowPane player;
     FlowPane endTurn;
     // --- methods ---
     public void updateView() {
         updateEnemies();
+        updatePlayer();
     }
 
-    public void updateEnemies() {
+    private void updateEnemies() {
         // for now, remove all displayed and re-add all enemies in combat
         enemies.getChildren().clear();
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
             enemies.getChildren().add(new Text(e.toString()));
         }
+    }
+
+    private void updatePlayer() {
+        ((Text)(player.getChildren().get(0))).setText(CombatManager.getInstance().getPlayer().toString());
     }
 
     public CombatUIAdapter(Stage primaryStage){
@@ -43,11 +49,14 @@ public class CombatUIAdapter {
 
         enemies = new FlowPane();
         root.add(enemies, 0, 0);
-        initalizeEnemies();
+        initializeEnemies();
+
+        initializePlayer();
+        root.add(player, 1,0);
 
         endTurn = new FlowPane();
-        root.add(endTurn,1,0);
-        initalizeEndTurn();
+        root.add(endTurn,2,0);
+        initializeEndTurn();
 
         initializeCardPiles();
 
@@ -59,12 +68,17 @@ public class CombatUIAdapter {
 
     }
 
-    public void initalizeEnemies() {
+    public void initializeEnemies() {
         enemies.setHgap(20);
         enemies.setVgap(20);
     }
 
-    public void initalizeEndTurn() {
+    public void initializePlayer() {
+        player = new FlowPane();
+        player.getChildren().add(new Text(CombatManager.getInstance().getPlayer().toString()));
+    }
+
+    public void initializeEndTurn() {
         //create and add the End Turn Button
         Button endTurnBtn = new Button();
         endTurnBtn.setText("End Turn");

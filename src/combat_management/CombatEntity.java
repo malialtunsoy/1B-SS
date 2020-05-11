@@ -42,6 +42,8 @@ public class CombatEntity {
 
     public int getHP() { return currentHP; }
 
+    public int getMaxHP() {return maxHP;}
+
     public void addStatusEffect(StatusEffect se) {
         affectedBy.add(se);
     }

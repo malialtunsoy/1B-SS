@@ -15,23 +15,20 @@ public class CombatTest extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        /*
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
 
 
-        Player player = new Player();
+        Player player = new Player(50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
-        Card sample = new Card();
+        Card sample = new Card("abc", "abc",0,0);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
-
-        */
     }
 
 
