@@ -1,4 +1,3 @@
-package com.company;
 
 public class Vertex {
     int index, nextIndex1, nextIndex2;

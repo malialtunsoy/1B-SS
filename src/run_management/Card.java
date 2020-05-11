@@ -1,4 +1,3 @@
-package com.company;
 
 public class Card {
     private String cardName;

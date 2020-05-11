@@ -1,8 +1,7 @@
-package com.company;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends CombatEntity{
 
     int hp, maxHp, potCount, maxPot, gold, relicCount, cardCount;
     ArrayList<Potion> pots;
@@ -11,6 +10,7 @@ public class Player {
     Pet myPet;
 
     public Player(int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
+        super(hp);
         this.hp = hp;
         this.maxHp = maxHp;
         this.maxPot = maxPot;

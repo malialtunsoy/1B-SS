@@ -1,4 +1,3 @@
-package com.company;
 
 public class Map {
     int vertexSize = 50;

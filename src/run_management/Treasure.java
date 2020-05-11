@@ -1,4 +1,3 @@
-package com.company;
 
 public class Treasure extends Vertex{
     private int offeredGold;
