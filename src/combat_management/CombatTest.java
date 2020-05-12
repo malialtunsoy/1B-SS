@@ -24,6 +24,11 @@ public class CombatTest extends Application {
 
         Player player = new Player(50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
+
+        // NOTE: it might be a better idea to create a new object for each card to be added.
+        // playCard removes the card from the hand using its reference directly (not its index in hand).
+        // Seems not to cause an issue now but better to be aware of it.
+        
         Card sample = new Strike();
         player.addToDeck(sample);
         player.addToDeck(sample);
