@@ -7,6 +7,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {
@@ -89,6 +90,27 @@ public class ScreenController extends StackPane {
 
     }
 
+    public boolean directChange(Node directScene){
+        Node screenToRemove;
+        if(!getChildren().isEmpty()){    //if there is more than one screen
+            getChildren().add(0, directScene);     //add the screen
+            screenToRemove = getChildren().get(1);
+            getChildren().remove(1);                    //remove the displayed screen
+        }else{
+            getChildren().add(directScene);       //no one else been displayed, then just show
+        }
+        return true;
+
+    }
+
+    public boolean screenLoadFromOtherSubs(ArrayList<String> screenNames, ArrayList<String> screenFiles ){
+
+        for(int i = 0; i < screenNames.size(); i++){
+            System.out.println(loadScreen( screenNames.get(i) , screenFiles.get(i)  ) );
+            System.out.println(screenNames.get(i) +"    " +  screenFiles.get(i) );
+        }
+        return true;
+    }
 
 
 
