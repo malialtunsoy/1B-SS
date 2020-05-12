@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 // This is a singleton class.
 public class CombatManager {
+    // constants
+    private static final int DRAW_PER_TURN = 5; // will be removed later on
 
     //constructors
     private CombatManager() {
@@ -34,7 +36,6 @@ public class CombatManager {
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
-        // System.out.println("Am invoked ( ͡° ͜ʖ ͡°)");
         initializeCombat();
         playTurn();
     }
@@ -53,10 +54,9 @@ public class CombatManager {
     private void playTurn() {
         declareIntents();
         energy = maxEnergy;
-        uiAdapter.updateView();
-        // hand = draw(4); temporarily commented out in order not to run out of deck when testing
-        //ui.drawCombatScreen();
+        hand = draw(4);
         playersTurn = true;
+        uiAdapter.updateView();
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -119,8 +119,14 @@ public class CombatManager {
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
 
-    // needed in UIAdapter to draw all enemies
+    // ---- methods used by UIAdapter to update the view: ----
     public ArrayList<Enemy> getEnemies() {return enemies;}
+    public ArrayList<Card> getHand() {return hand;}
+    public int getDrawPileSize() {return drawPile.size();}
+    public int getDiscardPileSize() {return discardPile.size();}
+    // -------------------------------------------------------
+
+
 
     public void setPlayer(Player player) { this.player = player; }
 

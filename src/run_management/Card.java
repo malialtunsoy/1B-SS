@@ -40,4 +40,16 @@ public class Card {
     public void affect(){
 
     }
+
+    // added for test purposes to use in CombatManager.
+    // implementers of RunManager can comment this out and write their own toString() if they need to
+    public String toString() {
+        return  "--------\n" +
+                "|      |\n" +
+                "|      |\n" +
+                "| CARD |\n" +
+                "|      |\n" +
+                "|      |\n" +
+                "--------\n";
+    }
 }

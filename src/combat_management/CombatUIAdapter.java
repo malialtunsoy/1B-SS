@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -21,10 +22,17 @@ public class CombatUIAdapter {
     FlowPane enemies;
     FlowPane player;
     FlowPane endTurn;
+
+    GridPane cardPiles; // contains the three following items
+    FlowPane hand;
+    Text drawPile;
+    Text discardPile;
+
     // --- methods ---
     public void updateView() {
         updateEnemies();
         updatePlayer();
+        updateCardPiles();
     }
 
     private void updateEnemies() {
@@ -37,6 +45,18 @@ public class CombatUIAdapter {
 
     private void updatePlayer() {
         ((Text)(player.getChildren().get(0))).setText(CombatManager.getInstance().getPlayer().toString());
+    }
+
+    private void updateCardPiles() {
+        hand.getChildren().clear();
+        for (Card c : CombatManager.getInstance().getHand()) {
+            Text card = new Text(c.toString());
+            card.setFont(new Font("Consolas", 10));
+            hand.getChildren().add(card);
+        }
+
+        drawPile.setText("Draw Pile: " + CombatManager.getInstance().getDrawPileSize() + " cards");
+        discardPile.setText("Discard Pile: " + CombatManager.getInstance().getDiscardPileSize() + " cards");
     }
 
     public CombatUIAdapter(Stage primaryStage){
@@ -59,26 +79,34 @@ public class CombatUIAdapter {
         initializeEndTurn();
 
         initializeCardPiles();
+        root.add(cardPiles, 0, 1);
 
         updateView();
         primaryStage.show();
     }
 
-    public void initializeCardPiles() {
+    private void initializeCardPiles() {
+        hand = new FlowPane();
+        drawPile = new Text();
+        discardPile = new Text();
 
+        cardPiles = new GridPane();
+        cardPiles.add(drawPile, 0, 0);
+        cardPiles.add(hand, 0, 1);
+        cardPiles.add(discardPile, 0, 2);
     }
 
-    public void initializeEnemies() {
+    private void initializeEnemies() {
         enemies.setHgap(20);
         enemies.setVgap(20);
     }
 
-    public void initializePlayer() {
+    private void initializePlayer() {
         player = new FlowPane();
         player.getChildren().add(new Text(CombatManager.getInstance().getPlayer().toString()));
     }
 
-    public void initializeEndTurn() {
+    private void initializeEndTurn() {
         //create and add the End Turn Button
         Button endTurnBtn = new Button();
         endTurnBtn.setText("End Turn");
