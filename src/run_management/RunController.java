@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class RunController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        playerNameLabel.setText(Game.getInstance().getPlayerName());
     }
 
     @FXML
@@ -55,6 +56,34 @@ public class RunController implements Initializable, ControlledScreen {
     @FXML
     void goToCombat(ActionEvent event) {
         //myController.changeScreen(RunUIManager.c);
+    }
+
+    @FXML
+    private Text MoneyLabel;
+
+    @FXML
+    private Text currentHPLabel;
+
+    @FXML
+    private Text maxHPLabel;
+
+    @FXML
+    private Text playerNameLabel;
+
+
+    @FXML
+    void openMap(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showDeck(ActionEvent event) {
+
+    }
+
+    @FXML
+    void openSettings(ActionEvent event) {
+
     }
 
 

@@ -40,6 +40,10 @@ public class NewGameController implements Initializable, ControlledScreen {
         if(playerName.equals("")){
             playerNameText.setPromptText("you must enter a name");
         }
+        if(playerName.length()>10){
+            playerNameText.clear();
+            playerNameText.setPromptText("pick a shorter name");
+        }
         else {
             Game.getInstance().setPlayerName(playerName);
             myController.changeScreen(NavigationUI.newGameSecondScreen);
