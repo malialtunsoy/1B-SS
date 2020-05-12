@@ -24,7 +24,19 @@ public class CombatTest extends Application {
 
         Player player = new Player(50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
-        Card sample = new Card("abc", "abc",0,0);
+        Card sample = new Strike();
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);

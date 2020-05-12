@@ -44,15 +44,24 @@ public class CombatUIAdapter {
     }
 
     private void updatePlayer() {
-        ((Text)(player.getChildren().get(0))).setText(CombatManager.getInstance().getPlayer().toString());
+        ((Text)(player.getChildren().get(0))).setText(
+                CombatManager.getInstance().getPlayer().toString()
+                + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
     }
 
     private void updateCardPiles() {
         hand.getChildren().clear();
         for (Card c : CombatManager.getInstance().getHand()) {
-            Text card = new Text(c.toString());
-            card.setFont(new Font("Consolas", 10));
-            hand.getChildren().add(card);
+            Button cardBtn = new Button(c.toString());
+            cardBtn.setFont(new Font("Consolas", 10));
+            cardBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    CombatManager.getInstance().playCard(c, CombatManager.getInstance().getEnemies().get(0));
+                }
+            });
+
+            hand.getChildren().add(cardBtn);
         }
 
         drawPile.setText("Draw Pile: " + CombatManager.getInstance().getDrawPileSize() + " cards");

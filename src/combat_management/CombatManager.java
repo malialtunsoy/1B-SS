@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class CombatManager {
     // constants
     private static final int DRAW_PER_TURN = 5; // will be removed later on
+    private static final int INITIAL_ENERGY = 3; // will be removed later on
 
     //constructors
     private CombatManager() {
@@ -46,15 +47,15 @@ public class CombatManager {
         discardPile = new ArrayList<Card>();
         hand = new ArrayList<Card>();
         turn = 0;
-        energy = 0;
-        maxEnergy = 0;
+        energy = INITIAL_ENERGY;
+        maxEnergy = INITIAL_ENERGY;
         uiAdapter = new CombatUIAdapter(stage);
     }
 
     private void playTurn() {
         declareIntents();
         energy = maxEnergy;
-        hand = draw(4);
+        hand = draw(DRAW_PER_TURN);
         playersTurn = true;
         uiAdapter.updateView();
     }
@@ -70,7 +71,7 @@ public class CombatManager {
             return new ArrayList<Card>();
 
         if(drawPile.size() <= 0){
-            drawPile = discardPile;
+            drawPile = new ArrayList<Card>(discardPile);
             discardPile.clear();
         }
 
@@ -81,9 +82,16 @@ public class CombatManager {
         return result;
     }
 
-    //plays the card at the given index.
-    public void playCard( int index) {
-
+    //plays the card at the given index. Target unused for non-targeted cards.
+    public void playCard( Card c, Enemy target) {
+        if (energy < c.getEnergy() || !playersTurn) {
+            return;
+        }
+        c.affect(target);
+        hand.remove(c);
+        discardPile.add(c);
+        energy -= c.getEnergy();
+        uiAdapter.updateView();
     }
 
     //uses the potion at the given index.
@@ -100,6 +108,8 @@ public class CombatManager {
     public void endTurn() {
         playersTurn = false;
         // discard all cards
+        discardPile.addAll(hand);
+        hand.clear();
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
@@ -107,6 +117,7 @@ public class CombatManager {
         }
 
         // restore energy
+        energy = maxEnergy;
 
         playTurn(); // play the next turn
     }
@@ -124,6 +135,8 @@ public class CombatManager {
     public ArrayList<Card> getHand() {return hand;}
     public int getDrawPileSize() {return drawPile.size();}
     public int getDiscardPileSize() {return discardPile.size();}
+    public String uiEnergyString() {return energy + "/" + maxEnergy;} // generalize these in the actual GUI
+                                                                        // ad-hoc and untidy at the moment
     // -------------------------------------------------------
 
 

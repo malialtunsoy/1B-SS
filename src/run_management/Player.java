@@ -82,7 +82,7 @@ public class Player extends CombatEntity {
     }
     public String toString()
     {
-        String temp = "Player" + "\n-------" + "\nHP: " + getHP() + "\n max HP: " + getMaxHP();;
-        return temp;
+        return "Player" + "\n-------" +
+                "\nHP: " + getHP() + "/" + getMaxHP();
     }
 }
