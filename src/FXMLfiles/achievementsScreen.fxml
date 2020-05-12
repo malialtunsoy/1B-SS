@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AchievementsController">
+   <children>
+      <ImageView fitHeight="810.0" fitWidth="1209.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="477.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Achievements">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Button focusTraversable="false" layoutX="99.0" layoutY="678.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" textOverrun="CLIP">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="117.0" layoutY="205.0" prefHeight="407.0" prefWidth="967.0" vbarPolicy="NEVER">
+         <content>
+            <HBox fx:id="achievementHBox" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="393.0" prefWidth="10000.0" spacing="10.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

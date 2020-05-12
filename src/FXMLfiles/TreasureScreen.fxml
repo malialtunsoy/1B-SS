@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TreasureController">
+    <children>
+        <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@background.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMap" text="Back To Map" />
+        <Text fill="WHITE" layoutX="513.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TREASURE" textAlignment="CENTER">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
