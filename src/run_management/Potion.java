@@ -1,9 +1,9 @@
 
- public class Potion {
+ public abstract class Potion {
 
     //attributes
-    String potionName,potionDescription;
-    int potionCost;
+    private String potionName,potionDescription;
+    private int potionCost;
 
     //constructors
     public Potion(String potionName, int potionCost, String potionDescription) {
@@ -27,42 +27,24 @@
     public void setPotionDescription() {
         this.potionDescription = potionDescription;
     }
-    public void affect()
-    {}
+    public int getPotionCost(){return potionCost;}
+    public void setPotionCost(int potionCost){this.potionCost = potionCost;}
+    abstract public void affect(Player p);
+    public String toString() {return potionName + "  " +potionDescription;}
 }
 
-class emptyPotion extends Potion
+/*
+public class emptyPotion extends Potion
 {
     public emptyPotion(String potionName, int potionCost, String potionDescription)
     {
         super(potionName,potionCost,potionDescription);
     }
 
-}
+}*/
 
-class hpPotion extends Potion
-{
-    int currentHp;
-    Player p;
-    public hpPotion(String potionName, int potionCost, String potionDescription,int currentHp,Player p)
-    {
-        super(potionName, potionCost, potionDescription);
-        this.currentHp = currentHp;
-        this.p = p;
-    }
-    @Override
-    public void affect() {
-        // This part is changed by Can C. to adapt to the fact that there is no setHP method for CombatEntity
-        // Here is the old piece of code:
-        /*
-        currentHp = currentHp + currentHp;
-        p.setHP(currentHp);
-        */
-        // Here is the new suggested implementation (assuming we want the potion to double the currentHP):
-        p.gainHP(p.getHP());
-    }
-}
 
+/*
 class dmgPotion extends Potion
 {
     int dmg;
@@ -75,4 +57,4 @@ class dmgPotion extends Potion
     public void affect() {
 
     }
-}
+}*/

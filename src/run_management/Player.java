@@ -70,7 +70,7 @@ public class Player extends CombatEntity {
 
     public void usePot(int index)
     {
-        pots.get(index).affect();
+        pots.get(index).affect(this);
         //Potion empty = new emptyPotion("Empty Potion",0,"No description");
         pots.remove(index);
         potCount--;

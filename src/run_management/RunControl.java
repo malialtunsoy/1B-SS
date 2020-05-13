@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class RunControl {
 
@@ -12,11 +13,18 @@ public class RunControl {
         cardCount = 10;
 
 
-        Player testP = new Player(hp,maxHp,maxPot,gold, relicCount, cardCount);
+        Player testP = new Player(hp,maxHp, maxPot,gold, relicCount, cardCount);
 
-        Potion testPot = new hpPotion("hppot", 30,"increase hp", hp,testP);
+        ArrayList<Relic> offeredRelics = new ArrayList<Relic>();
+        ArrayList<Potion> offeredPotions = new ArrayList<Potion>();
+        ArrayList<Card> offeredCards = new ArrayList<Card>();
+        Potion testPot = new HPPotion();
+        Potion testPot2 = new HPPotion();
+        offeredPotions.add(testPot);
+        offeredPotions.add(testPot2);
 
 
+        /*
         testP.addPot(testPot);
         System.out.println(testP.potCount);
         System.out.println(testP.getHP());
@@ -28,10 +36,14 @@ public class RunControl {
         System.out.println(testP);
 
         Map test = new Map(testP);
-
+        System.out.println(testP.getHP());
         //test.createVertex();
         test.chooseVertex(2);
+        System.out.println(testP.getHP());
+        */
 
+        Vertex mercTest = new Merchant(offeredRelics,offeredPotions,offeredCards);
+        ((Merchant) mercTest).showItems();
 
     }
 }

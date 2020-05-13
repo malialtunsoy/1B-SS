@@ -49,6 +49,7 @@ public class Merchant extends Vertex{
 
     public void buyPotion(int index, Player p) {
         Potion temp = offeredPotions.get(index);
+        p.subGold(temp.getPotionCost());
         p.addPot(temp);
         offeredPotions.remove(index);
 
@@ -56,6 +57,7 @@ public class Merchant extends Vertex{
 
     public void buyRelic(int index, Player p) {
         Relic temp = offeredRelics.get(index);
+        p.subGold(temp.getRelicCost());
         p.addRelic(temp);
         offeredRelics.remove(index);
     }
@@ -70,5 +72,12 @@ public class Merchant extends Vertex{
         int cost = 75;
         p.getDeck().remove(index);
         return cost;
+    }
+
+    public void showItems()
+    {
+        System.out.println(getOfferedPotions());
+        System.out.println(getOfferedCards());
+        System.out.println(getOfferedRelics());
     }
 }

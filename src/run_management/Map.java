@@ -23,12 +23,12 @@ public class Map {
             //read each row of file and define vertices
             if( type.equals("Merchant"))
             {
-                //vertices[i] = new Merchant();
+                //temp = new Merchant();
                 temp.setType("Merchant");
             }
             else if(type.equals("Treasure"))
             {
-                //vertices[i] = new Treasure;
+                //temp = new Treasure();
                 temp.setType("Treasure");
             }
             else if(type.equals("Rest"))
@@ -38,7 +38,7 @@ public class Map {
             }
             else
             {
-                //vertices[i] = new Combat;
+                temp = new Combat();
                 temp.setType("Combat");
             }
             //vertex indexes
@@ -56,15 +56,18 @@ public class Map {
         {
             String type = vertices[index].getType();
             if (type.equals("Merchant")) {
-                callMerchant(vertices[index]);
+                Vertex temp = vertices[index];
+                callMerchant( (Merchant) temp );
             } else if (type.equals("Treasure")) {
-                callTreasure(vertices[index]);
+                Vertex temp = vertices[index];
+                callTreasure( (Treasure) temp );
             } else if (type.equals("Rest")) {
                 Vertex temp = vertices[index];
                 callRest( (Rest) temp );
 
             } else {
-                callCombat(vertices[index]);
+                Vertex temp = vertices[index];
+                callCombat( (Combat) temp );
             }
             System.out.println("Your vertex is " + type);
             System.out.println(index + " choosed");
@@ -89,11 +92,11 @@ public class Map {
     }
 
     //will give needed properties to these vertices
-    public void callMerchant( Vertex x )
+    public void callMerchant( Merchant x )
     {
 
     }
-    public void callTreasure(Vertex x)
+    public void callTreasure(Treasure x)
     {
 
     }
@@ -102,7 +105,7 @@ public class Map {
         System.out.println("1 for rest, 2 for upgrade.");
         x.healHP(p);
     }
-    public void callCombat(Vertex x)
+    public void callCombat(Combat x)
     {
 
     }
