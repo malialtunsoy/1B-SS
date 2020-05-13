@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
@@ -7,6 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class CombatUIAdapter {
     // --- constants ---
@@ -68,30 +72,23 @@ public class CombatUIAdapter {
         discardPile.setText("Discard Pile: " + CombatManager.getInstance().getDiscardPileSize() + " cards");
     }
 
-    public CombatUIAdapter(Stage primaryStage){
+    public CombatUIAdapter(Stage primaryStage) throws IOException{
         // set the primaryStage attribute to be able to invoke Stage.show() again
         this.primaryStage = primaryStage;
-        // initialize the scene
-        root = new GridPane();
-        root.setGridLinesVisible(true); // for debugging purposes
-        primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
 
-        enemies = new FlowPane();
-        root.add(enemies, 0, 0);
-        initializeEnemies();
-
-        initializePlayer();
-        root.add(player, 1,0);
-
-        endTurn = new FlowPane();
-        root.add(endTurn,2,0);
-        initializeEndTurn();
-
-        initializeCardPiles();
-        root.add(cardPiles, 0, 1);
-
-        updateView();
+        //
+        FileInputStream file = new FileInputStream("src/combat_management/CombatUI.fxml");
+        FXMLLoader loader = new FXMLLoader();
+        Scene combatScene = loader.load(file);
+        ((CombatUIController)loader.getController()).setUIAdapter(this);
+        primaryStage.setScene(combatScene);
         primaryStage.show();
+    }
+
+    public void endTurnPressed() {
+        CombatManager.getInstance().endTurn();
+        System.out.println("Turn ended...");
+        System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
     }
 
     private void initializeCardPiles() {
@@ -115,18 +112,5 @@ public class CombatUIAdapter {
         player.getChildren().add(new Text(CombatManager.getInstance().getPlayer().toString()));
     }
 
-    private void initializeEndTurn() {
-        //create and add the End Turn Button
-        Button endTurnBtn = new Button();
-        endTurnBtn.setText("End Turn");
-        endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                CombatManager.getInstance().endTurn();
-                System.out.println("Turn ended...");
-                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
-            }
-        });
-        endTurn.getChildren().add(endTurnBtn);
-    }
+
 }

@@ -17,6 +17,7 @@ public class CombatTest extends Application {
     @Override
     public void start(Stage primaryStage) {
         System.out.println(Font.getFontNames());
+        System.out.println(System.getProperty("user.dir"));
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
