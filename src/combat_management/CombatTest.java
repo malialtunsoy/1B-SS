@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -15,23 +16,39 @@ public class CombatTest extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        /*
+        System.out.println(Font.getFontNames());
+        System.out.println(System.getProperty("user.dir"));
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
 
 
-        Player player = new Player();
+        Player player = new Player(50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
-        Card sample = new Card();
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
 
-        */
+        // NOTE: it might be a better idea to create a new object for each card to be added.
+        // playCard removes the card from the hand using its reference directly (not its index in hand).
+        // Seems not to cause an issue now but better to be aware of it.
+        
+        Card sample = new Strike();
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
     }
 
 

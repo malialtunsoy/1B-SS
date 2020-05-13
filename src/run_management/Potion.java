@@ -52,8 +52,14 @@ class hpPotion extends Potion
     }
     @Override
     public void affect() {
+        // This part is changed by Can C. to adapt to the fact that there is no setHP method for CombatEntity
+        // Here is the old piece of code:
+        /*
         currentHp = currentHp + currentHp;
-        p.setHp(currentHp);
+        p.setHP(currentHp);
+        */
+        // Here is the new suggested implementation (assuming we want the potion to double the currentHP):
+        p.gainHP(p.getHP());
     }
 }
 

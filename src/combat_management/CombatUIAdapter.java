@@ -1,12 +1,16 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class CombatUIAdapter {
     // --- constants ---
@@ -20,15 +24,22 @@ public class CombatUIAdapter {
     Stage primaryStage;
     GridPane root;
     FlowPane enemies;
+    FlowPane player;
     FlowPane endTurn;
-    GridPane cardPiles;
+
+    GridPane cardPiles; // contains the three following items
+    FlowPane hand;
+    Text drawPile;
+    Text discardPile;
+
     // --- methods ---
     public void updateView() {
         updateEnemies();
+        updatePlayer();
         updateCardPiles();
     }
 
-    public void updateEnemies() {
+    private void updateEnemies() {
         // for now, remove all displayed and re-add all enemies in combat
         enemies.getChildren().clear();
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
@@ -36,63 +47,70 @@ public class CombatUIAdapter {
         }
     }
 
-    public void updateCardPiles() {
-        
+    private void updatePlayer() {
+        ((Text)(player.getChildren().get(0))).setText(
+                CombatManager.getInstance().getPlayer().toString()
+                + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
     }
 
-    public CombatUIAdapter(Stage primaryStage){
+    private void updateCardPiles() {
+        hand.getChildren().clear();
+        for (Card c : CombatManager.getInstance().getHand()) {
+            Button cardBtn = new Button(c.toString());
+            cardBtn.setFont(new Font("Consolas", 10));
+            cardBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    CombatManager.getInstance().playCard(c, CombatManager.getInstance().getEnemies().get(0));
+                }
+            });
+
+            hand.getChildren().add(cardBtn);
+        }
+
+        drawPile.setText("Draw Pile: " + CombatManager.getInstance().getDrawPileSize() + " cards");
+        discardPile.setText("Discard Pile: " + CombatManager.getInstance().getDiscardPileSize() + " cards");
+    }
+
+    public CombatUIAdapter(Stage primaryStage) throws IOException{
         // set the primaryStage attribute to be able to invoke Stage.show() again
         this.primaryStage = primaryStage;
-        // initialize the scene
-        root = new GridPane();
-        root.setGridLinesVisible(true); // for debugging purposes
-        primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
 
-        enemies = new FlowPane();
-        root.add(enemies, 0, 0);
-        initalizeEnemies();
-
-        endTurn = new FlowPane();
-        root.add(endTurn,1,0);
-        initalizeEndTurn();
-
-        cardPiles = new GridPane();
-        root.add(cardPiles,0,1);
-        GridPane.setColumnSpan(cardPiles,2);
-        //root.setConstraints(cardPiles ,1,0,2,1);
-        initializeCardPiles();
-
-        updateView();
+        //
+        FileInputStream file = new FileInputStream("src/combat_management/CombatUI.fxml");
+        FXMLLoader loader = new FXMLLoader();
+        Scene combatScene = loader.load(file);
+        ((CombatUIController)loader.getController()).setUIAdapter(this);
+        primaryStage.setScene(combatScene);
         primaryStage.show();
     }
 
-    public void initializeCardPiles() {
-        Text drawPileText = new Text("drawPile Text");
-        Text handText = new Text("hand Text");
-        Text discardPileText = new Text("discardPile Text");
-
-        cardPiles.add(drawPileText, 0,0);
-        cardPiles.add(handText, 1,0);
-        cardPiles.add(discardPileText,2,0);
+    public void endTurnPressed() {
+        CombatManager.getInstance().endTurn();
+        System.out.println("Turn ended...");
+        System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
     }
 
-    public void initalizeEnemies() {
+    private void initializeCardPiles() {
+        hand = new FlowPane();
+        drawPile = new Text();
+        discardPile = new Text();
+
+        cardPiles = new GridPane();
+        cardPiles.add(drawPile, 0, 0);
+        cardPiles.add(hand, 0, 1);
+        cardPiles.add(discardPile, 0, 2);
+    }
+
+    private void initializeEnemies() {
         enemies.setHgap(20);
         enemies.setVgap(20);
     }
 
-    public void initalizeEndTurn() {
-        //create and add the End Turn Button
-        Button endTurnBtn = new Button();
-        endTurnBtn.setText("End Turn");
-        endTurnBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                CombatManager.getInstance().endTurn();
-                System.out.println("Turn ended...");
-                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
-            }
-        });
-        endTurn.getChildren().add(endTurnBtn);
+    private void initializePlayer() {
+        player = new FlowPane();
+        player.getChildren().add(new Text(CombatManager.getInstance().getPlayer().toString()));
     }
+
+
 }

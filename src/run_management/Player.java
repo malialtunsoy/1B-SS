@@ -1,9 +1,9 @@
 
 import java.util.ArrayList;
 
-public class Player extends CombatEntity{
+public class Player extends CombatEntity {
 
-    int hp, maxHp, potCount, maxPot, gold, relicCount, cardCount;
+    int potCount, maxPot, gold, relicCount, cardCount;
     ArrayList<Potion> pots;
     ArrayList<Relic> relics;
     ArrayList<Card> deck;
@@ -11,8 +11,6 @@ public class Player extends CombatEntity{
 
     public Player(int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
         super(hp);
-        this.hp = hp;
-        this.maxHp = maxHp;
         this.maxPot = maxPot;
         this.gold = gold;
         this.cardCount = cardCount;
@@ -46,30 +44,6 @@ public class Player extends CombatEntity{
 
     public int getMaxPots() {
         return maxPot;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int newHp) {
-        this.hp = newHp;
-    }
-
-    public void addHp(int addHp) {
-        hp = hp + addHp;
-    }
-
-    public void loseHp(int amount) {
-        hp = hp - amount;
-    }
-
-    public int getMaxHp() {
-        return maxHp;
-    }
-
-    public void setMaxHp(int newMaxHp) {
-        this.maxHp = newMaxHp;
     }
 
     //array arttır ekle
@@ -108,7 +82,7 @@ public class Player extends CombatEntity{
     }
     public String toString()
     {
-        String temp = "Hp is " + hp + " Max hp is " + maxHp + "Gold is " + gold;
-        return temp;
+        return "Player" + "\n-------" +
+                "\nHP: " + getHP() + "/" + getMaxHP();
     }
 }

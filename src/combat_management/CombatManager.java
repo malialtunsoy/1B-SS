@@ -1,9 +1,13 @@
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 // This is a singleton class.
 public class CombatManager {
+    // constants
+    private static final int DRAW_PER_TURN = 5; // will be removed later on
+    private static final int INITIAL_ENERGY = 3; // will be removed later on
 
     //constructors
     private CombatManager() {
@@ -34,9 +38,8 @@ public class CombatManager {
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
-        // System.out.println("Am invoked ( ͡° ͜ʖ ͡°)");
         initializeCombat();
-        playTurn();
+        //playTurn();
     }
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
@@ -45,18 +48,17 @@ public class CombatManager {
         discardPile = new ArrayList<Card>();
         hand = new ArrayList<Card>();
         turn = 0;
-        energy = 0;
-        maxEnergy = 0;
-        uiAdapter = new CombatUIAdapter(stage);
+        energy = INITIAL_ENERGY;
+        maxEnergy = INITIAL_ENERGY;
+        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
         declareIntents();
         energy = maxEnergy;
-        uiAdapter.updateView();
-        // hand = draw(4); temporarily commented out in order not to run out of deck when testing
-        //ui.drawCombatScreen();
+        hand = draw(DRAW_PER_TURN);
         playersTurn = true;
+        uiAdapter.updateView();
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -70,7 +72,7 @@ public class CombatManager {
             return new ArrayList<Card>();
 
         if(drawPile.size() <= 0){
-            drawPile = discardPile;
+            drawPile = new ArrayList<Card>(discardPile);
             discardPile.clear();
         }
 
@@ -81,9 +83,16 @@ public class CombatManager {
         return result;
     }
 
-    //plays the card at the given index.
-    public void playCard( int index) {
-
+    //plays the card at the given index. Target unused for non-targeted cards.
+    public void playCard( Card c, Enemy target) {
+        if (energy < c.getEnergy() || !playersTurn) {
+            return;
+        }
+        c.affect(target);
+        hand.remove(c);
+        discardPile.add(c);
+        energy -= c.getEnergy();
+        uiAdapter.updateView();
     }
 
     //uses the potion at the given index.
@@ -100,6 +109,8 @@ public class CombatManager {
     public void endTurn() {
         playersTurn = false;
         // discard all cards
+        discardPile.addAll(hand);
+        hand.clear();
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
@@ -107,6 +118,7 @@ public class CombatManager {
         }
 
         // restore energy
+        energy = maxEnergy;
 
         playTurn(); // play the next turn
     }
@@ -119,8 +131,16 @@ public class CombatManager {
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
 
-    // needed in UIAdapter to draw all enemies
+    // ---- methods used by UIAdapter to update the view: ----
     public ArrayList<Enemy> getEnemies() {return enemies;}
+    public ArrayList<Card> getHand() {return hand;}
+    public int getDrawPileSize() {return drawPile.size();}
+    public int getDiscardPileSize() {return discardPile.size();}
+    public String uiEnergyString() {return energy + "/" + maxEnergy;} // generalize these in the actual GUI
+                                                                        // ad-hoc and untidy at the moment
+    // -------------------------------------------------------
+
+
 
     public void setPlayer(Player player) { this.player = player; }
 
@@ -131,10 +151,6 @@ public class CombatManager {
     }
 
     public Stage getStage() { return stage; }
-
-    public void createUIAdapter() {
-        uiAdapter = new CombatUIAdapter(stage);
-    }
 
     public static CombatManager getInstance() {
         return instance;

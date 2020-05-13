@@ -40,6 +40,10 @@ public class NewGameController implements Initializable, ControlledScreen {
         if(playerName.equals("")){
             playerNameText.setPromptText("you must enter a name");
         }
+        if(playerName.length()>10){
+            playerNameText.clear();
+            playerNameText.setPromptText("pick a shorter name");
+        }
         else {
             Game.getInstance().setPlayerName(playerName);
             myController.changeScreen(NavigationUI.newGameSecondScreen);
@@ -60,12 +64,7 @@ public class NewGameController implements Initializable, ControlledScreen {
         myController.changeScreen(NavigationUI.newGameFirstScreen);
     }
 
-    @FXML
-    void Fight(ActionEvent event) throws IOException {
-        {
-            System.out.println("FIGHT");
-        }
-    }
+
 
     @FXML
     void char1selected(){ Game.getInstance().setCharacter("character1"); }
@@ -85,6 +84,17 @@ public class NewGameController implements Initializable, ControlledScreen {
         Game.getInstance().setCharacter("character4");
     }
 
+
+    @FXML
+    void Fight(ActionEvent event) throws IOException {
+        {
+            System.out.println("FIGHT");
+            RunUIManager myRun = new RunUIManager();
+
+            myController.screenLoadFromOtherSubs( myRun.screenNames, myRun.screenFiles);
+            myController.changeScreen("MainRunScreen");
+        }
+    }
 
 
 }

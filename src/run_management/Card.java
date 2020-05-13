@@ -1,15 +1,16 @@
-
-public class Card {
+public abstract class Card {
     private String cardName;
     private String cardType;
     private int effect;
     private int energy;
+    private String description;
 
-    public Card(String cardName, String cardType, int energy, int effect){
+    public Card(String cardName, String cardType, int energy, int effect, String description){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
         this.effect = effect;
+        this.description = description;
     }
     public String getName(){
         return cardName;
@@ -38,7 +39,17 @@ public class Card {
     public void upgrade(){
         setEffect(getEffect()*2);
     }
-    public void affect(){
+    abstract public void affect( Enemy target); // target = null if the card is not targeted.
 
+    // added for test purposes to use in CombatManager.
+    // implementers of RunManager can comment this out and write their own toString() if they need to
+    public String toString() {
+        return  "|-----------|\n" +
+                "| "+ energy + "        |\n" +
+                "|           |\n" +
+                "| " + cardName + " |\n" +
+                "| " + description + " |\n" +
+                "|           |\n" +
+                "|-----------|\n";
     }
 }
