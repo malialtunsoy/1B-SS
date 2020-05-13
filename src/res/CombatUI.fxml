@@ -2,11 +2,18 @@
 
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
-    <AnchorPane prefHeight="358.0" prefWidth="466.0">
+    <AnchorPane prefHeight="639.0" prefWidth="1083.0">
       <children>
-         <Button layoutX="202.0" layoutY="166.0" mnemonicParsing="false" text="Button" onAction="#sayHi"/>
+         <Button layoutX="952.0" layoutY="543.0" mnemonicParsing="false" onAction="#sayHi" text="End Turn" />
+         <Label fx:id="playerLabel" layoutX="37.0" layoutY="147.0" prefHeight="186.0" prefWidth="144.0" text="Label" />
+         <FlowPane fx:id="enemies" layoutX="181.0" layoutY="140.0" prefHeight="225.0" prefWidth="848.0" />
+         <Label fx:id="drawPile" layoutX="19.0" layoutY="424.0" prefHeight="132.0" prefWidth="162.0" text="Label" />
+         <Label fx:id="discardPile" layoutX="852.0" layoutY="432.0" prefHeight="83.0" prefWidth="217.0" text="Label" />
+         <FlowPane fx:id="hand" layoutX="162.0" layoutY="381.0" prefHeight="218.0" prefWidth="684.0" />
       </children></AnchorPane>
 </Scene>

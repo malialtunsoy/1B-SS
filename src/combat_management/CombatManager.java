@@ -39,7 +39,7 @@ public class CombatManager {
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
         initializeCombat();
-        //playTurn();
+        playTurn();
     }
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
