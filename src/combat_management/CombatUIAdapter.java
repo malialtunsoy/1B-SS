@@ -17,26 +17,27 @@ public class CombatUIAdapter {
     Stage primaryStage;
     CombatUIController controller;
 
-    // --- methods ---
-    public void updateView() {
-        controller.updateEnemies();
-        controller.updatePlayer();
-        controller.updateCardPiles();
-    }
+    // --- constructors ---
+    public CombatUIAdapter() {}     // to be deleted later on. just a quick fix to make the TEST version usable.
 
     public CombatUIAdapter(Stage primaryStage) throws IOException{
         // set the primaryStage attribute to be able to invoke Stage.show() again
         this.primaryStage = primaryStage;
 
         //
-        FileInputStream file = new FileInputStream("src/res/CombatUI.fxml");
+        FileInputStream file = new FileInputStream("src/combat_management/CombatUI.fxml");
         FXMLLoader loader = new FXMLLoader();
         Scene combatScene = loader.load(file);
-        controller = (CombatUIController)loader.getController();
-        controller.setUIAdapter(this);
-
+        ((CombatUIController)loader.getController()).setUIAdapter(this);
         primaryStage.setScene(combatScene);
         primaryStage.show();
+    }
+
+    // --- methods ---
+    public void updateView() {
+        controller.updateEnemies();
+        controller.updatePlayer();
+        controller.updateCardPiles();
     }
 
     public void endTurnPressed() {
