@@ -45,7 +45,27 @@ public class CombatEntity {
     public int getMaxHP() {return maxHP;}
 
     public void addStatusEffect(StatusEffect se) {
+        se.setAffectee(this);
         affectedBy.add(se);
     }
+    public void removeStatusEffect(StatusEffect se) {
+        affectedBy.remove(se);
+    }
 
+    // a shell used to incorporate a class of status effects (IncomingDamageModifier)
+    public void takeDamage(int amount) {
+        // for whatever reason, we get a concurrency related error if a foreach loop is used
+        for (int i = 0; i < affectedBy.size(); i++) {
+            StatusEffect se = affectedBy.get(i);
+            if (se instanceof IncomingDamageModifier) {
+                amount = ((IncomingDamageModifier) se).modify(amount);
+                i--;
+            }
+        }
+        loseHP(amount);
+    }
+
+    public void dealDamage(int amount, CombatEntity target) {
+        target.takeDamage(amount);
+    }
 }

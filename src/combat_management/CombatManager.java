@@ -39,7 +39,7 @@ public class CombatManager {
     //plays the combat, acts as a main method for the Combat Management subsystem.
     public void playCombat(){
         initializeCombat();
-        //playTurn();
+        playTurn();
     }
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
@@ -50,7 +50,7 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        /*try { */uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
