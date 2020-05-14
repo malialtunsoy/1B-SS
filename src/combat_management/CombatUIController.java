@@ -3,9 +3,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 public class CombatUIController {
 
@@ -46,9 +49,13 @@ public class CombatUIController {
 
     public void updateCardPiles(){
         hand.getChildren().clear();
-        for (Card c : CombatManager.getInstance().getHand()) {
-            Button cardBtn = new Button(c.toString());
-            cardBtn.setFont(new Font("Consolas", 10));
+        ArrayList<Card> cards = CombatManager.getInstance().getHand();
+        for (Card c : cards) {
+            Button cardBtn = new Button("");
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth( Math.min(147,((hand.getWidth() - 100)  / cards.size())));
+            img.setFitHeight(200.0 / 147.0 * img.getFitWidth());
+            cardBtn.setGraphic(img);
             cardBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
