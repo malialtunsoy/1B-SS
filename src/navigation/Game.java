@@ -15,6 +15,7 @@ public class Game {
      String character;
      Achievements achievements;
      GameOptions options;
+     Player myPlayer;
 
     public Game(){
         System.out.println("New Game created");
@@ -40,6 +41,12 @@ public class Game {
 
     public String getCharacter(){
         return character;
+    }
+
+    public boolean startNewRun(String playerName, String character){
+
+        myPlayer = new Player(playerName, character, 60, 60, 3, 330,3,10);
+        return true;
     }
 
 
