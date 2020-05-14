@@ -10,12 +10,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class CombatTest extends Application {
+public class CombatTest {
 
     CombatManager manager;
 
-    @Override
-    public void start(Stage primaryStage) {
+
+    public void testCombat(Stage primaryStage) {
         System.out.println(Font.getFontNames());
         System.out.println(System.getProperty("user.dir"));
         manager = CombatManager.getInstance();

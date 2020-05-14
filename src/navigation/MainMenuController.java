@@ -28,6 +28,17 @@ public class MainMenuController implements Initializable, ControlledScreen {
     @FXML
     void loadGame(ActionEvent event) {
         System.out.println("Loading Game");
+        if(!Game.getInstance().getLoadedGameExist()){
+            System.out.println("there is no loaded game");
+        }
+        else {
+            System.out.println("LOAD");
+            RunUIManager myRun = new RunUIManager();
+            Game.getInstance().loadRun();
+
+            myController.screenLoadFromOtherSubs(myRun.screenNames, myRun.screenFiles);
+            myController.changeScreen("MainRunScreen");
+        }
     }
 
 
@@ -52,7 +63,7 @@ public class MainMenuController implements Initializable, ControlledScreen {
     @FXML
     void testCombatManager(ActionEvent event) {
         CombatTest test = new CombatTest();
-        //test.testCombat(); Commented out because of the change in the testing scheme.
+        test.testCombat(CombatManager.getInstance().getStage());
     }
 
 
