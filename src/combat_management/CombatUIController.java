@@ -57,4 +57,9 @@ public class CombatUIController {
         drawPile.setText("Draw Pile: " + CombatManager.getInstance().getDrawPileSize() + " cards");
         discardPile.setText("Discard Pile: " + CombatManager.getInstance().getDiscardPileSize() + " cards");
     }
+
+    @FXML
+    void backToMap() {
+        CombatManager.getInstance().backToMap();
+    }
 }

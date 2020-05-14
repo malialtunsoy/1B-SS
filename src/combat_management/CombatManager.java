@@ -1,3 +1,4 @@
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class CombatManager {
     private static CombatManager instance = new CombatManager();
 
     private Stage stage;
+    private Scene menu;
 
     private int turn;
     private int energy;
@@ -50,7 +52,7 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-        /*try { */uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
@@ -161,6 +163,15 @@ public class CombatManager {
 
     public static CombatManager getInstance() {
         return instance;
+    }
+
+    public void setMenuScene(Scene menu) {
+        this.menu = menu;
+    }
+
+    public void backToMap() {
+        stage.setScene(menu);
+        stage.show();
     }
 
     public String getCombatState() {

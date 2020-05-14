@@ -19,6 +19,18 @@ public class RunController implements Initializable, ControlledScreen {
 
     ScreenController myController;
 
+    @FXML
+    private Text MoneyLabel;
+
+    @FXML
+    private Text currentHPLabel;
+
+    @FXML
+    private Text maxHPLabel;
+
+    @FXML
+    private Text playerNameLabel;
+
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
     }
@@ -26,7 +38,12 @@ public class RunController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        playerNameLabel.setText(Game.getInstance().getPlayerName());
+
+        playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
+        currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
+        maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
+        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+
     }
 
     @FXML
@@ -55,25 +72,22 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void goToCombat(ActionEvent event) {
-        //myController.changeScreen(RunUIManager.c);
+
+        //myController.changeScreen(RunUIManager.combatScreen);
     }
 
-    @FXML
-    private Text MoneyLabel;
 
-    @FXML
-    private Text currentHPLabel;
-
-    @FXML
-    private Text maxHPLabel;
-
-    @FXML
-    private Text playerNameLabel;
 
 
     @FXML
     void openMap(ActionEvent event) {
+            Stage mapStage = new Stage();
+            mapStage.setTitle("Map");
+            mapStage.setMaxWidth(1000);
+            mapStage.setMaxHeight(600);
 
+            //mapStage.setScene(mapScene);
+            mapStage.show();
     }
 
     @FXML
@@ -82,7 +96,23 @@ public class RunController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        Stage mapStage = new Stage();
+        mapStage.setTitle("Options");
+        mapStage.setMaxWidth(1200);
+        mapStage.setMaxHeight(800);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(NavigationUI.optionsScreenFile));
+            Parent opitonsScreen = (Parent) loader.load();
+            mapStage.setScene(new Scene(opitonsScreen));
+        }
+        catch (IOException e){
+
+        }
+
+
+        mapStage.show();
 
     }
 
