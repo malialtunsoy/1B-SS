@@ -23,7 +23,7 @@ public class CombatTest extends Application {
         manager.setStage(primaryStage);
 
 
-        Player player = new Player(50, 50, 0, 0, 0, 0);
+        Player player = new Player("playerName","Ironclad",50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
 
         // NOTE: it might be a better idea to create a new object for each card to be added.
@@ -31,19 +31,20 @@ public class CombatTest extends Application {
         // Seems not to cause an issue now but better to be aware of it.
         
         Card sample = new Strike();
+        Card sample2 = new Defend();
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -85,7 +86,9 @@ public class CombatTest extends Application {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                CombatManager.getInstance().addEnemy(new Enemy("Can", 69));
+                Enemy armoredEnemy = new Enemy("Can", 69);
+                armoredEnemy.addStatusEffect(new Block(5));
+                CombatManager.getInstance().addEnemy(armoredEnemy);
                 System.out.println("Added Enemy");
             }
         });

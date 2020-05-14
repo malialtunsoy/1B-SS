@@ -16,6 +16,6 @@ public class Strike extends Card {
     }
 
     public void affect(Enemy target) {
-        target.loseHP(DAMAGE);
+        CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
     }
 }

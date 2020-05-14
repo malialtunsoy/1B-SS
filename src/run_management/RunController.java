@@ -19,6 +19,18 @@ public class RunController implements Initializable, ControlledScreen {
 
     ScreenController myController;
 
+    @FXML
+    private Text MoneyLabel;
+
+    @FXML
+    private Text currentHPLabel;
+
+    @FXML
+    private Text maxHPLabel;
+
+    @FXML
+    private Text playerNameLabel;
+
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
     }
@@ -26,7 +38,12 @@ public class RunController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        playerNameLabel.setText(Game.getInstance().getPlayerName());
+
+        playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
+        currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
+        maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
+        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+
     }
 
     @FXML
@@ -58,17 +75,7 @@ public class RunController implements Initializable, ControlledScreen {
         //myController.changeScreen(RunUIManager.c);
     }
 
-    @FXML
-    private Text MoneyLabel;
 
-    @FXML
-    private Text currentHPLabel;
-
-    @FXML
-    private Text maxHPLabel;
-
-    @FXML
-    private Text playerNameLabel;
 
 
     @FXML
