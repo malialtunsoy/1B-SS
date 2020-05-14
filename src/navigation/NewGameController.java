@@ -67,21 +67,21 @@ public class NewGameController implements Initializable, ControlledScreen {
 
 
     @FXML
-    void char1selected(){ Game.getInstance().setCharacter("character1"); }
+    void char1selected(){ Game.getInstance().setCharacter("Ironclad"); }
 
     @FXML
     void char2selected(){
-        Game.getInstance().setCharacter("character2");
+        Game.getInstance().setCharacter("Silent");
     }
 
     @FXML
     void char3selected(){
-        Game.getInstance().setCharacter("character3");
+        Game.getInstance().setCharacter("Defect");
     }
 
     @FXML
     void char4selected(){
-        Game.getInstance().setCharacter("character4");
+        Game.getInstance().setCharacter("Watcher");
     }
 
 
@@ -90,6 +90,7 @@ public class NewGameController implements Initializable, ControlledScreen {
         {
             System.out.println("FIGHT");
             RunUIManager myRun = new RunUIManager();
+            Game.getInstance().startNewRun(Game.getInstance().getPlayerName(), Game.getInstance().getCharacter());
 
             myController.screenLoadFromOtherSubs( myRun.screenNames, myRun.screenFiles);
             myController.changeScreen("MainRunScreen");

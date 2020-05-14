@@ -23,7 +23,7 @@ public class CombatTest extends Application {
         manager.setStage(primaryStage);
 
 
-        Player player = new Player(50, 50, 0, 0, 0, 0);
+        Player player = new Player("playerName","Ironclad",50, 50, 0, 0, 0, 0);
         manager.setPlayer(player);
 
         // NOTE: it might be a better idea to create a new object for each card to be added.
