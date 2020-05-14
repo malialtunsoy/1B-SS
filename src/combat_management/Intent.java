@@ -6,14 +6,13 @@
  */
 abstract class Intent {
     // properties
-    protected int target; // an index into the list of enemies participating in combat.
-                        // target -1 represents the player
-
-    protected CombatManager cm;
+    protected CombatEntity intendingEnemy;  // need this to apply enemy's status effects when realizing intent.
+    protected CombatEntity target;
 
     // constructors
-    public Intent(int target) {
+    public Intent(CombatEntity intendingEnemy, CombatEntity target) {
         this.target = target;
+        this.intendingEnemy = intendingEnemy;
     }                   
 
     // methods
@@ -22,17 +21,4 @@ abstract class Intent {
      */                   
     abstract public void realize();
 
-    public int getTarget() {
-        return target;
-    }
-
-    public boolean setTarget(int target) {
-        if (target < -1) {
-            System.out.println("Intent.setTarget called with invalid target " + target);
-            return false;
-        } else {
-            this.target = target;
-            return true;
-        }
-    }
 }

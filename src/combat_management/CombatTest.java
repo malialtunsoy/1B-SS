@@ -17,6 +17,7 @@ public class CombatTest extends Application {
     @Override
     public void start(Stage primaryStage) {
         System.out.println(Font.getFontNames());
+        System.out.println(System.getProperty("user.dir"));
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
@@ -30,19 +31,20 @@ public class CombatTest extends Application {
         // Seems not to cause an issue now but better to be aware of it.
         
         Card sample = new Strike();
+        Card sample2 = new Defend();
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -84,7 +86,9 @@ public class CombatTest extends Application {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                CombatManager.getInstance().addEnemy(new Enemy("Can", 69));
+                Enemy armoredEnemy = new Enemy("Can", 69);
+                armoredEnemy.addStatusEffect(new Block(5));
+                CombatManager.getInstance().addEnemy(armoredEnemy);
                 System.out.println("Added Enemy");
             }
         });

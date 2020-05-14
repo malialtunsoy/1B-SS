@@ -1,5 +1,6 @@
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 // This is a singleton class.
@@ -49,7 +50,7 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-        uiAdapter = new CombatUIAdapter(stage);
+        /*try { */uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
@@ -150,10 +151,6 @@ public class CombatManager {
     }
 
     public Stage getStage() { return stage; }
-
-    public void createUIAdapter() {
-        uiAdapter = new CombatUIAdapter(stage);
-    }
 
     public static CombatManager getInstance() {
         return instance;
