@@ -1,6 +1,6 @@
 public class Block extends StatusEffect implements IncomingDamageModifier{
     public Block(int counter) {
-        super(counter);
+        super(counter, "Block");
     }
 
     public int modify(int amount) {

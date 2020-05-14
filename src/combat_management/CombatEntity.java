@@ -44,9 +44,23 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
-    public void addStatusEffect(StatusEffect se) {
-        se.setAffectee(this);
-        affectedBy.add(se);
+    public void addStatusEffect(StatusEffect newEffect) {
+        // see if an effect of the same sort is already applied
+        StatusEffect sameEffect = null;
+        for ( StatusEffect existingEffect: affectedBy) {
+            if (existingEffect.getName().equals(newEffect.getName())) {
+                sameEffect = existingEffect;
+            }
+        }
+
+        if (sameEffect == null) {
+            // add the effect
+            newEffect.setAffectee(this);
+            affectedBy.add(newEffect);
+        } else {
+            // stack the counter of the new effect to the existing one
+            sameEffect.stackCounter(newEffect);
+        }
     }
     public void removeStatusEffect(StatusEffect se) {
         affectedBy.remove(se);
