@@ -72,7 +72,8 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void goToCombat(ActionEvent event) {
-        //myController.changeScreen(RunUIManager.c);
+
+        //myController.changeScreen(RunUIManager.combatScreen);
     }
 
 

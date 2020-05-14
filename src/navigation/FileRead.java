@@ -80,7 +80,7 @@ public class FileRead {
 
     static public String[] collectData(String line){
      int ArraySize = Integer.parseInt(line.substring(0,1));
-        System.out.println(line);
+       // System.out.println(line);
      String[] data = new String[ArraySize];
 
         int sentinelStart=0;
@@ -91,7 +91,7 @@ public class FileRead {
         {
             sentinelStart = line.indexOf("**",sentinelStart);
             sentinelEnd = line.indexOf("**", sentinelStart +1);
-            System.out.println(sentinelStart + " " + sentinelEnd);
+           // System.out.println(sentinelStart + " " + sentinelEnd);
             String tempData = "";
             if(sentinelEnd > 0 && !line.substring(0,1).equals("0"))
             {

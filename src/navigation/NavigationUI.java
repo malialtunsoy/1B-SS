@@ -59,15 +59,22 @@ public class NavigationUI extends Application  {
         myScreens.loadScreen(NavigationUI.achievementsScreen, NavigationUI.achievementsScreenFile);
         myScreens.loadScreen(NavigationUI.optionsScreen, NavigationUI.optionsScreenFile);
 
-        CombatManager.getInstance().setStage(primaryStage);
+
 
         myScreens.changeScreen(NavigationUI.mainMenuScreen);
 
         myScreens.playMusic();
 
+
+
+
         Group root = new Group();
         root.getChildren().addAll(myScreens);
         Scene scene = new Scene(root);
+
+        CombatManager.getInstance().setStage(primaryStage); //pass UI components to Combat Subs
+        //CombatManager.getInstance().transferUIComponents(scene, myScreens);
+
         primaryStage.setTitle("Slay the Spire");
         primaryStage.setScene(scene);
         primaryStage.show();
