@@ -34,6 +34,8 @@ public class CombatEntity {
             System.out.println("gainHP called with negative amount " + amount);
             return;
         }
+        System.out.println("hphp " + amount);
+
         currentHP += amount;
         if (currentHP > maxHP) {
             currentHP = maxHP;
