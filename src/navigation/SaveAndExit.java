@@ -8,7 +8,7 @@ public class SaveAndExit {
         return readyToExit;
     }
 
-    public void exit(){
+    static public void exit(){
 
     save();
 

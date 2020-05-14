@@ -54,7 +54,7 @@ public class FileRead {
 
         for(int i = 0; i < array.length ; i++ )
         {
-        if(array[i].equals("1")){converted[i] = true;}
+        if(array[i].equals("1") || array[i].equals("true") ){converted[i] = true;}
         else{converted[i] = false;}
 
         }

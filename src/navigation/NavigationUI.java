@@ -74,6 +74,11 @@ public class NavigationUI extends Application  {
 
     }
 
+    @Override
+    public void stop(){
+        //SaveAndExit.exit();
+        // Save file
+    }
 
 
 

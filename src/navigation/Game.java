@@ -16,11 +16,17 @@ public class Game {
      Achievements achievements;
      GameOptions options;
      Player myPlayer;
+     boolean loadedGameExist;
 
     public Game(){
         System.out.println("New Game created");
         achievements = new Achievements();
         options = new GameOptions();
+
+        try {
+            loadedGameExist =  FileRead.convertToBool( FileRead.readFile("Data.txt", "loadedGame") )[0];
+            System.out.println("Loaded game: " + getLoadedGameExist() );
+        }catch(FileNotFoundException ex){System.out.println("failed");}
     }
 
      public  void setPlayerName(String playersName){
@@ -46,8 +52,14 @@ public class Game {
     public boolean startNewRun(String playerName, String character){
 
         myPlayer = new Player(playerName, character, 60, 60, 3, 330,3,10);
+        setLoadedGameExist(true);
+        System.out.println(getLoadedGameExist());
+        SaveAndExit.save();
         return true;
     }
 
+    public boolean getLoadedGameExist(){return loadedGameExist;}
+
+    public void setLoadedGameExist(boolean bool){loadedGameExist = bool;}
 
 }

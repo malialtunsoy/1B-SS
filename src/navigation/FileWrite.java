@@ -13,16 +13,30 @@ public class FileWrite extends Game{
 
         PrintWriter out = new PrintWriter("Data.txt");
 
-       /* String[] achNames = myAch.getAchNames();
-        String[] achLocked =  myAch.getAchLocks();
-        String[] optionss = myOpt.getOptions();
-        String[] OptionNames = myOpt.getOptionNames();*/
-
         String[] achNames = Game.getInstance().achievements.getAchNames();
         String[] achLocked =  Game.getInstance().achievements.getAchLocks();
         String[] optionss = Game.getInstance().options.getOptions();
         String[] OptionNames = Game.getInstance().options.getOptionNames();
 
+        String[] cardNames;
+        String[] cardDescriptions;
+        String[] cardOwned;
+        String[] cardCost;
+        String[] cardType;
+
+        String[] potionNames;
+        String[] potionDescriptions;
+        String[] potionOwned;
+        String[] potionCost;
+        String[] potionType;
+
+        String[] relicNames;
+        String[] relicDescription;
+        String[] relicOwned;
+        String[] relicCost;
+        String[] relicType;
+
+        out.println("1###loadedGame###    **" + Game.getInstance().getLoadedGameExist() + "**");
         out.println("1###PlayerName###    **" + Game.getInstance().getPlayerName() + "**");
         out.println("1###Character###    **" + Game.getInstance().getCharacter() + "**");
 
