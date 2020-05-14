@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -23,6 +24,8 @@ public class NewGameController implements Initializable, ControlledScreen {
         myController = screenParent;
     }
 
+    @FXML
+    private Text chacterSelectedText;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,7 +49,9 @@ public class NewGameController implements Initializable, ControlledScreen {
         }
         else {
             Game.getInstance().setPlayerName(playerName);
+
             myController.changeScreen(NavigationUI.newGameSecondScreen);
+
         }
 
 
@@ -67,33 +72,40 @@ public class NewGameController implements Initializable, ControlledScreen {
 
 
     @FXML
-    void char1selected(){ Game.getInstance().setCharacter("Ironclad"); }
+    void char1selected(){ Game.getInstance().setCharacter("Ironclad");
+    chacterSelectedText.setText("Ironclad");
+    }
 
     @FXML
     void char2selected(){
-        Game.getInstance().setCharacter("Silent");
+        Game.getInstance().setCharacter("Silent");chacterSelectedText.setText("Silent");
     }
 
     @FXML
     void char3selected(){
-        Game.getInstance().setCharacter("Defect");
+        Game.getInstance().setCharacter("Defect");chacterSelectedText.setText("Defect");
     }
 
     @FXML
     void char4selected(){
-        Game.getInstance().setCharacter("Watcher");
+        Game.getInstance().setCharacter("Watcher");chacterSelectedText.setText("Watcher");
     }
 
 
     @FXML
     void Fight(ActionEvent event) throws IOException {
         {
-            System.out.println("FIGHT");
-            RunUIManager myRun = new RunUIManager();
-            Game.getInstance().startNewRun(Game.getInstance().getPlayerName(), Game.getInstance().getCharacter());
+            if(Game.getInstance().getCharacter() == null){
+                chacterSelectedText.setText("Choose a character.");
+            }
+            else {
+                System.out.println("FIGHT");
+                RunUIManager myRun = new RunUIManager();
+                Game.getInstance().startNewRun(Game.getInstance().getPlayerName(), Game.getInstance().getCharacter());
 
-            myController.screenLoadFromOtherSubs( myRun.screenNames, myRun.screenFiles);
-            myController.changeScreen("MainRunScreen");
+                myController.screenLoadFromOtherSubs(myRun.screenNames, myRun.screenFiles);
+                myController.changeScreen("MainRunScreen");
+            }
         }
     }
 

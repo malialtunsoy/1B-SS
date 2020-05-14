@@ -8,15 +8,15 @@ public class SaveAndExit {
         return readyToExit;
     }
 
-    public void exit(Achievements myAch, GameOptions myOpt, String playerName, String character){
+    public void exit(){
 
-    save( myAch,  myOpt,  playerName,  character);
+    save();
 
     }
 
-    static public Boolean save(Achievements myAch, GameOptions myOpt, String playerName, String character){
+    static public Boolean save(){
 
-        try{FileWrite.writeFile("Data.txt", myAch, myOpt, playerName, character);}
+        try{FileWrite.writeFile();}
         catch(FileNotFoundException ex){System.out.println("failed to write"); return false;}
 
         return true;
@@ -24,7 +24,7 @@ public class SaveAndExit {
 
     static public Boolean save(Game thisGame){
 
-        try{FileWrite.writeFile("Data.txt", thisGame.achievements, thisGame.options, thisGame.playerName, thisGame.character);}
+        try{FileWrite.writeFile();}
         catch(FileNotFoundException ex){System.out.println("failed to write"); return false;}
 
         return true;

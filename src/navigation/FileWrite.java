@@ -9,17 +9,22 @@ public class FileWrite extends Game{
     String FileName;
     String[] File;
 
-    static public boolean writeFile(String fileName, Achievements myAch, GameOptions myOpt, String playerName, String character) throws FileNotFoundException{
+    static public boolean writeFile() throws FileNotFoundException{
 
-        PrintWriter out = new PrintWriter(fileName);
+        PrintWriter out = new PrintWriter("Data.txt");
 
-        String[] achNames = myAch.getAchNames();
+       /* String[] achNames = myAch.getAchNames();
         String[] achLocked =  myAch.getAchLocks();
         String[] optionss = myOpt.getOptions();
-        String[] OptionNames = myOpt.getOptionNames();
+        String[] OptionNames = myOpt.getOptionNames();*/
 
-        out.println("1###PlayerName###    **" + playerName + "**");
-        out.println("1###Character###    **" + character + "**");
+        String[] achNames = Game.getInstance().achievements.getAchNames();
+        String[] achLocked =  Game.getInstance().achievements.getAchLocks();
+        String[] optionss = Game.getInstance().options.getOptions();
+        String[] OptionNames = Game.getInstance().options.getOptionNames();
+
+        out.println("1###PlayerName###    **" + Game.getInstance().getPlayerName() + "**");
+        out.println("1###Character###    **" + Game.getInstance().getCharacter() + "**");
 
         out.print(achNames.length+"###Achievements###    **");
         for(int i = 0; i < achNames.length; i++){
@@ -44,6 +49,61 @@ public class FileWrite extends Game{
             out.print(optionss[i] + "**");
         }
         out.println();
+
+      /*  out.print(optionss.length+"###CardNames###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###CardDescriptions###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###CardOwned###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###PotionNames###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###PotionDescriptions###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###PotionOwned###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###RelicNames###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###RelicDescriptions###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+
+        out.print(optionss.length+"###RelicOwned###    **");
+        for(int i = 0; i < optionss.length; i++){
+            out.print(optionss[i] + "**");
+        }
+        out.println();
+        */
 
 
 
