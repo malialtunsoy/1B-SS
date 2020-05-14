@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -7,8 +8,8 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
+
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MerchantController">
     <children>
         <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -125,5 +126,16 @@
                 </HBox>
             </children>
         </HBox>
+      <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1045.0" />
+      <HBox layoutX="82.0" layoutY="167.0" prefHeight="530.0" prefWidth="1045.0">
+         <children>
+             <ScrollPane prefHeight="530.0" prefWidth="615.0" hbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="600.0" />
+                     </content>
+             </ScrollPane>
+            <VBox prefHeight="530.0" prefWidth="314.0" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
