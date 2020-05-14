@@ -31,4 +31,8 @@ public class Enemy extends CombatEntity{
         intents.clear();
     }
 
+    public void die() {
+        CombatManager.getInstance().removeEnemy(this);
+    }
+
 }

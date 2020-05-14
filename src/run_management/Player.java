@@ -85,4 +85,9 @@ public class Player extends CombatEntity {
         return "Player" + "\n-------\n" + super.toString();
 
     }
+    @Override
+    // called when the player dies
+    public void die() {
+        // TODO: combat lost
+    }
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 // generalizes Player and Enemy
-public class CombatEntity {
+public abstract class CombatEntity {
     // --- attributes ---
     private int maxHP;
     private int currentHP;
@@ -22,8 +22,8 @@ public class CombatEntity {
             return false;
         }
         currentHP -= amount;
-        if (currentHP < 0) {
-            currentHP = 0;
+        if (currentHP <= 0) {
+            die();
             return false;
         }
         return true;
@@ -73,4 +73,6 @@ public class CombatEntity {
         return "HP: " + getHP() + "/" + getMaxHP() +
                 "\nStatus Effects: " + affectedBy;
     }
+
+    abstract void die();
 }
