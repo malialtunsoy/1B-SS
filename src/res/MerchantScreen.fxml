@@ -126,15 +126,64 @@
                 </HBox>
             </children>
         </HBox>
-      <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1045.0" />
+        <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1045.0" />
       <HBox layoutX="82.0" layoutY="167.0" prefHeight="530.0" prefWidth="1045.0">
          <children>
-             <ScrollPane prefHeight="530.0" prefWidth="615.0" hbarPolicy="NEVER">
-                     <content>
-                        <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="600.0" />
-                     </content>
-             </ScrollPane>
-            <VBox prefHeight="530.0" prefWidth="314.0" />
+          <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="530.0" prefWidth="615.0">
+              <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CARDS">
+                      <font>
+                          <Font name="System Bold" size="22.0" />
+                      </font>
+                      <VBox.margin>
+                          <Insets top="5.0" />
+                      </VBox.margin>
+                  </Text>
+                 <ScrollPane prefHeight="530.0" prefWidth="615.0" hbarPolicy="NEVER">
+                         <content>
+                            <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="600.0" />
+                         </content>
+                 </ScrollPane>
+              </children>
+          </VBox>
+          <VBox  alignment="TOP_CENTER" prefHeight="530.0" prefWidth="430.0" >
+              <children>
+                  <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="265.0" prefWidth="430.0">
+                      <children>
+                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="POTIONS">
+                              <font>
+                                  <Font name="System Bold" size="22.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets top="5.0" />
+                              </VBox.margin>
+                          </Text>
+                          <ScrollPane prefHeight="265.0" prefWidth="430.0" hbarPolicy="NEVER">
+                              <content>
+                                 <VBox fx:id="potionsVBox" alignment="TOP_CENTER" prefHeight="260.0" prefWidth="415.0" />
+                              </content>
+                          </ScrollPane>
+                      </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="265.0" prefWidth="430.0">
+                      <children>
+                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RELICS">
+                              <font>
+                                  <Font name="System Bold" size="22.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets top="5.0" />
+                              </VBox.margin>
+                          </Text>
+                          <ScrollPane prefHeight="265.0" prefWidth="430.0" hbarPolicy="NEVER">
+                              <content>
+                                 <VBox fx:id="relicsVBox" alignment="TOP_CENTER" prefHeight="260.0" prefWidth="415.0" />
+                              </content>
+                          </ScrollPane>
+                      </children>
+                  </VBox>
+              </children>
+          </VBox>
          </children>
       </HBox>
     </children>
