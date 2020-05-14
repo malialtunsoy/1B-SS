@@ -132,6 +132,13 @@ public class CombatManager {
 
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
+    // called by the enemy when they die
+    public void removeEnemy( Enemy enemy) {
+        enemies.remove(enemy);
+        if (enemies.isEmpty()) {
+            // TODO: combat won
+        }
+    }
 
     // ---- methods used by UIAdapter to update the view: ----
     public ArrayList<Enemy> getEnemies() {return enemies;}
