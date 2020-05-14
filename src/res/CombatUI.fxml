@@ -3,18 +3,35 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
-    <AnchorPane prefHeight="639.0" prefWidth="1083.0">
+    <AnchorPane prefHeight="729.0" prefWidth="1042.0">
       <children>
-         <Button layoutX="952.0" layoutY="543.0" mnemonicParsing="false" onAction="#sayHi" text="End Turn" />
-         <Label fx:id="playerLabel" layoutX="37.0" layoutY="147.0" prefHeight="186.0" prefWidth="144.0" text="Label" />
-         <FlowPane fx:id="enemies" layoutX="181.0" layoutY="140.0" prefHeight="225.0" prefWidth="848.0" />
-         <Label fx:id="drawPile" layoutX="19.0" layoutY="424.0" prefHeight="132.0" prefWidth="162.0" text="Label" />
-         <Label fx:id="discardPile" layoutX="852.0" layoutY="432.0" prefHeight="83.0" prefWidth="217.0" text="Label" />
-         <FlowPane fx:id="hand" layoutX="162.0" layoutY="381.0" prefHeight="218.0" prefWidth="684.0" />
-         <Button layoutX="930.0" layoutY="40.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
+         <ImageView fitHeight="768.0" fitWidth="1126.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@combatBackground.jpg" />
+            </image>
+         </ImageView>
+         <Button layoutX="1004.0" layoutY="649.0" mnemonicParsing="false" onAction="#sayHi" text="End Turn" />
+         <FlowPane fx:id="enemies" layoutX="242.0" layoutY="146.0" prefHeight="315.0" prefWidth="863.0" />
+         <Label fx:id="drawPile" layoutX="28.0" layoutY="532.0" prefHeight="132.0" prefWidth="162.0" text="Label" textFill="WHITE" />
+         <Label fx:id="discardPile" layoutX="896.0" layoutY="515.0" prefHeight="83.0" prefWidth="217.0" text="Label" textFill="WHITE" />
+         <FlowPane fx:id="hand" layoutX="181.0" layoutY="489.0" prefHeight="218.0" prefWidth="684.0" />
+         <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
+         <AnchorPane layoutX="13.0" layoutY="155.0" prefHeight="366.0" prefWidth="155.0">
+            <children>
+               <ImageView fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@character.jpg" />
+                  </image>
+               </ImageView>
+               <Label fx:id="playerHP" alignment="CENTER" layoutX="7.0" layoutY="200.0" prefHeight="47.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
+               <Label fx:id="playerStatus" alignment="TOP_CENTER" layoutX="7.0" layoutY="247.0" prefHeight="119.0" prefWidth="167.0" text="Status Effects" textAlignment="CENTER" textFill="WHITE" />
+            </children>
+         </AnchorPane>
       </children></AnchorPane>
 </Scene>

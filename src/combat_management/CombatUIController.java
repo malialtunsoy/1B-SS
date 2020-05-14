@@ -11,15 +11,15 @@ public class CombatUIController {
 
     private CombatUIAdapter adapter;
 
-    @FXML Label playerLabel;
     @FXML FlowPane enemies;
     @FXML FlowPane hand;
     @FXML Label drawPile;
     @FXML Label discardPile;
-    
+    @FXML Label playerHP;
+    @FXML Label playerStatus;
+
     @FXML
     protected void sayHi(){
-        playerLabel.setText("yarrak");
         adapter.endTurnPressed();
     }
 
@@ -28,8 +28,13 @@ public class CombatUIController {
     }
 
     public void updatePlayer(){
-        playerLabel.setText(CombatManager.getInstance().getPlayer().toString()
-                + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
+        playerHP.setText("HP: " + CombatManager.getInstance().getPlayer().getHP());
+        String status = "";
+        for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
+            status = status + effect.toString() + "\n";//change this to effect.getName() later
+        playerStatus.setText(status);
+        //playerLabel.setText(CombatManager.getInstance().getPlayer().toString()
+        //        + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
     }
 
     public void updateEnemies() {
