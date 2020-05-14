@@ -80,7 +80,13 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
+            Stage mapStage = new Stage();
+            mapStage.setTitle("Map");
+            mapStage.setMaxWidth(1000);
+            mapStage.setMaxHeight(600);
 
+            //mapStage.setScene(mapScene);
+            mapStage.show();
     }
 
     @FXML
@@ -89,7 +95,23 @@ public class RunController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        Stage mapStage = new Stage();
+        mapStage.setTitle("Options");
+        mapStage.setMaxWidth(1200);
+        mapStage.setMaxHeight(800);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(NavigationUI.optionsScreenFile));
+            Parent opitonsScreen = (Parent) loader.load();
+            mapStage.setScene(new Scene(opitonsScreen));
+        }
+        catch (IOException e){
+
+        }
+
+
+        mapStage.show();
 
     }
 

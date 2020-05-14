@@ -51,6 +51,10 @@ public class Player extends CombatEntity {
         return maxPot;
     }
 
+    public int getRelicCount() {
+        return relicCount;
+    }
+
     public String getPlayerName(){return playerName;}
 
     public String getPlayerChar(){return playerChar;}
