@@ -292,7 +292,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.getChildren().add(relicsButtons[i]);
 
             relicsVBoxes[i].getChildren().add(bottomBox);
-
+            //relicsVBoxes[i].setBackground(Background.EMPTY);
             //add card to HBox
             int relicHBoxPlace = (i/3);
             relicHBoxes[relicHBoxPlace].getChildren().add(relicsVBoxes[i]);
