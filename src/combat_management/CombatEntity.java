@@ -74,7 +74,7 @@ public abstract class CombatEntity {
 
     // modify amount with all status effects in affected by that implement cls
     // example call:  invokeAll(IncomingDamageModifier.class, 20)
-    private int invokeAll(Class<?> cls, int amount) {
+    private <T extends Modifier> int invokeAll(Class<T> cls, int amount) {
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
@@ -83,14 +83,15 @@ public abstract class CombatEntity {
         for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = shallowCopy.get(i);
             if (cls.isAssignableFrom(se.getClass())) {
-                amount = ((IncomingDamageModifier) se).modify(amount);
+                amount = ((T) se).modify(amount);
             }
         }
         return amount;
     }
 
     public void dealDamage(int amount, CombatEntity target) {
-        target.takeDamage(amount);
+        int modifiedAmount = invokeAll(OutgoingDamageModifier.class, amount);
+        target.takeDamage(modifiedAmount);
     }
 
     public String toString() {

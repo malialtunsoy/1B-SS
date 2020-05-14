@@ -4,7 +4,6 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
     }
 
     public int modify(int amount) {
-        System.out.println("modify called");
         int result = amount - getCounter();
         if (result < 0) {
             result = 0;

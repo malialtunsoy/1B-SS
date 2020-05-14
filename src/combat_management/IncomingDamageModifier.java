@@ -1,3 +1,3 @@
-public interface IncomingDamageModifier {
+public interface IncomingDamageModifier extends Modifier {
     int modify(int amount);
 }
