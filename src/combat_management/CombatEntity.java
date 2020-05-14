@@ -68,4 +68,9 @@ public class CombatEntity {
     public void dealDamage(int amount, CombatEntity target) {
         target.takeDamage(amount);
     }
+
+    public String toString() {
+        return "HP: " + getHP() + "/" + getMaxHP() +
+                "\nStatus Effects: " + affectedBy;
+    }
 }

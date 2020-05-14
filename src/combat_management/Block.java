@@ -11,4 +11,8 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
         decreaseCounter(amount);
         return result;
     }
+
+    public String toString() {
+        return "Block(" + getCounter() + ")";
+    }
 }

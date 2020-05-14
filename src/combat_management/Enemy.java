@@ -15,12 +15,12 @@ public class Enemy extends CombatEntity{
 
     // --- methods ---
     public String toString() {
-        return name + "\n-------" + "\nHP: " + getHP() + "\n intents: " + intents;
+        return name + "\n-------\n" +  super.toString() + "\n intents: " + intents;
     }
 
     // test purpose implementation, declares aggressive intent with 5 dmg
     public void declareIntent() {
-        AggressiveIntent aggr = new AggressiveIntent(5);
+        AggressiveIntent aggr = new AggressiveIntent(this,5);
         intents.add(aggr);
     }
 
