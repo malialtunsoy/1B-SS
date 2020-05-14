@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,18 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     ScreenController myController;
 
+    @FXML
+    private Text MoneyLabel;
+
+    @FXML
+    private Text currentHPLabel;
+
+    @FXML
+    private Text maxHPLabel;
+
+    @FXML
+    private Text playerNameLabel;
+
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
     }
@@ -25,6 +38,24 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
+        currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
+        maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
+        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+    }
+
+    @FXML
+    void openMap(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showDeck(ActionEvent event) {
+
+    }
+
+    @FXML
+    void openSettings(ActionEvent event) {
 
     }
 
@@ -32,4 +63,6 @@ public class MerchantController implements Initializable, ControlledScreen {
     void backToMap(ActionEvent event) {
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
+
+
 }
