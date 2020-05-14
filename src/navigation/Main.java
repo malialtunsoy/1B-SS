@@ -7,10 +7,9 @@ import javafx.stage.Stage;
 public class Main {
 
 
-    Game myGame;
 
     public static void main(String[] args) {
-
+        Game.getInstance();
         NavigationUI myWindow = new NavigationUI();
         myWindow.launchApp(args);
 

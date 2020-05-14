@@ -54,7 +54,7 @@ public class FileRead {
 
         for(int i = 0; i < array.length ; i++ )
         {
-        if(array[i].equals("1")){converted[i] = true;}
+        if(array[i].equals("1") || array[i].equals("true") ){converted[i] = true;}
         else{converted[i] = false;}
 
         }
@@ -80,7 +80,7 @@ public class FileRead {
 
     static public String[] collectData(String line){
      int ArraySize = Integer.parseInt(line.substring(0,1));
-
+       // System.out.println(line);
      String[] data = new String[ArraySize];
 
         int sentinelStart=0;
@@ -91,8 +91,9 @@ public class FileRead {
         {
             sentinelStart = line.indexOf("**",sentinelStart);
             sentinelEnd = line.indexOf("**", sentinelStart +1);
+           // System.out.println(sentinelStart + " " + sentinelEnd);
             String tempData = "";
-            if(sentinelEnd > 0)
+            if(sentinelEnd > 0 && !line.substring(0,1).equals("0"))
             {
                 tempData = line.substring(sentinelStart + 2 , sentinelEnd);
 
