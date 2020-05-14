@@ -86,7 +86,7 @@ public class CombatTest extends Application {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Enemy armoredEnemy = new Enemy("Can", 15);
+                Enemy armoredEnemy = new Alternatron();
                 armoredEnemy.addStatusEffect(new Block(5));
                 CombatManager.getInstance().addEnemy(armoredEnemy);
                 System.out.println("Added Enemy");

@@ -55,11 +55,15 @@ public abstract class CombatEntity {
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
     public void takeDamage(int amount) {
         // for whatever reason, we get a concurrency related error if a foreach loop is used
+        // this is a terrible implementation, though it should work for now.
         for (int i = 0; i < affectedBy.size(); i++) {
             StatusEffect se = affectedBy.get(i);
             if (se instanceof IncomingDamageModifier) {
+                int sizeBeforeMod = affectedBy.size();
                 amount = ((IncomingDamageModifier) se).modify(amount);
-                i--;
+                if (affectedBy.size() < sizeBeforeMod) {    // see if the effect has removed itself.
+                    i--;
+                }
             }
         }
         loseHP(amount);
