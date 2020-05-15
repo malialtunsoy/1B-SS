@@ -60,6 +60,9 @@ public class Player extends CombatEntity {
 
     public String getPlayerChar(){return playerChar;}
 
+    public ArrayList<Potion> getPots() {
+        return pots;
+    }
 
     //array arttır ekle
     public void addToDeck(Card card) {

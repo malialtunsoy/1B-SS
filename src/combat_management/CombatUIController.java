@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -20,6 +21,7 @@ public class CombatUIController {
 
     private CombatUIAdapter adapter;
 
+    @FXML FlowPane potions;
     @FXML FlowPane enemies;
     @FXML FlowPane hand;
     @FXML Label drawPile;
@@ -59,6 +61,24 @@ public class CombatUIController {
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
             enemies.getChildren().add(pane);
+        }
+    }
+
+    public void updatePotions(){
+        this.potions.getChildren().clear();
+        ArrayList<Potion> potions = CombatManager.getInstance().getPlayer().getPots();
+
+        for( Potion pot : potions) {
+            Button potBtn = new Button(pot.getName());
+            potBtn.setOnAction(
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            CombatManager.getInstance().usePotion(pot, CombatManager.getInstance().getEnemies().get(0)); //for now, usepotion not implemented yet.
+                        }
+                    }
+            );
+            this.potions.getChildren().add(potBtn);
         }
     }
 

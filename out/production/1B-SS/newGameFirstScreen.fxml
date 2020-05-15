@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewGameController">
+   <children>
+      <ImageView fitHeight="810.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="603.0" layoutY="348.0" mnemonicParsing="false" onAction="#charSelect" prefHeight="44.0" prefWidth="221.0" text="Resume">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <TextField fx:id="playerNameText" alignment="TOP_CENTER" layoutX="377.0" layoutY="288.0" prefHeight="44.0" prefWidth="447.0" promptText="enter your name">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Button layoutX="377.0" layoutY="348.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="44.0" prefWidth="221.0" text="Back">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Text fill="WHITE" layoutX="482.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is your name warrior?">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+   </children>
+</AnchorPane>
