@@ -28,6 +28,13 @@ public abstract class Enemy extends CombatEntity{
         intents.clear();
     }
 
+    public String getImage() {
+        return name + ".png";
+    }
+
+    public String getName() {
+        return name;
+    }
     public void die() {
         CombatManager.getInstance().removeEnemy(this);
     }

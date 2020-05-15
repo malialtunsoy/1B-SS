@@ -12,6 +12,8 @@ public abstract class Card {
         this.effect = effect;
         this.description = description;
     }
+
+    public String getImage (){ return cardName + ".png"; }
     public String getName(){
         return cardName;
     };
