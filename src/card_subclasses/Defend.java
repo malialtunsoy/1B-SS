@@ -6,7 +6,7 @@ public class Defend extends Card{
 
     // constructors
     public Defend() {
-        super("Defend", "Skill", ENERGY_COST, 0, DESCRIPTION);
+        super("Defend", "Skill", ENERGY_COST, DESCRIPTION);
     }
 
     public void affect(Enemy target) {

@@ -5,7 +5,7 @@ class Rest extends Vertex{
 
     //methods
     public void upgradeCard(int index, Player p){
-        p.getDeck().get(index).upgrade();
+        // p.getDeck().get(index).upgrade();    COMMENTED OUT FOR NOW, WAS NOT USED ANYWAY
     }
     public void healHP(Player p){
         p.gainHP((int) (p.getMaxHP() * PORTION_HP_HEALED));

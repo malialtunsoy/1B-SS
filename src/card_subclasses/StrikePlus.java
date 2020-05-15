@@ -12,7 +12,7 @@ public class StrikePlus extends Card {
 
     // constructors
     public StrikePlus() {
-        super("Strike+", "Attack", ENERGY_COST, 0, DESCRIPTION);
+        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION);
     }
 
     public void affect(Enemy target) {

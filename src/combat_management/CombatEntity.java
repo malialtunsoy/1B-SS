@@ -48,7 +48,7 @@ public abstract class CombatEntity {
         // see if an effect of the same sort is already applied
         StatusEffect sameEffect = null;
         for ( StatusEffect existingEffect: affectedBy) {
-            if (existingEffect.getName().equals(newEffect.getName())) {
+            if (!(existingEffect instanceof RelicEffect) && existingEffect.getName().equals(newEffect.getName())) {
                 sameEffect = existingEffect;
             }
         }
