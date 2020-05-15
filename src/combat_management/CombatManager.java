@@ -52,7 +52,7 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        /* try {*/ uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
@@ -106,8 +106,9 @@ public class CombatManager {
     }
 
     //uses the potion at the given index.
-    public void usePotion( int index) {
-
+    public void usePotion( Potion p) {
+        player.usePot(p);
+        uiAdapter.updateView();
     }
 
     //ends the player's turn.

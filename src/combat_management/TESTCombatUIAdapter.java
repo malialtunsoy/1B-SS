@@ -90,6 +90,8 @@ public class TESTCombatUIAdapter extends CombatUIAdapter{
         initializeCardPiles();
         root.add(cardPiles, 0, 1);
 
+        initializeUseHealthPot();
+
         updateView();
         primaryStage.show();
     }
@@ -128,5 +130,20 @@ public class TESTCombatUIAdapter extends CombatUIAdapter{
             }
         });
         endTurn.getChildren().add(endTurnBtn);
+    }
+
+    private void initializeUseHealthPot() {
+        //create and add the End Turn Button
+        Button healthPotBtn = new Button();
+        healthPotBtn.setText("use health pot");
+        healthPotBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CombatManager.getInstance().usePotion(new HealthPotion());
+                System.out.println("Turn ended...");
+                System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
+            }
+        });
+        endTurn.getChildren().add(healthPotBtn);
     }
 }

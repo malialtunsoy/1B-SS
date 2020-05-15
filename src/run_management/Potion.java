@@ -1,5 +1,5 @@
 
- public class Potion {
+ public abstract class Potion {
 
     //attributes
     String potionName,potionDescription;
@@ -27,8 +27,7 @@
     public void setPotionDescription() {
         this.potionDescription = potionDescription;
     }
-    public void affect()
-    {}
+    public abstract void affect();
 }
 
 class emptyPotion extends Potion
@@ -38,18 +37,19 @@ class emptyPotion extends Potion
         super(potionName,potionCost,potionDescription);
     }
 
+    public void affect() {}
 }
 
-class hpPotion extends Potion
-{
-    int currentHp;
-    Player p;
-    public hpPotion(String potionName, int potionCost, String potionDescription,int currentHp,Player p)
-    {
-        super(potionName, potionCost, potionDescription);
-        this.currentHp = currentHp;
-        this.p = p;
+class HealthPotion extends Potion {
+    private static final String NAME = "HealthPotion";
+    private static final int COST = 0; // what does this parameter mean?
+    private static final int RESTORE_PERCENT = 30;
+    private static final String DESCRIPTION = "Restores %" + RESTORE_PERCENT + " of the player's maximum health";
+
+    public HealthPotion() {
+        super(NAME, COST, DESCRIPTION);
     }
+
     @Override
     public void affect() {
         // This part is changed by Can C. to adapt to the fact that there is no setHP method for CombatEntity
@@ -59,7 +59,8 @@ class hpPotion extends Potion
         p.setHP(currentHp);
         */
         // Here is the new suggested implementation (assuming we want the potion to double the currentHP):
-        p.gainHP(p.getHP());
+        Player p = CombatManager.getInstance().getPlayer();
+        p.gainHP(p.getHP() * RESTORE_PERCENT / 100 );
     }
 }
 
