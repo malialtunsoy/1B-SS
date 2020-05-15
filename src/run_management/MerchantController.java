@@ -149,7 +149,7 @@ public class MerchantController implements Initializable, ControlledScreen {
         //POTION SETTINGS INITIALIZE  260*415
         potionsVBox.setSpacing(10);
 
-        int numberOfPotions = 10;
+        int numberOfPotions = 15;
         int numberOfHBoxes = numberOfPotions/3;
         if(numberOfPotions % 3 != 0){numberOfHBoxes++;}
 
@@ -165,7 +165,7 @@ public class MerchantController implements Initializable, ControlledScreen {
         }
 
         VBox[] potionsVBoxes = new VBox[numberOfPotions];
-        Button[] potionButton = new Button[numberOfCards];
+        Button[] potionButton = new Button[numberOfPotions];
         for(int i = 0; i < numberOfPotions ; i++){
             potionsVBoxes[i] = new VBox();
             potionsVBoxes[i].setAlignment(Pos.TOP_CENTER);
@@ -245,7 +245,7 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         VBox[] relicsVBoxes = new VBox[numberOfRelics];
         Button[] relicsButtons = new Button[numberOfRelics];
-        for(int i = 0; i < numberOfPotions ; i++){
+        for(int i = 0; i < numberOfRelics ; i++){
             relicsVBoxes[i] = new VBox();
             relicsVBoxes[i].setAlignment(Pos.TOP_CENTER);
             relicsVBoxes[i].setPrefWidth(130);
