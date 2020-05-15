@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RunController">
+<AnchorPane fx:id="anchorPaneMain" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RunController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -27,7 +28,8 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <HBox layoutX="332.0" layoutY="320.0" prefHeight="100.0" prefWidth="547.0" spacing="20.0">
+      <ScrollPane layoutX="109.0" layoutY="136.0" opacity="0.62" prefHeight="488.0" prefWidth="837.0" />
+      <HBox layoutX="387.0" layoutY="668.0" prefHeight="100.0" prefWidth="547.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#goToTreasure" prefHeight="123.0" prefWidth="121.0" text="Treasure" />
             <Button mnemonicParsing="false" onAction="#goToMerchant" prefHeight="123.0" prefWidth="121.0" text="Merchant" />
@@ -133,5 +135,80 @@
             </HBox>
          </children>
       </HBox>
+      <ScrollPane layoutX="946.0" layoutY="201.0" opacity="0.62" prefHeight="386.0" prefWidth="161.0" />
+      <VBox alignment="TOP_CENTER" layoutX="956.0" layoutY="218.0" prefHeight="200.0" prefWidth="161.0" spacing="5.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@merchant+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Merchant">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@treasure+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Treasure">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@rest+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Rest">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@combat+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Combat">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@boss+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Boss">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
