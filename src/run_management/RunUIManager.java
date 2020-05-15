@@ -59,8 +59,6 @@ public class RunUIManager{
 
 
 
-
-
     }
 
     /*public void startRun(){
