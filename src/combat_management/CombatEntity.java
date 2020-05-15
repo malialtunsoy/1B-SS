@@ -114,5 +114,9 @@ public abstract class CombatEntity {
                 "\nStatus Effects: " + affectedBy;
     }
 
+    public ArrayList<StatusEffect> getStatusEffects(){
+        return affectedBy;
+    }
+
     abstract void die();
 }
