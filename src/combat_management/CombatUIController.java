@@ -65,7 +65,7 @@ public class CombatUIController {
     }
 
     public void updatePotions(){
-        potions.getChildren().clear();
+        this.potions.getChildren().clear();
         ArrayList<Potion> potions = CombatManager.getInstance().getPlayer().getPots();
 
         for( Potion pot : potions) {
@@ -74,10 +74,11 @@ public class CombatUIController {
                     new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent actionEvent) {
-                            CombatManager.getInstance().usePotion(0); //for now, usepotion not implemented yet.
+                            CombatManager.getInstance().usePotion(pot, CombatManager.getInstance().getEnemies().get(0)); //for now, usepotion not implemented yet.
                         }
                     }
             );
+            this.potions.getChildren().add(potBtn);
         }
     }
 
