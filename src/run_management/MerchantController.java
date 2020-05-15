@@ -67,7 +67,10 @@ public class MerchantController implements Initializable, ControlledScreen {
         cardsVBox.setSpacing(10);
 
         for(int i = 0; i< merchantCards.size(); i++){
-            System.out.println(merchantCards.get(i).getImage());
+            System.out.println("image: " + merchantCards.get(i).getImage());
+            System.out.println("name: " + merchantCards.get(i).getName());
+            System.out.println("cost: " + merchantCards.get(i).getCost());
+           // System.out.println("image: " + merchantCards.get(i).getImage());
         }
 
         int numberOfCards = merchantCards.size();
