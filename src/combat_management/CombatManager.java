@@ -3,6 +3,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // This is a singleton class.
 public class CombatManager {
@@ -52,6 +53,7 @@ public class CombatManager {
         }
 
         drawPile = player.getDeck();
+        Collections.shuffle(drawPile);
         discardPile = new ArrayList<Card>();
         hand = new ArrayList<Card>();
         turn = 0;
@@ -97,6 +99,7 @@ public class CombatManager {
 
         if(drawPile.size() <= 0){
             drawPile = new ArrayList<Card>(discardPile);
+            Collections.shuffle(drawPile);
             discardPile.clear();
         }
 

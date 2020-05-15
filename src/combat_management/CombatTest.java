@@ -27,18 +27,20 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
+        Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
+
 
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample3);
-        player.addToDeck(sample3);
+        player.addToDeck(sample4);
         player.addToDeck(sample2);
         player.addToDeck(sample3);
         player.addToDeck(sample2);
+        player.addToDeck(sample4);
         player.addToDeck(sample2);
-        player.addToDeck(sample2);
-        player.addToDeck(sample2);
+        player.addToDeck(sample4);
         player.addToDeck(sample3);
         player.addToDeck(sample2);
         player.addToDeck(sample2);
