@@ -37,6 +37,9 @@ public class RunUIManager{
     public static String treasureScreen = "TreasureScreen";
     public static String treasureScreenFile = "TreasureScreen.fxml";
 
+    //public static String combatScreen = "CombatScreen";
+    //public static String combatScreenFile = "CombatUI.fxml";
+
     public ArrayList<String> screenNames;
     public ArrayList<String> screenFiles;
 
@@ -51,11 +54,13 @@ public class RunUIManager{
         screenNames.add(merchantScreen);
         screenNames.add(restScreen);
         screenNames.add(treasureScreen);
+       // screenNames.add(combatScreen);
 
         screenFiles.add(mainRunScreenFile);
         screenFiles.add(merchantScreenFile);
         screenFiles.add(restScreenFile);
         screenFiles.add(treasureScreenFile);
+        //screenFiles.add(combatScreenFile);
 
 
 

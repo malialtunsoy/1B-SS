@@ -1,3 +1,4 @@
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class CombatManager {
     private static CombatManager instance = new CombatManager();
 
     private Stage stage;
+    private Scene menu;
 
     private int turn;
     private int energy;
@@ -50,15 +52,23 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-        /*try { */uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
-        declareIntents();
+        decayAllEffects(true);
         energy = maxEnergy;
+        declareIntents();
         hand = draw(DRAW_PER_TURN);
         playersTurn = true;
         uiAdapter.updateView();
+    }
+
+    private void decayAllEffects( boolean isTurnStart) {
+        for (int i  = 0; i < enemies.size(); i++) {
+            enemies.get(i).decayAllAffected(isTurnStart);
+        }
+        player.decayAllAffected(isTurnStart);
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -100,17 +110,14 @@ public class CombatManager {
 
     }
 
-    //adds the effect to the player.
-    public void addStatusEffect( StatusEffect effect) {
-
-    }
-
     //ends the player's turn.
     public void endTurn() {
         playersTurn = false;
         // discard all cards
         discardPile.addAll(hand);
         hand.clear();
+
+        decayAllEffects(false);
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
@@ -130,6 +137,13 @@ public class CombatManager {
 
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
+    // called by the enemy when they die
+    public void removeEnemy( Enemy enemy) {
+        enemies.remove(enemy);
+        if (enemies.isEmpty()) {
+            // TODO: combat won
+        }
+    }
 
     // ---- methods used by UIAdapter to update the view: ----
     public ArrayList<Enemy> getEnemies() {return enemies;}
@@ -154,6 +168,15 @@ public class CombatManager {
 
     public static CombatManager getInstance() {
         return instance;
+    }
+
+    public void setMenuScene(Scene menu) {
+        this.menu = menu;
+    }
+
+    public void backToMap() {
+        stage.setScene(menu);
+        stage.show();
     }
 
     public String getCombatState() {

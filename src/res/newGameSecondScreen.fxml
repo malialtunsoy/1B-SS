@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@char1.PNG" />
+                        <Image url="@IroncladChar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -42,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@char2.PNG" />
+                        <Image url="@SilentChar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -51,7 +51,7 @@
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@char3.PNG" />
+                        <Image url="@DefectChar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,12 +60,21 @@
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@char4.PNG" />
+                        <Image url="@WatcherChar.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="425.0" layoutY="637.0" prefHeight="74.0" prefWidth="346.0">
+         <children>
+            <Text fx:id="chacterSelectedText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="39.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

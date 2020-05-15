@@ -15,6 +15,9 @@ public class ScreenController extends StackPane {
     private HashMap<String, Node> screens = new HashMap<String, Node>();
     MediaPlayer mediaPlayer;
 
+    private ArrayList<String> keys = new ArrayList<String>();
+    private ArrayList<String> keysFile = new ArrayList<String>();
+
     public ScreenController(){
         super();
 
@@ -34,6 +37,7 @@ public class ScreenController extends StackPane {
 
     public void addScreen(String screenName, Node screen){
         screens.put(screenName, screen);
+
     }
 
     public Node getScreen(String screenName){
@@ -46,6 +50,8 @@ public class ScreenController extends StackPane {
             Parent loadScreen = (Parent) loader.load();
             ControlledScreen myScreenControler = ((ControlledScreen) loader.getController());
             myScreenControler.setScreenParent(this);
+            keys.add(name);
+            keysFile.add(fileName);
             addScreen(name, loadScreen);
             return true;
         } catch (Exception e) {
@@ -80,6 +86,8 @@ public class ScreenController extends StackPane {
             System.out.println("Screen didn't exist");
             return false;
         } else {
+            keysFile.remove(keys.indexOf(SceneName));
+            keys.remove(SceneName);
             return true;
         }
     }
@@ -111,6 +119,15 @@ public class ScreenController extends StackPane {
         }
         return true;
     }
+
+    /*public void reloadScreens(){
+
+        for(int i = 0; i < screens.size(); i++){
+            reloadScreen(keys.get(i), keysFile.get(i));
+        }
+
+
+    }*/
 
 
 

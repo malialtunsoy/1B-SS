@@ -3,14 +3,20 @@ import java.util.ArrayList;
 
 public class Player extends CombatEntity {
 
+    String playerName;
+    String playerChar;
     int potCount, maxPot, gold, relicCount, cardCount;
     ArrayList<Potion> pots;
     ArrayList<Relic> relics;
     ArrayList<Card> deck;
     Pet myPet;
 
-    public Player(int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
-        super(hp);
+    public Player(String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
+
+        super(maxHp);
+        this.loseHP(maxHp-hp);
+        playerName = name;
+        playerChar = character;
         this.maxPot = maxPot;
         this.gold = gold;
         this.cardCount = cardCount;
@@ -45,6 +51,15 @@ public class Player extends CombatEntity {
     public int getMaxPots() {
         return maxPot;
     }
+
+    public int getRelicCount() {
+        return relicCount;
+    }
+
+    public String getPlayerName(){return playerName;}
+
+    public String getPlayerChar(){return playerChar;}
+
 
     //array arttır ekle
     public void addToDeck(Card card) {
@@ -84,5 +99,10 @@ public class Player extends CombatEntity {
     {
         return "Player" + "\n-------\n" + super.toString();
 
+    }
+    @Override
+    // called when the player dies
+    public void die() {
+        // TODO: combat lost
     }
 }

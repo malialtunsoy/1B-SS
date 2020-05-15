@@ -13,7 +13,8 @@ public class RunControl {
         cardCount = 10;
 
 
-        Player testP = new Player(hp,maxHp, maxPot,gold, relicCount, cardCount);
+        //Player testP = new Player(hp,maxHp, maxPot,gold, relicCount, cardCount);
+        Player testP = new Player("playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
 
         ArrayList<Relic> offeredRelics = new ArrayList<Relic>();
         ArrayList<Potion> offeredPotions = new ArrayList<Potion>();

@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Map {
     int vertexSize = 50;
@@ -107,6 +108,42 @@ public class Map {
     }
     public void callCombat(Combat x)
     {
+
+    }
+
+    public void createMap()
+    {
+        Random randomG = new Random();
+        int randomRow = randomG.nextInt(3);
+        int vertexCounter = 0;
+
+        int rowVertex1 = 3;
+        int rowVertex2 = 4;
+        int rowVertex3 = 5;
+
+        int mercCount = 1;
+        int treCount = 2;
+        int restCount = 2;
+        int combatCount = 7;
+
+        int rndmMercLoc, rndmTreLoc, rndmRestLoc;
+
+        Vertex temp = new Vertex();
+
+        while( vertexCounter < vertexSize )
+        {
+            for(int j = 0; j < rowVertex1+rowVertex2+rowVertex3; j++)
+            {
+                rndmMercLoc = randomG.nextInt(12);
+
+                if( randomRow == 0 )
+                {
+
+
+                }
+            }
+
+        }
 
     }
 }
