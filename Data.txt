@@ -6,7 +6,7 @@
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
 0###CardsInDeck###    ****
-1###playerHP###    **60**
+1###playerHP###    **20**
 1###playerMaxHP###    **60**
 1###playerGold###    **330**
 1###maxPot###    **3**
