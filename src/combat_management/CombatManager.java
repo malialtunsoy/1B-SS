@@ -106,8 +106,8 @@ public class CombatManager {
     }
 
     //uses the potion at the given index.
-    public void usePotion( Potion p) {
-        player.usePot(p);
+    public void usePotion( Potion p, Enemy target) {
+        player.usePot(p, target);
         uiAdapter.updateView();
     }
 
