@@ -4,8 +4,8 @@ public class AggressiveIntent extends Intent {
     private int damage;
     
     // constructors
-    public AggressiveIntent( Enemy e, int damage) {
-        super(e, CombatManager.getInstance().getPlayer()) ;   // aggressive intents always target the player
+    public AggressiveIntent( Enemy intendingEnemy, int damage) {
+        super(intendingEnemy, CombatManager.getInstance().getPlayer()) ;   // aggressive intents always target the player
         this.damage = damage;
     }
 

@@ -87,10 +87,9 @@ public class CombatTest {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Enemy armoredEnemy = new Alternatron();
+                Enemy armoredEnemy = new Cultist();
                 armoredEnemy.addStatusEffect(new Block(5));
                 CombatManager.getInstance().addEnemy(armoredEnemy);
-                System.out.println("Added Enemy");
             }
         });
         root.getChildren().add(addEnemyBtn);

@@ -56,6 +56,7 @@ public abstract class CombatEntity {
         if (sameEffect == null) {
             // add the effect
             newEffect.setAffectee(this);
+            System.out.println("IN");
             affectedBy.add(newEffect);
         } else {
             // stack the counter of the new effect to the existing one

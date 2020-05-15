@@ -14,4 +14,6 @@ public class DefensiveIntent extends Intent {
         block.setAppliedByAnEnemy(true);
         target.addStatusEffect(block);
     }
+
+    public String toString() { return "DefensiveIntent";}
 }
