@@ -1,7 +1,7 @@
 public class TEST_PURPOSE_CARD_Strengthen extends Card{
 
     public TEST_PURPOSE_CARD_Strengthen() {
-        super("Strengthen", "Skill", 1, 0, "get 1 strength");
+        super("Strengthen", "Skill", 1, 0, "get 1 strength",false);
     }
 
     @Override
