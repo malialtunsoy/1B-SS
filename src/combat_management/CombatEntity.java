@@ -96,7 +96,6 @@ public abstract class CombatEntity {
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         // for whatever reason, we get a concurrency related error if a foreach loop is used
-        // this is a terrible implementation, though it should work for now.
         for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = shallowCopy.get(i);
             if (cls.isAssignableFrom(se.getClass())) {
@@ -104,6 +103,19 @@ public abstract class CombatEntity {
             }
         }
         return amount;
+    }
+
+    public <T extends Triggered> void triggerAll(Class<T> cls) {
+        // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
+        ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
+
+        // for whatever reason, we get a concurrency related error if a foreach loop is used
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            StatusEffect se = shallowCopy.get(i);
+            if (cls.isAssignableFrom(se.getClass())) {
+                ((T) se).triggered();
+            }
+        }
     }
 
     public void dealDamage(int amount, CombatEntity target) {

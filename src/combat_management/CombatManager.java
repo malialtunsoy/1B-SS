@@ -74,11 +74,11 @@ public class CombatManager {
 
     public int getTurn() { return turn; }
 
-    private void decayAllEffects( boolean isTurnStart) {
+    private void decayAllEffects( boolean isPlayerTurnStart) {
         for (int i  = 0; i < enemies.size(); i++) {
-            enemies.get(i).decayAllAffected(isTurnStart);
+            enemies.get(i).decayAllAffected(isPlayerTurnStart);
         }
-        player.decayAllAffected(isTurnStart);
+        player.decayAllAffected(isPlayerTurnStart);
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -130,16 +130,25 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        // player ends "his turn". trigger his end-turn effects.
+        player.triggerAll(TriggeredAtTurnEnd.class);
+
         playersTurn = false;
         // discard all cards
         discardPile.addAll(hand);
         hand.clear();
 
+        // enemies' "turn starts"
         decayAllEffects(false);
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
             e.realizeAllIntents();
+        }
+
+        // enemies end "their turn", trigger their end-turn effects.
+        for ( Enemy e: enemies) {
+            e.triggerAll(TriggeredAtTurnEnd.class);
         }
 
         // restore energy
