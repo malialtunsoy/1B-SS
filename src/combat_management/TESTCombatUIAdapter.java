@@ -90,6 +90,8 @@ public class TESTCombatUIAdapter extends CombatUIAdapter{
         initializeCardPiles();
         root.add(cardPiles, 0, 1);
 
+        initializePotSimulators();
+
         updateView();
         primaryStage.show();
     }
@@ -128,5 +130,30 @@ public class TESTCombatUIAdapter extends CombatUIAdapter{
             }
         });
         endTurn.getChildren().add(endTurnBtn);
+    }
+
+    private void  initializePotSimulators() {
+        //create and add the UHB Button
+        Button healthPotBtn = new Button();
+        healthPotBtn.setText("use health pot");
+        healthPotBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CombatManager.getInstance().usePotion(new HealthPotion(), null);
+            }
+        });
+        endTurn.getChildren().add(healthPotBtn); // add to endTurn is a quick fix.
+
+
+        Button dmgPotBtn = new Button();
+        dmgPotBtn.setText("use damage pot");
+        dmgPotBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CombatManager.getInstance().usePotion(new DamagePotion(), CombatManager.getInstance().getEnemies().get(0));
+            }
+        });
+        endTurn.getChildren().add(dmgPotBtn); // add to endTurn is a quick fix.
+
     }
 }

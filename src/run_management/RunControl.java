@@ -14,14 +14,14 @@ public class RunControl {
 
         Player testP = new Player("playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
 
-        Potion testPot = new hpPotion("hppot", 30,"increase hp", hp,testP);
+        Potion testPot = new HealthPotion();
 
 
         testP.addPot(testPot);
         System.out.println(testP.potCount);
         System.out.println(testP.getHP());
 
-        testP.usePot(0);
+        testP.usePot(testPot, null);
 
         System.out.println(testP.getHP());
         System.out.println(testP.potCount);
