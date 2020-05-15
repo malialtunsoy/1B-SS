@@ -29,4 +29,6 @@ public abstract class StatusEffect {
     public int getCounter() { return counter;}
 
     public void stackCounter(StatusEffect other) { counter += other.getCounter();}
+
+    abstract void decay();   // some SE might decrease their counter by 1 per turn (Poison), some might set it to 0 (Block) etc.
 }

@@ -56,8 +56,8 @@ public class CombatManager {
     }
 
     private void playTurn() {
-        declareIntents();
         energy = maxEnergy;
+        declareIntents();
         hand = draw(DRAW_PER_TURN);
         playersTurn = true;
         uiAdapter.updateView();

@@ -3,6 +3,7 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
         super(counter, "Block");
     }
 
+    @Override
     public int modify(int amount) {
         int result = amount - getCounter();
         if (result < 0) {
@@ -14,5 +15,11 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
 
     public String toString() {
         return "Block(" + getCounter() + ")";
+    }
+
+    @Override
+    public void decay() {
+        // lose all block
+        decreaseCounter(getCounter());
     }
 }

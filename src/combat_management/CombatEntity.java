@@ -62,8 +62,20 @@ public abstract class CombatEntity {
             sameEffect.stackCounter(newEffect);
         }
     }
+
     public void removeStatusEffect(StatusEffect se) {
         affectedBy.remove(se);
+    }
+
+    // makes all status effects on this entity decay polymorphically.
+    // called at the start of each turn.
+    public void decayAllEffects() {
+        // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
+        ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
+
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            affectedBy.get(i).decay();
+        }
     }
 
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
