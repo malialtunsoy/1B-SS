@@ -48,7 +48,7 @@ public abstract class CombatEntity {
         // see if an effect of the same sort is already applied
         StatusEffect sameEffect = null;
         for ( StatusEffect existingEffect: affectedBy) {
-            if (existingEffect.getName().equals(newEffect.getName())) {
+            if (!(existingEffect instanceof RelicEffect) && existingEffect.getName().equals(newEffect.getName())) {
                 sameEffect = existingEffect;
             }
         }
@@ -56,6 +56,7 @@ public abstract class CombatEntity {
         if (sameEffect == null) {
             // add the effect
             newEffect.setAffectee(this);
+            System.out.println("IN");
             affectedBy.add(newEffect);
         } else {
             // stack the counter of the new effect to the existing one
@@ -83,18 +84,18 @@ public abstract class CombatEntity {
 
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
     public void takeDamage(int amount) {
-        int modifiedAmount = invokeAll(IncomingDamageModifier.class, amount);
+        int modifiedAmount = invokeAllModifiers(IncomingDamageModifier.class, amount);
         loseHP(modifiedAmount);
     }
 
     // modify amount with all status effects in affected by that implement cls
     // example call:  invokeAll(IncomingDamageModifier.class, 20)
-    private <T extends Modifier> int invokeAll(Class<T> cls, int amount) {
+    // declared public since it has to be invoked in CombatManager's draw
+    public  <T extends Modifier> int invokeAllModifiers(Class<T> cls, int amount) {
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         // for whatever reason, we get a concurrency related error if a foreach loop is used
-        // this is a terrible implementation, though it should work for now.
         for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = shallowCopy.get(i);
             if (cls.isAssignableFrom(se.getClass())) {
@@ -104,8 +105,21 @@ public abstract class CombatEntity {
         return amount;
     }
 
+    public <T extends Triggered> void triggerAll(Class<T> cls) {
+        // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
+        ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
+
+        // for whatever reason, we get a concurrency related error if a foreach loop is used
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            StatusEffect se = shallowCopy.get(i);
+            if (cls.isAssignableFrom(se.getClass())) {
+                ((T) se).triggered();
+            }
+        }
+    }
+
     public void dealDamage(int amount, CombatEntity target) {
-        int modifiedAmount = invokeAll(OutgoingDamageModifier.class, amount);
+        int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
         target.takeDamage(modifiedAmount);
     }
 

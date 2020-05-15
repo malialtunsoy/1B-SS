@@ -1,7 +1,6 @@
 public abstract class Card {
     private String cardName;
     private String cardType;
-    private int effect;
     private int energy;
     private String description;
 
@@ -11,7 +10,6 @@ public abstract class Card {
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
-        this.effect = effect;
         this.description = description;
         this.requiresTarget = requiresTarget;
     }
@@ -35,15 +33,6 @@ public abstract class Card {
     }
     public int getEnergy(){
         return energy;
-    }
-    public void setEffect(int newEffect){
-        this.effect = newEffect;
-    }
-    public int getEffect(){
-        return effect;
-    }
-    public void upgrade(){
-        setEffect(getEffect()*2);
     }
     abstract public void affect( Enemy target); // target = null if the card is not targeted.
 

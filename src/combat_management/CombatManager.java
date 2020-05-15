@@ -3,6 +3,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // This is a singleton class.
 public class CombatManager {
@@ -48,7 +49,13 @@ public class CombatManager {
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
     private void initializeCombat() {
+        // add relic effects
+        for (int i = 0; i < player.getRelics().size(); i++) {
+            player.addStatusEffect(player.getRelics().get(i).getEffect());
+        }
+
         drawPile = player.getDeck();
+        Collections.shuffle(drawPile);
         discardPile = new ArrayList<Card>();
         hand = new ArrayList<Card>();
         turn = 0;
@@ -64,14 +71,17 @@ public class CombatManager {
         declareIntents();
         hand = draw(DRAW_PER_TURN);
         playersTurn = true;
+        turn++;
         uiAdapter.updateView();
     }
 
-    private void decayAllEffects( boolean isTurnStart) {
+    public int getTurn() { return turn; }
+
+    private void decayAllEffects( boolean isPlayerTurnStart) {
         for (int i  = 0; i < enemies.size(); i++) {
-            enemies.get(i).decayAllAffected(isTurnStart);
+            enemies.get(i).decayAllAffected(isPlayerTurnStart);
         }
-        player.decayAllAffected(isTurnStart);
+        player.decayAllAffected(isPlayerTurnStart);
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -81,18 +91,24 @@ public class CombatManager {
     }
 
     //draws cards from the drawPile, returns the cards drawn.
-    private ArrayList<Card> draw( int number) {
+    public ArrayList<Card> draw(int number) {
+        int modifiedNumber = player.invokeAllModifiers(CardDrawModifier.class, number);
+        return drawRecursive(modifiedNumber);
+    }
+
+    private ArrayList<Card> drawRecursive( int number) {
         if( number <= 0 )
             return new ArrayList<Card>();
 
         if(drawPile.size() <= 0){
             drawPile = new ArrayList<Card>(discardPile);
+            Collections.shuffle(drawPile);
             discardPile.clear();
         }
 
         Card drawn = drawPile.get(0);
         drawPile.remove(0);
-        ArrayList<Card> result = draw(number-1);
+        ArrayList<Card> result = drawRecursive(number-1);
         result.add(drawn);
         return result;
     }
@@ -117,16 +133,25 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        // player ends "his turn". trigger his end-turn effects.
+        player.triggerAll(TriggeredAtTurnEnd.class);
+
         playersTurn = false;
         // discard all cards
         discardPile.addAll(hand);
         hand.clear();
 
+        // enemies' "turn starts"
         decayAllEffects(false);
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
             e.realizeAllIntents();
+        }
+
+        // enemies end "their turn", trigger their end-turn effects.
+        for ( Enemy e: enemies) {
+            e.triggerAll(TriggeredAtTurnEnd.class);
         }
 
         // restore energy

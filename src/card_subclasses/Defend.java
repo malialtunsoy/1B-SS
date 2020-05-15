@@ -3,10 +3,10 @@ public class Defend extends Card{
     private static final int ENERGY_COST = 1;
     private static final int BLOCK_AMOUNT = 5;
     private static final String DESCRIPTION = "Grants " + BLOCK_AMOUNT + " block";
-    private static final boolean REQUIRES_TARGET = false;
+
     // constructors
     public Defend() {
-        super("Defend", "Skill", ENERGY_COST, 0, DESCRIPTION, REQUIRES_TARGET);
+        super("Defend", "Skill", ENERGY_COST, DESCRIPTION);
     }
 
     public void affect(Enemy target) {

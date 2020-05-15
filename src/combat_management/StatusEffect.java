@@ -9,7 +9,7 @@ public abstract class StatusEffect {
 
     // --- constructors ---
     // appliedByAnEnemy defaults to false. Intent realizations call the set method
-    public StatusEffect( int counter, String name) {
+    public StatusEffect(String name, int counter) {
         this.appliedByAnEnemy = false;
         this.counter = counter;
         this.name = name;
@@ -33,6 +33,7 @@ public abstract class StatusEffect {
     public void setAffectee(CombatEntity affectee) {
         this.affectee = affectee;
     }
+    public CombatEntity getAffectee() {return affectee;}
 
     public int getCounter() { return counter;}
 
@@ -43,4 +44,6 @@ public abstract class StatusEffect {
     public boolean decayAtTurnStart() { return !appliedByAnEnemy; }
 
     abstract void decay();   // some SE might decrease their counter by 1 per turn (Poison), some might set it to 0 (Block) etc.
+
+    public String toString() {return name + "(" + counter + ")";}
 }

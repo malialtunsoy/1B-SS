@@ -1,12 +1,8 @@
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -31,16 +27,20 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
+        Card sample4 = new Bash();
+        player.addRelic(new RingOfTheSnake());
+
+
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample3);
-        player.addToDeck(sample3);
+        player.addToDeck(sample4);
         player.addToDeck(sample2);
         player.addToDeck(sample3);
         player.addToDeck(sample2);
+        player.addToDeck(sample4);
         player.addToDeck(sample2);
-        player.addToDeck(sample2);
-        player.addToDeck(sample2);
+        player.addToDeck(sample4);
         player.addToDeck(sample3);
         player.addToDeck(sample2);
         player.addToDeck(sample2);
@@ -87,10 +87,9 @@ public class CombatTest {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Enemy armoredEnemy = new Alternatron();
+                Enemy armoredEnemy = new Cultist();
                 armoredEnemy.addStatusEffect(new Block(5));
                 CombatManager.getInstance().addEnemy(armoredEnemy);
-                System.out.println("Added Enemy");
             }
         });
         root.getChildren().add(addEnemyBtn);

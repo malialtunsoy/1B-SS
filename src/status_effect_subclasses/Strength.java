@@ -2,7 +2,7 @@ public class Strength extends StatusEffect implements OutgoingDamageModifier{
 
     // --- constructors ---
     public Strength( int counter) {
-        super(counter, "Strength");
+        super("Strength", counter);
 
     }
 
@@ -12,9 +12,6 @@ public class Strength extends StatusEffect implements OutgoingDamageModifier{
         return amount + getCounter();
     }
 
-    public String toString() {
-        return "Strength(" + getCounter() + ")";
-    }
     @Override
     public void decay() {
         // does not decay

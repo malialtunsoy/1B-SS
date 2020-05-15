@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 // a concrete enemy class. Alternates each turn between gaining block and attacking
 public class Alternatron extends Enemy {
     // --- constants ---
@@ -19,7 +17,6 @@ public class Alternatron extends Enemy {
 
     @Override
     public void declareIntent() {
-        ArrayList<Intent> intents = new ArrayList<Intent>();
         if (attackThisTurn) {
             addIntent(new AggressiveIntent(this, DAMAGE));
         } else {
