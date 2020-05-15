@@ -10,6 +10,9 @@ public class Player extends CombatEntity {
     ArrayList<Relic> relics;
     ArrayList<Card> deck;
     Pet myPet;
+    Map myMap;
+
+    ArrayList<Card> merchantCard;
 
     public Player(String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
@@ -24,7 +27,9 @@ public class Player extends CombatEntity {
         pots = new ArrayList<Potion>();
         relics = new ArrayList<Relic>();
         deck = new ArrayList<Card>();
+        myMap = new Map();
         potCount = 0;
+        initializePlayer();
     }
 
     //methods
@@ -66,6 +71,66 @@ public class Player extends CombatEntity {
     public ArrayList<Potion> getPots() {
         return pots;
     }
+
+    public void initializePlayer(){
+                intializeDeck();
+        intializeGold();
+        initalizeMerchantDeck();
+
+    }
+
+    public void intializeDeck(){
+
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+
+        deck.add(new Defend() );
+        deck.add(new Defend() );
+        deck.add(new Defend() );
+        deck.add(new Defend() );
+        deck.add(new Defend() );
+
+    }
+
+    public void intializeGold(){
+        gold = 330;
+    }
+
+    //MERCHANT ****************************************
+    public boolean purchaseCard(Card card){
+        if(gold >= card.getCost()) {
+            deck.add(card);
+            gold = gold - card.getCost();
+        }
+        else{return false;}
+        System.out.println("purchased: " + card.getName() );
+        return true;
+    }
+
+    public void initalizeMerchantDeck(){
+
+        merchantCard = new ArrayList<Card>();
+        merchantCard.add(new Strike());
+        merchantCard.add(new Defend());
+        merchantCard.add(new Defend());
+        merchantCard.add(new Defend());
+
+    }
+
+    public ArrayList<Card> getMerchantDeck(){
+        return merchantCard;
+    }
+
+
+
+
+
+    public void purchaseRelic(){}
+
+    public void purchasePotion(){}
 
     //array arttır ekle
     public void addToDeck(Card card) {

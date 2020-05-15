@@ -27,10 +27,10 @@ public class RunControl {
         System.out.println(testP.potCount);
         System.out.println(testP);
 
-        Map test = new Map(testP);
+        //Map test = new Map(testP);
 
         //test.createVertex();
-        test.chooseVertex(2);
+        //test.chooseVertex(2);
 
 
     }

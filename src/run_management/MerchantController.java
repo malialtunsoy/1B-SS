@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MerchantController implements Initializable, ControlledScreen {
@@ -61,12 +62,18 @@ public class MerchantController implements Initializable, ControlledScreen {
 
 
         //CARDS SETTINGS INITALIZE
+        ArrayList<Card> merchantCards = Game.getInstance().myPlayer.getMerchantDeck();
+
         cardsVBox.setSpacing(10);
 
-        int numberOfCards = 15;
+        for(int i = 0; i< merchantCards.size(); i++){
+            System.out.println(merchantCards.get(i).getImage());
+        }
+
+        int numberOfCards = merchantCards.size();
         int numberOfHboxesNeeded = (numberOfCards / 3) ;
         if(numberOfCards % 3 != 0){numberOfHboxesNeeded++;}
-
+        System.out.println("Boxes" + numberOfHboxesNeeded);
         HBox[] cardHBoxes = new HBox[numberOfHboxesNeeded];
 
         for(int i = 0; i < numberOfHboxesNeeded; i++){
@@ -107,7 +114,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             cardText.setMinHeight(100);
             cardText.setPrefWidth(193);
             cardText.setMaxWidth(193);
-            cardText.setText("card description  " + i);
+            cardText.setText(merchantCards.get(i).getName());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -123,12 +130,14 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: 130");
+            costText.setText("Cost: " + merchantCards.get(i).getCost());
 
 
             cardButton[i] = new Button();
             cardButton[i].setText("Buy");
-            cardButton[i].setOnAction(e -> System.out.println("Card  purchased."));
+           //int temp = i;
+            //cardButton[i].setOnAction(e -> Game.getInstance().myPlayer.purchaseCard(merchantCards.get(temp)));
+            cardButton[i].setOnAction(e ->  System.out.println("aa"));
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);

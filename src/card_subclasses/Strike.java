@@ -9,10 +9,11 @@ public class Strike extends Card {
     private static final int ENERGY_COST = 1;
     private static final int DAMAGE = 6;
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
+    private static final int COST = 55;
 
     // constructors
     public Strike() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION);
+        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, COST);
     }
 
     public void affect(Enemy target) {
