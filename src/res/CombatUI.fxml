@@ -33,5 +33,6 @@
                <Label fx:id="playerStatus" alignment="TOP_CENTER" layoutX="7.0" layoutY="247.0" prefHeight="119.0" prefWidth="167.0" text="Status Effects" textAlignment="CENTER" textFill="WHITE" />
             </children>
          </AnchorPane>
+         <FlowPane fx:id="potions" layoutX="142.0" layoutY="11.0" prefHeight="53.0" prefWidth="283.0" />
       </children></AnchorPane>
 </Scene>
