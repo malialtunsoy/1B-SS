@@ -42,7 +42,8 @@ public class CombatUIController {
         playerHP.setText("HP: " + CombatManager.getInstance().getPlayer().getHP() + "/" + CombatManager.getInstance().getPlayer().getMaxHP() );
         String status = "";
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
-            status = status + effect.toString() + "\n";//change this to effect.getName() later
+            if(! (effect instanceof RelicEffect))
+                status = status + effect.toString() + "\n";//change this to effect.getName() later
         playerStatus.setText(status);
         //playerLabel.setText(CombatManager.getInstance().getPlayer().toString()
         //        + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
