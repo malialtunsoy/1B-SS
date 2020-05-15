@@ -13,7 +13,8 @@ public class Player extends CombatEntity {
 
     public Player(String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
-        super(hp);
+        super(maxHp);
+        this.loseHP(maxHp-hp);
         playerName = name;
         playerChar = character;
         this.maxPot = maxPot;

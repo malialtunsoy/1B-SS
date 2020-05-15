@@ -57,16 +57,19 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void goToTreasure(ActionEvent event) {
+        myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.changeScreen(RunUIManager.treasureScreen);
     }
 
     @FXML
     void goToMerchant(ActionEvent event) {
+        myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
         myController.changeScreen(RunUIManager.merchantScreen);
     }
 
     @FXML
     void goToRest(ActionEvent event) {
+        myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
         myController.changeScreen(RunUIManager.restScreen);
     }
 
