@@ -156,8 +156,7 @@ public class RunController implements Initializable, ControlledScreen {
             if(randomVertice == 1){verticeType = "rest+.png";}
             if(randomVertice == 2){verticeType = "treasure+.png";}
             if(randomVertice == 3){verticeType = "merchant+.png";}
-            if(randomVertice == 4){verticeType = "boss+.png";}
-
+            if(i == numberOfVertices-1){verticeType = "boss+.png";}
 
 
 
@@ -178,10 +177,10 @@ public class RunController implements Initializable, ControlledScreen {
 
             anchorPaneMain.getChildren().add(vertices[i]);
 
-            if(i % 3 == 2){layerXstart+=110; layerXend+=110;}
+            if(i % 3 == 2){layerXstart = layerXend + 100; layerXend+=100;}
 
-            if(i % 3 == 0){layerYstart  = 140; layerYend = 280;}
-            if(i % 3 == 1){layerYstart  = 280; layerYend = 420;}
+            if(i % 3 == 0){layerYstart  = 140; layerYend = 210;}
+            if(i % 3 == 1){layerYstart  = 280; layerYend = 350;}
             if(i % 3 == 2){layerYstart  = 420; layerYend = 500;}
 
             positionX = (int)(Math.random()* (layerXend - layerXstart) + layerXstart);
@@ -192,6 +191,7 @@ public class RunController implements Initializable, ControlledScreen {
 
             System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
             if(i > 3){vertices[i].setDisable(true);}
+
 
         }
 
