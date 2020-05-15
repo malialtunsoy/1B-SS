@@ -6,7 +6,7 @@ public abstract class Card {
 
     private boolean requiresTarget;
 
-    public Card(String cardName, String cardType, int energy, int effect, String description, boolean requiresTarget){
+    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
