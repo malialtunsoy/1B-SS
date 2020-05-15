@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -7,8 +8,8 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
+
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TreasureController">
     <children>
         <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -125,5 +126,54 @@
                 </HBox>
             </children>
         </HBox>
+      <ScrollPane layoutX="221.0" layoutY="171.0" opacity="0.72" prefHeight="488.0" prefWidth="769.0" />
+      <VBox alignment="TOP_CENTER" layoutX="216.0" layoutY="171.0" prefHeight="465.0" prefWidth="779.0" spacing="20.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick one">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#firstButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Potion">
+               <graphic>
+                  <ImageView fx:id="firstImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@BlockPotion.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Button>
+            <Button fx:id="secondButton" mnemonicParsing="false" onAction="#secondButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Relic">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="secondImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@BurningBloodRelic.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="thirdButton" mnemonicParsing="false" onAction="#thirdButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Relic">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="thirdImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@BurningBloodRelic.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
