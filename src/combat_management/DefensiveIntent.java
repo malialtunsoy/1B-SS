@@ -10,6 +10,8 @@ public class DefensiveIntent extends Intent {
 
     // --- methods ---
     public void realize() {
-        target.addStatusEffect(new Block(blockAmount));
+        Block block = new Block(blockAmount);
+        block.setAppliedByAnEnemy(true);
+        target.addStatusEffect(block);
     }
 }

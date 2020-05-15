@@ -44,33 +44,69 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
-    public void addStatusEffect(StatusEffect se) {
-        se.setAffectee(this);
-        affectedBy.add(se);
+    public void addStatusEffect(StatusEffect newEffect) {
+        // see if an effect of the same sort is already applied
+        StatusEffect sameEffect = null;
+        for ( StatusEffect existingEffect: affectedBy) {
+            if (existingEffect.getName().equals(newEffect.getName())) {
+                sameEffect = existingEffect;
+            }
+        }
+
+        if (sameEffect == null) {
+            // add the effect
+            newEffect.setAffectee(this);
+            affectedBy.add(newEffect);
+        } else {
+            // stack the counter of the new effect to the existing one
+            sameEffect.stackCounter(newEffect);
+        }
     }
+
     public void removeStatusEffect(StatusEffect se) {
         affectedBy.remove(se);
     }
 
-    // a shell used to incorporate a class of status effects (IncomingDamageModifier)
-    public void takeDamage(int amount) {
-        // for whatever reason, we get a concurrency related error if a foreach loop is used
-        // this is a terrible implementation, though it should work for now.
-        for (int i = 0; i < affectedBy.size(); i++) {
+    // makes all status effects on this entity decay polymorphically.
+    // called at the start of each turn.
+    public void decayAllAffected( boolean isTurnStart) {
+        // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
+        ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
+
+        for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = affectedBy.get(i);
-            if (se instanceof IncomingDamageModifier) {
-                int sizeBeforeMod = affectedBy.size();
-                amount = ((IncomingDamageModifier) se).modify(amount);
-                if (affectedBy.size() < sizeBeforeMod) {    // see if the effect has removed itself.
-                    i--;
-                }
+            if (isTurnStart == se.decayAtTurnStart()) {
+                se.decay();
             }
         }
-        loseHP(amount);
+    }
+
+    // a shell used to incorporate a class of status effects (IncomingDamageModifier)
+    public void takeDamage(int amount) {
+        int modifiedAmount = invokeAll(IncomingDamageModifier.class, amount);
+        loseHP(modifiedAmount);
+    }
+
+    // modify amount with all status effects in affected by that implement cls
+    // example call:  invokeAll(IncomingDamageModifier.class, 20)
+    private <T extends Modifier> int invokeAll(Class<T> cls, int amount) {
+        // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
+        ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
+
+        // for whatever reason, we get a concurrency related error if a foreach loop is used
+        // this is a terrible implementation, though it should work for now.
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            StatusEffect se = shallowCopy.get(i);
+            if (cls.isAssignableFrom(se.getClass())) {
+                amount = ((T) se).modify(amount);
+            }
+        }
+        return amount;
     }
 
     public void dealDamage(int amount, CombatEntity target) {
-        target.takeDamage(amount);
+        int modifiedAmount = invokeAll(OutgoingDamageModifier.class, amount);
+        target.takeDamage(modifiedAmount);
     }
 
     public String toString() {

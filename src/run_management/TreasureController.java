@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,6 +31,29 @@ public class TreasureController implements Initializable, ControlledScreen {
 
     @FXML
     private Text playerNameLabel;
+
+
+
+    @FXML
+    private ImageView firstImage;
+
+    @FXML
+    private ImageView secondImage;
+
+    @FXML
+    private ImageView thirdImage;
+
+    @FXML
+    private Button firstButton;
+
+    @FXML
+    private Button secondButton;
+
+    @FXML
+    private Button thirdButton;
+
+
+
 
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
@@ -63,4 +87,27 @@ public class TreasureController implements Initializable, ControlledScreen {
     void backToMap(ActionEvent event) {
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
+
+
+    @FXML
+    void firstButtonClicked(ActionEvent event) {
+        //TO DO
+
+        myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    void secondButtonClicked(ActionEvent event) {
+       //TO DO
+
+        myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    void thirdButtonClicked(ActionEvent event) {
+        //TO DO
+
+        myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
 }

@@ -56,11 +56,19 @@ public class CombatManager {
     }
 
     private void playTurn() {
-        declareIntents();
+        decayAllEffects(true);
         energy = maxEnergy;
+        declareIntents();
         hand = draw(DRAW_PER_TURN);
         playersTurn = true;
         uiAdapter.updateView();
+    }
+
+    private void decayAllEffects( boolean isTurnStart) {
+        for (int i  = 0; i < enemies.size(); i++) {
+            enemies.get(i).decayAllAffected(isTurnStart);
+        }
+        player.decayAllAffected(isTurnStart);
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -102,17 +110,14 @@ public class CombatManager {
 
     }
 
-    //adds the effect to the player.
-    public void addStatusEffect( StatusEffect effect) {
-
-    }
-
     //ends the player's turn.
     public void endTurn() {
         playersTurn = false;
         // discard all cards
         discardPile.addAll(hand);
         hand.clear();
+
+        decayAllEffects(false);
 
         // realize all enemy intents
         for ( Enemy e: enemies) {
