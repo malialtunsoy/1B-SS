@@ -83,11 +83,11 @@ public class Player extends CombatEntity {
         }
     }
 
-    public void usePot(int index)
+    public void usePot(Potion potion, Enemy target)
     {
-        pots.get(index).affect();
+        potion.affect(target);
         //Potion empty = new emptyPotion("Empty Potion",0,"No description");
-        pots.remove(index);
+        pots.remove(potion);
         potCount--;
     }
 
