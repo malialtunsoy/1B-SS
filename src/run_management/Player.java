@@ -56,6 +56,9 @@ public class Player extends CombatEntity {
         return relicCount;
     }
 
+    // required in CombatManager
+    public ArrayList<Relic> getRelics() {return relics;}
+
     public String getPlayerName(){return playerName;}
 
     public String getPlayerChar(){return playerChar;}

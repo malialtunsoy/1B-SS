@@ -46,6 +46,11 @@ public class CombatManager {
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
     private void initializeCombat() {
+        // add relic effects
+        for (int i = 0; i < player.getRelics().size(); i++) {
+            player.addStatusEffect(player.getRelics().get(i).getEffect());
+        }
+
         drawPile = player.getDeck();
         discardPile = new ArrayList<Card>();
         hand = new ArrayList<Card>();
@@ -61,8 +66,11 @@ public class CombatManager {
         declareIntents();
         hand = draw(DRAW_PER_TURN);
         playersTurn = true;
+        turn++;
         uiAdapter.updateView();
     }
+
+    public int getTurn() { return turn; }
 
     private void decayAllEffects( boolean isTurnStart) {
         for (int i  = 0; i < enemies.size(); i++) {
@@ -76,8 +84,14 @@ public class CombatManager {
         for(Enemy enemy : enemies)
             enemy.declareIntent();
     }
+
     //draws cards from the drawPile, returns the cards drawn.
-    private ArrayList<Card> draw( int number) {
+    public ArrayList<Card> draw(int number) {
+        int modifiedNumber = player.invokeAllModifiers(CardDrawModifier.class, number);
+        return drawRecursive(modifiedNumber);
+    }
+
+    private ArrayList<Card> drawRecursive( int number) {
         if( number <= 0 )
             return new ArrayList<Card>();
 
@@ -88,7 +102,7 @@ public class CombatManager {
 
         Card drawn = drawPile.get(0);
         drawPile.remove(0);
-        ArrayList<Card> result = draw(number-1);
+        ArrayList<Card> result = drawRecursive(number-1);
         result.add(drawn);
         return result;
     }
