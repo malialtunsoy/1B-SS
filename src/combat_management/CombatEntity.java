@@ -85,13 +85,14 @@ public abstract class CombatEntity {
 
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
     public void takeDamage(int amount) {
-        int modifiedAmount = invokeAll(IncomingDamageModifier.class, amount);
+        int modifiedAmount = invokeAllModifiers(IncomingDamageModifier.class, amount);
         loseHP(modifiedAmount);
     }
 
     // modify amount with all status effects in affected by that implement cls
     // example call:  invokeAll(IncomingDamageModifier.class, 20)
-    private <T extends Modifier> int invokeAll(Class<T> cls, int amount) {
+    // declared public since it has to be invoked in CombatManager's draw
+    public  <T extends Modifier> int invokeAllModifiers(Class<T> cls, int amount) {
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
@@ -107,7 +108,7 @@ public abstract class CombatEntity {
     }
 
     public void dealDamage(int amount, CombatEntity target) {
-        int modifiedAmount = invokeAll(OutgoingDamageModifier.class, amount);
+        int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
         target.takeDamage(modifiedAmount);
     }
 

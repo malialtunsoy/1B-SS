@@ -16,14 +16,12 @@ public class CombatTest {
 
 
     public void testCombat(Stage primaryStage) {
-        System.out.println(Font.getFontNames());
-        System.out.println(System.getProperty("user.dir"));
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
 
 
-        Player player = new Player("playerName","Ironclad",50, 50, 0, 0, 0, 0);
+        Player player = new Player("playerName","Ironclad",50, 50, 3, 0, 0, 0);
         manager.setPlayer(player);
 
         // NOTE: it might be a better idea to create a new object for each card to be added.
@@ -33,6 +31,8 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
+        player.addRelic(new RingOfTheSnake());
+
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample3);
@@ -51,6 +51,8 @@ public class CombatTest {
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
+        player.addPot(new HealthPotion());
+        player.addPot(new DamagePotion());
     }
 
 

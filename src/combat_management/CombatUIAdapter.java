@@ -40,6 +40,7 @@ public class CombatUIAdapter {
         try{controller.updateEnemies();}catch(IOException e){System.out.println(e.getMessage());}
         controller.updatePlayer();
         controller.updateCardPiles();
+        controller.updatePotions();
     }
 
     public void endTurnPressed() {

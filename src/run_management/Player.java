@@ -56,10 +56,16 @@ public class Player extends CombatEntity {
         return relicCount;
     }
 
+    // required in CombatManager
+    public ArrayList<Relic> getRelics() {return relics;}
+
     public String getPlayerName(){return playerName;}
 
     public String getPlayerChar(){return playerChar;}
 
+    public ArrayList<Potion> getPots() {
+        return pots;
+    }
 
     //array arttır ekle
     public void addToDeck(Card card) {
@@ -83,11 +89,15 @@ public class Player extends CombatEntity {
         }
     }
 
-    public void usePot(int index)
+    public void usePot(Potion potion, Enemy target)
     {
+<<<<<<< HEAD
         pots.get(index).affect(this);
+=======
+        potion.affect(target);
+>>>>>>> 57867a0211314bc23ac7bc4941af8eaee6acd82d
         //Potion empty = new emptyPotion("Empty Potion",0,"No description");
-        pots.remove(index);
+        pots.remove(potion);
         potCount--;
     }
 
