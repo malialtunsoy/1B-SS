@@ -62,21 +62,14 @@ public class MerchantController implements Initializable, ControlledScreen {
 
 
         //CARDS SETTINGS INITALIZE
-        ArrayList<Card> merchantCards = Game.getInstance().myPlayer.getMerchantDeck();
+        ArrayList<Card> myCards = Game.getInstance().myPlayer.getMerchantDeck();
 
         cardsVBox.setSpacing(10);
-
-        for(int i = 0; i< merchantCards.size(); i++){
-            System.out.println("image: " + merchantCards.get(i).getImage());
-            System.out.println("name: " + merchantCards.get(i).getName());
-            System.out.println("cost: " + merchantCards.get(i).getCost());
-           // System.out.println("image: " + merchantCards.get(i).getImage());
-        }
-
-        int numberOfCards = merchantCards.size();
+        //System.out.println( "size" + myCards.size() );
+        int numberOfCards = myCards.size();
         int numberOfHboxesNeeded = (numberOfCards / 3) ;
         if(numberOfCards % 3 != 0){numberOfHboxesNeeded++;}
-        System.out.println("Boxes" + numberOfHboxesNeeded);
+
         HBox[] cardHBoxes = new HBox[numberOfHboxesNeeded];
 
         for(int i = 0; i < numberOfHboxesNeeded; i++){
@@ -106,7 +99,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("cards.png");
+            Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             cards[i].getChildren().add(tempImage);
@@ -117,7 +110,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             cardText.setMinHeight(100);
             cardText.setPrefWidth(193);
             cardText.setMaxWidth(193);
-            cardText.setText(merchantCards.get(i).getName());
+            cardText.setText(myCards.get(i).getName());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -133,14 +126,13 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: " + merchantCards.get(i).getCost());
+            costText.setText("Cost: " + myCards.get(i).getCost());
 
 
             cardButton[i] = new Button();
             cardButton[i].setText("Buy");
-           //int temp = i;
-            //cardButton[i].setOnAction(e -> Game.getInstance().myPlayer.purchaseCard(merchantCards.get(temp)));
-            cardButton[i].setOnAction(e ->  System.out.println("aa"));
+            int temp  =i;
+            cardButton[i].setOnAction(e -> Game.getInstance().myPlayer.purchaseCard(myCards.get(temp)));
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);

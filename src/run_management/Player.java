@@ -114,6 +114,12 @@ public class Player extends CombatEntity {
 
         merchantCard = new ArrayList<Card>();
         merchantCard.add(new Strike());
+        merchantCard.add(new Strike());
+        merchantCard.add(new Strike());
+        merchantCard.add(new Strike());
+        merchantCard.add(new Strike());
+        merchantCard.add(new Defend());
+        merchantCard.add(new Defend());
         merchantCard.add(new Defend());
         merchantCard.add(new Defend());
         merchantCard.add(new Defend());
