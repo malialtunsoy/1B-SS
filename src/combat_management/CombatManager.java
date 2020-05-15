@@ -35,6 +35,8 @@ public class CombatManager {
 
     private boolean playersTurn;
 
+    private Card selectedCard;
+
     private CombatUIAdapter uiAdapter;
 
     // -----  methods  ----
@@ -59,7 +61,8 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-         /*try { */uiAdapter = new TESTCombatUIAdapter(stage); //} catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        selectedCard = null;
+        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
     }
 
     private void playTurn() {
@@ -154,12 +157,30 @@ public class CombatManager {
         // restore energy
         energy = maxEnergy;
 
+        selectedCard = null;
         playTurn(); // play the next turn
     }
 
     //called after the combat ends by the run management
     public void reportResults() {
 
+    }
+
+    public void cardSelected(Card c) {
+        if(c.getTargetRequirement()) {
+            selectedCard = c;
+        } else {
+            playCard(c,null);
+        }
+    }
+
+    public void targetSelected(Enemy enemy) {
+        if(selectedCard != null) {
+            playCard(selectedCard,enemy);
+            selectedCard = null;
+        } else {
+            System.out.println("You have chosen a target but no card is selected.");
+        }
     }
 
     //used to add the enemies before the combat starts.

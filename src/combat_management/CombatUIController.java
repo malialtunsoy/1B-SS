@@ -57,7 +57,19 @@ public class CombatUIController {
             AnchorPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
-            controller.setImage(e.getImage());
+            ImageView img = new ImageView(e.getImage());
+            img.setFitWidth(150);
+            img.setFitHeight(150);
+            controller.getButton().setGraphic(img);
+            controller.getButton().setText("");
+            controller.getButton().setOnAction(
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            CombatManager.getInstance().targetSelected(e);
+                        }
+                    }
+            );
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
             enemies.getChildren().add(pane);
@@ -94,7 +106,7 @@ public class CombatUIController {
             cardBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    CombatManager.getInstance().playCard(c, CombatManager.getInstance().getEnemies().get(0));
+                    CombatManager.getInstance().cardSelected(c);
                 }
             });
 
