@@ -1,6 +1,6 @@
 public class Block extends StatusEffect implements IncomingDamageModifier{
     public Block(int counter) {
-        super(counter, "Block");
+        super("Block", counter);
     }
 
     @Override
@@ -11,10 +11,6 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
         }
         decreaseCounter(amount);
         return result;
-    }
-
-    public String toString() {
-        return "Block(" + getCounter() + ")";
     }
 
     @Override
