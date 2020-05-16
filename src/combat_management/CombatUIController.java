@@ -233,9 +233,12 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDrawPile() {
+        if(CombatManager.getInstance().getDrawPile().isEmpty())
+            return;
         popUpDisplay.setDisable(false);
         popUpDisplay.setVisible(true);
         FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        cards.getChildren().clear();
         for(Card c : CombatManager.getInstance().getDrawPile()) {
             ImageView img = new ImageView(c.getImage());
             img.setFitWidth(148*1.5);
@@ -249,6 +252,18 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDiscardPile() {
+        if(CombatManager.getInstance().getDiscardPile().isEmpty())
+            return;
+        popUpDisplay.setDisable(false);
+        popUpDisplay.setVisible(true);
+        FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        cards.getChildren().clear();
+        for(Card c : CombatManager.getInstance().getDiscardPile()) {
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth(148*1.5);
+            img.setFitHeight(200*1.5);
+            cards.getChildren().add(img);
+        }
         System.out.println("Showing discard pile");
     }
 
