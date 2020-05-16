@@ -230,13 +230,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-        Stage mapStage = new Stage();
-        mapStage.setTitle("Map");
-        mapStage.setMaxWidth(1000);
-        mapStage.setMaxHeight(600);
-
-        //mapStage.setScene(mapScene);
-        mapStage.show();
+        CombatManager.getInstance().showMap();
     }
 
     @FXML

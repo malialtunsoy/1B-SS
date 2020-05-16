@@ -232,7 +232,9 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-
+        myController.setBackFromMap(RunUIManager.restScreen);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
+        myController.changeScreen(RunUIManager.quickMapScreen);
     }
 
     @FXML
