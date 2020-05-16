@@ -21,10 +21,6 @@ public class Bash extends Card {
 
     public Card upgradedVersion()
     {
-<<<<<<< HEAD
-        Card upgVer = null;
-=======
->>>>>>> origin/master
         if( IS_UPGRADED == false)
         {
             Card upgVer = new Bash();
