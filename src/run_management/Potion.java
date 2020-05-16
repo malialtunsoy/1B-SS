@@ -54,7 +54,7 @@ class HealthPotion extends Potion {
     @Override
     public void affect(CombatEntity target) {
         Player p = CombatManager.getInstance().getPlayer();
-        p.gainHP(p.getHP() * RESTORE_PERCENT / 100 );
+        p.gainHP(p.getMaxHP() * RESTORE_PERCENT / 100 );
     }
 }
 

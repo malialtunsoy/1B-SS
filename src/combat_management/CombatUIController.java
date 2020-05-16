@@ -31,7 +31,7 @@ public class CombatUIController {
     @FXML Label energy;
 
     @FXML
-    protected void sayHi(){
+    protected void endTurn(){
         adapter.endTurnPressed();
     }
 
