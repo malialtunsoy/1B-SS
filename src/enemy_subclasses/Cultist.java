@@ -12,8 +12,8 @@ public class Cultist extends Enemy {
 
     @Override
     public void declareIntent() {
-        if (STSUtilities.trueWithProb(RITUAL_PROB)) {
-            addIntent(new StrategicIntent(this, this, new Ritual(RITUAL_AMOUNT)));
+        if (ProbUtilities.trueWithProb(RITUAL_PROB)) {
+            addIntent(new BuffIntent(this, this, new Ritual(RITUAL_AMOUNT)));
         } else {
             addIntent(new AggressiveIntent(this, DAMAGE));
         }

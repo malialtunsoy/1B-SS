@@ -1,4 +1,4 @@
-public class STSUtilities {
+public class ProbUtilities {
     // has the input probability of returning true.
     public static boolean trueWithProb( double prob) {
         double rand = Math.random();
