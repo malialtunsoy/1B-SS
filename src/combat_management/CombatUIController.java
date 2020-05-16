@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -24,11 +25,13 @@ public class CombatUIController {
     @FXML FlowPane potions;
     @FXML FlowPane enemies;
     @FXML FlowPane hand;
-    @FXML Label drawPile;
-    @FXML Label discardPile;
+    @FXML Button drawPile;
+    @FXML Button discardPile;
     @FXML Label playerHP;
     @FXML Label playerStatus;
     @FXML Label energy;
+    @FXML Label numDraw;
+    @FXML Label numDiscard;
 
     @FXML
     protected void endTurn(){
@@ -115,12 +118,35 @@ public class CombatUIController {
             hand.getChildren().add(cardBtn);
         }
 
-        drawPile.setText("Draw Pile: " + CombatManager.getInstance().getDrawPileSize() + " cards");
-        discardPile.setText("Discard Pile: " + CombatManager.getInstance().getDiscardPileSize() + " cards");
+        drawPile.setText("");
+        ImageView drawPileImg = new ImageView("CardBack.png");
+        drawPileImg.setFitHeight(200);
+        drawPileImg.setFitWidth(147 );
+        drawPile.setGraphic(drawPileImg);
+        drawPile.setGraphicTextGap(0);
+        numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");
+
+        ImageView discardPileImg = new ImageView("CardBack.png");
+        discardPileImg.setFitHeight(200);
+        discardPileImg.setFitWidth(147 );
+        discardPile.setText("");
+        discardPile.setGraphic(discardPileImg);
+        numDiscard.setText(CombatManager.getInstance().getDiscardPileSize() +"");
+
     }
 
     @FXML
     void backToMap() {
         CombatManager.getInstance().backToMap();
+    }
+
+    @FXML
+    void showDrawPile() {
+        System.out.println("Showing draw pile");
+    }
+
+    @FXML
+    void showDiscardPile() {
+        System.out.println("Showing discard pile");
     }
 }
