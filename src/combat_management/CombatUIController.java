@@ -28,6 +28,7 @@ public class CombatUIController {
     @FXML Label discardPile;
     @FXML Label playerHP;
     @FXML Label playerStatus;
+    @FXML Label energy;
 
     @FXML
     protected void sayHi(){
@@ -45,8 +46,7 @@ public class CombatUIController {
             if(! (effect instanceof RelicEffect))
                 status = status + effect.toString() + "\n";//change this to effect.getName() later
         playerStatus.setText(status);
-        //playerLabel.setText(CombatManager.getInstance().getPlayer().toString()
-        //        + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
+        energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
     }
 
     public void updateEnemies() throws IOException {
@@ -58,6 +58,7 @@ public class CombatUIController {
             AnchorPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
+            controller.setIntent(e.getIntents());
             ImageView img = new ImageView(e.getImage());
             img.setFitWidth(150);
             img.setFitHeight(150);
