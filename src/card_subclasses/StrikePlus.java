@@ -22,11 +22,11 @@ public class StrikePlus extends Card {
     }
     public Card upgradedVersion()
     {
-        Card upgVer = null;
         if( IS_UPGRADED == false)
         {
-            upgVer = new Strike();
+            Card upgVer = new StrikePlus();//ui strikeplus çizemiyor dikkat
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 }

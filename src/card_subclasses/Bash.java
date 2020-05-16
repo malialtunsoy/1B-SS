@@ -20,11 +20,11 @@ public class Bash extends Card {
 
     public Card upgradedVersion()
     {
-        Card upgVer;
         if( IS_UPGRADED == false)
         {
-        upgVer = new Bash();//upgraded version needed
+            Card upgVer = new Bash();
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 }

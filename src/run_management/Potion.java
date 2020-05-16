@@ -34,6 +34,7 @@
      public boolean getTargetRequirement() { return targetRequirement;}
      public void setImage( String image ){this.image = image;}
      public String getImage(){return image;}
+     public String toString(){return getPotionDescription();}
 }
 
 class EmptyPotion extends Potion
