@@ -23,17 +23,22 @@
     {
         return potionName;
     }
+
     public String getPotionDescription(){
         return potionDescription;
     }
     public void setPotionDescription() {
         this.potionDescription = potionDescription;
     }
+
     public abstract void affect( CombatEntity target); // parameter unused in non-targeted potions
      public int getPotionCost(){return potionCost;}
      public boolean getTargetRequirement() { return targetRequirement;}
      public void setImage( String image ){this.image = image;}
      public String getImage(){return image;}
+
+     public void setCost(int cost){potionCost = cost;}
+     public int getCost(){return potionCost;}
      public String toString(){return getPotionDescription();}
 }
 
