@@ -8,13 +8,14 @@ public abstract class Card {
 
     private boolean requiresTarget;
 
-    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget,boolean isUpgraded){
+    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget,boolean isUpgraded, int cost){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
         this.description = description;
         this.requiresTarget = requiresTarget;
         this.isUpgraded = isUpgraded;
+        this.cost = cost;
     }
 
     public boolean getTargetRequirement() { return requiresTarget;}

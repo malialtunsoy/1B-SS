@@ -11,9 +11,10 @@ public class Strike extends Card {
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
     private static final boolean TARGET_REQUIREMENT = true;
     private static final boolean IS_UPGRADED = false;
+    private static int COST = 140;
     // constructors
     public Strike() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED);
+        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED,COST);
     }
 
     public void affect(Enemy target) {

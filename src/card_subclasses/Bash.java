@@ -6,10 +6,11 @@ public class Bash extends Card {
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage.\n Applies " + VULNERABLE_COUNTER + " Vulnerable." ;
     private static final boolean TARGET_REQUIREMENT = true;
     private static final boolean IS_UPGRADED = false;
+    private static int COST = 160;
 
     // --- constructors ---
     public Bash() {
-        super("Bash", "Attack", ENERGY_COST, DESCRIPTION,TARGET_REQUIREMENT,IS_UPGRADED);
+        super("Bash", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT, IS_UPGRADED, COST);
     }
 
     @Override

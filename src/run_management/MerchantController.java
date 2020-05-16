@@ -367,6 +367,10 @@ public class MerchantController implements Initializable, ControlledScreen {
     void backToMap(ActionEvent event) {
         SaveAndExit.save();
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
+        myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
+        myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
 
