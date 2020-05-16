@@ -65,7 +65,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     public void reloadPotions(){
         ArrayList<Potion> pots = CombatManager.getInstance().getPlayer().getPots();
 
-        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
+        if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
             Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));
             potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -78,7 +78,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
 
 
-        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
             Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));
             potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -89,7 +89,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
 
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
             Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));
             potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
