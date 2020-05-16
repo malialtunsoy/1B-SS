@@ -6,10 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -137,7 +134,8 @@ public class deckController implements Initializable, ControlledScreen {
 
     @FXML
     void back(ActionEvent event) {
-        myController.changeScreen(myController.getBackFromDeck());
+        if(myController.getBackFromDeck().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromDeck();}
+        else{myController.changeScreen(myController.getBackFromDeck());}
     }
 
     @FXML
@@ -152,13 +150,16 @@ public class deckController implements Initializable, ControlledScreen {
     public void reloadPotions(){
         ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
 
-        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1); }
+        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
-        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2); }
+        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3); }
+        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
     }
@@ -176,6 +177,7 @@ public class deckController implements Initializable, ControlledScreen {
             //Image relicImage = new Image(relics.get(i).getImage());
             Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
         }
     }
