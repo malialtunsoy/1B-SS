@@ -6,18 +6,18 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RunController implements Initializable, ControlledScreen {
@@ -39,6 +39,16 @@ public class RunController implements Initializable, ControlledScreen {
     @FXML
     private Text playerNameLabel;
 
+    @FXML
+    private ImageView potionSlot1;
+
+    @FXML
+    private ImageView potionSlot2;
+
+    @FXML
+    private ImageView potionSlot3;
+
+
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
     }
@@ -52,7 +62,47 @@ public class RunController implements Initializable, ControlledScreen {
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
 
+        reloadPotions();
+        reloadRelics();
+
         createMap();
+    }
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
+    }
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            tempRelicImage.setPickOnBounds(true);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            relicSlotHBox.getChildren().add(tempRelicImage);
+
+        }
     }
 
     @FXML
@@ -62,24 +112,28 @@ public class RunController implements Initializable, ControlledScreen {
     void backToMainMenu(ActionEvent event) {
         myController.reloadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
         myController.changeScreen(NavigationUI.mainMenuScreen);
+        SaveAndExit.save();
     }
 
     @FXML
     void goToTreasure(ActionEvent event) {
         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.changeScreen(RunUIManager.treasureScreen);
+        SaveAndExit.save();
     }
 
     @FXML
     void goToMerchant(ActionEvent event) {
         myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
         myController.changeScreen(RunUIManager.merchantScreen);
+        SaveAndExit.save();
     }
 
     @FXML
     void goToRest(ActionEvent event) {
         myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
         myController.changeScreen(RunUIManager.restScreen);
+        SaveAndExit.save();
     }
 
     @FXML
@@ -104,28 +158,17 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.mainRunScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
+        SaveAndExit.save();
     }
 
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
-        Stage mapStage = new Stage();
-        mapStage.setTitle("Options");
-        mapStage.setMaxWidth(1200);
-        mapStage.setMaxHeight(800);
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(NavigationUI.optionsScreenFile));
-            Parent opitonsScreen = (Parent) loader.load();
-            mapStage.setScene(new Scene(opitonsScreen));
-        }
-        catch (IOException e){
-
-        }
-
-
-        mapStage.show();
-
+        myController.setGetBackFromSettings(RunUIManager.mainRunScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
 
@@ -189,7 +232,7 @@ public class RunController implements Initializable, ControlledScreen {
             vertices[i].setLayoutX(positionX);
             vertices[i].setLayoutY(positionY);
 
-            System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
+           // System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
             if(i > 3){vertices[i].setDisable(true);}
 
 

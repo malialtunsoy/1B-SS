@@ -41,7 +41,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="91.0" layoutY="719.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back">
+      <Button layoutX="91.0" layoutY="719.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>

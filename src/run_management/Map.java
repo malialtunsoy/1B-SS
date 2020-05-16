@@ -1,14 +1,53 @@
 
 public class Map {
-    int vertexSize = 50;
+    int vertexSize = 18;
     int currentPosition;
-    Vertex[] vertices = new Vertex[vertexSize];
-    Player p;
+    Vertex[] vertices ;
+    String[] vertexTypes;
+    int[] verticesXloc;
+    int[] vericesYloc;
 
-    public Map(Player p)
+
+
+    public Map()
     {
-        createVertex();
-        this.p = p;
+
+       // createVertex();
+    }
+
+    public void organizeMap(){
+        vertices = new Vertex[vertexSize];
+        vertexTypes = new String[vertexSize];
+        verticesXloc = new int[vertexSize];
+        vericesYloc = new int[vertexSize];
+
+        int numberOfCombats = 7;
+        int numberOfRests = 4;
+        int numberOfMerchants = 3;
+        int numberOfTreasure = 3;
+        int numberOfBoss = 1;
+
+        /*vertices map
+        []
+                []          []
+
+        []
+                   []       []
+        []                                                              []
+
+                    []          []
+        []
+
+
+
+        */
+
+
+
+
+
+
+
     }
 
     public void createVertex()
@@ -49,7 +88,7 @@ public class Map {
         }
     }
 
-    public void chooseVertex( int index )
+   /* public void chooseVertex( int index )
     {
         System.out.println(vertices[index].getType());
         if( vertices[index].getLock())
@@ -105,5 +144,5 @@ public class Map {
     public void callCombat(Vertex x)
     {
 
-    }
+    }*/
 }

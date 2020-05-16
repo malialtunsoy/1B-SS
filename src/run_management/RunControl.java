@@ -12,7 +12,7 @@ public class RunControl {
         cardCount = 10;
 
 
-        Player testP = new Player("playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
+        Player testP = new Player(true,"playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
 
         Potion testPot = new HealthPotion();
 
@@ -27,10 +27,10 @@ public class RunControl {
         System.out.println(testP.potCount);
         System.out.println(testP);
 
-        Map test = new Map(testP);
+        //Map test = new Map(testP);
 
         //test.createVertex();
-        test.chooseVertex(2);
+        //test.chooseVertex(2);
 
 
     }

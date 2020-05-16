@@ -7,10 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -20,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RestController implements Initializable, ControlledScreen {
@@ -50,13 +48,16 @@ public class RestController implements Initializable, ControlledScreen {
         currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+        reloadPotions();
+        reloadRelics();
 
         cardID = -1;
 
         //initalize upgrade screen
         CardsVBox.setSpacing(10);
 
-        int numberOfCardsToDisplay = 30;
+        ArrayList<Card> myCards = Game.getInstance().myPlayer.getDeck();
+        int numberOfCardsToDisplay = myCards.size();
         int numberOfHBoxesNeeded = numberOfCardsToDisplay / 5;
         if(numberOfCardsToDisplay % 5 != 0){numberOfHBoxesNeeded++;}
 
@@ -75,6 +76,7 @@ public class RestController implements Initializable, ControlledScreen {
         Button[] cardButton = new Button[numberOfCardsToDisplay];
 
         //240 * 190
+
         for(int i = 0; i < numberOfCardsToDisplay; i++){
             cards[i] = new VBox();
             cards[i].setAlignment(Pos.TOP_CENTER);
@@ -89,7 +91,7 @@ public class RestController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("cards.png");
+            Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             cards[i].getChildren().add(tempImage);
@@ -100,7 +102,7 @@ public class RestController implements Initializable, ControlledScreen {
             cardText.setMinHeight(100);
             cardText.setPrefWidth(180);
             cardText.setMaxWidth(180);
-            cardText.setText("card description  " + i);
+            cardText.setText(myCards.get(i).getDescription());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -120,6 +122,7 @@ public class RestController implements Initializable, ControlledScreen {
             cardButton[i] = new Button();
             cardButton[i].setText("Upgrade");
             //BUTTON CLICKED **********************************************
+            int temp = i;
             cardButton[i].setOnAction(e -> {
 
                 cardID = a;
@@ -140,7 +143,7 @@ public class RestController implements Initializable, ControlledScreen {
                 tempI.setPickOnBounds(true);
                 tempI.setPreserveRatio(true);
 
-                Image tempImIn = new Image("cards.png");
+                Image tempImIn = new Image(myCards.get(temp).getImage());
                 tempI.setImage(tempImIn);
 
                 currentCardVBox.getChildren().add(tempI);
@@ -151,7 +154,7 @@ public class RestController implements Initializable, ControlledScreen {
                 text.setMinHeight(100);
                 text.setPrefWidth(180);
                 text.setMaxWidth(180);
-                text.setText("card description  " + cardID);
+                text.setText(myCards.get(temp).getDescription());
                 //cardText.getStyleClass().add("sample");
                 text.setWrapText(true);
 
@@ -172,7 +175,7 @@ public class RestController implements Initializable, ControlledScreen {
                 tempI2.setPickOnBounds(true);
                 tempI2.setPreserveRatio(true);
 
-                Image tempImIn2 = new Image("cards.png");
+                Image tempImIn2 = new Image(myCards.get(temp).upgradedVersion().getImage());
                 tempI2.setImage(tempImIn2);
 
                 upgradedCardVBox.getChildren().add(tempI2);
@@ -183,11 +186,12 @@ public class RestController implements Initializable, ControlledScreen {
                 text2.setMinHeight(100);
                 text2.setPrefWidth(180);
                 text2.setMaxWidth(180);
-                text2.setText("card description  " + cardID + " PLUS");
+                text2.setText(myCards.get(temp).upgradedVersion().getDescription());
                 //cardText.getStyleClass().add("sample");
                 text2.setWrapText(true);
 
                 upgradedCardVBox.getChildren().add(text2);
+                Game.getInstance().myPlayer.upgradeCard(myCards.get(temp),temp);//does when card choosed but must do when 'confirmed'
 
             });//*************************************************************
 
@@ -206,6 +210,26 @@ public class RestController implements Initializable, ControlledScreen {
 
     }
 
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
+    }
+
+
     @FXML
     void openMap(ActionEvent event) {
 
@@ -213,12 +237,16 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.restScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
-
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        myController.setGetBackFromSettings(RunUIManager.restScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
     @FXML
@@ -244,6 +272,7 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void healPlayer() {
+
         System.out.println("HEAL");
         //heal and go back to map
         double hp = Game.getInstance().myPlayer.getHP();
@@ -280,6 +309,32 @@ public class RestController implements Initializable, ControlledScreen {
             System.out.println("Card updated: " + cardID);//TO BE ADDED UPDATE THE CARDS
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    private ImageView potionSlot1;
+
+    @FXML
+    private ImageView potionSlot2;
+
+    @FXML
+    private ImageView potionSlot3;
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
     }
 
 

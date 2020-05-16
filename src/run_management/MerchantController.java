@@ -6,10 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -19,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MerchantController implements Initializable, ControlledScreen {
@@ -58,12 +56,15 @@ public class MerchantController implements Initializable, ControlledScreen {
         currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+        reloadPotions();
+        reloadRelics();
 
+        //CARDS SETTINGS INITALIZE************************************************************************************
+        ArrayList<Card> myCards = Game.getInstance().myPlayer.getMerchantDeck();
 
-        //CARDS SETTINGS INITALIZE
         cardsVBox.setSpacing(10);
-
-        int numberOfCards = 15;
+        //System.out.println( "size" + myCards.size() );
+        int numberOfCards = myCards.size();
         int numberOfHboxesNeeded = (numberOfCards / 3) ;
         if(numberOfCards % 3 != 0){numberOfHboxesNeeded++;}
 
@@ -91,12 +92,12 @@ public class MerchantController implements Initializable, ControlledScreen {
 
             //add image
             ImageView tempImage = new ImageView();
-            tempImage.setFitHeight(115);
+            tempImage.setFitHeight(160);
             tempImage.setFitWidth(200);
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("cards.png");
+            Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             cards[i].getChildren().add(tempImage);
@@ -104,10 +105,10 @@ public class MerchantController implements Initializable, ControlledScreen {
             TextArea cardText = new TextArea();
             cardText.setEditable(false);
 
-            cardText.setMinHeight(100);
+            cardText.setMinHeight(50);
             cardText.setPrefWidth(193);
             cardText.setMaxWidth(193);
-            cardText.setText("card description  " + i);
+            cardText.setText(myCards.get(i).getDescription());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -123,12 +124,15 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: 130");
+            costText.setText("Cost: " + myCards.get(i).getCost());
 
 
             cardButton[i] = new Button();
             cardButton[i].setText("Buy");
-            cardButton[i].setOnAction(e -> System.out.println("Card  purchased."));
+            int temp  =i;
+            cardButton[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseCard(myCards.get(temp));
+                        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                });
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);
@@ -142,10 +146,12 @@ public class MerchantController implements Initializable, ControlledScreen {
         }
 
 
-        //POTION SETTINGS INITIALIZE  260*415
+        //POTION SETTINGS INITIALIZE  260*415 ********************************************************************
         potionsVBox.setSpacing(10);
 
-        int numberOfPotions = 10;
+        ArrayList<Potion> merchantPotion = Game.getInstance().myPlayer.getMerchantPotions();
+
+        int numberOfPotions = merchantPotion.size();
         int numberOfHBoxes = numberOfPotions/3;
         if(numberOfPotions % 3 != 0){numberOfHBoxes++;}
 
@@ -155,18 +161,18 @@ public class MerchantController implements Initializable, ControlledScreen {
             potionsHBoxes[i] = new HBox();
             potionsHBoxes[i].setAlignment(Pos.CENTER_LEFT);
             potionsHBoxes[i].setPrefWidth(415);
-            potionsHBoxes[i].setPrefHeight(260);
+            potionsHBoxes[i].setPrefHeight(220);
             potionsHBoxes[i].setSpacing(10);
             potionsVBox.getChildren().add(potionsHBoxes[i]);
         }
 
         VBox[] potionsVBoxes = new VBox[numberOfPotions];
-        Button[] potionButton = new Button[numberOfCards];
+        Button[] potionButton = new Button[numberOfPotions];
         for(int i = 0; i < numberOfPotions ; i++){
             potionsVBoxes[i] = new VBox();
             potionsVBoxes[i].setAlignment(Pos.TOP_CENTER);
             potionsVBoxes[i].setPrefWidth(130);
-            potionsVBoxes[i].setPrefHeight(240);
+            potionsVBoxes[i].setPrefHeight(220);
             potionsVBoxes[i].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
             //add image
@@ -176,18 +182,22 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("BlockPotion.png");
+            Image tempImageIn = new Image(merchantPotion.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             potionsVBoxes[i].getChildren().add(tempImage);
+            //add name
+            Text nameText = new Text();
+            nameText.setText(merchantPotion.get(i).getName());
+            potionsVBoxes[i].getChildren().add(nameText);
             //add text
             TextArea potionText = new TextArea();
             potionText.setEditable(false);
 
-            potionText.setMinHeight(50);
+            potionText.setMaxHeight(60);
             potionText.setPrefWidth(130);
             potionText.setMaxWidth(130);
-            potionText.setText("potion description  " + i);
+            potionText.setText(merchantPotion.get(i).getPotionDescription());
             //cardText.getStyleClass().add("sample");
             potionText.setWrapText(true);
 
@@ -203,12 +213,16 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: 130");
+            costText.setText("Cost: " + merchantPotion.get(i).getPotionCost());
 
 
             potionButton[i] = new Button();
             potionButton[i].setText("Buy");
-            potionButton[i].setOnAction(e -> System.out.println("Potion  purchased."));
+            int temp = i;
+            potionButton[i].setOnAction(e -> {
+            Game.getInstance().myPlayer.purchasePotion(merchantPotion.get(temp));
+                MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                reloadPotions();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(potionButton[i]);
@@ -221,10 +235,12 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         }
 
-        //RELIC SETTINGS INITIALIZE  260*415
+        //RELIC SETTINGS INITIALIZE  260*415*******************************************************************
         relicsVBox.setSpacing(10);
 
-        int numberOfRelics = 10;
+        ArrayList<Relic> merchantRelic = Game.getInstance().myPlayer.getMerchantRelics();
+
+        int numberOfRelics = merchantRelic.size();
         int numberOfHBoxesRelic = numberOfRelics/3;
         if(numberOfRelics % 3 != 0){numberOfHBoxesRelic++;}
 
@@ -234,18 +250,18 @@ public class MerchantController implements Initializable, ControlledScreen {
             relicHBoxes[i] = new HBox();
             relicHBoxes[i].setAlignment(Pos.CENTER_LEFT);
             relicHBoxes[i].setPrefWidth(415);
-            relicHBoxes[i].setPrefHeight(260);
+            relicHBoxes[i].setPrefHeight(220);
             relicHBoxes[i].setSpacing(10);
             relicsVBox.getChildren().add(relicHBoxes[i]);
         }
 
         VBox[] relicsVBoxes = new VBox[numberOfRelics];
         Button[] relicsButtons = new Button[numberOfRelics];
-        for(int i = 0; i < numberOfPotions ; i++){
+        for(int i = 0; i < numberOfRelics ; i++){
             relicsVBoxes[i] = new VBox();
             relicsVBoxes[i].setAlignment(Pos.TOP_CENTER);
             relicsVBoxes[i].setPrefWidth(130);
-            relicsVBoxes[i].setPrefHeight(240);
+            relicsVBoxes[i].setPrefHeight(220);
             relicsVBoxes[i].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
             //add image
@@ -255,18 +271,22 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("BurningBloodRelic.png");
+            Image tempImageIn = new Image(merchantRelic.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             relicsVBoxes[i].getChildren().add(tempImage);
+            //add name
+            Text nameText = new Text();
+            nameText.setText(merchantRelic.get(i).getName());
+            relicsVBoxes[i].getChildren().add(nameText);
             //add text
             TextArea relicText = new TextArea();
             relicText.setEditable(false);
 
-            relicText.setMinHeight(50);
-            relicText.setPrefWidth(130);
+            relicText.setMinHeight(30);
+            relicText.setMaxHeight(50);
             relicText.setMaxWidth(130);
-            relicText.setText("relic description  " + i);
+            relicText.setText(merchantRelic.get(i).getRelicDescription());
             relicText.setWrapText(true);
 
             relicsVBoxes[i].getChildren().add(relicText);
@@ -286,7 +306,10 @@ public class MerchantController implements Initializable, ControlledScreen {
 
             relicsButtons[i] = new Button();
             relicsButtons[i].setText("Buy");
-            relicsButtons[i].setOnAction(e -> System.out.println("Relic  purchased."));
+            int temp = i;
+            relicsButtons[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseRelic(merchantRelic.get(temp));
+            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                reloadRelics();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);
@@ -299,7 +322,24 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         }
 
+    }
 
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
     @FXML
@@ -309,17 +349,49 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.merchantScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
-
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        myController.setGetBackFromSettings(RunUIManager.merchantScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
     @FXML
     void backToMap(ActionEvent event) {
+        SaveAndExit.save();
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    private ImageView potionSlot1;
+
+    @FXML
+    private ImageView potionSlot2;
+
+    @FXML
+    private ImageView potionSlot3;
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
     }
 
 

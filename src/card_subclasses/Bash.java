@@ -5,15 +5,26 @@ public class Bash extends Card {
     private static final int VULNERABLE_COUNTER = 2;
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage.\n Applies " + VULNERABLE_COUNTER + " Vulnerable." ;
     private static final boolean TARGET_REQUIREMENT = true;
+    private static final boolean IS_UPGRADED = false;
 
     // --- constructors ---
     public Bash() {
-        super("Bash", "Attack", ENERGY_COST, DESCRIPTION,TARGET_REQUIREMENT);
+        super("Bash", "Attack", ENERGY_COST, DESCRIPTION,TARGET_REQUIREMENT,IS_UPGRADED);
     }
 
     @Override
     public void affect(Enemy target) {
         CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
         target.addStatusEffect(new Vulnerable(VULNERABLE_COUNTER));
+    }
+
+    public Card upgradedVersion()
+    {
+        Card upgVer;
+        if( IS_UPGRADED == false)
+        {
+        upgVer = new Bash();//upgraded version needed
+        }
+        return upgVer;
     }
 }
