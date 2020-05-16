@@ -168,19 +168,15 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
-            ImageView img = new ImageView(e.getImage());
-            img.setFitWidth(150);
-            img.setFitHeight(150);
-            controller.getButton().setGraphic(img);
-            controller.getButton().setText("");
-            controller.getButton().setOnAction(
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent actionEvent) {
-                            CombatManager.getInstance().targetSelected(e);
-                        }
-                    }
-            );
+            controller.getImage().setImage(new Image(e.getImage()));
+            controller.getImage().setFitWidth(150);
+            controller.getImage().setFitHeight(150);
+            controller.getImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().targetSelected(e);
+                }
+            });
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
             enemies.getChildren().add(pane);
@@ -197,20 +193,18 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         int i = 0;
 
         for (Card c : cards) {
-            Button cardBtn = new Button("");
             ImageView img = new ImageView(c.getImage());
             img.setFitWidth(147);
             img.setFitHeight(200.0);
-            cardBtn.setGraphic(img);
-            cardBtn.setOnAction(new EventHandler<ActionEvent>() {
+            img.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void handle(MouseEvent event) {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-            hand.getChildren().add(cardBtn);
-            cardBtn.setLayoutX(155 * i);
-            cardBtn.setLayoutY(0);
+            hand.getChildren().add(img);
+            img.setLayoutX(147 * i);
+            img.setLayoutY(0);
             i++;
         }
         //hand.setPrefWrapLength(147 * cards.size());
