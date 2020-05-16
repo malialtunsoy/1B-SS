@@ -23,7 +23,11 @@
          </ImageView>
          <Button layoutX="1102.0" layoutY="471.0" mnemonicParsing="false" onAction="#endTurn" text="End Turn" />
          <FlowPane fx:id="enemies" layoutX="284.0" layoutY="198.0" prefHeight="315.0" prefWidth="794.0" />
-         <FlowPane fx:id="hand" layoutX="227.0" layoutY="499.0" prefHeight="218.0" prefWidth="743.0" />
+         <ScrollPane layoutX="229.0" layoutY="498.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
+            <content>
+               <FlowPane fx:id="hand" />
+            </content>
+         </ScrollPane>
          <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
          <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
             <children>
@@ -172,7 +176,7 @@
                </ImageView>
             </children>
          </HBox>
-         <AnchorPane fx:id="popUpDisplay" layoutX="161.0" layoutY="84.0" prefHeight="616.0" prefWidth="880.0">
+         <AnchorPane fx:id="popUpDisplay" disable="true" layoutX="161.0" layoutY="84.0" prefHeight="616.0" prefWidth="880.0">
             <children>
                <ScrollPane hbarPolicy="NEVER" prefHeight="617.0" prefWidth="880.0" vbarPolicy="NEVER">
                   <content>

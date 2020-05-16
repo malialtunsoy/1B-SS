@@ -196,8 +196,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         for (Card c : cards) {
             Button cardBtn = new Button("");
             ImageView img = new ImageView(c.getImage());
-            img.setFitWidth( Math.min(147,((hand.getWidth() - 100)  / cards.size())));
-            img.setFitHeight(200.0 / 147.0 * img.getFitWidth());
+            img.setFitWidth(147);
+            img.setFitHeight(200.0);
             cardBtn.setGraphic(img);
             cardBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -208,6 +208,10 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
             hand.getChildren().add(cardBtn);
         }
+        hand.setMaxHeight(210);
+        hand.setPrefWidth((147 + 3) * cards.size()) ;
+        System.out.println(hand.getPrefWidth());
+        //hand.setPrefWrapLength(147 * cards.size());
 
         drawPile.setText("");
         ImageView drawPileImg = new ImageView("CardBackRed.png");
