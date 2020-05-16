@@ -190,5 +190,10 @@
                </ImageView>
             </children>
          </AnchorPane>
+         <Label fx:id="targetPrompt" alignment="CENTER" layoutX="162.0" layoutY="150.0" prefHeight="36.0" prefWidth="950.0" text="Choose a Target!" textFill="WHITE">
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
       </children></AnchorPane>
 </Scene>

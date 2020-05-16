@@ -179,7 +179,9 @@ public class CombatManager {
         if(c.getTargetRequirement()) {
             selectedPotion = null;
             selectedCard = c;
+            uiAdapter.showPrompt(true, c.getName());
         } else {
+            uiAdapter.showPrompt(false, "");
             playCard(c,null);
         }
     }
@@ -188,16 +190,20 @@ public class CombatManager {
         if(p.getTargetRequirement()) {
             selectedCard = null;
             selectedPotion = p;
+            uiAdapter.showPrompt(true,p.getName());
         } else {
             usePotion(p,null);
+            uiAdapter.showPrompt(false, "");
         }
     }
 
     public void targetSelected(Enemy enemy) {
         if(selectedCard != null) {
+            uiAdapter.showPrompt(false, "");
             playCard(selectedCard,enemy);
             selectedCard = null;
         } else if (selectedPotion != null) {
+            uiAdapter.showPrompt(false, "");
             usePotion(selectedPotion, enemy);
             selectedPotion = null;
         }
