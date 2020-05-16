@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="32d5f630-e67c-4588-bd7c-44f0a707c0da" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1bxsqcXZANd7J4ln0jqQTJEahSn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="/etc/javafx-sdk-11.0.2/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="1B-SS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="443" y="131" width="1024" height="852" key="#Project_Structure" timestamp="1589585628929">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="443" y="131" width="1024" height="852" key="#Project_Structure/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589585628929" />
+    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589585949340">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589585949340" />
+    <state x="713" y="417" width="484" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1589586178622">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="713" y="417" width="484" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589586178622" />
+    <state x="582" y="300" width="735" height="520" key="FileChooserDialogImpl" timestamp="1589653663125">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="582" y="300" width="735" height="520" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589653663125" />
+    <state width="1897" height="304" key="GridCell.Tab.0.bottom" timestamp="1589653549645">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1897" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589643648818" />
+    <state width="1897" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1589647271971" />
+    <state width="1897" height="304" key="GridCell.Tab.0.bottom/0.27.3840.1053@0.27.3840.1053" timestamp="1589653549645" />
+    <state width="1897" height="304" key="GridCell.Tab.0.center" timestamp="1589653549644">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1897" height="275" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589643648817" />
+    <state width="1897" height="275" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1589647271966" />
+    <state width="1897" height="304" key="GridCell.Tab.0.center/0.27.3840.1053@0.27.3840.1053" timestamp="1589653549644" />
+    <state width="1897" height="304" key="GridCell.Tab.0.left" timestamp="1589653549641">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1897" height="275" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589643648817" />
+    <state width="1897" height="275" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1589647271964" />
+    <state width="1897" height="304" key="GridCell.Tab.0.left/0.27.3840.1053@0.27.3840.1053" timestamp="1589653549641" />
+    <state width="1897" height="304" key="GridCell.Tab.0.right" timestamp="1589653549645">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1897" height="275" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589643648817" />
+    <state width="1897" height="275" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1589647271967" />
+    <state width="1897" height="304" key="GridCell.Tab.0.right/0.27.3840.1053@0.27.3840.1053" timestamp="1589653549645" />
+    <state x="443" y="131" width="1920" height="852" key="SettingsEditor" timestamp="1589653665958">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="443" y="131" width="1024" height="852" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1589653665958" />
+    <state x="0" y="131" width="1920" height="852" key="SettingsEditor/0.27.3840.1053@0.27.3840.1053" timestamp="1589653542019" />
+  </component>
+</project>

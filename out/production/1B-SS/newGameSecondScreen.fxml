@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewGameController">
+   <children>
+      <ImageView fitHeight="810.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="484.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Your Character" wrappingWidth="256.13671875">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Button layoutX="74.0" layoutY="711.0" mnemonicParsing="false" onAction="#newGame" text="Back">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <Button layoutX="1059.0" layoutY="711.0" mnemonicParsing="false" onAction="#Fight" text="Fight">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <HBox layoutX="45.0" layoutY="175.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#char1selected">
+               <graphic>
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IroncladChar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#char2selected">
+               <graphic>
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@SilentChar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#char3selected">
+               <graphic>
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@DefectChar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#char4selected">
+               <graphic>
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@WatcherChar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="425.0" layoutY="637.0" prefHeight="74.0" prefWidth="346.0">
+         <children>
+            <Text fx:id="chacterSelectedText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="39.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
