@@ -125,7 +125,7 @@ public class Player extends CombatEntity {
     }
 
     public void intializePotion(){
-        potions.add( new DamagePotion() );
+        
     }
 
     public void intializeGold(){
@@ -208,11 +208,11 @@ public class Player extends CombatEntity {
     }
 
     public boolean purchasePotion(Potion potion){
-       /* if(gold >= potion.getCost()) {
-            potions.add(potion);
-            gold = gold - potion.getCost();
-        }
-        else{return false;}*/
+       // if(gold >= potion.getCost() && (potions.size() < 3) ) {
+                potions.add(potion);
+       //     gold = gold - potion.getCost();
+        //}
+       // else{return false;}
         System.out.println("purchased: " + potion.getName() );
         return true;
     }
