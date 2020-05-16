@@ -18,6 +18,9 @@ public class ScreenController extends StackPane {
     private ArrayList<String> keys = new ArrayList<String>();
     private ArrayList<String> keysFile = new ArrayList<String>();
 
+    public String backFromDeck = "";
+
+
     public ScreenController(){
         super();
 
@@ -129,7 +132,13 @@ public class ScreenController extends StackPane {
 
     }*/
 
+    public void setBackFromDeck(String back){
+        backFromDeck = back;
+    }
 
+    public String getBackFromDeck(){
+        return backFromDeck;
+    }
 
 
 }

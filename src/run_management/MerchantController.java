@@ -61,7 +61,7 @@ public class MerchantController implements Initializable, ControlledScreen {
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
 
 
-        //CARDS SETTINGS INITALIZE
+        //CARDS SETTINGS INITALIZE************************************************************************************
         ArrayList<Card> myCards = Game.getInstance().myPlayer.getMerchantDeck();
 
         cardsVBox.setSpacing(10);
@@ -94,7 +94,7 @@ public class MerchantController implements Initializable, ControlledScreen {
 
             //add image
             ImageView tempImage = new ImageView();
-            tempImage.setFitHeight(115);
+            tempImage.setFitHeight(160);
             tempImage.setFitWidth(200);
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
@@ -107,10 +107,10 @@ public class MerchantController implements Initializable, ControlledScreen {
             TextArea cardText = new TextArea();
             cardText.setEditable(false);
 
-            cardText.setMinHeight(100);
+            cardText.setMinHeight(50);
             cardText.setPrefWidth(193);
             cardText.setMaxWidth(193);
-            cardText.setText(myCards.get(i).getName());
+            cardText.setText(myCards.get(i).getDescription());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -132,7 +132,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             cardButton[i] = new Button();
             cardButton[i].setText("Buy");
             int temp  =i;
-            cardButton[i].setOnAction(e -> Game.getInstance().myPlayer.purchaseCard(myCards.get(temp)));
+            cardButton[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseCard(myCards.get(temp));
+                        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);
@@ -146,10 +147,12 @@ public class MerchantController implements Initializable, ControlledScreen {
         }
 
 
-        //POTION SETTINGS INITIALIZE  260*415
+        //POTION SETTINGS INITIALIZE  260*415 ********************************************************************
         potionsVBox.setSpacing(10);
 
-        int numberOfPotions = 15;
+        ArrayList<Potion> merchantPotion = Game.getInstance().myPlayer.getMerchantPotions();
+
+        int numberOfPotions = merchantPotion.size();
         int numberOfHBoxes = numberOfPotions/3;
         if(numberOfPotions % 3 != 0){numberOfHBoxes++;}
 
@@ -159,7 +162,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             potionsHBoxes[i] = new HBox();
             potionsHBoxes[i].setAlignment(Pos.CENTER_LEFT);
             potionsHBoxes[i].setPrefWidth(415);
-            potionsHBoxes[i].setPrefHeight(260);
+            potionsHBoxes[i].setPrefHeight(220);
             potionsHBoxes[i].setSpacing(10);
             potionsVBox.getChildren().add(potionsHBoxes[i]);
         }
@@ -170,7 +173,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             potionsVBoxes[i] = new VBox();
             potionsVBoxes[i].setAlignment(Pos.TOP_CENTER);
             potionsVBoxes[i].setPrefWidth(130);
-            potionsVBoxes[i].setPrefHeight(240);
+            potionsVBoxes[i].setPrefHeight(220);
             potionsVBoxes[i].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
             //add image
@@ -184,14 +187,18 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setImage(tempImageIn);
 
             potionsVBoxes[i].getChildren().add(tempImage);
+            //add name
+            Text nameText = new Text();
+            nameText.setText(merchantPotion.get(i).getName());
+            potionsVBoxes[i].getChildren().add(nameText);
             //add text
             TextArea potionText = new TextArea();
             potionText.setEditable(false);
 
-            potionText.setMinHeight(50);
+            potionText.setMaxHeight(60);
             potionText.setPrefWidth(130);
             potionText.setMaxWidth(130);
-            potionText.setText("potion description  " + i);
+            potionText.setText(merchantPotion.get(i).getPotionDescription());
             //cardText.getStyleClass().add("sample");
             potionText.setWrapText(true);
 
@@ -207,12 +214,15 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: 130");
+            costText.setText("Cost: " + merchantPotion.get(i).getPotionCost());
 
 
             potionButton[i] = new Button();
             potionButton[i].setText("Buy");
-            potionButton[i].setOnAction(e -> System.out.println("Potion  purchased."));
+            int temp = i;
+            potionButton[i].setOnAction(e -> {
+            Game.getInstance().myPlayer.purchasePotion(merchantPotion.get(temp));
+                MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(potionButton[i]);
@@ -225,10 +235,12 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         }
 
-        //RELIC SETTINGS INITIALIZE  260*415
+        //RELIC SETTINGS INITIALIZE  260*415*******************************************************************
         relicsVBox.setSpacing(10);
 
-        int numberOfRelics = 10;
+        ArrayList<Relic> merchantRelic = Game.getInstance().myPlayer.getMerchantRelics();
+
+        int numberOfRelics = merchantRelic.size();
         int numberOfHBoxesRelic = numberOfRelics/3;
         if(numberOfRelics % 3 != 0){numberOfHBoxesRelic++;}
 
@@ -238,7 +250,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             relicHBoxes[i] = new HBox();
             relicHBoxes[i].setAlignment(Pos.CENTER_LEFT);
             relicHBoxes[i].setPrefWidth(415);
-            relicHBoxes[i].setPrefHeight(260);
+            relicHBoxes[i].setPrefHeight(220);
             relicHBoxes[i].setSpacing(10);
             relicsVBox.getChildren().add(relicHBoxes[i]);
         }
@@ -249,7 +261,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             relicsVBoxes[i] = new VBox();
             relicsVBoxes[i].setAlignment(Pos.TOP_CENTER);
             relicsVBoxes[i].setPrefWidth(130);
-            relicsVBoxes[i].setPrefHeight(240);
+            relicsVBoxes[i].setPrefHeight(220);
             relicsVBoxes[i].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
             //add image
@@ -263,14 +275,18 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setImage(tempImageIn);
 
             relicsVBoxes[i].getChildren().add(tempImage);
+            //add name
+            Text nameText = new Text();
+            nameText.setText(merchantRelic.get(i).getName());
+            relicsVBoxes[i].getChildren().add(nameText);
             //add text
             TextArea relicText = new TextArea();
             relicText.setEditable(false);
 
-            relicText.setMinHeight(50);
-            relicText.setPrefWidth(130);
+            relicText.setMinHeight(30);
+            relicText.setMaxHeight(50);
             relicText.setMaxWidth(130);
-            relicText.setText("relic description  " + i);
+            relicText.setText(merchantRelic.get(i).getRelicDescription());
             relicText.setWrapText(true);
 
             relicsVBoxes[i].getChildren().add(relicText);
@@ -290,7 +306,9 @@ public class MerchantController implements Initializable, ControlledScreen {
 
             relicsButtons[i] = new Button();
             relicsButtons[i].setText("Buy");
-            relicsButtons[i].setOnAction(e -> System.out.println("Relic  purchased."));
+            int temp = i;
+            relicsButtons[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseRelic(merchantRelic.get(temp));
+            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);
@@ -313,7 +331,9 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.merchantScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
     }
 
     @FXML

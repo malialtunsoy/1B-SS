@@ -6,13 +6,15 @@ public class Player extends CombatEntity {
     String playerName;
     String playerChar;
     int potCount, maxPot, gold, relicCount, cardCount;
-    ArrayList<Potion> pots;
+    ArrayList<Potion> potions;
     ArrayList<Relic> relics;
     ArrayList<Card> deck;
     Pet myPet;
     Map myMap;
 
     ArrayList<Card> merchantCard;
+    ArrayList<Relic> merchantRelic;
+    ArrayList<Potion> merchantPotion;
 
     public Player(String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
@@ -24,7 +26,7 @@ public class Player extends CombatEntity {
         this.gold = gold;
         this.cardCount = cardCount;
         this.relicCount = relicCount;
-        pots = new ArrayList<Potion>();
+        potions = new ArrayList<Potion>();
         relics = new ArrayList<Relic>();
         deck = new ArrayList<Card>();
         myMap = new Map();
@@ -69,13 +71,19 @@ public class Player extends CombatEntity {
     public String getPlayerChar(){return playerChar;}
 
     public ArrayList<Potion> getPots() {
-        return pots;
+        return potions;
     }
 
     public void initializePlayer(){
                 intializeDeck();
+                intializeRelic();
+        intializePotion();
+
         intializeGold();
+
         initalizeMerchantDeck();
+        initalizeMerchantRelic();
+        initalizeMerchantPotion();
 
     }
 
@@ -95,8 +103,16 @@ public class Player extends CombatEntity {
 
     }
 
+    public void intializeRelic(){
+        relics.add( new BurningBlood() );
+    }
+
+    public void intializePotion(){
+        potions.add( new DamagePotion() );
+    }
+
     public void intializeGold(){
-        gold = 330;
+       // gold = 330;
     }
 
     //MERCHANT ****************************************
@@ -110,18 +126,50 @@ public class Player extends CombatEntity {
         return true;
     }
 
-    public void initalizeMerchantDeck(){
+    public boolean purchaseRelic(Relic relic){
+       /* if(gold >= relic.getCost()) {
+            relics.add(relic);
+            gold = gold - relic.getCost();
+        }
+        else{return false;}*/
+        System.out.println("purchased: " + relic.getName() );
+        return true;
+    }
 
+    public boolean purchasePotion(Potion potion){
+       /* if(gold >= potion.getCost()) {
+            potions.add(potion);
+            gold = gold - potion.getCost();
+        }
+        else{return false;}*/
+        System.out.println("purchased: " + potion.getName() );
+        return true;
+    }
+
+    public void initalizeMerchantDeck(){
         merchantCard = new ArrayList<Card>();
         merchantCard.add(new Strike());
         merchantCard.add(new Defend());
+    }
 
+    public void initalizeMerchantRelic(){
+        merchantRelic = new ArrayList<Relic>();
+        merchantRelic.add(new RingOfTheSnake());
+        merchantRelic.add(new BurningBlood());
+    }
 
+    public void initalizeMerchantPotion(){
+        merchantPotion = new ArrayList<Potion>();
+        merchantPotion.add(new HealthPotion());
+        merchantPotion.add(new DamagePotion());
     }
 
     public ArrayList<Card> getMerchantDeck(){
         return merchantCard;
     }
+    public ArrayList<Relic> getMerchantRelics() { return merchantRelic; }
+
+    public ArrayList<Potion> getMerchantPotions() { return merchantPotion; }
 
 
 
@@ -148,7 +196,7 @@ public class Player extends CombatEntity {
     {
         if(potCount <= maxPot)
         {
-            pots.add(pot);
+            potions.add(pot);
             potCount++;
         }
     }
@@ -157,7 +205,7 @@ public class Player extends CombatEntity {
     {
         potion.affect(target);
         //Potion empty = new emptyPotion("Empty Potion",0,"No description");
-        pots.remove(potion);
+        potions.remove(potion);
         potCount--;
     }
 
