@@ -61,8 +61,10 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
+
         selectedCard = null;
         try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+
     }
 
     private void playTurn() {
@@ -189,8 +191,20 @@ public class CombatManager {
     public void removeEnemy( Enemy enemy) {
         enemies.remove(enemy);
         if (enemies.isEmpty()) {
-            // TODO: combat won
+            combatWon();
         }
+    }
+
+    private void combatWon() {
+        System.out.println("asd");
+
+        // trigger end of combat effects, no need to consider enemies. The list is empty.
+        player.triggerAll(TriggeredAtCombatEnd.class);
+
+        // remove all status effects from the player
+        player.getStatusEffects().clear();
+
+        // TODO: interface with run management
     }
 
     // ---- methods used by UIAdapter to update the view: ----

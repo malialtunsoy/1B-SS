@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RestController implements Initializable, ControlledScreen {
@@ -50,6 +51,7 @@ public class RestController implements Initializable, ControlledScreen {
         currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+        reloadPotions();
 
         cardID = -1;
 
@@ -213,7 +215,9 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.restScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
     }
 
     @FXML
@@ -280,6 +284,29 @@ public class RestController implements Initializable, ControlledScreen {
             System.out.println("Card updated: " + cardID);//TO BE ADDED UPDATE THE CARDS
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    private ImageView potionSlot1;
+
+    @FXML
+    private ImageView potionSlot2;
+
+    @FXML
+    private ImageView potionSlot3;
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1); }
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2); }
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3); }
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
     }
 
 

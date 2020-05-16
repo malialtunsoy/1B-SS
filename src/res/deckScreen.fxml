@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MerchantController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deckController">
     <children>
         <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -22,7 +22,7 @@
                 <Image url="@bar.png" />
             </image>
         </ImageView>
-        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMap" text="Back To Map" />
+        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#back" text="Back " />
         <Text fill="WHITE" layoutX="500.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MERCHANT">
             <font>
                 <Font size="40.0" />
@@ -126,84 +126,46 @@
                 </HBox>
             </children>
         </HBox>
-        <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1045.0" />
-      <HBox layoutX="82.0" layoutY="167.0" prefHeight="530.0" prefWidth="1045.0">
-         <children>
-          <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="530.0" prefWidth="615.0">
-              <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CARDS">
-                      <font>
-                          <Font name="System Bold" size="22.0" />
-                      </font>
-                      <VBox.margin>
-                          <Insets top="5.0" />
-                      </VBox.margin>
-                  </Text>
-                 <ScrollPane prefHeight="530.0" prefWidth="615.0" hbarPolicy="NEVER">
-                         <content>
-                            <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="600.0" />
-                         </content>
-                 </ScrollPane>
-              </children>
-          </VBox>
-          <VBox  alignment="TOP_CENTER" prefHeight="530.0" prefWidth="430.0" >
-              <children>
-                  <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="265.0" prefWidth="430.0">
-                      <children>
-                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="POTIONS">
-                              <font>
-                                  <Font name="System Bold" size="22.0" />
-                              </font>
-                              <VBox.margin>
-                                  <Insets top="5.0" />
-                              </VBox.margin>
-                          </Text>
-                          <ScrollPane prefHeight="265.0" prefWidth="430.0" hbarPolicy="NEVER">
-                              <content>
-                                 <VBox fx:id="potionsVBox" alignment="TOP_CENTER" prefHeight="260.0" prefWidth="415.0" />
-                              </content>
-                          </ScrollPane>
-                      </children>
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="265.0" prefWidth="430.0">
-                      <children>
-                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RELICS">
-                              <font>
-                                  <Font name="System Bold" size="22.0" />
-                              </font>
-                              <VBox.margin>
-                                  <Insets top="5.0" />
-                              </VBox.margin>
-                          </Text>
-                          <ScrollPane prefHeight="265.0" prefWidth="430.0" hbarPolicy="NEVER">
-                              <content>
-                                 <VBox fx:id="relicsVBox" alignment="TOP_CENTER" prefHeight="260.0" prefWidth="415.0" />
-                              </content>
-                          </ScrollPane>
-                      </children>
-                  </VBox>
-              </children>
-          </VBox>
-         </children>
-      </HBox>
-        <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+        <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1030.0" />
+        <HBox layoutX="82.0" layoutY="167.0" prefHeight="530.0" prefWidth="1030.0">
             <children>
-                <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@BlockPotion.png" />
-                    </image>
-                </ImageView>
-                <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@BlockPotion.png" />
-                    </image>
-                </ImageView>
-                <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@BlockPotion.png" />
-                    </image>
-                </ImageView>
+                <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="530.0" prefWidth="1030.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DECK">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </Text>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="530.0" prefWidth="1030.0">
+                            <content>
+                                <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="1045.0" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
             </children>
         </HBox>
+      <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+         <children>
+            <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@BlockPotion.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@BlockPotion.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@BlockPotion.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

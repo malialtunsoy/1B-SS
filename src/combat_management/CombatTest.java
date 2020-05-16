@@ -17,7 +17,7 @@ public class CombatTest {
         manager.setStage(primaryStage);
 
 
-        Player player = new Player("playerName","Ironclad",50, 50, 3, 0, 0, 0);
+        Player player = new Player(true,"playerName","Ironclad",50, 50, 3, 0, 0, 0);
         manager.setPlayer(player);
 
         // NOTE: it might be a better idea to create a new object for each card to be added.
@@ -29,7 +29,7 @@ public class CombatTest {
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
         Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
-
+        player.addRelic(new BurningBlood());
 
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -87,9 +87,8 @@ public class CombatTest {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Enemy armoredEnemy = new Cultist();
-                armoredEnemy.addStatusEffect(new Block(5));
-                CombatManager.getInstance().addEnemy(armoredEnemy);
+                Enemy e = new JawWorm();
+                CombatManager.getInstance().addEnemy(e);
             }
         });
         root.getChildren().add(addEnemyBtn);

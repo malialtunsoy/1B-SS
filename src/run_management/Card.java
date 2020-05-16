@@ -3,6 +3,7 @@ public abstract class Card {
     private String cardType;
     private int energy;
     private String description;
+    private int cost;
 
     private boolean requiresTarget;
 
@@ -25,6 +26,9 @@ public abstract class Card {
     public String getCardType(){
         return cardType;
     }
+
+    public String getDescription(){return description;}
+
     public void setCardType(String newCardType){
         this.cardType = newCardType;
     }
@@ -34,6 +38,7 @@ public abstract class Card {
     public int getEnergy(){
         return energy;
     }
+    public int getCost(){return cost;}
     abstract public void affect( Enemy target); // target = null if the card is not targeted.
 
     // added for test purposes to use in CombatManager.
