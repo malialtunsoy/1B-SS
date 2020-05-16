@@ -20,6 +20,7 @@ public class Relic {
     public String getName(){
         return name;
     }
+    public String getImage() { return name + ".png";}
     public void setRelicDescription(){
         this.relicDescription = relicDescription;
     }

@@ -118,8 +118,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             ImageView tempRelicImage = new ImageView();
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
-            //Image relicImage = new Image(relics.get(i).getImage());
-            Image relicImage = new Image("BurningBloodRelic.png");
+            Image relicImage = new Image(relics.get(i).getImage());
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
