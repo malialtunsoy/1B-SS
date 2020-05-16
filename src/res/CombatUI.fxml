@@ -172,14 +172,14 @@
                </ImageView>
             </children>
          </HBox>
-         <AnchorPane fx:id="popUpDisplay" layoutX="161.0" layoutY="84.0" prefHeight="616.0" prefWidth="888.0">
+         <AnchorPane fx:id="popUpDisplay" layoutX="161.0" layoutY="84.0" prefHeight="616.0" prefWidth="880.0">
             <children>
-               <ScrollPane prefHeight="617.0" prefWidth="888.0">
+               <ScrollPane hbarPolicy="NEVER" prefHeight="617.0" prefWidth="880.0" vbarPolicy="NEVER">
                   <content>
                      <FlowPane prefHeight="615.0" prefWidth="888.0" />
                   </content>
                </ScrollPane>
-               <ImageView fx:id="closePopUp" fitHeight="59.0" fitWidth="66.0" layoutX="828.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="closePopUp" fitHeight="59.0" fitWidth="66.0" layoutX="820.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@close.jpg" />
                   </image>
