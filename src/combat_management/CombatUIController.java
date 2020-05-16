@@ -40,6 +40,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML Label numDraw;
     @FXML Label numDiscard;
     @FXML AnchorPane popUpDisplay;
+    @FXML Label targetPrompt;
 
     @FXML private Text MoneyLabel;
     @FXML private Text currentHPLabel;
@@ -68,14 +69,15 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 popUpDisplay.setDisable(true);
             }
         });
+        targetPrompt.setVisible(false);
     }
 
     public void reloadPotions(){
         ArrayList<Potion> pots = CombatManager.getInstance().getPlayer().getPots();
 
         if(pots.size() > 0){
-            Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));
+            Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
             potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -89,7 +91,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
 
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));
+            Tooltip.install(potionSlot2, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
             potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -101,8 +103,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         }
         else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
             potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -129,7 +131,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             Image relicImage = new Image(relics.get(i).getImage());
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
-            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            Tooltip.install(tempRelicImage, new Tooltip( relics.get(i).getName() + ": " + relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
 
         }
@@ -137,6 +139,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     protected void endTurn(){
+        targetPrompt.setVisible(false);
         adapter.endTurnPressed();
     }
 
@@ -285,4 +288,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         CombatManager.getInstance().showSettings();
     }
 
+    void showPrompt(boolean show ,String name) {
+        targetPrompt.setText("Choose a target for " + name);
+        targetPrompt.setVisible(show);
+    }
 }

@@ -48,4 +48,8 @@ public class CombatUIAdapter {
         System.out.println("Turn ended...");
         System.out.println("The player has " + CombatManager.getInstance().getPlayer().getHP() + " HP left");
     }
+
+    public void showPrompt(boolean show, String name){
+        controller.showPrompt(show, name);
+    }
 }
