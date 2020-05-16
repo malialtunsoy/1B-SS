@@ -14,3 +14,5 @@
 16###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**
 2###PlayerPotions###    **Damage Potion**Health Potion**
 2###PlayerRelics###    **Ring of the Snake**Burning Blood**
+1###CombatOngoing###    **true**
+4###Combat::Enemies###  **Alternatron**Alternatron**JawWorm**Cultist**

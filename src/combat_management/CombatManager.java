@@ -79,6 +79,7 @@ public class CombatManager {
         playersTurn = true;
         turn++;
         uiAdapter.updateView();
+        // System.err.println("VIEW UPDATED");
     }
 
     public int getTurn() { return turn; }
@@ -277,6 +278,34 @@ public class CombatManager {
 
     public void showMap(){
         System.out.println("Show Map");
+    }
+
+    /*Changes the singleton instance. called when loading a game
+     *
+     *   how to call:   1) call setStage
+     *                  2) call setPlayer
+     *                  3) call loadState
+     */
+    public static void loadState(ArrayList<Enemy> enemies/*,
+                             ArrayList<Card> hand, ArrayList<Card> drawPile, ArrayList<Card> discardPile,
+                             int energy, int maxEnergy, int turn*/) {
+
+        // standard setters
+        instance.enemies = enemies;
+        instance.playCombat();
+        /*
+        instance.hand = hand;
+        instance.drawPile = drawPile;
+        Collections.shuffle(drawPile);
+        instance.discardPile = discardPile;
+        instance.energy = energy;
+        instance.maxEnergy = maxEnergy;
+        instance.turn = turn;
+        */
+
+        //instance.selectedCard = null;
+        //try { instance.uiAdapter = new CombatUIAdapter(instance.stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        //instance.playTurn();
     }
 
     public String getCombatState() {

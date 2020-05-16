@@ -1,9 +1,11 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Game {
-
+    private static final String LOAD_FILENAME = "Data.txt";
 
     private static Game ourInstance = new Game();
 
@@ -24,7 +26,7 @@ public class Game {
         options = new GameOptions();
         //myPlayer = new Player("null", "null", 0,0,0,0,0,0);
         try {
-            loadedGameExist =  FileRead.convertToBool( FileRead.readFile("Data.txt", "loadedGame") )[0];
+            loadedGameExist =  FileRead.convertToBool( FileRead.readFile(LOAD_FILENAME, "loadedGame") )[0];
 
             if(loadedGameExist){
                 try {
@@ -70,33 +72,66 @@ public class Game {
         return true;
     }
 
-    public void loadRun(){
+    public void loadRun() {
         try {
             loadPlayer();
+            if (loadFileHasCombat()) {
+                loadCombat();
+            }
         }
         catch (IOException e){
-
+            System.err.println("ERROR: IOException in loadRun");
         }
     }
-
+    public boolean loadFileHasCombat() throws IOException {
+        Boolean [] ongoingCombatLine = FileRead.convertToBool(FileRead.readFile(LOAD_FILENAME, "CombatOngoing"));
+        if ( ongoingCombatLine.length < 1) {
+            System.err.println("ERROR: Load file has no argument in line CombatOngoing");
+            return false;
+        } else {
+            return ongoingCombatLine[0];
+        }
+    }
 
     public boolean getLoadedGameExist(){return loadedGameExist;}
 
     public void setLoadedGameExist(boolean bool){loadedGameExist = bool;}
 
     public void loadPlayer() throws IOException {
-        playerName = FileRead.readFile("Data.txt", "PlayerName")[0];
-        character = FileRead.readFile("Data.txt", "Character")[0];
+        playerName = FileRead.readFile(LOAD_FILENAME, "PlayerName")[0];
+        character = FileRead.readFile(LOAD_FILENAME, "Character")[0];
 
-        int curHP =  FileRead.convertToInt(FileRead.readFile("Data.txt", "playerHP"))[0];
-        int maxHP = FileRead.convertToInt(FileRead.readFile("Data.txt", "playerMaxHP"))[0];
-        int playerGold = FileRead.convertToInt(FileRead.readFile("Data.txt", "playerGold"))[0];
-        int maxPot = FileRead.convertToInt(FileRead.readFile("Data.txt", "maxPot"))[0];
-        int relicCount = FileRead.convertToInt(FileRead.readFile("Data.txt", "relicCount"))[0];
-        int cardCount = FileRead.readFile("Data.txt", "CardsInDeck").length;
+        int curHP =  FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "playerHP"))[0];
+        int maxHP = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "playerMaxHP"))[0];
+        int playerGold = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "playerGold"))[0];
+        int maxPot = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "maxPot"))[0];
+        int relicCount = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "relicCount"))[0];
+        int cardCount = FileRead.readFile(LOAD_FILENAME, "CardsInDeck").length;
 
         myPlayer = new Player(false, playerName, character, curHP, maxHP, maxPot ,playerGold, relicCount,cardCount );
 
     }
 
+    public void loadCombat() throws IOException {
+        CombatManager.getInstance().setPlayer(myPlayer);
+
+        String [] enemiesRead = FileRead.readFile(LOAD_FILENAME, "Combat::Enemies");
+        ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+
+        for ( String enemyStr : enemiesRead) {
+            try {
+                Enemy newEnemy = (Enemy) (Class.forName(enemyStr).getConstructor().newInstance());
+                System.out.println( "ENEMY READ: " + newEnemy);
+                enemies.add(newEnemy);
+            } catch (ClassNotFoundException e) {
+                System.err.println("Exception caused by invalid Enemy subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
+            } catch (NoSuchMethodException e) {
+                System.err.println("Exception caused by Enemy subclass with no default constructor in " + LOAD_FILENAME+ ": " + e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Exception in loadCombat caused by call to newInstance()");
+            }
+        }
+
+        CombatManager.loadState(enemies);
+    }
 }
