@@ -175,5 +175,33 @@
             </Button>
          </children>
       </VBox>
+        <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+            <children>
+                <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
+        <HBox fx:id="relicSlotHBox" layoutX="14.0" layoutY="65.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+            <children>
+                <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

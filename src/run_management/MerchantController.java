@@ -59,7 +59,8 @@ public class MerchantController implements Initializable, ControlledScreen {
         currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
-
+        reloadPotions();
+        reloadRelics();
 
         //CARDS SETTINGS INITALIZE************************************************************************************
         ArrayList<Card> myCards = Game.getInstance().myPlayer.getMerchantDeck();
@@ -133,7 +134,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             cardButton[i].setText("Buy");
             int temp  =i;
             cardButton[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseCard(myCards.get(temp));
-                        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
+                        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                });
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);
@@ -222,7 +224,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             int temp = i;
             potionButton[i].setOnAction(e -> {
             Game.getInstance().myPlayer.purchasePotion(merchantPotion.get(temp));
-                MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
+                MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                reloadPotions();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(potionButton[i]);
@@ -308,7 +311,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             relicsButtons[i].setText("Buy");
             int temp = i;
             relicsButtons[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseRelic(merchantRelic.get(temp));
-            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
+            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                reloadRelics();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);
@@ -321,7 +325,23 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         }
 
+    }
 
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            //Image relicImage = new Image(relics.get(i).getImage());
+            Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
     @FXML
@@ -343,7 +363,32 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @FXML
     void backToMap(ActionEvent event) {
+        SaveAndExit.save();
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+    }
+
+    @FXML
+    private ImageView potionSlot1;
+
+    @FXML
+    private ImageView potionSlot2;
+
+    @FXML
+    private ImageView potionSlot3;
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1); }
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2); }
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3); }
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
     }
 
 

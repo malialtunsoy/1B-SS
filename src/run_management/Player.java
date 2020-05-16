@@ -121,11 +121,11 @@ public class Player extends CombatEntity {
     }
 
     public void intializeRelic(){
-        relics.add( new BurningBlood() );
+
     }
 
     public void intializePotion(){
-        potions.add( new DamagePotion() );
+        
     }
 
     public void intializeGold(){
@@ -148,7 +148,7 @@ public class Player extends CombatEntity {
         }
         catch (IOException e){System.out.println(e);}
     }
-    public void loadRelic(){
+    public void loadPotion(){
         String[] potionNames;
         try{potionNames = FileRead.readFile("Data.txt", "PlayerPotions");
             ArrayList<Potion> loadPots = new ArrayList<Potion>();
@@ -161,9 +161,9 @@ public class Player extends CombatEntity {
         }
         catch (IOException e){System.out.println(e);}
     }
-    public void loadPotion(){
+    public void loadRelic(){
         String[] relicNames;
-        try{relicNames = FileRead.readFile("Data.txt", "PlayerPotions");
+        try{relicNames = FileRead.readFile("Data.txt", "PlayerRelics");
             ArrayList<Relic> loadRelics = new ArrayList<Relic>();
 
             for(int i = 0; i < relicNames.length; i++){
@@ -198,21 +198,21 @@ public class Player extends CombatEntity {
     }
 
     public boolean purchaseRelic(Relic relic){
-       /* if(gold >= relic.getCost()) {
+        //if(gold >= relic.getCost()) {
             relics.add(relic);
-            gold = gold - relic.getCost();
-        }
-        else{return false;}*/
+           // gold = gold - relic.getCost();
+      //  }
+        //else{return false;}
         System.out.println("purchased: " + relic.getName() );
         return true;
     }
 
     public boolean purchasePotion(Potion potion){
-       /* if(gold >= potion.getCost()) {
-            potions.add(potion);
-            gold = gold - potion.getCost();
-        }
-        else{return false;}*/
+       // if(gold >= potion.getCost() && (potions.size() < 3) ) {
+                potions.add(potion);
+       //     gold = gold - potion.getCost();
+        //}
+       // else{return false;}
         System.out.println("purchased: " + potion.getName() );
         return true;
     }
