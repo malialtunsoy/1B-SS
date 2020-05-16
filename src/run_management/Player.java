@@ -245,7 +245,9 @@ public class Player extends CombatEntity {
 
 
     //REST CARD UPGRADE ***************************************************************************
-    public void upgradeCard(Card card){
+    public void upgradeCard(Card card,int index){
+        deck.remove(index);
+        deck.add(card.upgradedVersion());
 
     }
     //END OF REST CARD UPGRADE ***************************************************************************

@@ -59,7 +59,8 @@ public class RestController implements Initializable, ControlledScreen {
         //initalize upgrade screen
         CardsVBox.setSpacing(10);
 
-        int numberOfCardsToDisplay = 30;
+        ArrayList<Card> myCards = Game.getInstance().myPlayer.getDeck();
+        int numberOfCardsToDisplay = myCards.size();
         int numberOfHBoxesNeeded = numberOfCardsToDisplay / 5;
         if(numberOfCardsToDisplay % 5 != 0){numberOfHBoxesNeeded++;}
 
@@ -78,6 +79,7 @@ public class RestController implements Initializable, ControlledScreen {
         Button[] cardButton = new Button[numberOfCardsToDisplay];
 
         //240 * 190
+
         for(int i = 0; i < numberOfCardsToDisplay; i++){
             cards[i] = new VBox();
             cards[i].setAlignment(Pos.TOP_CENTER);
@@ -92,7 +94,7 @@ public class RestController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("cards.png");
+            Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             cards[i].getChildren().add(tempImage);
@@ -103,7 +105,7 @@ public class RestController implements Initializable, ControlledScreen {
             cardText.setMinHeight(100);
             cardText.setPrefWidth(180);
             cardText.setMaxWidth(180);
-            cardText.setText("card description  " + i);
+            cardText.setText(myCards.get(i).getDescription());
             //cardText.getStyleClass().add("sample");
             cardText.setWrapText(true);
 
@@ -123,6 +125,7 @@ public class RestController implements Initializable, ControlledScreen {
             cardButton[i] = new Button();
             cardButton[i].setText("Upgrade");
             //BUTTON CLICKED **********************************************
+            int temp = i;
             cardButton[i].setOnAction(e -> {
 
                 cardID = a;
@@ -143,7 +146,7 @@ public class RestController implements Initializable, ControlledScreen {
                 tempI.setPickOnBounds(true);
                 tempI.setPreserveRatio(true);
 
-                Image tempImIn = new Image("cards.png");
+                Image tempImIn = new Image(myCards.get(temp).getImage());
                 tempI.setImage(tempImIn);
 
                 currentCardVBox.getChildren().add(tempI);
@@ -154,7 +157,7 @@ public class RestController implements Initializable, ControlledScreen {
                 text.setMinHeight(100);
                 text.setPrefWidth(180);
                 text.setMaxWidth(180);
-                text.setText("card description  " + cardID);
+                text.setText(myCards.get(temp).getDescription());
                 //cardText.getStyleClass().add("sample");
                 text.setWrapText(true);
 
@@ -175,7 +178,7 @@ public class RestController implements Initializable, ControlledScreen {
                 tempI2.setPickOnBounds(true);
                 tempI2.setPreserveRatio(true);
 
-                Image tempImIn2 = new Image("cards.png");
+                Image tempImIn2 = new Image(myCards.get(temp).upgradedVersion().getImage());
                 tempI2.setImage(tempImIn2);
 
                 upgradedCardVBox.getChildren().add(tempI2);
@@ -186,11 +189,12 @@ public class RestController implements Initializable, ControlledScreen {
                 text2.setMinHeight(100);
                 text2.setPrefWidth(180);
                 text2.setMaxWidth(180);
-                text2.setText("card description  " + cardID + " PLUS");
+                text2.setText(myCards.get(temp).upgradedVersion().getDescription());
                 //cardText.getStyleClass().add("sample");
                 text2.setWrapText(true);
 
                 upgradedCardVBox.getChildren().add(text2);
+                Game.getInstance().myPlayer.upgradeCard(myCards.get(temp),temp);//does when card choosed but must do when 'confirmed'
 
             });//*************************************************************
 

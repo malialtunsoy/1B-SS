@@ -10,12 +10,22 @@ public class Strike extends Card {
     private static final int DAMAGE = 6;
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
     private static final boolean TARGET_REQUIREMENT = true;
+    private static final boolean IS_UPGRADED = false;
     // constructors
     public Strike() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT);
+        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED);
     }
 
     public void affect(Enemy target) {
         CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
+    }
+    public Card upgradedVersion()
+    {
+        Card upgVer;
+        if( IS_UPGRADED == false)
+        {
+            upgVer = new StrikePlus();
+        }
+        return upgVer;
     }
 }
