@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends CombatEntity {
@@ -16,7 +17,7 @@ public class Player extends CombatEntity {
     ArrayList<Relic> merchantRelic;
     ArrayList<Potion> merchantPotion;
 
-    public Player(String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
+    public Player(boolean isItNewGame, String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
         super(maxHp);
         this.loseHP(maxHp-hp);
@@ -31,7 +32,8 @@ public class Player extends CombatEntity {
         deck = new ArrayList<Card>();
         myMap = new Map();
         potCount = 0;
-        initializePlayer();
+        if(isItNewGame){initializePlayer();}
+        else{loadPlayer();}
     }
 
     //methods
@@ -75,8 +77,8 @@ public class Player extends CombatEntity {
     }
 
     public void initializePlayer(){
-                intializeDeck();
-                intializeRelic();
+        intializeDeck();
+        intializeRelic();
         intializePotion();
 
         intializeGold();
@@ -84,9 +86,24 @@ public class Player extends CombatEntity {
         initalizeMerchantDeck();
         initalizeMerchantRelic();
         initalizeMerchantPotion();
-
     }
 
+    public void loadPlayer(){
+        loadDeck();
+        loadRelic();
+        loadPotion();
+
+        initalizeMerchantDeck();
+        initalizeMerchantRelic();
+        initalizeMerchantPotion();
+
+        loadMerchantDeck();
+        loadMerchantRelic();
+        loadMerchantPotion();
+    }
+
+
+    //==========================================INITIALIZE====================================
     public void intializeDeck(){
 
         deck.add( new Strike() );
@@ -112,8 +129,62 @@ public class Player extends CombatEntity {
     }
 
     public void intializeGold(){
-       // gold = 330;
+        gold = 330;
     }
+   // =========================================================LOAD===============================================
+
+    public void loadDeck(){
+        String[] deckCardNames;
+        try{deckCardNames = FileRead.readFile("Data.txt", "PlayerDeck");
+            ArrayList<Card> loadDeck = new ArrayList<Card>();
+
+            for(int i = 0; i < deckCardNames.length; i++){
+                if(deckCardNames[i].equals("Strike")){loadDeck.add(new Strike());}
+                if(deckCardNames[i].equals("Defend")){loadDeck.add(new Defend());}
+                if(deckCardNames[i].equals("Bash")){loadDeck.add(new Bash());}
+                if(deckCardNames[i].equals("StrikePlus")){loadDeck.add(new StrikePlus());}
+            }
+            deck = loadDeck;
+        }
+        catch (IOException e){System.out.println(e);}
+    }
+    public void loadRelic(){
+        String[] potionNames;
+        try{potionNames = FileRead.readFile("Data.txt", "PlayerPotions");
+            ArrayList<Potion> loadPots = new ArrayList<Potion>();
+
+            for(int i = 0; i < potionNames.length; i++){
+                if(potionNames[i].equals("Damage Potion")){loadPots.add(new DamagePotion());}
+                if(potionNames[i].equals("Health Potion")){loadPots.add(new HealthPotion());}
+            }
+            potions = loadPots;
+        }
+        catch (IOException e){System.out.println(e);}
+    }
+    public void loadPotion(){
+        String[] relicNames;
+        try{relicNames = FileRead.readFile("Data.txt", "PlayerPotions");
+            ArrayList<Relic> loadRelics = new ArrayList<Relic>();
+
+            for(int i = 0; i < relicNames.length; i++){
+                if(relicNames[i].equals("Burning Blood")){loadRelics.add(new BurningBlood());}
+                if(relicNames[i].equals("Ring of the Snake")){loadRelics.add(new RingOfTheSnake());}
+            }
+            relics = loadRelics;
+        }
+        catch (IOException e){System.out.println(e);}
+    }
+
+    public void loadMerchantDeck(){ }
+    public void loadMerchantRelic(){ }
+    public void loadMerchantPotion(){ }
+
+
+
+
+
+
+
 
     //MERCHANT ****************************************
     public boolean purchaseCard(Card card){
@@ -170,14 +241,21 @@ public class Player extends CombatEntity {
     public ArrayList<Relic> getMerchantRelics() { return merchantRelic; }
 
     public ArrayList<Potion> getMerchantPotions() { return merchantPotion; }
+    //END OF MERCHANT ********************************************************************
+
+
+    //REST CARD UPGRADE ***************************************************************************
+    public void upgradeCard(Card card){
+
+    }
+    //END OF REST CARD UPGRADE ***************************************************************************
+
+    //TREASURE *************************************************************************
 
 
 
+    //END OF TREASURE ************************************************************
 
-
-    public void purchaseRelic(){}
-
-    public void purchasePotion(){}
 
     //array arttır ekle
     public void addToDeck(Card card) {

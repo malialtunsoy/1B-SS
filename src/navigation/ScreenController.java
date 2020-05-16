@@ -66,8 +66,6 @@ public class ScreenController extends StackPane {
 
 
     public boolean changeScreen(final String sceneName){
-
-
         Node screenToRemove;
              if(screens.get(sceneName) != null){   //screen loaded
                  if(!getChildren().isEmpty()){    //if there is more than one screen

@@ -24,6 +24,13 @@ public class FileWrite extends Game{
         String[] potionOwned;
         String[] relicOwned;
 
+        //player
+        ArrayList<Card> playerDeck = Game.getInstance().myPlayer.getDeck();
+        ArrayList<Potion> playerPots = Game.getInstance().myPlayer.getPots();
+        ArrayList<Relic> playerRelics = Game.getInstance().myPlayer.getRelics();
+        int playerLocationOnMap;
+        String[] mapVertices;
+
 
         out.println("1###loadedGame###    **" + Game.getInstance().getLoadedGameExist() + "**");
         out.println("1###PlayerName###    **" + Game.getInstance().getPlayerName() + "**");
@@ -69,6 +76,30 @@ public class FileWrite extends Game{
         out.println("1###playerGold###    **" + Game.getInstance().myPlayer.getGold() + "**");
         out.println("1###maxPot###    **" + Game.getInstance().myPlayer.getMaxPots() + "**");
         out.println("1###relicCount###    **" + Game.getInstance().myPlayer.getRelicCount() + "**");
+
+        out.print( playerDeck.size()+"###PlayerDeck###    **");
+        for(int i = 0; i < playerDeck.size(); i++){
+            out.print(playerDeck.get(i).getName() + "**");
+        }
+        if(playerDeck.size() == 0){out.print("**");}
+        out.println();
+
+        out.print(playerPots.size()+"###PlayerPotions###    **");
+        for(int i = 0; i < playerPots.size(); i++){
+            out.print(playerPots.get(i).getName() + "**");
+        }
+        if(playerPots.size() == 0){out.print("**");}
+        out.println();
+
+        out.print(playerRelics.size()+"###PlayerRelics###    **");
+        for(int i = 0; i < playerRelics.size(); i++){
+            out.print(playerRelics.get(i).getName() + "**");
+        }
+        if(playerRelics.size() == 0){out.print("**");}
+        out.println();
+
+
+
 
 
         out.close();

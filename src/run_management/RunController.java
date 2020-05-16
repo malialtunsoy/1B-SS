@@ -107,6 +107,7 @@ public class RunController implements Initializable, ControlledScreen {
         myController.setBackFromDeck(RunUIManager.mainRunScreen);
         myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
         myController.changeScreen(RunUIManager.deckScreen);
+        SaveAndExit.save();
     }
 
     @FXML

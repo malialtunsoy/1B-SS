@@ -63,7 +63,7 @@ public class Game {
 
     public boolean startNewRun(String playerName, String character){
 
-        myPlayer = new Player(playerName, character, 60, 60, 3, 330,3,10);
+        myPlayer = new Player(true, playerName, character, 60, 60, 3, 330,3,10);
         setLoadedGameExist(true);
         System.out.println(getLoadedGameExist());
         SaveAndExit.save();
@@ -95,7 +95,7 @@ public class Game {
         int relicCount = FileRead.convertToInt(FileRead.readFile("Data.txt", "relicCount"))[0];
         int cardCount = FileRead.readFile("Data.txt", "CardsInDeck").length;
 
-        myPlayer = new Player(playerName, character, curHP, maxHP, maxPot ,playerGold, relicCount,cardCount );
+        myPlayer = new Player(false, playerName, character, curHP, maxHP, maxPot ,playerGold, relicCount,cardCount );
 
     }
 

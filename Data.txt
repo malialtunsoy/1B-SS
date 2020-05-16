@@ -1,13 +1,16 @@
 1###loadedGame###    **true**
-1###PlayerName###    **asd**
-1###Character###    **Defect**
+1###PlayerName###    **yeni**
+1###Character###    **Silent**
 7###Achievements###    **Start new Game**Load Game**End Game**Talk with Merchant**Fight with a Boss**Buy a Relic**Buy a potion**
 7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
-0###CardsInDeck###    ****
-1###playerHP###    **20**
-1###playerMaxHP###    **70**
-1###playerGold###    **780**
+13###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**
+1###playerHP###    **60**
+1###playerMaxHP###    **60**
+1###playerGold###    **330**
 1###maxPot###    **3**
 1###relicCount###    **3**
+13###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**
+1###PlayerPotions###    **Damage Potion**
+0###PlayerRelics###    ****
