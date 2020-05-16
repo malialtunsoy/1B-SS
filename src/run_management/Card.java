@@ -5,7 +5,6 @@ public abstract class Card {
     private String description;
     private int cost;
     private boolean isUpgraded;
-
     private boolean requiresTarget;
 
     public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget,boolean isUpgraded){
