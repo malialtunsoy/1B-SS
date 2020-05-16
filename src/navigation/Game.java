@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -84,9 +85,9 @@ public class Game {
         }
     }
     public boolean loadFileHasCombat() throws IOException {
-        Boolean [] ongoingCombatLine = FileRead.convertToBool(FileRead.readFile(LOAD_FILENAME, "CombatOngoing"));
+        Boolean [] ongoingCombatLine = FileRead.convertToBool(FileRead.readFile(LOAD_FILENAME, "Combat::Ongoing"));
         if ( ongoingCombatLine.length < 1) {
-            System.err.println("ERROR: Load file has no argument in line CombatOngoing");
+            System.err.println("ERROR: Load file has no argument in line Combat::Ongoing");
             return false;
         } else {
             return ongoingCombatLine[0];
@@ -114,24 +115,74 @@ public class Game {
 
     public void loadCombat() throws IOException {
         CombatManager.getInstance().setPlayer(myPlayer);
+        ArrayList<Enemy> enemies = getSavedEnemies();
 
+        CombatManager.loadState(enemies);
+    }
+
+    private ArrayList<Enemy> getSavedEnemies() throws IOException{
         String [] enemiesRead = FileRead.readFile(LOAD_FILENAME, "Combat::Enemies");
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
         for ( String enemyStr : enemiesRead) {
             try {
                 Enemy newEnemy = (Enemy) (Class.forName(enemyStr).getConstructor().newInstance());
-                System.out.println( "ENEMY READ: " + newEnemy);
                 enemies.add(newEnemy);
             } catch (ClassNotFoundException e) {
                 System.err.println("Exception caused by invalid Enemy subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
             } catch (NoSuchMethodException e) {
                 System.err.println("Exception caused by Enemy subclass with no default constructor in " + LOAD_FILENAME+ ": " + e.getMessage());
-            } catch (Exception e) {
-                System.err.println("Exception in loadCombat caused by call to newInstance()");
+            } catch (ExceptionInInitializerError  e) {
+                System.err.println("ExceptionInInitializerError in loadCombat caused by call to newInstance(): " + e.getMessage());
+            } catch (IllegalAccessException  e) {
+                System.err.println("IllegalAccessException in loadCombat caused by call to newInstance(): " + e.getMessage());
+            } catch (InvocationTargetException e) {
+                System.err.println("InvocationTargetException in loadCombat caused by call to newInstance(): " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.err.println("IllegalArgumentException in loadCombat caused by call to newInstance(): " + e.getMessage());
+            } catch (InstantiationException e) {
+                System.err.println("InstantiationException in loadCombat caused by call to newInstance(): " + e.getMessage());
             }
         }
 
-        CombatManager.loadState(enemies);
+        for ( int i = 0; i < enemies.size(); i++) {
+            // restore enemy state
+            int [] healthParams = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::HP/MAXHP" ));
+            if (healthParams.length != 2) {
+                System.err.println("Enemy " + enemies.get(i) + " at index " + i + " in " + LOAD_FILENAME + " does not have 2 lines at row HP/MAXHP");
+            }
+            enemies.get(i).setCurrentHP(healthParams[0]);
+            enemies.get(i).setMaxHP(healthParams[1]);
+
+            String [] effectNamesStr = FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::StatusEffects::Names" );
+            Boolean [] appliedByAnEnemy = FileRead.convertToBool(FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::StatusEffects::AppliedByAnEnemy"));
+            int [] counters = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::StatusEffects::Counters"));
+
+            if (effectNamesStr.length != appliedByAnEnemy.length || effectNamesStr.length != counters.length) {
+                System.err.println("Enemy " + enemies.get(i) + " at index " + i + " in " + LOAD_FILENAME + " has inconsistent number of entries in lines related to status effects");
+            }
+
+            // add status effects
+            try {
+                for (int j = 0; j < effectNamesStr.length; j++) {
+                    StatusEffect newEffect = (StatusEffect) (Class.forName(effectNamesStr[j]).getConstructor(int.class).newInstance(counters[j]));
+                    newEffect.setAppliedByAnEnemy(appliedByAnEnemy[j]);
+                    enemies.get(i).addStatusEffect(newEffect);
+                }
+            } catch (ClassNotFoundException e) {
+                System.err.println("Exception caused by invalid StausEffect subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
+            } catch (NoSuchMethodException e) {
+                System.err.println("Exception caused by StatusEffect subclass with no (int) constructor in " + LOAD_FILENAME+ ": " + e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Exception in loadCombat ABCD caused by call to newInstance()");
+            }
+
+            String [] extraParams = FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::ExtraParams");
+
+            enemies.get(i).restoreExtraState(extraParams);
+            System.out.println( "ENEMY READ: " + enemies.get(i));
+        }
+
+        return enemies;
     }
 }

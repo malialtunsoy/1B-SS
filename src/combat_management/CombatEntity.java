@@ -44,6 +44,15 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
+    // setters used when loading the game
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+
     public void addStatusEffect(StatusEffect newEffect) {
         // see if an effect of the same sort is already applied
         StatusEffect sameEffect = null;
@@ -71,14 +80,18 @@ public abstract class CombatEntity {
     // makes all status effects on this entity decay polymorphically.
     // called at the start of each turn.
     public void decayAllAffected( boolean isTurnStart) {
+        System.err.println("YABADABADOOOO::  " + affectedBy.size());
+
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         for (int i = 0; i < shallowCopy.size(); i++) {
-            StatusEffect se = affectedBy.get(i);
+            System.err.println("YOOOOOOOOOOO::  " + shallowCopy.size());
+            StatusEffect se = shallowCopy.get(i);
             if (isTurnStart == se.decayAtTurnStart()) {
                 se.decay();
             }
+            System.err.println("YEEEEEEEEEEE::  " + shallowCopy.size());
         }
     }
 

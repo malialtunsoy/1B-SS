@@ -1,19 +1,24 @@
 1###loadedGame###    **true**
-1###PlayerName###    **yeni**
+1###PlayerName###    **gh**
 1###Character###    **Silent**
 7###Achievements###    **Start new Game**Load Game**End Game**Talk with Merchant**Fight with a Boss**Buy a Relic**Buy a potion**
 7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
-17###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**Bash**Strike**
+10###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**
 1###playerHP###    **60**
 1###playerMaxHP###    **60**
 1###playerGold###    **330**
 1###maxPot###    **3**
 1###relicCount###    **3**
-17###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**Bash**Strike**
-1###PlayerPotions###    **Damage Potion**
-2###PlayerRelics###    **Ring of the Snake**Ring of the Snake**
-1###CombatOngoing###    **true**
-4###Combat::Enemies###  **Alternatron**Alternatron**JawWorm**Cultist**
+10###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**
+0###PlayerPotions###    ****
+0###PlayerRelics###    ****
+1###Combat::Ongoing###    **true**
+1###Combat::Enemies###  **Alternatron**
+2###Combat::Enemy@0::HP/MAXHP###    **15**25**
+2###Combat::Enemy@0::StatusEffects::Names###    **Block**Strength**
+2###Combat::Enemy@0::StatusEffects::Counters###    **10**5**
+2###Combat::Enemy@0::StatusEffects::AppliedByAnEnemy###    **true**true**
+1###Combat::Enemy@0::ExtraParams###    **false**
 

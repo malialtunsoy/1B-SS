@@ -142,6 +142,7 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        System.out.println("SKUDFODUILFBSOGHDSFG");
         // player ends "his turn". trigger his end-turn effects.
         player.triggerAll(TriggeredAtTurnEnd.class);
 

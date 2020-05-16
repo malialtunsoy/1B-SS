@@ -41,4 +41,5 @@ public abstract class Enemy extends CombatEntity{
         CombatManager.getInstance().removeEnemy(this);
     }
 
+    public abstract void restoreExtraState(String[] extraParams);
 }
