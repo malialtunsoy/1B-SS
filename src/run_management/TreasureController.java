@@ -63,6 +63,9 @@ public class TreasureController implements Initializable, ControlledScreen {
         myController = screenParent;
     }
 
+    String[] treasureType = new String[3];
+    Potion[] potions = new Potion[3];
+    Relic[] relics = new Relic[3];
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,6 +75,38 @@ public class TreasureController implements Initializable, ControlledScreen {
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
         reloadRelics();
+
+        Game.getInstance().myPlayer.generateTresRandom();
+
+        ArrayList<Potion> treasurePots = Game.getInstance().myPlayer.getTresPots();
+        ArrayList<Relic> treasureRelics = Game.getInstance().myPlayer.getTresRelics();
+
+        int currButton = 0;
+
+        for(int i = 0; i < treasurePots.size(); i++, currButton++){
+            String name = treasurePots.get(i).getName();
+            String imageSource = treasurePots.get(i).getImage();
+            Image tempImage = new Image(imageSource);
+
+            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage);}
+            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage);}
+            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage);}
+            treasureType[currButton] = "Potion";
+            potions[currButton] = treasurePots.get(i);
+        }
+
+        for(int i = 0; i < treasureRelics.size(); i++, currButton++){
+            String name = treasureRelics.get(i).getName();
+            String imageSource = treasureRelics.get(i).getImage();
+            Image tempImage = new Image(imageSource);
+
+            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage);}
+            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage); }
+            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage); }
+            treasureType[currButton] = "Relic";
+            relics[currButton] = treasureRelics.get(i);
+        }
+
     }
 
     @FXML
@@ -87,7 +122,7 @@ public class TreasureController implements Initializable, ControlledScreen {
             Image relicImage = new Image(relics.get(i).getImage());
             //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
-            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
         }
     }
@@ -121,22 +156,25 @@ public class TreasureController implements Initializable, ControlledScreen {
 
     @FXML
     void firstButtonClicked(ActionEvent event) {
-        //TO DO
-
+        if(treasureType[0].equals("Potion")){  Game.getInstance().myPlayer.addPot(potions[0]);  }
+        else{  Game.getInstance().myPlayer.addRelic(relics[0]); }
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
 
     @FXML
     void secondButtonClicked(ActionEvent event) {
-       //TO DO
-
+        if(treasureType[1].equals("Potion")){  Game.getInstance().myPlayer.addPot(potions[1]);  }
+        else{  Game.getInstance().myPlayer.addRelic(relics[1]); }
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
 
     @FXML
     void thirdButtonClicked(ActionEvent event) {
-        //TO DO
-
+        if(treasureType[2].equals("Potion")){  Game.getInstance().myPlayer.addPot(potions[2]);  }
+        else{  Game.getInstance().myPlayer.addRelic(relics[2]); }
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
     }
 
@@ -153,15 +191,15 @@ public class TreasureController implements Initializable, ControlledScreen {
         ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
 
         if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " +  pots.get(0).getPotionDescription()));}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getName() + ": " +  pots.get(1).getPotionDescription()));}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
         if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getName() + ": " +  pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
     }

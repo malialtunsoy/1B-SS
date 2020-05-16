@@ -3,9 +3,10 @@ public class TEST_PURPOSE_CARD_Strengthen extends Card{
     private static final int STRENGTH_GAIN = 1;
     private static final boolean TARGET_REQUIREMENT = false;
     private static final boolean IS_UPGRADED = false;
+    private static int COST = 120;
 
     public TEST_PURPOSE_CARD_Strengthen() {
-        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", TARGET_REQUIREMENT,IS_UPGRADED);
+        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", TARGET_REQUIREMENT,IS_UPGRADED, COST);
     }
 
     @Override
@@ -15,12 +16,12 @@ public class TEST_PURPOSE_CARD_Strengthen extends Card{
     }
     public Card upgradedVersion()
     {
-        Card upgVer;
         if( IS_UPGRADED == false)
         {
-            upgVer = new Bash();
+            Card upgVer = new StrikePlus();//just example
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 
 }

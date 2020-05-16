@@ -6,14 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,14 +32,15 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML FlowPane potions;
     @FXML FlowPane enemies;
-    @FXML FlowPane hand;
+    @FXML AnchorPane hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
-    @FXML Label playerHP;
     @FXML Label playerStatus;
     @FXML Label energy;
     @FXML Label numDraw;
     @FXML Label numDiscard;
+    @FXML AnchorPane popUpDisplay;
+    @FXML Label targetPrompt;
 
     @FXML private Text MoneyLabel;
     @FXML private Text currentHPLabel;
@@ -49,6 +49,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot1;
     @FXML private ImageView potionSlot2;
     @FXML private ImageView potionSlot3;
+    @FXML ImageView closePopUp;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,15 +60,24 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         reloadPotions();
         reloadRelics();
-
+        popUpDisplay.setDisable(true);
+        popUpDisplay.setVisible(false);
+        closePopUp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                popUpDisplay.setVisible(false);
+                popUpDisplay.setDisable(true);
+            }
+        });
+        targetPrompt.setVisible(false);
     }
 
     public void reloadPotions(){
         ArrayList<Potion> pots = CombatManager.getInstance().getPlayer().getPots();
 
         if(pots.size() > 0){
-            Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));
+            Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
             potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -81,7 +91,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
 
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));
+            Tooltip.install(potionSlot2, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
             potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -93,8 +103,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         }
         else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
             potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -121,7 +131,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             Image relicImage = new Image(relics.get(i).getImage());
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
-            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            Tooltip.install(tempRelicImage, new Tooltip( relics.get(i).getName() + ": " + relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
 
         }
@@ -129,6 +139,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     protected void endTurn(){
+        targetPrompt.setVisible(false);
         adapter.endTurnPressed();
     }
 
@@ -137,7 +148,6 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
     public void updatePlayer(){
-        playerHP.setText("HP: " + CombatManager.getInstance().getPlayer().getHP() + "/" + CombatManager.getInstance().getPlayer().getMaxHP() );
         String status = "";
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
             if(! (effect instanceof RelicEffect))
@@ -184,11 +194,13 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     public void updateCardPiles(){
         hand.getChildren().clear();
         ArrayList<Card> cards = CombatManager.getInstance().getHand();
+        int i = 0;
+
         for (Card c : cards) {
             Button cardBtn = new Button("");
             ImageView img = new ImageView(c.getImage());
-            img.setFitWidth( Math.min(147,((hand.getWidth() - 100)  / cards.size())));
-            img.setFitHeight(200.0 / 147.0 * img.getFitWidth());
+            img.setFitWidth(147);
+            img.setFitHeight(200.0);
             cardBtn.setGraphic(img);
             cardBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -196,9 +208,12 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-
             hand.getChildren().add(cardBtn);
+            cardBtn.setLayoutX(155 * i);
+            cardBtn.setLayoutY(0);
+            i++;
         }
+        //hand.setPrefWrapLength(147 * cards.size());
 
         drawPile.setText("");
         ImageView drawPileImg = new ImageView("CardBackRed.png");
@@ -224,11 +239,37 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDrawPile() {
+        if(CombatManager.getInstance().getDrawPile().isEmpty())
+            return;
+        popUpDisplay.setDisable(false);
+        popUpDisplay.setVisible(true);
+        FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        cards.getChildren().clear();
+        for(Card c : CombatManager.getInstance().getDrawPile()) {
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth(148*1.5);
+            img.setFitHeight(200*1.5);
+            cards.getChildren().add(img);
+        }
         System.out.println("Showing draw pile");
     }
 
+
+
     @FXML
     void showDiscardPile() {
+        if(CombatManager.getInstance().getDiscardPile().isEmpty())
+            return;
+        popUpDisplay.setDisable(false);
+        popUpDisplay.setVisible(true);
+        FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        cards.getChildren().clear();
+        for(Card c : CombatManager.getInstance().getDiscardPile()) {
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth(148*1.5);
+            img.setFitHeight(200*1.5);
+            cards.getChildren().add(img);
+        }
         System.out.println("Showing discard pile");
     }
 
@@ -245,5 +286,10 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         CombatManager.getInstance().showSettings();
+    }
+
+    void showPrompt(boolean show ,String name) {
+        targetPrompt.setText("Choose a target for " + name);
+        targetPrompt.setVisible(show);
     }
 }
