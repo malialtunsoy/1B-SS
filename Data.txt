@@ -14,3 +14,11 @@
 7###PlayerDeck###    **Strike**Defend**Defend**Bash**Bash**Bash**Strike+**
 1###PlayerPotions###    **Damage Potion**
 2###PlayerRelics###    **Ring of the Snake**Burning Blood**
+1###Combat::Ongoing###    **true**
+1###Combat::Enemies###  **Alternatron**
+2###Combat::Enemy@0::HP/MAXHP###    **15**25**
+2###Combat::Enemy@0::StatusEffects::Names###    **Block**Strength**
+2###Combat::Enemy@0::StatusEffects::Counters###    **10**5**
+2###Combat::Enemy@0::StatusEffects::AppliedByAnEnemy###    **true**true**
+1###Combat::Enemy@0::ExtraParams###    **false**
+

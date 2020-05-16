@@ -24,4 +24,12 @@ public class Alternatron extends Enemy {
         }
         attackThisTurn = !attackThisTurn;
     }
+    @Override
+    public void restoreExtraState(String[] extraParams) {
+        if (extraParams.length != 1) {
+            System.err.println("Number of extra state parameters provided for Alternaton is not 1");
+        } else {
+            attackThisTurn = Boolean.parseBoolean(extraParams[0]);
+        }
+    }
 }
