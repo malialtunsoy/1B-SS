@@ -56,10 +56,15 @@ public class RestController implements Initializable, ControlledScreen {
         //initalize upgrade screen
         CardsVBox.setSpacing(10);
 
-        ArrayList<Card> myCards = Game.getInstance().myPlayer.getDeck();
+        ArrayList<Card> myCards = new ArrayList<Card>();
+
+        for(int i = 0; i < Game.getInstance().myPlayer.getDeck().size(); i++){
+            if(!Game.getInstance().myPlayer.getDeck().get(i).getIsUpgraded()){
+            myCards.add(Game.getInstance().myPlayer.getDeck().get(i));}
+        }
         int numberOfCardsToDisplay = myCards.size();
-        int numberOfHBoxesNeeded = numberOfCardsToDisplay / 5;
-        if(numberOfCardsToDisplay % 5 != 0){numberOfHBoxesNeeded++;}
+        int numberOfHBoxesNeeded = numberOfCardsToDisplay / 4;
+        if(numberOfCardsToDisplay % 4 != 0){numberOfHBoxesNeeded++;}
 
         HBox[] cardHBoxes = new HBox[numberOfHBoxesNeeded];
 
@@ -67,7 +72,7 @@ public class RestController implements Initializable, ControlledScreen {
             cardHBoxes[i] = new HBox();
             cardHBoxes[i].setAlignment(Pos.CENTER_LEFT);
             cardHBoxes[i].setPrefWidth(980);
-            cardHBoxes[i].setPrefHeight(240);
+            cardHBoxes[i].setMinHeight(380);
             cardHBoxes[i].setSpacing(10);
             CardsVBox.getChildren().add(cardHBoxes[i]);
         }
@@ -80,14 +85,14 @@ public class RestController implements Initializable, ControlledScreen {
         for(int i = 0; i < numberOfCardsToDisplay; i++){
             cards[i] = new VBox();
             cards[i].setAlignment(Pos.TOP_CENTER);
-            cards[i].setPrefHeight(240);
-            cards[i].setPrefWidth(190);
+            cards[i].setMinHeight(380);
+            cards[i].setPrefWidth(230);
             cards[i].setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
             //add image
             ImageView tempImage = new ImageView();
-            tempImage.setFitHeight(100);
-            tempImage.setFitWidth(100);
+            //tempImage.setFitHeight(180);
+            tempImage.setFitWidth(220);
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
@@ -99,7 +104,7 @@ public class RestController implements Initializable, ControlledScreen {
             TextArea cardText = new TextArea();
             cardText.setEditable(false);
 
-            cardText.setMinHeight(100);
+            cardText.setMaxHeight(50);
             cardText.setPrefWidth(180);
             cardText.setMaxWidth(180);
             cardText.setText(myCards.get(i).getDescription());
@@ -138,8 +143,8 @@ public class RestController implements Initializable, ControlledScreen {
                 currentCardVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
                 ImageView tempI = new ImageView();
-                tempI.setFitHeight(100);
-                tempI.setFitWidth(100);
+                tempI.setFitHeight(230);
+                tempI.setFitWidth(280);
                 tempI.setPickOnBounds(true);
                 tempI.setPreserveRatio(true);
 
@@ -151,7 +156,7 @@ public class RestController implements Initializable, ControlledScreen {
                 TextArea text = new TextArea();
                 text.setEditable(false);
 
-                text.setMinHeight(100);
+                text.setMaxHeight(50);
                 text.setPrefWidth(180);
                 text.setMaxWidth(180);
                 text.setText(myCards.get(temp).getDescription());
@@ -170,8 +175,8 @@ public class RestController implements Initializable, ControlledScreen {
                 upgradedCardVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
                 ImageView tempI2 = new ImageView();
-                tempI2.setFitHeight(100);
-                tempI2.setFitWidth(100);
+                tempI2.setFitHeight(230);
+                tempI2.setFitWidth(280);
                 tempI2.setPickOnBounds(true);
                 tempI2.setPreserveRatio(true);
 
@@ -183,7 +188,7 @@ public class RestController implements Initializable, ControlledScreen {
                 TextArea text2 = new TextArea();
                 text2.setEditable(false);
 
-                text2.setMinHeight(100);
+                text2.setMaxHeight(50);
                 text2.setPrefWidth(180);
                 text2.setMaxWidth(180);
                 text2.setText(myCards.get(temp).upgradedVersion().getDescription());
@@ -200,7 +205,7 @@ public class RestController implements Initializable, ControlledScreen {
             cards[i].getChildren().add(bottomBox);
 
             //add card to HBox
-            int cardHBoxPlace = (i/5);
+            int cardHBoxPlace = (i/4);
             cardHBoxes[cardHBoxPlace].getChildren().add(cards[i]);
 
         }

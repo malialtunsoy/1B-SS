@@ -142,7 +142,7 @@ public class Player extends CombatEntity {
                 if(deckCardNames[i].equals("Strike")){loadDeck.add(new Strike());}
                 if(deckCardNames[i].equals("Defend")){loadDeck.add(new Defend());}
                 if(deckCardNames[i].equals("Bash")){loadDeck.add(new Bash());}
-                if(deckCardNames[i].equals("StrikePlus")){loadDeck.add(new StrikePlus());}
+                if(deckCardNames[i].equals("Strike+")){loadDeck.add(new StrikePlus());}
             }
             deck = loadDeck;
         }

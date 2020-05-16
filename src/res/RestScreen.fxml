@@ -143,14 +143,14 @@
                </image></ImageView>
          </children>
       </HBox>
-      <VBox fx:id="upgradeCardsVBox" alignment="TOP_CENTER" layoutX="100.0" layoutY="135.0" prefHeight="552.0" prefWidth="1000.0" spacing="10.0" visible="false">
+      <VBox fx:id="upgradeCardsVBox" alignment="TOP_CENTER" layoutX="100.0" layoutY="135.0" prefHeight="552.0" prefWidth="969.0" spacing="10.0" visible="false">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Upgrade Card">
                <font>
                   <Font size="29.0" />
                </font>
             </Text>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="517.0" prefWidth="1000.0">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="503.0" prefWidth="987.0">
                <content>
                   <VBox fx:id="CardsVBox" prefHeight="495.0" prefWidth="980.0">
                      <children>
