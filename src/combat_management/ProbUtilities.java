@@ -6,21 +6,21 @@ public class ProbUtilities {
     }
 
     // returns a random index from the input array according to the probabilities
-    public static int indexWithProb( double []probs) {
+    public static int indexWithProb( double [] probs) {
         // integrity check
-        int checkSum = 0;
+        double checkSum = 0;
         for ( int i = 0; i < probs.length; i++) {
             if (probs[i] < 0) {
                 return -1;
             }
             checkSum += probs[i];
         }
-        if (checkSum != 1) {
+        if (checkSum - 1 < -0.00001 || checkSum - 1 > 0.00001) {
             return -1;
         }
 
         double rand = Math.random();
-        int sum = 0;
+        double sum = 0;
         for ( int i = 0; i < probs.length; i++) {
             sum += probs[i];
             if (rand < sum) {

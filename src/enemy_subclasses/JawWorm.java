@@ -7,7 +7,7 @@ public class JawWorm extends Enemy {
 
     private static final int THRASH_DAMAGE = 7;
     private static final int THRASH_BLOCK = 5;
-    private static final double THRASH_PROB = 0.45;
+    private static final double THRASH_PROB = 0.30;
 
     private static final int BELLOW_STRENGTH_GAIN = 3;
     private static final int BELLOW_BLOCK = 7;
@@ -33,7 +33,9 @@ public class JawWorm extends Enemy {
             addIntent(new DefensiveIntent(this, THRASH_BLOCK));
             addIntent(new AggressiveIntent(this, THRASH_DAMAGE));
         } else if (choice == 2) {
+            // bellow
             addIntent(new BuffIntent(this, this, new Strength(BELLOW_STRENGTH_GAIN)));
+            addIntent(new DefensiveIntent(this, BELLOW_BLOCK));
         }
     }
 }
