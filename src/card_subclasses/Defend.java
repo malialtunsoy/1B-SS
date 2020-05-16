@@ -4,12 +4,22 @@ public class Defend extends Card{
     private static final int BLOCK_AMOUNT = 5;
     private static final String DESCRIPTION = "Grants " + BLOCK_AMOUNT + " block";
     private static final boolean TARGET_REQUIREMENT = false;
+    private static final boolean IS_UPGRADED = false;
     // constructors
     public Defend() {
-        super("Defend", "Skill", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT);
+        super("Defend", "Skill", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED);
     }
 
     public void affect(Enemy target) {
         CombatManager.getInstance().getPlayer().addStatusEffect(new Block(BLOCK_AMOUNT));
+    }
+    public Card upgradedVersion()
+    {
+        Card upgVer;
+        if( IS_UPGRADED == false)
+        {
+            upgVer = new Bash();//upgraded version needed but put other card too se if change is correct
+        }
+        return upgVer;
     }
 }
