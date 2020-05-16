@@ -18,4 +18,7 @@ public class Cultist extends Enemy {
             addIntent(new AggressiveIntent(this, DAMAGE));
         }
     }
+
+    @Override
+    public void restoreExtraState(String[] extraParams) {} // no extra state
 }

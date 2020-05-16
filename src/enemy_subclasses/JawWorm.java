@@ -38,4 +38,7 @@ public class JawWorm extends Enemy {
             addIntent(new DefensiveIntent(this, BELLOW_BLOCK));
         }
     }
+
+    @Override
+    public void restoreExtraState(String[] extraParams) {} // no extra state
 }
