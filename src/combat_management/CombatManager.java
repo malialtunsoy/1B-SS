@@ -61,8 +61,10 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
+
         selectedCard = null;
         try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+
     }
 
     private void playTurn() {
