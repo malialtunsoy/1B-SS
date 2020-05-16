@@ -95,8 +95,8 @@ public class RunController implements Initializable, ControlledScreen {
             ImageView tempRelicImage = new ImageView();
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
-            //Image relicImage = new Image(relics.get(i).getImage());
-            Image relicImage = new Image("BurningBloodRelic.png");
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
@@ -232,7 +232,7 @@ public class RunController implements Initializable, ControlledScreen {
             vertices[i].setLayoutX(positionX);
             vertices[i].setLayoutY(positionY);
 
-            System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
+           // System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
             if(i > 3){vertices[i].setDisable(true);}
 
 
