@@ -33,6 +33,7 @@ public abstract class StatusEffect {
     public void setAffectee(CombatEntity affectee) {
         this.affectee = affectee;
     }
+    public CombatEntity getAffectee() {return affectee;}
 
     public int getCounter() { return counter;}
 

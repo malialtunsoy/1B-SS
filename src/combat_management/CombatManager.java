@@ -35,6 +35,8 @@ public class CombatManager {
 
     private boolean playersTurn;
 
+    private Card selectedCard;
+
     private CombatUIAdapter uiAdapter;
 
     // -----  methods  ----
@@ -59,7 +61,10 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-         try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+
+        selectedCard = null;
+        try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+
     }
 
     private void playTurn() {
@@ -74,11 +79,11 @@ public class CombatManager {
 
     public int getTurn() { return turn; }
 
-    private void decayAllEffects( boolean isTurnStart) {
+    private void decayAllEffects( boolean isPlayerTurnStart) {
         for (int i  = 0; i < enemies.size(); i++) {
-            enemies.get(i).decayAllAffected(isTurnStart);
+            enemies.get(i).decayAllAffected(isPlayerTurnStart);
         }
-        player.decayAllAffected(isTurnStart);
+        player.decayAllAffected(isPlayerTurnStart);
     }
 
     //Declares the intents of all enemies, called at the start of a turn.
@@ -130,11 +135,15 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        // player ends "his turn". trigger his end-turn effects.
+        player.triggerAll(TriggeredAtTurnEnd.class);
+
         playersTurn = false;
         // discard all cards
         discardPile.addAll(hand);
         hand.clear();
 
+        // enemies' "turn starts"
         decayAllEffects(false);
 
         // realize all enemy intents
@@ -142,9 +151,15 @@ public class CombatManager {
             e.realizeAllIntents();
         }
 
+        // enemies end "their turn", trigger their end-turn effects.
+        for ( Enemy e: enemies) {
+            e.triggerAll(TriggeredAtTurnEnd.class);
+        }
+
         // restore energy
         energy = maxEnergy;
 
+        selectedCard = null;
         playTurn(); // play the next turn
     }
 
@@ -153,14 +168,43 @@ public class CombatManager {
 
     }
 
+    public void cardSelected(Card c) {
+        if(c.getTargetRequirement()) {
+            selectedCard = c;
+        } else {
+            playCard(c,null);
+        }
+    }
+
+    public void targetSelected(Enemy enemy) {
+        if(selectedCard != null) {
+            playCard(selectedCard,enemy);
+            selectedCard = null;
+        } else {
+            System.out.println("You have chosen a target but no card is selected.");
+        }
+    }
+
     //used to add the enemies before the combat starts.
     public void addEnemy( Enemy enemy) { enemies.add(enemy); }
     // called by the enemy when they die
     public void removeEnemy( Enemy enemy) {
         enemies.remove(enemy);
         if (enemies.isEmpty()) {
-            // TODO: combat won
+            combatWon();
         }
+    }
+
+    private void combatWon() {
+        System.out.println("asd");
+
+        // trigger end of combat effects, no need to consider enemies. The list is empty.
+        player.triggerAll(TriggeredAtCombatEnd.class);
+
+        // remove all status effects from the player
+        player.getStatusEffects().clear();
+
+        // TODO: interface with run management
     }
 
     // ---- methods used by UIAdapter to update the view: ----

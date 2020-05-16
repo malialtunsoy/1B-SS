@@ -28,6 +28,7 @@ public class CombatUIController {
     @FXML Label discardPile;
     @FXML Label playerHP;
     @FXML Label playerStatus;
+    @FXML Label energy;
 
     @FXML
     protected void sayHi(){
@@ -42,10 +43,10 @@ public class CombatUIController {
         playerHP.setText("HP: " + CombatManager.getInstance().getPlayer().getHP() + "/" + CombatManager.getInstance().getPlayer().getMaxHP() );
         String status = "";
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
-            status = status + effect.toString() + "\n";//change this to effect.getName() later
+            if(! (effect instanceof RelicEffect))
+                status = status + effect.toString() + "\n";//change this to effect.getName() later
         playerStatus.setText(status);
-        //playerLabel.setText(CombatManager.getInstance().getPlayer().toString()
-        //        + "\n Energy: " + CombatManager.getInstance().uiEnergyString());
+        energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
     }
 
     public void updateEnemies() throws IOException {
@@ -57,7 +58,20 @@ public class CombatUIController {
             AnchorPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
-            controller.setImage(e.getImage());
+            controller.setIntent(e.getIntents());
+            ImageView img = new ImageView(e.getImage());
+            img.setFitWidth(150);
+            img.setFitHeight(150);
+            controller.getButton().setGraphic(img);
+            controller.getButton().setText("");
+            controller.getButton().setOnAction(
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            CombatManager.getInstance().targetSelected(e);
+                        }
+                    }
+            );
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
             enemies.getChildren().add(pane);
@@ -94,7 +108,7 @@ public class CombatUIController {
             cardBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    CombatManager.getInstance().playCard(c, CombatManager.getInstance().getEnemies().get(0));
+                    CombatManager.getInstance().cardSelected(c);
                 }
             });
 

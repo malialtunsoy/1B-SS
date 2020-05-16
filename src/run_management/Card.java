@@ -5,14 +5,17 @@ public abstract class Card {
     private String description;
     private int cost;
 
-    public Card(String cardName, String cardType, int energy,  String description, int cost){
+    private boolean requiresTarget;
+
+    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
         this.description = description;
-        this.cost = cost;
+        this.requiresTarget = requiresTarget;
     }
 
+    public boolean getTargetRequirement() { return requiresTarget;}
     public String getImage (){ return cardName + ".png"; }
     public String getName(){
         return cardName;

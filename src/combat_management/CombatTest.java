@@ -29,7 +29,7 @@ public class CombatTest {
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
         Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
-
+        player.addRelic(new BurningBlood());
 
         player.addToDeck(sample);
         player.addToDeck(sample);
@@ -87,10 +87,8 @@ public class CombatTest {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Enemy armoredEnemy = new Alternatron();
-                armoredEnemy.addStatusEffect(new Block(5));
-                CombatManager.getInstance().addEnemy(armoredEnemy);
-                System.out.println("Added Enemy");
+                Enemy e = new JawWorm();
+                CombatManager.getInstance().addEnemy(e);
             }
         });
         root.getChildren().add(addEnemyBtn);

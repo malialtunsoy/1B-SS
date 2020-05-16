@@ -1,14 +1,16 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class EnemyViewController {
 
     @FXML
-    private ImageView image;
+    private Button button;
 
     @FXML
     private Label hp;
@@ -19,10 +21,11 @@ public class EnemyViewController {
     @FXML
     private Label name;
 
+    @FXML
+    private Label intent;
 
-    public void setImage(String image) {
-        //this.image = new ImageView (image);
-        this.image.setImage(new Image(image));
+    public Button getButton() {
+        return button;
     }
 
     public void setHp(int hp, int maxHp) {
@@ -38,6 +41,14 @@ public class EnemyViewController {
 
     public void setName( String name) {
         this.name.setText(name);
+    }
+
+    public void setIntent(ArrayList<Intent> intents) {
+        String cur = "";
+        for( Intent i : intents) {
+            cur += i.toString() + "\n";
+        }
+        intent.setText(cur);
     }
 }
 

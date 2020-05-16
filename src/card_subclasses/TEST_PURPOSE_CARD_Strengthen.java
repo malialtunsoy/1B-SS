@@ -1,10 +1,10 @@
 public class TEST_PURPOSE_CARD_Strengthen extends Card{
     private static final int ENERGY_COST = 1;
     private static final int STRENGTH_GAIN = 1;
-    private static final int COST = -1;
+    private static final boolean TARGET_REQUIREMENT = false;
 
     public TEST_PURPOSE_CARD_Strengthen() {
-        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", COST);
+        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", TARGET_REQUIREMENT);
     }
 
     @Override
