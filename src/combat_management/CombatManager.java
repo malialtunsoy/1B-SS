@@ -238,6 +238,9 @@ public class CombatManager {
     // -------------------------------------------------------
 
 
+    public ArrayList<Card> getDrawPile() {
+        return drawPile;
+    }
 
     public void setPlayer(Player player) { this.player = player; }
 

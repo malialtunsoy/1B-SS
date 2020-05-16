@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
@@ -36,11 +37,11 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML FlowPane hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
-    @FXML Label playerHP;
     @FXML Label playerStatus;
     @FXML Label energy;
     @FXML Label numDraw;
     @FXML Label numDiscard;
+    @FXML AnchorPane popUpDisplay;
 
     @FXML private Text MoneyLabel;
     @FXML private Text currentHPLabel;
@@ -49,6 +50,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot1;
     @FXML private ImageView potionSlot2;
     @FXML private ImageView potionSlot3;
+    @FXML ImageView closePopUp;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,7 +61,15 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         reloadPotions();
         reloadRelics();
-
+        popUpDisplay.setDisable(true);
+        popUpDisplay.setVisible(false);
+        closePopUp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                popUpDisplay.setVisible(false);
+                popUpDisplay.setDisable(true);
+            }
+        });
     }
 
     public void reloadPotions(){
@@ -137,7 +147,6 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
     public void updatePlayer(){
-        playerHP.setText("HP: " + CombatManager.getInstance().getPlayer().getHP() + "/" + CombatManager.getInstance().getPlayer().getMaxHP() );
         String status = "";
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
             if(! (effect instanceof RelicEffect))
@@ -224,8 +233,19 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDrawPile() {
+        popUpDisplay.setDisable(false);
+        popUpDisplay.setVisible(true);
+        FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        for(Card c : CombatManager.getInstance().getDrawPile()) {
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth(148*1.5);
+            img.setFitHeight(200*1.5);
+            cards.getChildren().add(img);
+        }
         System.out.println("Showing draw pile");
     }
+
+
 
     @FXML
     void showDiscardPile() {
@@ -246,4 +266,5 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         CombatManager.getInstance().showSettings();
     }
+
 }
