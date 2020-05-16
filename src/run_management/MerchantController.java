@@ -271,7 +271,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("BurningBloodRelic.png");
+            Image tempImageIn = new Image(merchantRelic.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             relicsVBoxes[i].getChildren().add(tempImage);
@@ -334,8 +334,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             ImageView tempRelicImage = new ImageView();
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
-            //Image relicImage = new Image(relics.get(i).getImage());
-            Image relicImage = new Image("BurningBloodRelic.png");
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);

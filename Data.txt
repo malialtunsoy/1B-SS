@@ -13,4 +13,4 @@
 1###relicCount###    **3**
 16###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**
 1###PlayerPotions###    **Damage Potion**
-2###PlayerRelics###    **Ring of the Snake**Ring of the Snake**
+2###PlayerRelics###    **Ring of the Snake**Burning Blood**
