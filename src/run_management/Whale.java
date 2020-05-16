@@ -29,7 +29,7 @@ public class Whale {
         p.addRelic(getOfferedRelic());
     }
     public void takeMaxHP(Player p){
-        p.setMaxHP(getOfferedMaxHP());}// error will be fixed there is no such method (playerda setmaxhp sorun çıktı)
+        //p.setMaxHP(getOfferedMaxHP());}// error will be fixed there is no such method (playerda setmaxhp sorun çıktı)
     }
     
     
