@@ -246,7 +246,6 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
-
-
+        CombatManager.getInstance().showSettings();
     }
 }

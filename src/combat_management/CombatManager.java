@@ -23,6 +23,8 @@ public class CombatManager {
     private Scene menu;
     private ScreenController myController;
     private Scene currentScene;
+    boolean deckClickedBefore = false;
+    boolean settingsClickedBefore = false;
 
     private int turn;
     private int energy;
@@ -247,7 +249,17 @@ public class CombatManager {
 
     public void showDeck(){
         myController.setBackFromDeck("CombatUI.fxml");
-        myController.changeScreen(RunUIManager.deckScreen);
+        if(!deckClickedBefore){ myController.changeScreen(RunUIManager.deckScreen);}
+        deckClickedBefore = true;
+        currentScene = stage.getScene();
+        stage.setScene(menu);
+        System.out.println("Show Deck");
+    }
+
+    public void showSettings(){
+        myController.setGetBackFromSettings("CombatUI.fxml");
+        if(!settingsClickedBefore){ myController.changeScreen(NavigationUI.optionsScreen); }
+        settingsClickedBefore = true;
         currentScene = stage.getScene();
         stage.setScene(menu);
         System.out.println("Show Deck");
@@ -258,8 +270,9 @@ public class CombatManager {
         stage.setScene(currentScene);
     }
 
-    public void showSettings(){
-        System.out.println("Show Settings");
+    public void comeBackFromSetting(){
+        System.out.println("back to combat");
+        stage.setScene(currentScene);
     }
 
     public void showMap(){
