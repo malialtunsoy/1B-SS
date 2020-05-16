@@ -344,7 +344,9 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-
+        myController.setBackFromMap(RunUIManager.merchantScreen);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
+        myController.changeScreen(RunUIManager.quickMapScreen);
     }
 
     @FXML
