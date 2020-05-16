@@ -38,7 +38,7 @@
 
 class EmptyPotion extends Potion
 {
-    public EmptyPotion(String potionName, int potionCost, String potionDescription, boolean targetRequirement, String image, boolean targetRequirement)
+    public EmptyPotion(String potionName, int potionCost, String potionDescription, String image, boolean targetRequirement)
     {
         super(potionName,potionCost,potionDescription,  image, targetRequirement);
     }
