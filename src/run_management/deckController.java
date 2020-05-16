@@ -54,6 +54,7 @@ public class deckController implements Initializable, ControlledScreen {
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
+        reloadRelics();
 
 
         //CARDS SETTINGS INITALIZE************************************************************************************
@@ -160,6 +161,23 @@ public class deckController implements Initializable, ControlledScreen {
         if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3); }
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
+    }
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            //Image relicImage = new Image(relics.get(i).getImage());
+            Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
 }

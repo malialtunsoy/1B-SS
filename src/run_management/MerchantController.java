@@ -60,6 +60,7 @@ public class MerchantController implements Initializable, ControlledScreen {
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
+        reloadRelics();
 
         //CARDS SETTINGS INITALIZE************************************************************************************
         ArrayList<Card> myCards = Game.getInstance().myPlayer.getMerchantDeck();
@@ -310,7 +311,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             relicsButtons[i].setText("Buy");
             int temp = i;
             relicsButtons[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseRelic(merchantRelic.get(temp));
-            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));});
+            MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+                reloadRelics();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);
@@ -323,7 +325,23 @@ public class MerchantController implements Initializable, ControlledScreen {
 
         }
 
+    }
 
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            //Image relicImage = new Image(relics.get(i).getImage());
+            Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
     @FXML
