@@ -67,6 +67,7 @@ public class NavigationUI extends Application  {
 
         CombatManager.getInstance().setStage(primaryStage);
         CombatManager.getInstance().setMenuScene(scene);
+        CombatManager.getInstance().setScreenController(myScreens);
 
         primaryStage.setTitle("Slay the Spire");
         primaryStage.setScene(scene);

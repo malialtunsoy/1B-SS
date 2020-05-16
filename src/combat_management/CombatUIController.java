@@ -2,23 +2,31 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class CombatUIController {
+public class CombatUIController implements  Initializable//,ControlledScreen {
+{
+    //ScreenController myController;
 
     private CombatUIAdapter adapter;
 
@@ -32,6 +40,65 @@ public class CombatUIController {
     @FXML Label energy;
     @FXML Label numDraw;
     @FXML Label numDiscard;
+
+    @FXML private Text MoneyLabel;
+    @FXML private Text currentHPLabel;
+    @FXML private Text maxHPLabel;
+    @FXML private Text playerNameLabel;
+    @FXML private ImageView potionSlot1;
+    @FXML private ImageView potionSlot2;
+    @FXML private ImageView potionSlot3;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
+
+        maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
+        MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
+
+        reloadPotions();
+        reloadRelics();
+
+    }
+
+    public void reloadPotions(){
+        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+
+        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+        //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
+        else{potionSlot1.setImage(null);}
+        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+        //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
+        else{potionSlot2.setImage(null);}
+        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+        //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
+        else{potionSlot3.setImage(null);}
+    }
+
+
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            //Image relicImage = new Image(relics.get(i).getImage());
+            Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            tempRelicImage.setPickOnBounds(true);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            relicSlotHBox.getChildren().add(tempRelicImage);
+
+        }
+    }
 
     @FXML
     protected void endTurn(){
@@ -50,6 +117,8 @@ public class CombatUIController {
                 status = status + effect.toString() + "\n";//change this to effect.getName() later
         playerStatus.setText(status);
         energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
+
+        currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
     }
 
     public void updateEnemies() throws IOException {
@@ -148,5 +217,27 @@ public class CombatUIController {
     @FXML
     void showDiscardPile() {
         System.out.println("Showing discard pile");
+    }
+
+    @FXML
+    void openMap(ActionEvent event) {
+        Stage mapStage = new Stage();
+        mapStage.setTitle("Map");
+        mapStage.setMaxWidth(1000);
+        mapStage.setMaxHeight(600);
+
+        //mapStage.setScene(mapScene);
+        mapStage.show();
+    }
+
+    @FXML
+    void showDeck(ActionEvent event) {
+        CombatManager.getInstance().showDeck();
+    }
+
+    @FXML
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+
+
     }
 }
