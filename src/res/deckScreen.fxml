@@ -23,11 +23,6 @@
             </image>
         </ImageView>
         <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#back" text="Back " />
-        <Text fill="WHITE" layoutX="500.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MERCHANT">
-            <font>
-                <Font size="40.0" />
-            </font>
-        </Text>
         <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1210.0">
             <children>
                 <AnchorPane prefHeight="65.0" prefWidth="236.0">
@@ -167,5 +162,14 @@
             </ImageView>
          </children>
       </HBox>
+        <HBox fx:id="relicSlotHBox" layoutX="14.0" layoutY="65.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+            <children>
+                <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

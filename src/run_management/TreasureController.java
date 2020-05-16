@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -69,6 +70,24 @@ public class TreasureController implements Initializable, ControlledScreen {
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
+        reloadRelics();
+    }
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            //Image relicImage = new Image(relics.get(i).getImage());
+            Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
     @FXML
