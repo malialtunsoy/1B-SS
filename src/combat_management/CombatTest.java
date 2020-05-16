@@ -29,7 +29,7 @@ public class CombatTest {
         Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
         Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
-
+        player.addRelic(new BurningBlood());
 
         player.addToDeck(sample);
         player.addToDeck(sample);

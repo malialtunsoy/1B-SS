@@ -1,3 +1,3 @@
 public interface Triggered {
-    public void triggered();
+    void triggered();
 }
