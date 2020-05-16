@@ -31,7 +31,9 @@ public abstract class Enemy extends CombatEntity{
     public String getImage() {
         return name + ".png";
     }
-
+    public ArrayList<Intent> getIntents() {
+        return intents;
+    }
     public String getName() {
         return name;
     }

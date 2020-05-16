@@ -22,15 +22,16 @@
          <Label fx:id="discardPile" layoutX="896.0" layoutY="515.0" prefHeight="83.0" prefWidth="217.0" text="Label" textFill="WHITE" />
          <FlowPane fx:id="hand" layoutX="181.0" layoutY="489.0" prefHeight="218.0" prefWidth="684.0" />
          <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
-         <AnchorPane layoutX="13.0" layoutY="155.0" prefHeight="366.0" prefWidth="155.0">
+         <AnchorPane layoutX="13.0" layoutY="125.0" prefHeight="366.0" prefWidth="155.0">
             <children>
                <ImageView fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@character.jpg" />
                   </image>
                </ImageView>
-               <Label fx:id="playerHP" alignment="CENTER" layoutX="7.0" layoutY="200.0" prefHeight="47.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
-               <Label fx:id="playerStatus" alignment="TOP_CENTER" layoutX="7.0" layoutY="247.0" prefHeight="119.0" prefWidth="167.0" text="Status Effects" textAlignment="CENTER" textFill="WHITE" />
+               <Label fx:id="playerHP" alignment="CENTER" layoutY="190.0" prefHeight="47.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
+               <Label fx:id="playerStatus" alignment="TOP_CENTER" layoutY="254.0" prefHeight="113.0" prefWidth="167.0" text="Status Effects" textAlignment="CENTER" textFill="WHITE" />
+               <Label fx:id="energy" alignment="CENTER" layoutX="11.0" layoutY="220.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
             </children>
          </AnchorPane>
          <FlowPane fx:id="potions" layoutX="142.0" layoutY="11.0" prefHeight="53.0" prefWidth="283.0" />
