@@ -39,6 +39,7 @@
 
      public void setCost(int cost){potionCost = cost;}
      public int getCost(){return potionCost;}
+     public String toString(){return getPotionDescription();}
 }
 
 class EmptyPotion extends Potion

@@ -5,12 +5,20 @@
 7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
+<<<<<<< HEAD
 7###CardsInDeck###    **Strike**Defend**Defend**Bash**Bash**Bash**Strike+**
+=======
+17###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**Bash**Strike**
+>>>>>>> origin/master
 1###playerHP###    **60**
 1###playerMaxHP###    **60**
 1###playerGold###    **730**
 1###maxPot###    **3**
 1###relicCount###    **3**
+<<<<<<< HEAD
 7###PlayerDeck###    **Strike**Defend**Defend**Bash**Bash**Bash**Strike+**
+=======
+17###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Defend**Bash**Bash**Strike**
+>>>>>>> origin/master
 1###PlayerPotions###    **Damage Potion**
 2###PlayerRelics###    **Ring of the Snake**Burning Blood**

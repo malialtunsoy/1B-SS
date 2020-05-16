@@ -22,11 +22,11 @@ public class Strike extends Card {
     }
     public Card upgradedVersion()
     {
-        Card upgVer;
         if( IS_UPGRADED == false)
         {
-            upgVer = new StrikePlus();
+            Card upgVer = new StrikePlus();
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 }

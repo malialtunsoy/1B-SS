@@ -17,11 +17,11 @@ public class Defend extends Card{
     }
     public Card upgradedVersion()
     {
-        Card upgVer;
         if( IS_UPGRADED == false)
         {
-            upgVer = new Bash();//upgraded version needed but put other card too se if change is correct
+            Card upgVer = new Bash();//to see difference
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 }

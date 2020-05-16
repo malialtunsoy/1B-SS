@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player extends CombatEntity {
 
@@ -16,6 +17,12 @@ public class Player extends CombatEntity {
     ArrayList<Card> merchantCard;
     ArrayList<Relic> merchantRelic;
     ArrayList<Potion> merchantPotion;
+
+    ArrayList<Relic> tresRelics;
+    ArrayList<Potion> tresPots;
+
+    ArrayList<Relic> allRelics;
+    ArrayList<Potion> allPots;
 
     public Player(boolean isItNewGame, String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
@@ -253,9 +260,39 @@ public class Player extends CombatEntity {
     //END OF REST CARD UPGRADE ***************************************************************************
 
     //TREASURE *************************************************************************
+    public void generateTresRandom()
+    {
+        putAll();
+        tresPots = new ArrayList<Potion>();;
+        tresRelics = new ArrayList<Relic>();
+        Random randomG = new Random();
+        int tresCount = 3;
+        int randomCount = randomG.nextInt(3);
+        int randomInd;
+        for(int i = 0; i < randomCount; i++)
+        {
+            randomInd = randomG.nextInt(allPots.size());
+            tresPots.add(allPots.get(randomInd));
+        }
+        for(int i = randomCount; i < tresCount; i++)
+        {
+            randomInd = randomG.nextInt(allRelics.size());
+            tresRelics.add(allRelics.get(randomInd));
+        }
 
+    }
+    public void putAll()
+    {
+        allPots = new ArrayList<Potion>();
+        allPots.add(new HealthPotion());
+        allPots.add(new DamagePotion());
 
-
+        allRelics = new ArrayList<Relic>();
+        allRelics.add(new RingOfTheSnake());
+        allRelics.add(new BurningBlood());
+    }
+    public ArrayList<Potion> getTresPots(){return tresPots;}
+    public ArrayList<Relic> getTresRelics(){return tresRelics;}
     //END OF TREASURE ************************************************************
 
 

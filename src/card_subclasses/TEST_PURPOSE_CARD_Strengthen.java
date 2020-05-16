@@ -16,12 +16,12 @@ public class TEST_PURPOSE_CARD_Strengthen extends Card{
     }
     public Card upgradedVersion()
     {
-        Card upgVer;
         if( IS_UPGRADED == false)
         {
-            upgVer = new Bash();
+            Card upgVer = new StrikePlus();//just example
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 
 }

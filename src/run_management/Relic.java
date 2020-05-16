@@ -36,5 +36,6 @@ public class Relic {
 
     public void setCost(int cost){relicCost = cost;}
     public int getCost(){return relicCost;}
+    public String toString(){return getRelicDescription();}
 }
 
