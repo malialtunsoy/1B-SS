@@ -198,21 +198,21 @@ public class Player extends CombatEntity {
     }
 
     public boolean purchaseRelic(Relic relic){
-        //if(gold >= relic.getCost()) {
+        if(gold >= relic.getCost()) {
             relics.add(relic);
-           // gold = gold - relic.getCost();
-      //  }
-        //else{return false;}
+            gold = gold - relic.getCost();
+       }
+        else{return false;}
         System.out.println("purchased: " + relic.getName() );
         return true;
     }
 
     public boolean purchasePotion(Potion potion){
-       // if(gold >= potion.getCost() && (potions.size() < 3) ) {
+        if(gold >= potion.getCost() && (potions.size() < 3) ) {
                 potions.add(potion);
-       //     gold = gold - potion.getCost();
-        //}
-       // else{return false;}
+            gold = gold - potion.getCost();
+        }
+        else{return false;}
         System.out.println("purchased: " + potion.getName() );
         return true;
     }

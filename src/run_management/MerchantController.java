@@ -301,7 +301,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             bottomBox.setSpacing(10);
 
             Text costText = new Text();
-            costText.setText("Cost: 130");
+            costText.setText("Cost: " + merchantRelic.get(i).getCost());
 
 
             relicsButtons[i] = new Button();

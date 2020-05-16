@@ -1,8 +1,10 @@
 public class BurningBlood extends Relic {
     private static final int HP_RESTORED = 6;
     private static final String NAME = "Burning Blood";
+    private static final int COST = 250;
     private static final String DESCRIPTION = "At the end of combat, heal " + HP_RESTORED + " HP";
     private static final String IMAGE = "BurningBloodRelic.png";
+
 
     private class Effect extends RelicEffect implements TriggeredAtCombatEnd {
         public void triggered() {
@@ -11,7 +13,7 @@ public class BurningBlood extends Relic {
     }
 
     public BurningBlood() {
-        super(NAME, 0, DESCRIPTION, IMAGE);
+        super(NAME, COST, DESCRIPTION, IMAGE);
         setEffect(new Effect());
     }
 }
