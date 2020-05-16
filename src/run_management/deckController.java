@@ -134,7 +134,8 @@ public class deckController implements Initializable, ControlledScreen {
 
     @FXML
     void back(ActionEvent event) {
-        myController.changeScreen(myController.getBackFromDeck());
+        if(myController.getBackFromDeck().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromDeck();}
+        else{myController.changeScreen(myController.getBackFromDeck());}
     }
 
     @FXML
