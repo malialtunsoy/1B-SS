@@ -122,7 +122,7 @@ public class TreasureController implements Initializable, ControlledScreen {
             Image relicImage = new Image(relics.get(i).getImage());
             //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
-            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
         }
     }
@@ -191,15 +191,15 @@ public class TreasureController implements Initializable, ControlledScreen {
         ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
 
         if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " +  pots.get(0).getPotionDescription()));}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getName() + ": " +  pots.get(1).getPotionDescription()));}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
         if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getName() + ": " +  pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
     }
