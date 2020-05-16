@@ -8,6 +8,8 @@ public class Bash extends Card {
     private static final boolean IS_UPGRADED = true;
     private static int COST = 160;
 
+
+
     // --- constructors ---
     public Bash() {
         super("Bash", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT, IS_UPGRADED, COST);

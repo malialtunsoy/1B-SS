@@ -44,6 +44,11 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
+    public void increaseMaxHP(int amount)//use in player, not in enemy
+    {
+        maxHP += amount;
+    }
+
     // setters used when loading the game
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
