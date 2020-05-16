@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Map {
     int vertexSize = 50;
@@ -95,6 +96,7 @@ public class Map {
     }
     public void callTreasure(Vertex x)
     {
+        
 
     }
     public void callRest(Rest x)

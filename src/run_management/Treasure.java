@@ -6,7 +6,7 @@ public class Treasure extends Vertex{
 
     public Treasure(int offeredGold, Relic offeredRelic, Potion offeredPotion)
     {
-        this.offeredGold = offeredGold;
+        this.offeredGold =   offeredGold;
         this.offeredRelic = offeredRelic;
         this.offeredPotion = offeredPotion;
     }
