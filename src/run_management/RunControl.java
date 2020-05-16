@@ -14,6 +14,7 @@ public class RunControl {
 
         Player testP = new Player(true,"playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
 
+        /*
         Potion testPot = new HealthPotion();
 
 
@@ -28,9 +29,13 @@ public class RunControl {
         System.out.println(testP);
 
         //Map test = new Map(testP);
-
+        */
         //test.createVertex();
         //test.chooseVertex(2);
+
+        testP.generateTresRandom();
+        System.out.println(testP.getTresPots());
+        System.out.println(testP.getTresRelics());
 
 
     }

@@ -25,6 +25,7 @@ public class CombatManager {
     private Scene currentScene;
     boolean deckClickedBefore = false;
     boolean settingsClickedBefore = false;
+    boolean mapClickedBefore = false;
 
     private int turn;
     private int energy;
@@ -40,6 +41,7 @@ public class CombatManager {
     private boolean playersTurn;
 
     private Card selectedCard;
+    private Potion selectedPotion;
 
     private CombatUIAdapter uiAdapter;
 
@@ -165,6 +167,7 @@ public class CombatManager {
         energy = maxEnergy;
 
         selectedCard = null;
+        selectedPotion = null;
         playTurn(); // play the next turn
     }
 
@@ -175,9 +178,19 @@ public class CombatManager {
 
     public void cardSelected(Card c) {
         if(c.getTargetRequirement()) {
+            selectedPotion = null;
             selectedCard = c;
         } else {
             playCard(c,null);
+        }
+    }
+
+    public void potionSelected(Potion p) {
+        if(p.getTargetRequirement()) {
+            selectedCard = null;
+            selectedPotion = p;
+        } else {
+            usePotion(p,null);
         }
     }
 
@@ -185,8 +198,12 @@ public class CombatManager {
         if(selectedCard != null) {
             playCard(selectedCard,enemy);
             selectedCard = null;
-        } else {
-            System.out.println("You have chosen a target but no card is selected.");
+        } else if (selectedPotion != null) {
+            usePotion(selectedPotion, enemy);
+            selectedPotion = null;
+        }
+        else {
+            System.out.println("You have chosen a target but no card/potion is selected.");
         }
     }
 
@@ -222,6 +239,9 @@ public class CombatManager {
     // -------------------------------------------------------
 
 
+    public ArrayList<Card> getDrawPile() { return drawPile; }
+
+    public ArrayList<Card> getDiscardPile() { return discardPile;}
 
     public void setPlayer(Player player) { this.player = player; }
 
@@ -248,6 +268,15 @@ public class CombatManager {
         stage.show();
     }
 
+    public void showMap(){
+        myController.setBackFromMap("CombatUI.fxml");
+        if(!mapClickedBefore){ myController.changeScreen(RunUIManager.quickMapScreen);}
+        mapClickedBefore = true;
+        currentScene = stage.getScene();
+        stage.setScene(menu);
+        System.out.println("Show Map");
+    }
+
     public void showDeck(){
         myController.setBackFromDeck("CombatUI.fxml");
         if(!deckClickedBefore){ myController.changeScreen(RunUIManager.deckScreen);}
@@ -263,7 +292,7 @@ public class CombatManager {
         settingsClickedBefore = true;
         currentScene = stage.getScene();
         stage.setScene(menu);
-        System.out.println("Show Deck");
+        System.out.println("Show Settings");
     }
 
     public void comeBackFromDeck(){
@@ -276,8 +305,9 @@ public class CombatManager {
         stage.setScene(currentScene);
     }
 
-    public void showMap(){
-        System.out.println("Show Map");
+    public void comeBackFromMap(){
+        System.out.println("back to combat");
+        stage.setScene(currentScene);
     }
 
     /*Changes the singleton instance. called when loading a game

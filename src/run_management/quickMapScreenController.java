@@ -2,25 +2,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TreasureController implements Initializable, ControlledScreen {
+public class quickMapScreenController implements Initializable, ControlledScreen {
 
     ScreenController myController;
 
@@ -38,26 +37,6 @@ public class TreasureController implements Initializable, ControlledScreen {
 
 
 
-    @FXML
-    private ImageView firstImage;
-
-    @FXML
-    private ImageView secondImage;
-
-    @FXML
-    private ImageView thirdImage;
-
-    @FXML
-    private Button firstButton;
-
-    @FXML
-    private Button secondButton;
-
-    @FXML
-    private Button thirdButton;
-
-
-
 
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
@@ -72,72 +51,29 @@ public class TreasureController implements Initializable, ControlledScreen {
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
         reloadRelics();
-    }
 
-    @FXML
-    private HBox relicSlotHBox;
 
-    public void reloadRelics(){
-        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
-        relicSlotHBox.getChildren().clear();
-        for(int i = 0; i < relics.size(); i++){
-            ImageView tempRelicImage = new ImageView();
-            tempRelicImage.setFitWidth(56);
-            tempRelicImage.setFitHeight(56);
-            Image relicImage = new Image(relics.get(i).getImage());
-            //Image relicImage = new Image("BurningBloodRelic.png");
-            tempRelicImage.setImage(relicImage);
-            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
-            relicSlotHBox.getChildren().add(tempRelicImage);
-        }
     }
 
     @FXML
     void openMap(ActionEvent event) {
-        myController.setBackFromMap(RunUIManager.treasureScreen);
-        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
-        myController.changeScreen(RunUIManager.quickMapScreen);
+
     }
 
     @FXML
     void showDeck(ActionEvent event) {
-        myController.setBackFromDeck(RunUIManager.treasureScreen);
-        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
-        myController.changeScreen(RunUIManager.deckScreen);
+
     }
 
     @FXML
-    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
-        myController.setGetBackFromSettings(RunUIManager.treasureScreen);
-        myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+    void openSettings(ActionEvent event) {
+
     }
 
     @FXML
-    void backToMap(ActionEvent event) {
-        myController.changeScreen(RunUIManager.mainRunScreen);
-    }
-
-
-    @FXML
-    void firstButtonClicked(ActionEvent event) {
-        //TO DO
-
-        myController.changeScreen(RunUIManager.mainRunScreen);
-    }
-
-    @FXML
-    void secondButtonClicked(ActionEvent event) {
-       //TO DO
-
-        myController.changeScreen(RunUIManager.mainRunScreen);
-    }
-
-    @FXML
-    void thirdButtonClicked(ActionEvent event) {
-        //TO DO
-
-        myController.changeScreen(RunUIManager.mainRunScreen);
+    void back(ActionEvent event) {
+        if(myController.getBackFromMap().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromMap();}
+        else{myController.changeScreen(myController.getBackFromMap());}
     }
 
     @FXML
@@ -164,6 +100,24 @@ public class TreasureController implements Initializable, ControlledScreen {
             Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
+    }
+
+    @FXML
+    private HBox relicSlotHBox;
+
+    public void reloadRelics(){
+        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        relicSlotHBox.getChildren().clear();
+        for(int i = 0; i < relics.size(); i++){
+            ImageView tempRelicImage = new ImageView();
+            tempRelicImage.setFitWidth(56);
+            tempRelicImage.setFitHeight(56);
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
+            tempRelicImage.setImage(relicImage);
+            Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
+            relicSlotHBox.getChildren().add(tempRelicImage);
+        }
     }
 
 }

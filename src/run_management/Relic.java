@@ -30,5 +30,6 @@ public class Relic {
     }
     public void setImage(String image){this.image = image;}
     public String getImage(){return image;}
+    public String toString(){return getRelicDescription();}
 }
 

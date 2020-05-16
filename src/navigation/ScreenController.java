@@ -20,6 +20,7 @@ public class ScreenController extends StackPane {
 
     public String backFromDeck = "";
     public String getBackFromSettings = "";
+    public String backFromMap = "";
 
 
     public ScreenController(){
@@ -146,6 +147,10 @@ public class ScreenController extends StackPane {
     public String getGetBackFromSettings(){
         return getBackFromSettings;
     }
+
+    public void setBackFromMap(String back){backFromMap = back;}
+
+    public String getBackFromMap(){return backFromMap;}
 
 
 }

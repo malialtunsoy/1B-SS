@@ -40,6 +40,10 @@ public class RunUIManager{
     public static String deckScreen = "DeckScreen";
     public static String deckScreenFile = "deckScreen.fxml";
 
+    public static String quickMapScreen = "QuickMapScreen";
+    public static String quickMapScreenFile = "QuickMapScreen.fxml";
+
+
 
 
     //public static String combatScreen = "CombatScreen";
@@ -60,12 +64,14 @@ public class RunUIManager{
         screenNames.add(restScreen);
         screenNames.add(treasureScreen);
         screenNames.add(deckScreen);
+        screenNames.add(quickMapScreen);
 
         screenFiles.add(mainRunScreenFile);
         screenFiles.add(merchantScreenFile);
         screenFiles.add(restScreenFile);
         screenFiles.add(treasureScreenFile);
         screenFiles.add(deckScreenFile);
+        screenFiles.add(quickMapScreenFile);
 
 
 

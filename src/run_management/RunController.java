@@ -147,13 +147,10 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-            Stage mapStage = new Stage();
-            mapStage.setTitle("Map");
-            mapStage.setMaxWidth(1000);
-            mapStage.setMaxHeight(600);
-
-            //mapStage.setScene(mapScene);
-            mapStage.show();
+        myController.setBackFromMap(RunUIManager.mainRunScreen);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
+        myController.changeScreen(RunUIManager.quickMapScreen);
+        SaveAndExit.save();
     }
 
     @FXML
