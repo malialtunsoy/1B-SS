@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-//Only here for testing purposes, not implemented yet.
-public class Enemy extends CombatEntity{
+public abstract class Enemy extends CombatEntity{
     // --- attributes --- 
     String name;
     ArrayList<Intent> intents;
@@ -15,20 +14,31 @@ public class Enemy extends CombatEntity{
 
     // --- methods ---
     public String toString() {
-        return name + "\n-------" + "\nHP: " + getHP() + "\n intents: " + intents;
+        return name + "\n-------\n" +  super.toString() + "\n intents: " + intents;
     }
 
-    // test purpose implementation, declares aggressive intent with 5 dmg
-    public void declareIntent() {
-        AggressiveIntent aggr = new AggressiveIntent(5);
-        intents.add(aggr);
-    }
+    abstract void declareIntent();
+
+    public void addIntent(Intent i) { intents.add(i); }   // used when declaring intents
 
     public void realizeAllIntents() {
         for (Intent i : intents) {
             i.realize();
         }
         intents.clear();
+    }
+
+    public String getImage() {
+        return name + ".png";
+    }
+    public ArrayList<Intent> getIntents() {
+        return intents;
+    }
+    public String getName() {
+        return name;
+    }
+    public void die() {
+        CombatManager.getInstance().removeEnemy(this);
     }
 
 }

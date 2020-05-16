@@ -39,9 +39,15 @@ public class OptionsController implements Initializable, ControlledScreen {
 
     String mainMenuOption = NavigationUI.mainMenuScreenFile;
 
-    @FXML
+    /*@FXML
     void backToMainMenu(ActionEvent event) {
         myController.changeScreen(NavigationUI.mainMenuScreen);
+    }*/
+
+    @FXML
+    void back(ActionEvent event) {
+        if(myController.getGetBackFromSettings().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromSetting();}
+        else{myController.changeScreen(myController.getGetBackFromSettings());}
     }
 
     @FXML

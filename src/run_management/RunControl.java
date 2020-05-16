@@ -12,25 +12,30 @@ public class RunControl {
         cardCount = 10;
 
 
-        Player testP = new Player(hp,maxHp,maxPot,gold, relicCount, cardCount);
+        Player testP = new Player(true,"playerName", "Ironclad", hp,maxHp,maxPot,gold, relicCount, cardCount);
 
-        Potion testPot = new hpPotion("hppot", 30,"increase hp", hp,testP);
+        /*
+        Potion testPot = new HealthPotion();
 
 
         testP.addPot(testPot);
         System.out.println(testP.potCount);
         System.out.println(testP.getHP());
 
-        testP.usePot(0);
+        testP.usePot(testPot, null);
 
         System.out.println(testP.getHP());
         System.out.println(testP.potCount);
         System.out.println(testP);
 
-        Map test = new Map(testP);
-
+        //Map test = new Map(testP);
+        */
         //test.createVertex();
-        test.chooseVertex(2);
+        //test.chooseVertex(2);
+
+        testP.generateTresRandom();
+        System.out.println(testP.getTresPots());
+        System.out.println(testP.getTresRelics());
 
 
     }

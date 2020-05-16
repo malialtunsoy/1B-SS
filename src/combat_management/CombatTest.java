@@ -1,34 +1,56 @@
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class CombatTest extends Application {
+public class CombatTest {
 
     CombatManager manager;
 
-    @Override
-    public void start(Stage primaryStage) {
+
+    public void testCombat(Stage primaryStage) {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
         manager.setStage(primaryStage);
 
 
-        Player player = new Player(50, 50, 0, 0, 0, 0);
+        Player player = new Player(true,"playerName","Ironclad",50, 50, 3, 0, 0, 0);
         manager.setPlayer(player);
-        Card sample = new Card("abc", "abc",0,0);
+
+        // NOTE: it might be a better idea to create a new object for each card to be added.
+        // playCard removes the card from the hand using its reference directly (not its index in hand).
+        // Seems not to cause an issue now but better to be aware of it.
+        
+        Card sample = new Strike();
+        Card sample2 = new Defend();
+        Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
+        Card sample4 = new Bash();
+        player.addRelic(new RingOfTheSnake());
+        player.addRelic(new BurningBlood());
+
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample3);
+        player.addToDeck(sample4);
+        player.addToDeck(sample2);
+        player.addToDeck(sample3);
+        player.addToDeck(sample2);
+        player.addToDeck(sample4);
+        player.addToDeck(sample2);
+        player.addToDeck(sample4);
+        player.addToDeck(sample3);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample);
+        player.addToDeck(sample3);
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
+        player.addPot(new HealthPotion());
+        player.addPot(new DamagePotion());
     }
 
 
@@ -65,8 +87,8 @@ public class CombatTest extends Application {
         addEnemyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                CombatManager.getInstance().addEnemy(new Enemy("Can", 69));
-                System.out.println("Added Enemy");
+                Enemy e = new JawWorm();
+                CombatManager.getInstance().addEnemy(e);
             }
         });
         root.getChildren().add(addEnemyBtn);

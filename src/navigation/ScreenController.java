@@ -7,12 +7,21 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<String, Node>();
     MediaPlayer mediaPlayer;
+
+    private ArrayList<String> keys = new ArrayList<String>();
+    private ArrayList<String> keysFile = new ArrayList<String>();
+
+    public String backFromDeck = "";
+    public String getBackFromSettings = "";
+    public String backFromMap = "";
+
 
     public ScreenController(){
         super();
@@ -33,6 +42,7 @@ public class ScreenController extends StackPane {
 
     public void addScreen(String screenName, Node screen){
         screens.put(screenName, screen);
+
     }
 
     public Node getScreen(String screenName){
@@ -45,6 +55,8 @@ public class ScreenController extends StackPane {
             Parent loadScreen = (Parent) loader.load();
             ControlledScreen myScreenControler = ((ControlledScreen) loader.getController());
             myScreenControler.setScreenParent(this);
+            keys.add(name);
+            keysFile.add(fileName);
             addScreen(name, loadScreen);
             return true;
         } catch (Exception e) {
@@ -56,8 +68,6 @@ public class ScreenController extends StackPane {
 
 
     public boolean changeScreen(final String sceneName){
-
-
         Node screenToRemove;
              if(screens.get(sceneName) != null){   //screen loaded
                  if(!getChildren().isEmpty()){    //if there is more than one screen
@@ -79,6 +89,8 @@ public class ScreenController extends StackPane {
             System.out.println("Screen didn't exist");
             return false;
         } else {
+            keysFile.remove(keys.indexOf(SceneName));
+            keys.remove(SceneName);
             return true;
         }
     }
@@ -89,8 +101,56 @@ public class ScreenController extends StackPane {
 
     }
 
+    public boolean directChange(Node directScene){
+        Node screenToRemove;
+        if(!getChildren().isEmpty()){    //if there is more than one screen
+            getChildren().add(0, directScene);     //add the screen
+            screenToRemove = getChildren().get(1);
+            getChildren().remove(1);                    //remove the displayed screen
+        }else{
+            getChildren().add(directScene);       //no one else been displayed, then just show
+        }
+        return true;
+
+    }
+
+    public boolean screenLoadFromOtherSubs(ArrayList<String> screenNames, ArrayList<String> screenFiles ){
+
+        for(int i = 0; i < screenNames.size(); i++){
+            System.out.println(loadScreen( screenNames.get(i) , screenFiles.get(i)  ) );
+            System.out.println(screenNames.get(i) +"    " +  screenFiles.get(i) );
+        }
+        return true;
+    }
+
+    /*public void reloadScreens(){
+
+        for(int i = 0; i < screens.size(); i++){
+            reloadScreen(keys.get(i), keysFile.get(i));
+        }
 
 
+    }*/
+
+    public void setBackFromDeck(String back){
+        backFromDeck = back;
+    }
+
+    public String getBackFromDeck(){
+        return backFromDeck;
+    }
+
+    public void setGetBackFromSettings(String back){
+        getBackFromSettings = back;
+    }
+
+    public String getGetBackFromSettings(){
+        return getBackFromSettings;
+    }
+
+    public void setBackFromMap(String back){backFromMap = back;}
+
+    public String getBackFromMap(){return backFromMap;}
 
 
 }
