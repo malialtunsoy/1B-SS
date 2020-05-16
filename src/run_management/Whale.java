@@ -3,6 +3,14 @@ public class Whale {
     private int offeredGold;
     private Relic offeredRelic;
     private int offeredMaxHP;
+    private final String whaleQuote = "Hello...again...";
+
+    public Whale(int offeredGold,Relic offeredRelic, int offeredMaxHP){
+        this.offeredGold = offeredGold;
+        this.offeredRelic = offeredRelic;
+        this.offeredMaxHP = offeredMaxHP;
+
+    }
     
     public int getOfferedGold(){
         return offeredGold;
@@ -29,7 +37,10 @@ public class Whale {
         p.addRelic(getOfferedRelic());
     }
     public void takeMaxHP(Player p){
-        //p.setMaxHP(getOfferedMaxHP());}// error will be fixed there is no such method (playerda setmaxhp sorun çıktı)
+       // p.increaseHP(getOfferedMaxHP());}// error will be fixed there is no such method (playerda setmaxhp sorun çıktı)
+    }
+    public void leave(){
+        //goes to map
     }
     
     
