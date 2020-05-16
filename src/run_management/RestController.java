@@ -266,6 +266,7 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void healPlayer() {
+
         System.out.println("HEAL");
         //heal and go back to map
         double hp = Game.getInstance().myPlayer.getHP();

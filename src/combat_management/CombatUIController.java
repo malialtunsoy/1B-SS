@@ -10,6 +10,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -62,18 +63,40 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
     public void reloadPotions(){
-        ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
+        ArrayList<Potion> pots = CombatManager.getInstance().getPlayer().getPots();
 
         if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
+            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));
+            potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().usePotion(pots.get(0), CombatManager.getInstance().getEnemies().get(0));
+                }
+            });}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
+
+
+
         if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
+            Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));
+            potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().usePotion(pots.get(1), CombatManager.getInstance().getEnemies().get(0));
+                }
+            });}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
+
         if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
+            Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));
+            potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().usePotion(pots.get(2), CombatManager.getInstance().getEnemies().get(0));
+                }
+            });}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
     }
@@ -151,21 +174,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
     public void updatePotions(){
-        this.potions.getChildren().clear();
-        ArrayList<Potion> potions = CombatManager.getInstance().getPlayer().getPots();
-
-        for( Potion pot : potions) {
-            Button potBtn = new Button(pot.getName());
-            potBtn.setOnAction(
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent actionEvent) {
-                            CombatManager.getInstance().usePotion(pot, CombatManager.getInstance().getEnemies().get(0)); //for now, usepotion not implemented yet.
-                        }
-                    }
-            );
-            this.potions.getChildren().add(potBtn);
-        }
+        reloadPotions();
     }
 
     public void updateCardPiles(){
