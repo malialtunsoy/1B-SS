@@ -11,10 +11,11 @@ public class StrikePlus extends Card {
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
     private static final boolean TARGET_REQUIREMENT = true;
     private static final boolean IS_UPGRADED = true;
+    private static int COST = -1;
 
     // constructors
     public StrikePlus() {
-        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED);
+        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED, COST);
     }
 
     public void affect(Enemy target) {
@@ -22,11 +23,11 @@ public class StrikePlus extends Card {
     }
     public Card upgradedVersion()
     {
-        Card upgVer = null;
         if( IS_UPGRADED == false)
         {
-            upgVer = new Strike();
+            Card upgVer = new StrikePlus();//ui strikeplus çizemiyor dikkat
+            return upgVer;
         }
-        return upgVer;
+        return null;
     }
 }
