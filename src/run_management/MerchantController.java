@@ -355,8 +355,10 @@ public class MerchantController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
-
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        myController.setGetBackFromSettings(RunUIManager.merchantScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
     @FXML
