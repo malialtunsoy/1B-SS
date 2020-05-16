@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class EnemyViewController {
 
     @FXML
-    private ImageView image;
+    private Button button;
 
     @FXML
     private Label hp;
@@ -20,9 +21,8 @@ public class EnemyViewController {
     private Label name;
 
 
-    public void setImage(String image) {
-        //this.image = new ImageView (image);
-        this.image.setImage(new Image(image));
+    public Button getButton() {
+        return button;
     }
 
     public void setHp(int hp, int maxHp) {
