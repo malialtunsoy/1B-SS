@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EnemyViewController {
 
     @FXML
-    private Button button;
+    private ImageView image;
 
     @FXML
     private Label hp;
@@ -24,8 +24,8 @@ public class EnemyViewController {
     @FXML
     private Label intent;
 
-    public Button getButton() {
-        return button;
+    public ImageView getImage() {
+        return image;
     }
 
     public void setHp(int hp, int maxHp) {

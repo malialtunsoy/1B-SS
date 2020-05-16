@@ -185,7 +185,7 @@
                </ScrollPane>
                <ImageView fx:id="closePopUp" fitHeight="59.0" fitWidth="66.0" layoutX="820.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@close.jpg" />
+                     <Image url="@close.png" />
                   </image>
                </ImageView>
             </children>
