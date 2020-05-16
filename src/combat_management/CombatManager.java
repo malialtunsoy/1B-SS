@@ -38,6 +38,7 @@ public class CombatManager {
     private boolean playersTurn;
 
     private Card selectedCard;
+    private Potion selectedPotion;
 
     private CombatUIAdapter uiAdapter;
 
@@ -162,6 +163,7 @@ public class CombatManager {
         energy = maxEnergy;
 
         selectedCard = null;
+        selectedPotion = null;
         playTurn(); // play the next turn
     }
 
@@ -172,9 +174,19 @@ public class CombatManager {
 
     public void cardSelected(Card c) {
         if(c.getTargetRequirement()) {
+            selectedPotion = null;
             selectedCard = c;
         } else {
             playCard(c,null);
+        }
+    }
+
+    public void potionSelected(Potion p) {
+        if(p.getTargetRequirement()) {
+            selectedCard = null;
+            selectedPotion = p;
+        } else {
+            usePotion(p,null);
         }
     }
 
@@ -182,8 +194,12 @@ public class CombatManager {
         if(selectedCard != null) {
             playCard(selectedCard,enemy);
             selectedCard = null;
-        } else {
-            System.out.println("You have chosen a target but no card is selected.");
+        } else if (selectedPotion != null) {
+            usePotion(selectedPotion, enemy);
+            selectedPotion = null;
+        }
+        else {
+            System.out.println("You have chosen a target but no card/potion is selected.");
         }
     }
 

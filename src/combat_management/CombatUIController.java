@@ -71,7 +71,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    CombatManager.getInstance().usePotion(pots.get(0), CombatManager.getInstance().getEnemies().get(0));
+                    CombatManager.getInstance().potionSelected(pots.get(0));
                 }
             });
             potionSlot1.setDisable(false);
@@ -85,25 +85,25 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    CombatManager.getInstance().usePotion(pots.get(1), CombatManager.getInstance().getEnemies().get(0));
+                    CombatManager.getInstance().potionSelected(pots.get(1));
                 }
 
             });
             potionSlot2.setDisable(false);
         }
-        else{potionSlot2.setImage(null);}potionSlot2.setDisable(true);
+        else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
         if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
             Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));
             potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    CombatManager.getInstance().usePotion(pots.get(2), CombatManager.getInstance().getEnemies().get(0));
+                    CombatManager.getInstance().potionSelected(pots.get(2));
                 }
             });
             potionSlot3.setDisable(false);
         }
-        else{potionSlot3.setImage(null);;potionSlot3.setDisable(true);}
+        else{potionSlot3.setImage(null);potionSlot3.setDisable(true);}
     }
 
 
@@ -112,7 +112,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     private HBox relicSlotHBox;
 
     public void reloadRelics(){
-        ArrayList<Relic> relics = Game.getInstance().myPlayer.getRelics();
+        ArrayList<Relic> relics = CombatManager.getInstance().getPlayer().getRelics();
         relicSlotHBox.getChildren().clear();
         for(int i = 0; i < relics.size(); i++){
             ImageView tempRelicImage = new ImageView();
