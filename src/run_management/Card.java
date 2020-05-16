@@ -26,6 +26,9 @@ public abstract class Card {
     public String getCardType(){
         return cardType;
     }
+
+    public String getDescription(){return description;}
+
     public void setCardType(String newCardType){
         this.cardType = newCardType;
     }

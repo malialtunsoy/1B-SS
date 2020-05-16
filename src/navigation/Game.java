@@ -22,7 +22,7 @@ public class Game {
         System.out.println("New Game created");
         achievements = new Achievements();
         options = new GameOptions();
-        myPlayer = new Player("null", "null", 0,0,0,0,0,0);
+        //myPlayer = new Player("null", "null", 0,0,0,0,0,0);
         try {
             loadedGameExist =  FileRead.convertToBool( FileRead.readFile("Data.txt", "loadedGame") )[0];
 
@@ -71,7 +71,12 @@ public class Game {
     }
 
     public void loadRun(){
+        try {
+            loadPlayer();
+        }
+        catch (IOException e){
 
+        }
     }
 
 

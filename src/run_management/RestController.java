@@ -213,7 +213,9 @@ public class RestController implements Initializable, ControlledScreen {
 
     @FXML
     void showDeck(ActionEvent event) {
-
+        myController.setBackFromDeck(RunUIManager.restScreen);
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
+        myController.changeScreen(RunUIManager.deckScreen);
     }
 
     @FXML
