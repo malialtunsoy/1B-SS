@@ -182,7 +182,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("BlockPotion.png");
+            Image tempImageIn = new Image(merchantPotion.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             potionsVBoxes[i].getChildren().add(tempImage);
@@ -271,7 +271,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
-            Image tempImageIn = new Image("BurningBloodRelic.png");
+            Image tempImageIn = new Image(merchantRelic.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
             relicsVBoxes[i].getChildren().add(tempImage);
@@ -334,8 +334,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             ImageView tempRelicImage = new ImageView();
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
-            //Image relicImage = new Image(relics.get(i).getImage());
-            Image relicImage = new Image("BurningBloodRelic.png");
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
@@ -344,7 +344,9 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-
+        myController.setBackFromMap(RunUIManager.merchantScreen);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
+        myController.changeScreen(RunUIManager.quickMapScreen);
     }
 
     @FXML
@@ -355,8 +357,10 @@ public class MerchantController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
-
+    void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
+        myController.setGetBackFromSettings(RunUIManager.merchantScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
     @FXML
@@ -378,15 +382,15 @@ public class MerchantController implements Initializable, ControlledScreen {
     public void reloadPotions(){
         ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
 
-        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
+        if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
             Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
-        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
             Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
             Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deckController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickMapScreenController">
     <children>
         <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
@@ -122,46 +122,25 @@
             </children>
         </HBox>
         <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1030.0" />
-        <HBox layoutX="82.0" layoutY="167.0" prefHeight="530.0" prefWidth="1030.0">
+        <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
             <children>
-                <VBox alignment="TOP_CENTER" layoutX="83.0" layoutY="166.0" prefHeight="530.0" prefWidth="1030.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DECK">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets top="5.0" />
-                            </VBox.margin>
-                        </Text>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="530.0" prefWidth="1030.0">
-                            <content>
-                                <VBox fx:id="cardsVBox" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="1045.0" />
-                            </content>
-                        </ScrollPane>
-                    </children>
-                </VBox>
+                <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@BlockPotion.png" />
+                    </image>
+                </ImageView>
             </children>
         </HBox>
-      <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
-         <children>
-            <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@BlockPotion.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@BlockPotion.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@BlockPotion.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
         <HBox fx:id="relicSlotHBox" layoutX="14.0" layoutY="65.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
             <children>
                 <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
@@ -171,5 +150,10 @@
                 </ImageView>
             </children>
         </HBox>
+      <Text fill="WHITE" layoutX="563.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAP">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

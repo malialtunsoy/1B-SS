@@ -80,7 +80,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
 
 
-        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
             Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));
             potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -234,13 +234,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-        Stage mapStage = new Stage();
-        mapStage.setTitle("Map");
-        mapStage.setMaxWidth(1000);
-        mapStage.setMaxHeight(600);
-
-        //mapStage.setScene(mapScene);
-        mapStage.show();
+        CombatManager.getInstance().showMap();
     }
 
     @FXML
@@ -250,7 +244,6 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
-
-
+        CombatManager.getInstance().showSettings();
     }
 }

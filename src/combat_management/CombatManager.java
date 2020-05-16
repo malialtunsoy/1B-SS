@@ -23,6 +23,9 @@ public class CombatManager {
     private Scene menu;
     private ScreenController myController;
     private Scene currentScene;
+    boolean deckClickedBefore = false;
+    boolean settingsClickedBefore = false;
+    boolean mapClickedBefore = false;
 
     private int turn;
     private int energy;
@@ -261,12 +264,31 @@ public class CombatManager {
         stage.show();
     }
 
+    public void showMap(){
+        myController.setBackFromMap("CombatUI.fxml");
+        if(!mapClickedBefore){ myController.changeScreen(RunUIManager.quickMapScreen);}
+        mapClickedBefore = true;
+        currentScene = stage.getScene();
+        stage.setScene(menu);
+        System.out.println("Show Map");
+    }
+
     public void showDeck(){
         myController.setBackFromDeck("CombatUI.fxml");
-        myController.changeScreen(RunUIManager.deckScreen);
+        if(!deckClickedBefore){ myController.changeScreen(RunUIManager.deckScreen);}
+        deckClickedBefore = true;
         currentScene = stage.getScene();
         stage.setScene(menu);
         System.out.println("Show Deck");
+    }
+
+    public void showSettings(){
+        myController.setGetBackFromSettings("CombatUI.fxml");
+        if(!settingsClickedBefore){ myController.changeScreen(NavigationUI.optionsScreen); }
+        settingsClickedBefore = true;
+        currentScene = stage.getScene();
+        stage.setScene(menu);
+        System.out.println("Show Settings");
     }
 
     public void comeBackFromDeck(){
@@ -274,12 +296,14 @@ public class CombatManager {
         stage.setScene(currentScene);
     }
 
-    public void showSettings(){
-        System.out.println("Show Settings");
+    public void comeBackFromSetting(){
+        System.out.println("back to combat");
+        stage.setScene(currentScene);
     }
 
-    public void showMap(){
-        System.out.println("Show Map");
+    public void comeBackFromMap(){
+        System.out.println("back to combat");
+        stage.setScene(currentScene);
     }
 
     public String getCombatState() {

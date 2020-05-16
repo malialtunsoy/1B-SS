@@ -71,15 +71,15 @@ public class RunController implements Initializable, ControlledScreen {
     public void reloadPotions(){
         ArrayList<Potion> pots = Game.getInstance().myPlayer.getPots();
 
-        if(pots.size() > 0){Image slot1  = new Image("BlockPotion.png"); potionSlot1.setImage(slot1);
+        if(pots.size() > 0){Image slot1  = new Image( pots.get(0).getImage() ); potionSlot1.setImage(slot1);
             Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getPotionDescription()));}
         //if(pots.size() > 0){Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1); }
         else{potionSlot1.setImage(null);}
-        if(pots.size() > 1){Image slot2  = new Image("BlockPotion.png"); potionSlot2.setImage(slot2);
+        if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
             Tooltip.install(potionSlot2, new Tooltip(pots.get(1).getPotionDescription()));}
         //if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2); }
         else{potionSlot2.setImage(null);}
-        if(pots.size() > 2){Image slot3  = new Image("BlockPotion.png"); potionSlot3.setImage(slot3);
+        if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
             Tooltip.install(potionSlot3, new Tooltip(pots.get(2).getPotionDescription()));}
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
@@ -95,8 +95,8 @@ public class RunController implements Initializable, ControlledScreen {
             ImageView tempRelicImage = new ImageView();
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
-            //Image relicImage = new Image(relics.get(i).getImage());
-            Image relicImage = new Image("BurningBloodRelic.png");
+            Image relicImage = new Image(relics.get(i).getImage());
+            //Image relicImage = new Image("BurningBloodRelic.png");
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getRelicDescription()));
@@ -147,13 +147,10 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void openMap(ActionEvent event) {
-            Stage mapStage = new Stage();
-            mapStage.setTitle("Map");
-            mapStage.setMaxWidth(1000);
-            mapStage.setMaxHeight(600);
-
-            //mapStage.setScene(mapScene);
-            mapStage.show();
+        myController.setBackFromMap(RunUIManager.mainRunScreen);
+        myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
+        myController.changeScreen(RunUIManager.quickMapScreen);
+        SaveAndExit.save();
     }
 
     @FXML
@@ -166,23 +163,9 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
-        Stage mapStage = new Stage();
-        mapStage.setTitle("Options");
-        mapStage.setMaxWidth(1200);
-        mapStage.setMaxHeight(800);
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(NavigationUI.optionsScreenFile));
-            Parent opitonsScreen = (Parent) loader.load();
-            mapStage.setScene(new Scene(opitonsScreen));
-        }
-        catch (IOException e){
-
-        }
-
-
-        mapStage.show();
-
+        myController.setGetBackFromSettings(RunUIManager.mainRunScreen);
+        myController.changeScreen(NavigationUI.optionsScreen);
+        SaveAndExit.save();
     }
 
 
@@ -246,7 +229,7 @@ public class RunController implements Initializable, ControlledScreen {
             vertices[i].setLayoutX(positionX);
             vertices[i].setLayoutY(positionY);
 
-            System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
+           // System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
             if(i > 3){vertices[i].setDisable(true);}
 
 
