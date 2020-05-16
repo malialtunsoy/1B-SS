@@ -12,9 +12,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,7 +32,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML FlowPane potions;
     @FXML FlowPane enemies;
-    @FXML FlowPane hand;
+    @FXML AnchorPane hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
     @FXML Label playerStatus;
@@ -193,6 +191,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     public void updateCardPiles(){
         hand.getChildren().clear();
         ArrayList<Card> cards = CombatManager.getInstance().getHand();
+        int i = 0;
+
         for (Card c : cards) {
             Button cardBtn = new Button("");
             ImageView img = new ImageView(c.getImage());
@@ -205,12 +205,11 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-
             hand.getChildren().add(cardBtn);
+            cardBtn.setLayoutX(155 * i);
+            cardBtn.setLayoutY(0);
+            i++;
         }
-        hand.setMaxHeight(210);
-        hand.setPrefWidth((147 + 3) * cards.size()) ;
-        System.out.println(hand.getPrefWidth());
         //hand.setPrefWrapLength(147 * cards.size());
 
         drawPile.setText("");
