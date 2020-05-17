@@ -5,7 +5,7 @@ public class RingOfTheSnake extends Relic {
     private static final String DESCRIPTION = "Draw " + NUM_EXTRA_DRAWS + " cards at the start of each combat";
     private static final String IMAGE = "RingoftheSnake.png";
 
-    private class Effect extends RelicEffect implements CardDrawModifier {
+    public class Effect extends RelicEffect implements CardDrawModifier {
         public int modify(int amount) {
             if (CombatManager.getInstance().getTurn() == 0) {
                 return amount + NUM_EXTRA_DRAWS;

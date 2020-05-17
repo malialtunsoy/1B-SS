@@ -44,8 +44,19 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
+
     public void addStatusEffect(StatusEffect se) {
         affectedBy.add(se);
+
+
+    // setters used when loading the game
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
 
 
     public void addStatusEffect(StatusEffect newEffect) {
@@ -60,7 +71,6 @@ public abstract class CombatEntity {
         if (sameEffect == null) {
             // add the effect
             newEffect.setAffectee(this);
-            System.out.println("IN");
             affectedBy.add(newEffect);
         } else {
             // stack the counter of the new effect to the existing one
@@ -79,7 +89,7 @@ public abstract class CombatEntity {
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         for (int i = 0; i < shallowCopy.size(); i++) {
-            StatusEffect se = affectedBy.get(i);
+            StatusEffect se = shallowCopy.get(i);
             if (isTurnStart == se.decayAtTurnStart()) {
                 se.decay();
             }
@@ -87,9 +97,10 @@ public abstract class CombatEntity {
     }
 
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
-    public void takeDamage(int amount) {
+    // returns false if entity dies
+    public boolean takeDamage(int amount) {
         int modifiedAmount = invokeAllModifiers(IncomingDamageModifier.class, amount);
-        loseHP(modifiedAmount);
+        return loseHP(modifiedAmount);
     }
 
     // modify amount with all status effects in affected by that implement cls
@@ -109,7 +120,7 @@ public abstract class CombatEntity {
         return amount;
     }
 
-    public <T extends Triggered> void triggerAll(Class<T> cls) {
+    public <T extends Triggered> void triggerAll(Class<T> cls, Object triggerSource) {
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
@@ -117,14 +128,16 @@ public abstract class CombatEntity {
         for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = shallowCopy.get(i);
             if (cls.isAssignableFrom(se.getClass())) {
-                ((T) se).triggered();
+                ((T) se).triggered(triggerSource);
             }
         }
     }
 
-    public void dealDamage(int amount, CombatEntity target) {
+    // returns false if target dies
+    public boolean dealDamage(int amount, CombatEntity target) {
         int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
-        target.takeDamage(modifiedAmount);
+        triggerAll(TriggeredOnDamageTake.class, this);
+        return target.takeDamage(modifiedAmount);
     }
 
     public String toString() {

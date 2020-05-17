@@ -7,7 +7,7 @@ public class BurningBlood extends Relic {
 
 
     private class Effect extends RelicEffect implements TriggeredAtCombatEnd {
-        public void triggered() {
+        public void triggered(Object triggerSource) {
             CombatManager.getInstance().getPlayer().gainHP(HP_RESTORED);
         }
     }

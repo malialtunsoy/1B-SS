@@ -6,13 +6,15 @@ public abstract class StatusEffect {
                         // status effects are of the same type. Also useful in ui
     private CombatEntity affectee;
     private boolean appliedByAnEnemy;   // affects when the status effect decays
+    private String description;
 
     // --- constructors ---
     // appliedByAnEnemy defaults to false. Intent realizations call the set method
-    public StatusEffect(String name, int counter) {
+    public StatusEffect(String name, int counter, String description) {
         this.appliedByAnEnemy = false;
         this.counter = counter;
         this.name = name;
+        this.description = description;
     }
 
 
@@ -28,7 +30,13 @@ public abstract class StatusEffect {
         }
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getName() {return name;}
+
+    public String getImage() {return name + ".png";}
 
     public void setAffectee(CombatEntity affectee) {
         this.affectee = affectee;
