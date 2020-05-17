@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -172,14 +173,51 @@ public class RunController implements Initializable, ControlledScreen {
     void createMap(){ //--------------------109,136 -------- 946,136"
         System.out.println("map drawn");//    -                  -      488
                                         //  109,624-----------946,624
-        int numberOfVertices = 18;          //       837
+        int numberOfVertices = 25;          //       837
         int verticesSize = 50;
+        int index = 0;
 
         Button[] vertices = new Button[numberOfVertices];
         ImageView[] verticesImage = new ImageView[numberOfVertices];
         Image[] verticesImageIn = new Image[numberOfVertices];
 
-        int layerXstart = 110;
+        Map.VertexNode[] paths = Game.getInstance().myPlayer.myMap.getPaths();
+
+        String verticeType;
+        for(int i = 0; i < 4; i++) {
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext(), index++) {
+
+                vertices[index] = new Button();
+                vertices[index].setPrefHeight(verticesSize);
+                vertices[index].setPrefWidth(verticesSize);
+
+                verticesImage[index] = new ImageView();
+                verticesImage[index].setFitHeight(verticesSize);
+                verticesImage[index].setFitWidth(verticesSize);
+                verticesImage[index].setPickOnBounds(true);
+                verticesImage[index].setPreserveRatio(true);
+
+                verticesImageIn[index] = new Image(findImage(temp.getVertex()));
+                verticesImage[index].setImage(verticesImageIn[index]);
+
+                vertices[index].setGraphic(verticesImage[index]);
+
+                vertices[index].setLayoutX(temp.getLocationX());
+                vertices[index].setLayoutY(temp.getLocationY());
+
+                Line tempLine = null;
+                if(temp.getNext() != null){
+                tempLine = new Line(temp.getLocationX()+25, temp.locationY+25, temp.getNext().getLocationX()+25, temp.getNext().getLocationY()+25);}
+
+                if(tempLine != null)anchorPaneMain.getChildren().add(tempLine);
+                anchorPaneMain.getChildren().add(vertices[index]);
+
+                if (index > 3) {
+                    vertices[index].setDisable(true);
+                }
+            }
+       }
+       /* int layerXstart = 110;
         int layerXend = 200;
 
         int layerYstart = 140;
@@ -234,8 +272,17 @@ public class RunController implements Initializable, ControlledScreen {
 
 
         }
+        */
 
+    }
 
+    public String findImage(String VertexName){
+        if(VertexName.equals("Combat")){return "combat+.png";}
+        if(VertexName.equals("Rest")){return "rest+.png";}
+        if(VertexName.equals("Treasure")){return "treasure+.png";}
+        if(VertexName.equals("Merchant")){return "merchant+.png";}
+        if(VertexName.equals("Boss")){return "boss+.png";}
+        return null;
     }
 
 

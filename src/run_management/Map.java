@@ -8,6 +8,9 @@ public class Map {
     int numberOfRestLeft = 1; // 3 - 2
     int numberOfTreasureLeft = 3;
 
+    int mapStartAtXLocation = 109;
+    int mapStartAtYLocation = 136;
+
     int currentPosition;
     Vertex[] vertices ;
     String[] vertexTypes;
@@ -28,6 +31,8 @@ public class Map {
         String vertex;
         VertexNode next;
         VertexNode alternativeNext;
+        int locationX;
+        int locationY;
 
         public VertexNode(){
             vertex = null;
@@ -64,6 +69,24 @@ public class Map {
         public VertexNode getAlternativeNext() {
             return alternativeNext;
         }
+
+        public void setLocationX(int locationX) {
+            this.locationX = locationX;
+        }
+
+        public int getLocationX() {
+            return locationX;
+        }
+
+        public void setLocationY(int locationY) {
+            this.locationY = locationY;
+        }
+
+        public int getLocationY() {
+            return locationY;
+        }
+
+
     }
 
 
@@ -71,6 +94,15 @@ public class Map {
     {
         organizeMap();
         drawMap();
+    }
+
+    public VertexNode[] getPaths(){
+        VertexNode[] paths = new VertexNode[4];
+        paths[0] = path1Root;
+        paths[1] = path2Root;
+        paths[2] = path3Root;
+        paths[3] = path4Root;
+        return  paths;
     }
 
     public void organizeMap(){ //Total number of vertices = 18 ---> Let 8 Combats, 3 Rests, 3 Treasure, 3 Merchant and 1 Boss
@@ -107,6 +139,8 @@ public class Map {
         path2curNode.setNext(lastRestNode1);// [] [] [] [] []  []
         path3curNode.setNext(lastRestNode2);// [] [] [] []          []
         path4curNode.setNext(lastRestNode2);// [] [] [] [] []  []
+
+        locationOrganizer();
     }
 
     public String randomVertex(){
@@ -137,23 +171,53 @@ public class Map {
         return randomVertex;
     }
 
+    public void locationOrganizer(){
+        int curLocX = mapStartAtXLocation;
+        int curLocY = mapStartAtYLocation;
+
+        for(VertexNode temp = path1Root; temp !=null ;temp = temp.getNext()){
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationY(curLocY + RandomLocation());
+        }
+        curLocY += 120; curLocX = mapStartAtXLocation;
+        for(VertexNode temp = path2Root; temp !=null ;temp = temp.getNext()){
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationY(curLocY + RandomLocation());
+        }
+        curLocY += 120; curLocX = mapStartAtXLocation;
+        for(VertexNode temp = path3Root; temp !=null ;temp = temp.getNext()){
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationY(curLocY + RandomLocation());
+        }
+        curLocY += 120; curLocX = mapStartAtXLocation;
+        for(VertexNode temp = path4Root; temp !=null ;temp = temp.getNext()){
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationY(curLocY + RandomLocation());
+        }
+    }
+
+    public int RandomLocation(){
+       return (int)(Math.random() * 60);
+    }
+
+
 
     public void drawMap(){
 
         for(VertexNode temp = path1Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "] ---> ");
+            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
         }
         System.out.println();
         for(VertexNode temp = path2Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "] ---> ");
+            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
         }
         System.out.println();
         for(VertexNode temp = path3Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "] ---> ");
+            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
         }
         System.out.println();
         for(VertexNode temp = path4Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "] ---> ");
+            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
         }
         System.out.println();
 
