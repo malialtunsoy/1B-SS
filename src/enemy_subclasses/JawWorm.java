@@ -22,7 +22,7 @@ public class JawWorm extends Enemy {
     @Override
     public void declareIntent() {
         double [] probs = {CHOMP_PROB, THRASH_PROB, BELLOW_PROB};
-        int choice = ProbUtilities.indexWithProb(probs);
+        int choice = RandomUtil.indexWithProb(probs);
         System.out.println("JawWorm choice: " + choice);
         if (CombatManager.getInstance().getTurn() == 0) {
             choice = 0; // always chomp at the first turn

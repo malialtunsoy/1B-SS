@@ -40,7 +40,7 @@ public abstract class StatusEffect {
 
     public String getName() {return name;}
 
-    public String getImage() {return name + ".png";}
+    public String getImage() {return getClass().getName() + ".png";}
 
     public void setAffectee(CombatEntity affectee) {
         this.affectee = affectee;

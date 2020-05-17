@@ -35,7 +35,7 @@
      public int getPotionCost(){return potionCost;}
      public boolean getTargetRequirement() { return targetRequirement;}
      public void setImage( String image ){this.image = image;}
-     public String getImage(){return image;}
+     public String getImage(){return getClass().getName() + ".png";}
 
      public void setCost(int cost){potionCost = cost;}
      public int getCost(){return potionCost;}
