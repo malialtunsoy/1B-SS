@@ -292,8 +292,13 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         CombatManager.getInstance().showSettings();
     }
 
-    void showPrompt(boolean show ,String name) {
+    public void showPrompt(boolean show ,String name) {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
+    }
+
+    @FXML
+    private void save() {
+        SaveAndExit.save();
     }
 }

@@ -196,5 +196,6 @@
                <Font size="30.0" />
             </font>
          </Label>
+         <Button layoutX="1102.0" layoutY="121.0" mnemonicParsing="false" onAction="#save" text="Save" />
       </children></AnchorPane>
 </Scene>
