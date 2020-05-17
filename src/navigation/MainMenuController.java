@@ -38,6 +38,7 @@ public class MainMenuController implements Initializable, ControlledScreen {
 
             myController.screenLoadFromOtherSubs(myRun.screenNames, myRun.screenFiles);
             myController.changeScreen("MainRunScreen");
+            myController.playFight();
         }
     }
 
