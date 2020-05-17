@@ -1,12 +1,11 @@
-public class TEST_PURPOSE_CARD_Strengthen extends Card{
+public class Strengthen extends Card{
     private static final int ENERGY_COST = 1;
     private static final int STRENGTH_GAIN = 1;
     private static final boolean TARGET_REQUIREMENT = false;
-    private static final boolean IS_UPGRADED = false;
     private static int COST = 120;
 
-    public TEST_PURPOSE_CARD_Strengthen() {
-        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", TARGET_REQUIREMENT,IS_UPGRADED, COST);
+    public Strengthen() {
+        super("Strengthen", "Skill", ENERGY_COST, "Gain " + STRENGTH_GAIN + " strength.", TARGET_REQUIREMENT, COST);
     }
 
     @Override
@@ -14,14 +13,8 @@ public class TEST_PURPOSE_CARD_Strengthen extends Card{
         // non-targeted card. parameter e is meaningless.
         CombatManager.getInstance().getPlayer().addStatusEffect(new Strength(STRENGTH_GAIN));
     }
-    public Card upgradedVersion()
-    {
-        if( IS_UPGRADED == false)
-        {
-            Card upgVer = new StrikePlus();//just example
-            return upgVer;
-        }
-        return null;
+    public Card upgradedVersion() {
+        return new StrengthenPlus();
     }
 
 }

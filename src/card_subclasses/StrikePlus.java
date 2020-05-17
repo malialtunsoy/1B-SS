@@ -15,7 +15,7 @@ public class StrikePlus extends Card {
 
     // constructors
     public StrikePlus() {
-        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED, COST);
+        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT, COST);
     }
 
     public void affect(Enemy target) {
@@ -25,7 +25,7 @@ public class StrikePlus extends Card {
     {
         if( IS_UPGRADED == false)
         {
-            Card upgVer = new StrikePlus();//ui strikeplus çizemiyor dikkat
+            Card upgVer = new StrikePlus(); //ui strikeplus çizemiyor dikkat
             return upgVer;
         }
         return null;

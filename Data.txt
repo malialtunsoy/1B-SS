@@ -27,8 +27,8 @@
 0###Combat::Player::StatusEffects::Names###	****
 0###Combat::Player::StatusEffects::Counters###	****
 0###Combat::Player::StatusEffects::AppliedByAnEnemy###	****
-7###Combat::Hand###	**TEST_PURPOSE_CARD_Strengthen**Defend**Defend**Strike**Defend**Strike**Strike**
-21###Combat::DrawPile###	**Strike**Defend**Strike**Defend**Defend**Bash**Defend**Strike**Strike**Strike**TEST_PURPOSE_CARD_Strengthen**Bash**Defend**Strike**Defend**TEST_PURPOSE_CARD_Strengthen**Defend**Strike**Bash**TEST_PURPOSE_CARD_Strengthen**Strike**
+7###Combat::Hand###	**Strengthen**Defend**Defend**Strike**Defend**Strike**Strike**
+21###Combat::DrawPile###	**Strike**Defend**Strike**Defend**Defend**Bash**Defend**Strike**Strike**Strike**Strengthen**Bash**Defend**Strike**Defend**Strengthen**Defend**Strike**Bash**Strengthen**Strike**
 0###Combat::DiscardPile###	**
 3###Combat::Energy/MaxEnergy/Turn###	**3**3**1**
 

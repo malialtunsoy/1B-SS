@@ -14,7 +14,7 @@ public class Strike extends Card {
     private static int COST = 140;
     // constructors
     public Strike() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED,COST);
+        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
     }
 
     public void affect(Enemy target) {
