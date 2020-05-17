@@ -1,6 +1,8 @@
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+
 public class Map {
     int vertexSize = 11; // 18 - (4 inital combat) - (last 2 rest and boss)
     int numberOfCombatLeft = 4; // 8 - 4
@@ -27,7 +29,25 @@ public class Map {
     VertexNode path3curNode;
     VertexNode path4curNode;
 
+    int sizeOfPath1 = 0;
+    int sizeOfPath2 = 0;
+    int sizeOfPath3 = 0;
+    int sizeOfPath4 = 0;
+
     VertexNode currentMainVertex;
+
+    //DATA
+    String[] path1Data; //Node types
+    String[] path2Data;
+    String[] path3Data;
+    String[] path4Data;
+
+    int[] path1NumbericalData;  //Node alternate node and locations
+    int[] path2NumbericalData;  //[nodeIndex][alternatePath][alterNatePathNodeIndex][LocX][LoxY]
+    int[] path3NumbericalData;
+    int[] path4NumbericalData;
+
+    int[] currentVertex = {-1,-1};  //[pathNumber][pathIndex}
 
     public class VertexNode{
         String vertex;
@@ -36,6 +56,9 @@ public class Map {
         int locationX;
         int locationY;
         boolean available;
+
+        int PathNumber;
+        int PathIndex;
 
         public VertexNode(){
             vertex = null;
@@ -98,14 +121,49 @@ public class Map {
             return available;
         }
 
+        public void setPathIndex(int pathIndex) {
+            PathIndex = pathIndex;
+        }
 
+        public int getPathIndex() {
+            return PathIndex;
+        }
+
+        public void setPathNumber(int pathNumber) {
+            PathNumber = pathNumber;
+        }
+
+        public int getPathNumber() {
+            return PathNumber;
+        }
     }
 
 
     public Map()
     {
-        organizeMap();
+        initializeMap();
+        prepareData();
         drawMap();
+    }
+
+    public String[][] getDataPath(){
+        String[][] data = {path1Data, path2Data, path3Data, path4Data};
+        return  data;
+    }
+
+    public int[][] getDataPathNumeric(){
+        int[][] data = {path1NumbericalData, path2NumbericalData, path3NumbericalData, path4NumbericalData};
+        return  data;
+    }
+
+    public int[] getCurrentVertexData(){return currentVertex;}
+
+    public void initializeMap(){
+        organizeMap();
+    }
+
+    public void loadMap(){
+
     }
 
     public VertexNode[] getPaths(){
@@ -125,27 +183,45 @@ public class Map {
         path3Root = new VertexNode("Combat", null,null); path3curNode = path3Root;                                //  []
         path4Root = new VertexNode("Combat", null,null); path4curNode = path4Root;                                //  [] 4
 
+        path1curNode.setPathNumber(1); path1curNode.setPathIndex(sizeOfPath1++);
+        path2curNode.setPathNumber(2); path2curNode.setPathIndex(sizeOfPath2++);
+        path3curNode.setPathNumber(3); path3curNode.setPathIndex(sizeOfPath3++);
+        path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
+
         for(int i = 0; i < 2; i++){
             VertexNode tempNode = new VertexNode(randomVertex(), null, null);   // [] [] []
             path1curNode.setNext(tempNode); path1curNode = path1curNode.getNext();                 // [] [] []
+            path1curNode.setPathNumber(1); path1curNode.setPathIndex(sizeOfPath1++);
             tempNode = new VertexNode(randomVertex(), null, null);              // [] [] []
             path2curNode.setNext(tempNode); path2curNode = path2curNode.getNext();                 // [] [] []  12
+            path2curNode.setPathNumber(2); path2curNode.setPathIndex(sizeOfPath2++);
             tempNode = new VertexNode(randomVertex(), null, null);
             path3curNode.setNext(tempNode); path3curNode = path3curNode.getNext();
+            path3curNode.setPathNumber(3); path3curNode.setPathIndex(sizeOfPath3++);
             tempNode = new VertexNode(randomVertex(), null, null);
             path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();
+            path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
         }
 
         VertexNode tempNode = new VertexNode(randomVertex(), null, null);   // [] [] [] [] []
         path2curNode.setNext(tempNode); path2curNode = path2curNode.getNext();                 // [] [] [] [] []
-        tempNode = new VertexNode(randomVertex(), null, null);              // [] [] [] []
-        path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();                 // [] [] [] [] [] 15
+        path2curNode.setPathNumber(2); path2curNode.setPathIndex(sizeOfPath2++);                // [] [] [] []
+                                                                                                 // [] [] [] [] [] 15
         tempNode = new VertexNode(randomVertex(), null, null);
+        path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();
+        path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
+        tempNode = new VertexNode(randomVertex(), null, null);
+
         path1curNode.setNext(tempNode); path1curNode = path1curNode.getNext();
+        path1curNode.setPathNumber(1); path1curNode.setPathIndex(sizeOfPath1++);
 
         VertexNode bossNode = new VertexNode("Boss", null, null);    //  []
         VertexNode lastRestNode1 = new VertexNode("Rest", bossNode,null);  //     []
         VertexNode lastRestNode2 = new VertexNode("Rest", bossNode,null);  //  []
+
+        bossNode.setPathNumber(99); bossNode.setPathIndex(99);
+        lastRestNode1.setPathNumber(99); lastRestNode1.setPathIndex(1);
+        lastRestNode2.setPathNumber(99); lastRestNode2.setPathIndex(2);
 
         path1curNode.setNext(lastRestNode1);// [] [] [] [] []
         path2curNode.setNext(lastRestNode1);// [] [] [] [] []  []
@@ -252,23 +328,31 @@ public class Map {
 
     public void drawMap(){
 
-        for(VertexNode temp = path1Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
-        }
-        System.out.println();
-        for(VertexNode temp = path2Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
-        }
-        System.out.println();
-        for(VertexNode temp = path3Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
-        }
-        System.out.println();
-        for(VertexNode temp = path4Root; temp !=null ;temp = temp.getNext()){
-            System.out.print("[" + temp.getVertex() + "  ("+temp.getLocationX()+","+temp.getLocationY()+")  ] ---> ");
-        }
-        System.out.println();
 
+        for(int i = 0; i<path1NumbericalData.length;i++){
+            if(i % 5 == 0){   System.out.print( path1Data[i/5] + ": ");  }
+            System.out.print(path1NumbericalData[i] + ",");
+            if(i % 5 == 4){System.out.print("---->");}
+        }
+        System.out.println();
+        for(int i = 0; i<path2NumbericalData.length;i++){
+            if(i % 5 == 0){   System.out.print( path2Data[i/5] + ": ");  }
+            System.out.print(path2NumbericalData[i] + ",");
+            if(i % 5 == 4){System.out.print("---->");}
+        }
+        System.out.println();
+        for(int i = 0; i<path3NumbericalData.length;i++){
+            if(i % 5 == 0){   System.out.print( path3Data[i/5] + ": ");  }
+            System.out.print(path3NumbericalData[i] + ",");
+            if(i % 5 == 4){System.out.print("---->");}
+        }
+        System.out.println();
+        for(int i = 0; i<path4NumbericalData.length;i++){
+            if(i % 5 == 0){   System.out.print( path4Data[i/5] + ": ");  }
+            System.out.print(path4NumbericalData[i] + ",");
+            if(i % 5 == 4){System.out.print("---->");}
+        }
+        System.out.println();
 
     }
 
@@ -334,8 +418,116 @@ public class Map {
 
     public void setCurrentVertex(VertexNode vertex){
         currentMainVertex = vertex;
+        currentVertex[0] = vertex.getPathNumber(); currentVertex[1] = vertex.getPathIndex();
         detectNextPossibleVertices(vertex);
+
+        //System.out.println(currentVertex[0] +" "  +currentVertex[1]);
     }
+
+    public VertexNode retrieveVertexNode(int path, int index){
+        VertexNode curVertex = getPaths()[path-1];
+
+        while(curVertex.getPathIndex() != index){
+            curVertex = curVertex.getNext();
+        }
+
+        return curVertex;
+    }
+
+
+    public void prepareData() {
+
+        path1Data = new String[7]; //Node types
+        path2Data = new String[7];
+        path3Data = new String[6];
+        path4Data = new String[7];
+
+        path1NumbericalData = new int[7 * 5];  //Node alternate node and locations  [nodeIndex][alternatePath][alterNatePathNodeIndex][LocX][LoxY]
+        path2NumbericalData = new int[7 * 5];
+        path3NumbericalData = new int[6 * 5];
+        path4NumbericalData = new int[7 * 5];
+
+        int index = 0;
+        for (VertexNode temp = path1Root; temp != null; temp = temp.getNext(), index++) {
+            path1Data[index] = temp.getVertex();
+        }
+
+        index = 0;
+        for (VertexNode temp = path2Root; temp != null; temp = temp.getNext(), index++) {
+            path2Data[index] = temp.getVertex();
+        }
+
+        index = 0;
+        for (VertexNode temp = path3Root; temp != null; temp = temp.getNext(), index++) {
+            path3Data[index] = temp.getVertex();
+        }
+
+        index = 0;
+        for (VertexNode temp = path4Root; temp != null; temp = temp.getNext(), index++) {
+            path4Data[index] = temp.getVertex();
+        }
+
+        index = 0;
+        for (VertexNode temp = path1Root; temp != null; temp = temp.getNext(), index += 5) {
+            path1NumbericalData[index] = temp.getPathIndex();
+            if (temp.getAlternativeNext() != null) {
+                path1NumbericalData[index + 1] = temp.getAlternativeNext().getPathNumber();
+                path1NumbericalData[index + 2] = temp.getAlternativeNext().getPathIndex();
+            } else {
+                path1NumbericalData[index + 1] = -1;
+                path1NumbericalData[index + 2] = -1;
+            }
+            path1NumbericalData[index + 3] = temp.getLocationX();
+            path1NumbericalData[index + 4] = temp.getLocationY();
+        }
+
+            index = 0;
+            for (VertexNode temp = path2Root; temp != null; temp = temp.getNext(), index += 5) {
+                path2NumbericalData[index] = temp.getPathIndex();
+                if (temp.getAlternativeNext() != null) {
+                    path2NumbericalData[index + 1] = temp.getAlternativeNext().getPathNumber();
+                    path2NumbericalData[index + 2] = temp.getAlternativeNext().getPathIndex();
+                } else {
+                    path2NumbericalData[index + 1] = -1;
+                    path2NumbericalData[index + 2] = -1;
+                }
+                path2NumbericalData[index + 3] = temp.getLocationX();
+                path2NumbericalData[index + 4] = temp.getLocationY();
+            }
+
+            index = 0;
+            for (VertexNode temp = path3Root; temp != null; temp = temp.getNext(), index += 5) {
+                path3NumbericalData[index] = temp.getPathIndex();
+                if (temp.getAlternativeNext() != null) {
+                    path3NumbericalData[index + 1] = temp.getAlternativeNext().getPathNumber();
+                    path3NumbericalData[index + 2] = temp.getAlternativeNext().getPathIndex();
+                } else {
+                    path3NumbericalData[index + 1] = -1;
+                    path3NumbericalData[index + 2] = -1;
+                }
+                path3NumbericalData[index + 3] = temp.getLocationX();
+                path3NumbericalData[index + 4] = temp.getLocationY();
+            }
+
+            index = 0;
+            for (VertexNode temp = path4Root; temp != null; temp = temp.getNext(), index += 5) {
+                path4NumbericalData[index] = temp.getPathIndex();
+                if (temp.getAlternativeNext() != null) {
+                    path4NumbericalData[index + 1] = temp.getAlternativeNext().getPathNumber();
+                    path4NumbericalData[index + 2] = temp.getAlternativeNext().getPathIndex();
+                } else {
+                    path4NumbericalData[index + 1] = -1;
+                    path4NumbericalData[index + 2] = -1;
+                }
+                path4NumbericalData[index + 3] = temp.getLocationX();
+                path4NumbericalData[index + 4] = temp.getLocationY();
+            }
+        }
+
+
+
+
+
 
 
 }
