@@ -17,10 +17,11 @@ public class Map {
     int level;
 
     int vertexSize = 11; // 18 - (4 inital combat) - (last 2 rest and boss)
-    int numberOfCombatLeft = 4; // 8 - 4
+    int numberOfCombatLeft = 3; // 8 - 4
     int numberOfMerchantLeft = 3;
     int numberOfRestLeft = 1; // 3 - 2
-    int numberOfTreasureLeft = 3;
+    int numberOfTreasureLeft = 4;
+    int numberOfEliteCombat = 2;
 
     int mapStartAtXLocation = 109;
     int mapStartAtYLocation = 136;
@@ -205,32 +206,24 @@ public class Map {
         path3curNode.setPathNumber(3); path3curNode.setPathIndex(sizeOfPath3++);
         path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
 
-        for(int i = 0; i < 2; i++){
-            VertexNode tempNode = new VertexNode(randomVertex(), null, null);   // [] [] []
-            path1curNode.setNext(tempNode); path1curNode = path1curNode.getNext();                 // [] [] []
+        for(int i = 0; i < 3; i++){
+            VertexNode tempNode = new VertexNode(randomVertex(), null, null);   // [] [] [][]
+            path1curNode.setNext(tempNode); path1curNode = path1curNode.getNext();                 // [] [] [][]
             path1curNode.setPathNumber(1); path1curNode.setPathIndex(sizeOfPath1++);
-            tempNode = new VertexNode(randomVertex(), null, null);              // [] [] []
-            path2curNode.setNext(tempNode); path2curNode = path2curNode.getNext();                 // [] [] []  12
+
+            tempNode = new VertexNode(randomVertex(), null, null);              // [] [] [][]
+            path2curNode.setNext(tempNode); path2curNode = path2curNode.getNext();                 // [] [] [][]  16
             path2curNode.setPathNumber(2); path2curNode.setPathIndex(sizeOfPath2++);
+
             tempNode = new VertexNode(randomVertex(), null, null);
             path3curNode.setNext(tempNode); path3curNode = path3curNode.getNext();
             path3curNode.setPathNumber(3); path3curNode.setPathIndex(sizeOfPath3++);
+
             tempNode = new VertexNode(randomVertex(), null, null);
             path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();
             path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
         }
 
-        VertexNode tempNode = new VertexNode(randomVertex(), null, null);   // [] [] [] [] []
-        path2curNode.setNext(tempNode); path2curNode = path2curNode.getNext();                 // [] [] [] [] []
-        path2curNode.setPathNumber(2); path2curNode.setPathIndex(sizeOfPath2++);                // [] [] [] []
-        // [] [] [] [] [] 15
-        tempNode = new VertexNode(randomVertex(), null, null);
-        path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();
-        path4curNode.setPathNumber(4); path4curNode.setPathIndex(sizeOfPath4++);
-        tempNode = new VertexNode(randomVertex(), null, null);
-
-        path1curNode.setNext(tempNode); path1curNode = path1curNode.getNext();
-        path1curNode.setPathNumber(1); path1curNode.setPathIndex(sizeOfPath1++);
 
         VertexNode bossNode = new VertexNode("Boss", null, null);    //  []
         VertexNode lastRestNode1 = new VertexNode("Rest", bossNode,null);  //     []
@@ -239,6 +232,10 @@ public class Map {
         bossNode.setPathNumber(99); bossNode.setPathIndex(99);
         lastRestNode1.setPathNumber(99); lastRestNode1.setPathIndex(1);
         lastRestNode2.setPathNumber(99); lastRestNode2.setPathIndex(2);
+
+        boss = bossNode;
+        rest1 = lastRestNode1;
+        rest2 = lastRestNode2;
 
         path1curNode.setNext(lastRestNode1);// [] [] [] [] []
         path2curNode.setNext(lastRestNode1);// [] [] [] [] []  []
@@ -260,7 +257,7 @@ public class Map {
         if(vertexSize == 0){return null;}
         String randomVertex = null;
         while(randomVertex == null) {
-            int i = (int) (Math.random() * 4);
+            int i = (int) (Math.random() * 5);
             System.out.println("Random number: " + i);
 
             if (i == 0 && numberOfCombatLeft > 0) {
@@ -279,6 +276,10 @@ public class Map {
                 randomVertex = "Rest";
                 numberOfRestLeft--;
             }
+            if (i == 4 && numberOfEliteCombat > 0) {
+                randomVertex = "EliteCombat";
+                numberOfEliteCombat--;
+            }
         }
         System.out.println(randomVertex);
         return randomVertex;
@@ -289,7 +290,7 @@ public class Map {
         VertexNode[] curNodes = getPaths();
 
 
-        for(int layers = 0; layers < 3; layers++) { //layer 1 to 4
+        for(int layers = 0; layers < 4; layers++) { //layer 1 to 5
             for(int path = 0; path < 4; path++ ) {  //path no
                 rand = (int)(Math.random() * 10);
                 if (rand < 3) { //3/10 possibility
@@ -318,24 +319,26 @@ public class Map {
         int curLocY = mapStartAtYLocation;
 
         for(VertexNode temp = path1Root; temp !=null ;temp = temp.getNext()){
-            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 140;
             temp.setLocationY(curLocY + RandomLocation());
         }
         curLocY += 120; curLocX = mapStartAtXLocation;
         for(VertexNode temp = path2Root; temp !=null ;temp = temp.getNext()){
-            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 140;
             temp.setLocationY(curLocY + RandomLocation());
         }
         curLocY += 120; curLocX = mapStartAtXLocation;
         for(VertexNode temp = path3Root; temp !=null ;temp = temp.getNext()){
-            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 140;
             temp.setLocationY(curLocY + RandomLocation());
         }
         curLocY += 120; curLocX = mapStartAtXLocation;
         for(VertexNode temp = path4Root; temp !=null ;temp = temp.getNext()){
-            temp.setLocationX(curLocX + RandomLocation()); curLocX += 115;
+            temp.setLocationX(curLocX + RandomLocation()); curLocX += 140;
             temp.setLocationY(curLocY + RandomLocation());
         }
+
+        boss.setLocationY(150 + RandomLocation()*6);
     }
 
     public int RandomLocation(){
@@ -589,15 +592,15 @@ public class Map {
 
     public void prepareData() {
 
-        path1Data = new String[7]; //Node types
-        path2Data = new String[7];
-        path3Data = new String[6];
-        path4Data = new String[7];
+        path1Data = new String[8]; //Node types
+        path2Data = new String[8];
+        path3Data = new String[8];
+        path4Data = new String[8];
 
-        path1NumbericalData = new int[7 * 5];  //Node alternate node and locations  [nodeIndex][alternatePath][alterNatePathNodeIndex][LocX][LoxY]
-        path2NumbericalData = new int[7 * 5];
-        path3NumbericalData = new int[6 * 5];
-        path4NumbericalData = new int[7 * 5];
+        path1NumbericalData = new int[8 * 5];  //Node alternate node and locations  [nodeIndex][alternatePath][alterNatePathNodeIndex][LocX][LoxY]
+        path2NumbericalData = new int[8 * 5];
+        path3NumbericalData = new int[8 * 5];
+        path4NumbericalData = new int[8 * 5];
 
         int index = 0;
         for (VertexNode temp = path1Root; temp != null; temp = temp.getNext(), index++) {

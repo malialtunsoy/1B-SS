@@ -261,6 +261,11 @@ public class RunController implements Initializable, ControlledScreen {
                         //To be added
                     }
 
+                    if(thisVertex.getVertex().equals("EliteCombat")){
+                        System.out.println("ELITE COMBAT");
+                        //To be added
+                    }
+
                     if(thisVertex.getVertex().equals("Boss")){
                         System.out.println("BOSS");
                         //To be added
@@ -295,6 +300,9 @@ public class RunController implements Initializable, ControlledScreen {
         public String findImage (String VertexName){
             if (VertexName.equals("Combat")) {
                 return "combat+.png";
+            }
+            if (VertexName.equals("EliteCombat")) {
+                return "eliteCombat+.png";
             }
             if (VertexName.equals("Rest")) {
                 return "rest+.png";
