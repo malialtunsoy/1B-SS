@@ -152,6 +152,8 @@ public class Map {
         public int getPathNumber() {
             return PathNumber;
         }
+
+
     }
 
 
@@ -169,6 +171,8 @@ public class Map {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public VertexNode getCurrentVertex(){return currentMainVertex;}
 
     public String[][] getDataPath(){
         String[][] data = {path1Data, path2Data, path3Data, path4Data};
@@ -671,11 +675,6 @@ public class Map {
                 path4NumbericalData[index + 4] = temp.getLocationY();
             }
         }
-
-
-
-
-
 
 
 }

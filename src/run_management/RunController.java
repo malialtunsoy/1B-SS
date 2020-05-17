@@ -232,6 +232,7 @@ public class RunController implements Initializable, ControlledScreen {
                 vertices[index].setLayoutY(temp.getLocationY());
 
                 vertices[index].setDisable(!temp.getAvailable());
+                vertices[index].setOpacity(100);
 
                 Map.VertexNode thisVertex = temp;
                 vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.setCurrentVertex(thisVertex);
@@ -271,6 +272,23 @@ public class RunController implements Initializable, ControlledScreen {
                 mapAnchorPane.getChildren().add(vertices[index]);
 
             }
+        }
+
+        //put pin
+        ImageView pin = new ImageView();
+        pin.setFitHeight(30);
+        pin.setFitWidth(30);
+        pin.setPickOnBounds(true);
+        pin.setPreserveRatio(true);
+        Map.VertexNode curNode = Game.getInstance().myPlayer.myMap.getCurrentVertex();
+        if(Game.getInstance().myPlayer.myMap.getLevel() > 0) {
+            pin.setLayoutX(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationX()+18);
+            pin.setLayoutY(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationY()-20);
+
+            Image pinImage = new Image("mapPin.png");
+            pin.setImage(pinImage);
+
+            mapAnchorPane.getChildren().add(pin);
         }
 
     }
