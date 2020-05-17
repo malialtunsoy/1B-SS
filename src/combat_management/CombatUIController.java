@@ -213,12 +213,16 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 }
             });
             hand.getChildren().add(img);
+            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
             img.setLayoutX(147 * i);
             img.setLayoutY(0);
             i++;
         }
-        //hand.setPrefWrapLength(147 * cards.size());
 
+        hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        //hand.setPrefWrapLength(147 * cards.size());
         drawPile.setText("");
         ImageView drawPileImg = new ImageView("CardBackRed.png");
         drawPileImg.setFitHeight(200);
@@ -247,6 +251,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             return;
         popUpDisplay.setDisable(false);
         popUpDisplay.setVisible(true);
+        popUpDisplay.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        popUpDisplay.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
         cards.getChildren().clear();
         for(Card c : CombatManager.getInstance().getDrawPile()) {
@@ -254,6 +260,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             img.setFitWidth(148*1.5);
             img.setFitHeight(200*1.5);
             cards.getChildren().add(img);
+            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         }
         System.out.println("Showing draw pile");
     }
@@ -292,8 +299,13 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         CombatManager.getInstance().showSettings();
     }
 
-    void showPrompt(boolean show ,String name) {
+    public void showPrompt(boolean show ,String name) {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
+    }
+
+    @FXML
+    private void save() {
+        SaveAndExit.save();
     }
 }
