@@ -173,7 +173,7 @@ public class RunController implements Initializable, ControlledScreen {
     private AnchorPane mapAnchorPane;
 
     void createMap() { //--------------------109,136 -------- 946,136"
-        System.out.println("map drawn");//    -                  -      488
+        //System.out.println("map drawn");//    -                  -      488
         //  109,624-----------946,624
         int numberOfVertices = 25;          //       837
         int verticesSize = 50;
