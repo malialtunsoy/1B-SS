@@ -3,6 +3,7 @@ import java.util.Random;
 public class RandomUtil {
     private static Random rand = new Random();
 
+<<<<<<< HEAD
     // has the input probability of returning true.
     public static boolean trueWithProb( double prob) {
         double rand = Math.random();
@@ -40,9 +41,26 @@ public class RandomUtil {
 
     public static Card getRandomBaseCard() {
         int index = rand.nextInt(SystemConstants.baseCards.length);
+=======
+    public static Card getRandomBaseCard( String character) {
+
+        Class<?>[] cardPool = SystemConstants.ironcladCards;
+        if( character.equals("Ironclad")){
+            cardPool = new Class<?>[SystemConstants.ironcladCards.length + SystemConstants.neutralCards.length];
+            for( int i = 0; i < SystemConstants.ironcladCards.length; i++)
+                cardPool[i] = SystemConstants.ironcladCards[i];
+            for( int i = 0; i < SystemConstants.neutralCards.length; i++)
+                cardPool[i + SystemConstants.ironcladCards.length] = SystemConstants.neutralCards[i];
+
+        } else {
+            System.err.println("Character class not recognized");
+        }
+
+        int index = rand.nextInt(cardPool.length);
+>>>>>>> origin/cem
         Card choice = null;
         try {
-            choice = (Card) SystemConstants.baseCards[index].getConstructor().newInstance();
+            choice = (Card) cardPool[index].getConstructor().newInstance();
         } catch (NoSuchMethodException e) {
             System.err.println("Exception in getRandomBaseCard caused by a Card in system without a default constructor: " + e.getMessage());
         } catch (Exception e) {

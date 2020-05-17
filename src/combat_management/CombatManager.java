@@ -68,7 +68,6 @@ public class CombatManager {
         turn = 0;
         energy = INITIAL_ENERGY;
         maxEnergy = INITIAL_ENERGY;
-
         selectedCard = null;
         try { uiAdapter = new CombatUIAdapter(stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
 
@@ -275,6 +274,7 @@ public class CombatManager {
 
     public void backToMap() {
         stage.setScene(menu);
+        myController.changeScreen("MainRunScreen"); //need a better solution.
         stage.show();
     }
 

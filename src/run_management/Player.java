@@ -315,6 +315,40 @@ public class Player extends CombatEntity {
     //END OF TREASURE ************************************************************
 
 
+    //******************Combat*********************
+    public void setupCombat(boolean isElite){
+        setupEnemies();
+        setupRewards();
+        CombatManager.getInstance().setPlayer(this);
+        CombatManager.getInstance().playCombat();
+    }
+
+    public void setupEnemies() {
+        Random random = new Random();
+
+        int numberOfEnemies = random.nextInt(3 ) + 1;
+        for( int i = 0; i < numberOfEnemies; i++) {
+            Enemy e = RandomUtil.getRandomEnemy();
+            e.setCurrentHP(1);
+            CombatManager.getInstance().addEnemy(e);
+        }
+    }
+
+    public void setupRewards() {
+
+        Random random = new Random();
+        rewardCards = new ArrayList<Card>();
+        rewardRelics = new ArrayList<Relic>();
+        rewardPotions = new ArrayList<Potion>();
+
+        addRewardPotion(RandomUtil.getRandomPotion());
+        addRewardRelic(RandomUtil.getRandomRelic());
+        setRewardGold(random.nextInt(40) * 5 + 200);
+        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
+        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
+        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
+    }
+
     //array arttır ekle
     public void addToDeck(Card card) {
         deck.add(card);
