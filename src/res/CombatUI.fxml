@@ -105,8 +105,8 @@
                <Image url="@DiscardPile.png" />
             </image>
          </ImageView>
-         <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" />
-         <Label fx:id="numDiscard" alignment="CENTER" layoutX="1045.0" layoutY="702.0" text="Label" textAlignment="CENTER" textFill="WHITE" />
+         <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" textFill="WHITE"/>
+         <Label fx:id="numDiscard" alignment="CENTER" layoutX="1045.0" layoutY="702.0" text="Label" textAlignment="CENTER"  />
          <AnchorPane fx:id="rewardsScreen" layoutY="68.0" prefHeight="732.0" prefWidth="1210.0">
             <children>
                <ImageView fitHeight="732.0" fitWidth="1210.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
