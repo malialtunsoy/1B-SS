@@ -235,7 +235,37 @@ public class RunController implements Initializable, ControlledScreen {
 
                 Map.VertexNode thisVertex = temp;
                 vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.setCurrentVertex(thisVertex);
-                createMap();});
+                createMap();
+
+                if(thisVertex.getVertex().equals("Merchant")){
+                    myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
+                    myController.changeScreen(RunUIManager.merchantScreen);
+                    SaveAndExit.save();
+                }
+
+                    if(thisVertex.getVertex().equals("Rest")){
+                        myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
+                        myController.changeScreen(RunUIManager.restScreen);
+                        SaveAndExit.save();
+                    }
+
+                    if(thisVertex.getVertex().equals("Treasure")){
+                        myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
+                        myController.changeScreen(RunUIManager.treasureScreen);
+                        SaveAndExit.save();
+                    }
+
+                    if(thisVertex.getVertex().equals("Combat")){
+                        System.out.println("COMBAT");
+                        //To be added
+                    }
+
+                    if(thisVertex.getVertex().equals("Boss")){
+                        System.out.println("BOSS");
+                        //To be added
+                    }
+
+                });
 
 
                 mapAnchorPane.getChildren().add(vertices[index]);
