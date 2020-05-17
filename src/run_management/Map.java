@@ -36,17 +36,21 @@ public class Map {
     VertexNode path3curNode;
     VertexNode path4curNode;
 
+    VertexNode currentMainVertex;
+
     public class VertexNode{
         String vertex;
         VertexNode next;
         VertexNode alternativeNext;
         int locationX;
         int locationY;
+        boolean available;
 
         public VertexNode(){
             vertex = null;
             next = null;
             alternativeNext = null;
+            available = false;
         }
 
         public VertexNode(String vertex, VertexNode next, VertexNode alternativeNext){
@@ -93,6 +97,14 @@ public class Map {
 
         public int getLocationY() {
             return locationY;
+        }
+
+        public void setAvailable(boolean available){
+            this.available = available;
+        }
+
+        public boolean getAvailable(){
+            return available;
         }
 
 
@@ -149,7 +161,14 @@ public class Map {
         path3curNode.setNext(lastRestNode2);// [] [] [] []          []
         path4curNode.setNext(lastRestNode2);// [] [] [] [] []  []
 
+        path1Root.setAvailable(true);
+        path2Root.setAvailable(true);
+        path3Root.setAvailable(true);
+        path4Root.setAvailable(true);
+
         locationOrganizer();
+
+        branchWithOtherNodes();
     }
 
     public String randomVertex(){
@@ -178,6 +197,35 @@ public class Map {
         }
         System.out.println(randomVertex);
         return randomVertex;
+    }
+
+    public void branchWithOtherNodes(){
+        int rand = (int)(Math.random() * 10);
+        VertexNode[] curNodes = getPaths();
+
+
+        for(int layers = 0; layers < 3; layers++) { //layer 1 to 4
+            for(int path = 0; path < 4; path++ ) {  //path no
+                rand = (int)(Math.random() * 10);
+                if (rand < 3) { //3/10 possibility
+
+                    if(path == 0){         curNodes[path].setAlternativeNext(curNodes[1].getNext());         }
+
+                    if(path == 1){
+                        if(curNodes[0].getAlternativeNext() == null) { curNodes[path].setAlternativeNext(curNodes[0].getNext()); }
+                    else {curNodes[path].setAlternativeNext(curNodes[2].getNext());}}
+
+                    if(path == 2){
+                        if(curNodes[1].getAlternativeNext() == null) { curNodes[path].setAlternativeNext(curNodes[1].getNext()); }
+                        else {curNodes[path].setAlternativeNext(curNodes[3].getNext());}}
+
+                    if(path == 3 && curNodes[2].getAlternativeNext() == null){       curNodes[path].setAlternativeNext(curNodes[2].getNext());           }
+                }
+            }
+           for(int i = 0; i< 4; i++){
+               curNodes[i] = curNodes[i].getNext();
+           }
+        }
     }
 
     public void locationOrganizer(){
@@ -233,22 +281,12 @@ public class Map {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void pickAPath(int i){
+        if(i == 0){currentMainVertex = path1Root;}
+        if(i == 1){currentMainVertex = path2Root;}
+        if(i == 2){currentMainVertex = path3Root;}
+        if(i == 3){currentMainVertex = path4Root;}
+    }
 
 
     public void createVertex()
@@ -289,62 +327,23 @@ public class Map {
         }
     }
 
-   /* public void chooseVertex( int index )
-    {
-        System.out.println(vertices[index].getType());
-        if( vertices[index].getLock())
-        {
-            String type = vertices[index].getType();
-            if (type.equals("Merchant")) {
-                callMerchant(vertices[index]);
-            } else if (type.equals("Treasure")) {
-                callTreasure(vertices[index]);
-            } else if (type.equals("Rest")) {
-                Vertex temp = vertices[index];
-                callRest( (Rest) temp );
-
-            } else {
-                callCombat(vertices[index]);
+    public void detectNextPossibleVertices(VertexNode vertex){
+        //vertex.setAvailable(false);
+        VertexNode[] paths = getPaths();
+        for(int i = 0; i < 4; i++){
+            for(VertexNode temp = paths[i]; temp != null; temp = temp.getNext()) {
+                temp.setAvailable(false);
             }
-            System.out.println("Your vertex is " + type);
-            System.out.println(index + " choosed");
-            System.out.println("Next vertices are: " + vertices[index].getNextIndex1() + " and " + vertices[index].getNextIndex2());
+
         }
-        else
-            System.out.println("Locked");
-    }
-    public void updateLocks(int opt1,int opt2,int opt3,int opt4)
-    {
-        vertices[vertices[opt1].getNextIndex1()].changeLock();
-        vertices[vertices[opt1].getNextIndex2()].changeLock();
-        vertices[opt2].changeLock();
-        vertices[opt3].changeLock();
-        vertices[opt4].changeLock();
-    }
-    public void updateLocks(int opt1, int opt2)
-    {
-        vertices[vertices[opt1].getNextIndex1()].changeLock();
-        vertices[vertices[opt1].getNextIndex2()].changeLock();
-        vertices[opt2].changeLock();
+
+        if(vertex.getNext() != null){vertex.getNext().setAvailable(true);}
+        if(vertex.getAlternativeNext() != null){vertex.getAlternativeNext().setAvailable(true);}
     }
 
-    //will give needed properties to these vertices
-    public void callMerchant( Vertex x )
-    {
-
+    public void setCurrentVertex(VertexNode vertex){
+        currentMainVertex = vertex;
+        detectNextPossibleVertices(vertex);
     }
-    public void callTreasure(Vertex x)
-    {
-
-    }
-    public void callRest(Rest x)
-    {
-        System.out.println("1 for rest, 2 for upgrade.");
-        x.healHP(p);
-    }
-    public void callCombat(Vertex x)
-    {
-
-    }*/
 
 }
