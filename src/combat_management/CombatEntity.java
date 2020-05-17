@@ -91,9 +91,10 @@ public abstract class CombatEntity {
     }
 
     // a shell used to incorporate a class of status effects (IncomingDamageModifier)
-    public void takeDamage(int amount) {
+    // returns false if entity dies
+    public boolean takeDamage(int amount) {
         int modifiedAmount = invokeAllModifiers(IncomingDamageModifier.class, amount);
-        loseHP(modifiedAmount);
+        return loseHP(modifiedAmount);
     }
 
     // modify amount with all status effects in affected by that implement cls
@@ -126,9 +127,10 @@ public abstract class CombatEntity {
         }
     }
 
-    public void dealDamage(int amount, CombatEntity target) {
+    // returns false if target dies
+    public boolean dealDamage(int amount, CombatEntity target) {
         int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
-        target.takeDamage(modifiedAmount);
+        return target.takeDamage(modifiedAmount);
     }
 
     public String toString() {

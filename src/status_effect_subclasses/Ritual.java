@@ -6,7 +6,7 @@ public class Ritual extends StatusEffect implements TriggeredAtTurnEnd {
     }
 
     @Override
-    public void triggered() {
+    public void triggered( Object triggerSource) {
         getAffectee().addStatusEffect(new Strength(getCounter()));
     }
 
