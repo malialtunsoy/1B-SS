@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Map {
+    int level;
+
     int vertexSize = 11; // 18 - (4 inital combat) - (last 2 rest and boss)
     int numberOfCombatLeft = 4; // 8 - 4
     int numberOfMerchantLeft = 3;
@@ -155,15 +157,19 @@ public class Map {
 
     public Map()
     {
-        //System.out.println(Game.getInstance().getLoadedGameExist());
-        //if(Game.getInstance().getLoadedGameExist()){System.out.println("AAAA"); loadMap();}
-        //else{initializeMap();}
-        //prepareData();
-        //drawMap();
     }
 
 
     //DATA===============================================
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public String[][] getDataPath(){
         String[][] data = {path1Data, path2Data, path3Data, path4Data};
         return  data;
@@ -184,7 +190,7 @@ public class Map {
     //=========================================== INITIALIZE ===========================================
     public void organizeMap(){ //Total number of vertices = 18 ---> Let 8 Combats, 3 Rests, 3 Treasure, 3 Merchant and 1 Boss
         //2 Rests and boss will be the last Nodes.
-
+        setLevel(0);
         path1Root = new VertexNode("Combat", null,null); path1curNode = path1Root; //all paths start with combat  //  []
         path2Root = new VertexNode("Combat", null,null); path2curNode = path2Root;                                //  []
         path3Root = new VertexNode("Combat", null,null); path3curNode = path3Root;                                //  []
@@ -353,6 +359,8 @@ public class Map {
             path4NumbericalData = FileRead.convertToInt(  FileRead.readFile("Data.txt", "MapPathNumeric4")  );
 
             currentVertex = FileRead.convertToInt(  FileRead.readFile("Data.txt", "MapCurrentVertex")  );
+
+            setLevel( FileRead.convertToInt(  FileRead.readFile("Data.txt", "mapLevel")  )[0] );
 
             //String[] a = FileRead.readFile("Data.txt", "MatPathNumeric1");
             //System.out.println(path2NumbericalData.length);
@@ -552,6 +560,7 @@ public class Map {
         currentMainVertex = vertex;
         currentVertex[0] = vertex.getPathNumber(); currentVertex[1] = vertex.getPathIndex();
         detectNextPossibleVertices(vertex);
+        setLevel(getLevel()+1);
 
         //System.out.println(currentVertex[0] +" "  +currentVertex[1]);
     }

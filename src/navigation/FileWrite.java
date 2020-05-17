@@ -35,6 +35,7 @@ public class FileWrite extends Game{
         String[][] mapPathsData = Game.getInstance().myPlayer.myMap.getDataPath();
         int[][] mapPathsDataNumberic = Game.getInstance().myPlayer.myMap.getDataPathNumeric();
         int[] mapCurrentVertex = Game.getInstance().myPlayer.myMap.getCurrentVertexData();
+        int mapLevel = Game.getInstance().myPlayer.myMap.getLevel();
 
 
         out.println("1###loadedGame###    **" + Game.getInstance().getLoadedGameExist() + "**");
@@ -138,6 +139,8 @@ public class FileWrite extends Game{
         }
         if(mapCurrentVertex.length == 0){out.print("**");}
         out.println();
+
+        out.println("1###mapLevel###    **" + mapLevel + "**");
         //**************************************************************
 
         // --- COMBAT STATE ---
