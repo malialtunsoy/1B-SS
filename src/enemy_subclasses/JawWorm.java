@@ -16,7 +16,7 @@ public class JawWorm extends Enemy {
 
     // --- constructors ---
     public JawWorm() {
-        super("Jaw Worm", MIN_HP, MAX_HP);
+        super("JawWorm", MIN_HP, MAX_HP);
     }
 
     @Override
