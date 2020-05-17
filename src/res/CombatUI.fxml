@@ -40,10 +40,6 @@
             </children>
          </AnchorPane>
          <FlowPane fx:id="potions" layoutX="142.0" layoutY="11.0" prefHeight="53.0" prefWidth="283.0" />
-         <Button fx:id="drawPile" layoutX="14.0" layoutY="497.0" mnemonicParsing="false" onAction="#showDrawPile" prefHeight="134.0" prefWidth="91.0" text="Draw Pile" />
-         <Button fx:id="discardPile" layoutX="982.0" layoutY="497.0" mnemonicParsing="false" onAction="#showDiscardPile" prefHeight="134.0" prefWidth="91.0" text="Discard Pile" />
-         <Label fx:id="numDraw" layoutX="80.0" layoutY="592.0" text="Label" />
-         <Label fx:id="numDiscard" layoutX="1050.0" layoutY="592.0" text="Label" />
          <ImageView fitHeight="65.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@bar.png" />
@@ -195,16 +191,28 @@
             </font>
          </Label>
          <Button layoutX="1102.0" layoutY="121.0" mnemonicParsing="false" onAction="#save" text="Save" />
-         <ImageView fitHeight="67.0" fitWidth="151.0" layoutX="1035.0" layoutY="425.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="67.0" fitWidth="151.0" layoutX="1038.0" layoutY="513.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@EndTurn.png" />
             </image>
          </ImageView>
-         <ImageView fitHeight="90.0" fitWidth="61.0" layoutX="57.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="90.0" fitWidth="61.0" layoutX="68.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@Energy.png" />
             </image>
          </ImageView>
-         <Label fx:id="energy" alignment="CENTER" layoutX="15.0" layoutY="134.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
+         <Label fx:id="energy" alignment="CENTER" layoutX="26.0" layoutY="530.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="29.0" layoutY="613.0" onMouseClicked="#showDrawPile" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@DrawPile.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="184.0" fitWidth="194.0" layoutX="1009.0" layoutY="590.0" onMouseClicked="#showDiscardPile" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@DiscardPile.png" />
+            </image>
+         </ImageView>
+         <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" />
+         <Label fx:id="numDiscard" alignment="CENTER" layoutX="1045.0" layoutY="702.0" text="Label" textAlignment="CENTER" textFill="WHITE" />
       </children></AnchorPane>
 </Scene>

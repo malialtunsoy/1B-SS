@@ -223,19 +223,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         hand.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         //hand.setPrefWrapLength(147 * cards.size());
-        drawPile.setText("");
-        ImageView drawPileImg = new ImageView("CardBackRed.png");
-        drawPileImg.setFitHeight(200);
-        drawPileImg.setFitWidth(147 );
-        drawPile.setGraphic(drawPileImg);
-        drawPile.setGraphicTextGap(0);
-        numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");
 
-        ImageView discardPileImg = new ImageView("CardBackBlue.png");
-        discardPileImg.setFitHeight(200);
-        discardPileImg.setFitWidth(147 );
-        discardPile.setText("");
-        discardPile.setGraphic(discardPileImg);
+        numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");
         numDiscard.setText(CombatManager.getInstance().getDiscardPileSize() +"");
 
     }
