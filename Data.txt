@@ -6,7 +6,7 @@
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
 10###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**
-1###playerHP###    **60**
+1###playerHP###    **-10**
 1###playerMaxHP###    **60**
 1###playerGold###    **330**
 1###maxPot###    **3**
@@ -14,21 +14,3 @@
 10###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**
 0###PlayerPotions###    ****
 0###PlayerRelics###    ****
-1###Combat::Ongoing###	**true**
-2###Combat::Enemies###	**JawWorm**JawWorm**
-2###Combat::Enemy@0::HP/MAXHP###	**34**40**
-0###Combat::Enemy@0::StatusEffects::Names###	****
-0###Combat::Enemy@0::StatusEffects::Counters###	****
-0###Combat::Enemy@0::StatusEffects::AppliedByAnEnemy###	****
-2###Combat::Enemy@1::HP/MAXHP###	**40**40**
-0###Combat::Enemy@1::StatusEffects::Names###	****
-0###Combat::Enemy@1::StatusEffects::Counters###	****
-0###Combat::Enemy@1::StatusEffects::AppliedByAnEnemy###	****
-1###Combat::Player::StatusEffects::Names###	**Block**
-1###Combat::Player::StatusEffects::Counters###	**5**
-1###Combat::Player::StatusEffects::AppliedByAnEnemy###	**false**
-3###Combat::Hand###	**Strike**Strike**Defend**
-16###Combat::DrawPile###	**Defend**Strike**Strike**Defend**Strike**Bash**Strengthen**Bash**Defend**Strengthen**Strike**Defend**Strengthen**Strike**Strike**Defend**
-9###Combat::DiscardPile###	**Defend**Strike**Strengthen**Defend**Defend**Bash**Strike**Defend**Strike**
-3###Combat::Energy/MaxEnergy/Turn###	**1**3**2**
-
