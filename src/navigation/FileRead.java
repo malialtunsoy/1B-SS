@@ -35,19 +35,19 @@ public class FileRead {
      String[] fail = {};
      return fail;
  }
-    public static ArrayList<Card> convertToCards(String [] names) {
-        ArrayList<Card> result = new ArrayList<Card>();
+    public static <T> ArrayList<T> convertTo(Class<T> cls, String [] names) {
+        ArrayList<T> result = new ArrayList<T>();
         try {
             for (int i = 0; i < names.length; i++) {
-                Card newCard = (Card) (Class.forName(names[i]).getConstructor().newInstance());
-                result.add(newCard);
+                T newObj = (T) (Class.forName(names[i]).getConstructor().newInstance());
+                result.add(newObj);
             }
         } catch (ClassNotFoundException e) {
-            System.err.println("Exception caused by invalid Card subclass load" + e.getMessage());
+            System.err.println("Exception caused by invalid subclass name in load" + e.getMessage());
         } catch (NoSuchMethodException e) {
-            System.err.println("Exception caused by Card subclass load with no default constructor:" + e.getMessage());
+            System.err.println("Exception caused by subclass load with no default constructor:" + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Exception in convertToCards caused by call to newInstance()");
+            System.err.println("Exception in convertTo caused by call to newInstance()");
         }
         return result;
     }
