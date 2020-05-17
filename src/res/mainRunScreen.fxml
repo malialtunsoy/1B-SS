@@ -22,13 +22,14 @@
             <Image url="@bar.png" />
          </image>
       </ImageView>
-      <Button fx:id="backToMainMenuButton" layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back To Main Menu" />
+      <ScrollPane layoutX="109.0" layoutY="136.0" opacity="0.62" prefHeight="488.0" prefWidth="837.0" />
+      <AnchorPane fx:id="mapAnchorPane" prefHeight="800.0" prefWidth="1200.0" />
       <Text fill="WHITE" layoutX="563.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAP">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="109.0" layoutY="136.0" opacity="0.62" prefHeight="488.0" prefWidth="837.0" />
+      <Button fx:id="backToMainMenuButton" layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back To Main Menu" />
       <HBox layoutX="387.0" layoutY="668.0" prefHeight="100.0" prefWidth="547.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#goToTreasure" prefHeight="123.0" prefWidth="121.0" text="Treasure" />
@@ -135,8 +136,8 @@
             </HBox>
          </children>
       </HBox>
-      <ScrollPane layoutX="946.0" layoutY="201.0" opacity="0.62" prefHeight="386.0" prefWidth="161.0" />
-      <VBox alignment="TOP_CENTER" layoutX="956.0" layoutY="218.0" prefHeight="200.0" prefWidth="161.0" spacing="5.0">
+      <ScrollPane layoutX="946.0" layoutY="155.0" opacity="0.62" prefHeight="447.0" prefWidth="182.0" />
+      <VBox alignment="TOP_CENTER" layoutX="953.0" layoutY="172.0" prefHeight="200.0" prefWidth="161.0" spacing="5.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
                <children>
@@ -188,6 +189,20 @@
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Combat">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@eliteCombat+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Elite Combat">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class CombatTest {
 
@@ -14,8 +16,6 @@ public class CombatTest {
     public void testCombat(Stage primaryStage) {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
-
-
 
         Player player = new Player(true,"playerName","Ironclad",50, 50, 3, 0, 0, 0);
         manager.setPlayer(player);
@@ -27,62 +27,38 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new Strengthen();
+        Card sample5 = new Pummel();
         Card sample4 = new Bash();
-        Card sample5 = new Anger();
-        Card sample6 = new BodySlam();
-        Card sample7 = new Clash();
-        Card sample8 = new Cleave();
-        Card sample9 = new Clothesline();
-        //for plus card
-        Card sample10 = new StrikePlus();
-        Card sample11 = new DefendPlus();
-        Card sample12 = new StrengthenPlus();
-        Card sample13 = new BashPlus();
-        Card sample14 = new AngerPlus();
-        Card sample15 = new BodySlamPlus();
-        Card sample16 = new ClashPlus();
-        Card sample17 = new CleavePlus();
-        Card sample18 = new ClotheslinePlus();
-
+        Card sample7 = new Clothesline();
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
 
-       /* player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample3);
-        player.addToDeck(sample4);
-        player.addToDeck(sample2);
-        player.addToDeck(sample3);
-        player.addToDeck(sample2);
-        player.addToDeck(sample4);
-        player.addToDeck(sample2);
-        player.addToDeck(sample4);
-        player.addToDeck(sample3);
-        player.addToDeck(sample2);
-        player.addToDeck(sample2);
-        player.addToDeck(sample);
-        player.addToDeck(sample);*/
-        player.addToDeck(sample);
-        player.addToDeck(sample3);
-        player.addToDeck(sample);
-        player.addToDeck(sample3);
-        player.addToDeck(sample4);
-        player.addToDeck(sample2);
         player.addToDeck(sample5);
-        player.addToDeck(sample6);
+        player.addToDeck(sample5);
+        player.addToDeck(sample5);
+        player.addToDeck(sample5);
+        player.addToDeck(sample2);
+        player.addToDeck(sample4);
+        player.addToDeck(sample4);
+        player.addToDeck(sample4);
+        player.addToDeck(sample5);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
         player.addToDeck(sample7);
-        player.addToDeck(sample8);
-        player.addToDeck(sample10);
-        /*
-        player.addToDeck(sample10);
-        player.addToDeck(sample11);
-        player.addToDeck(sample12);
-        player.addToDeck(sample13);
-        player.addToDeck(sample14);
-        player.addToDeck(sample15);
-        player.addToDeck(sample16);
-        player.addToDeck(sample17);
-        player.addToDeck(sample18);*/
+
+
+        player.addRewardPotion(new HealthPotion());
+        player.addRewardRelic(new RingOfTheSnake());
+        player.addRewardRelic(new BurningBlood());
+        player.addRewardCard(new Strengthen());
+        player.addRewardCard(new Bash());
+        player.addRewardCard(new Pummel());
+        player.setRewardGold(220);
 
         player.addPot(new HealthPotion());
         player.addPot(new DamagePotion());
@@ -123,6 +99,7 @@ public class CombatTest {
             @Override
             public void handle(ActionEvent event) {
                 Enemy e = new JawWorm();
+                e.setCurrentHP(1);
                 CombatManager.getInstance().addEnemy(e);
             }
         });

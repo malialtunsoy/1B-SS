@@ -4,17 +4,12 @@ public class Weak extends StatusEffect implements OutgoingDamageModifier{
     // --- constructors ---
     public Weak(int counter) {
         super("Weak", counter, DESCRIPTION);
+        setDecayBehaviour(new DecayOncePerTurn(this));
     }
 
     // --- methods ---
     @Override
     public int modify(int amount) {
         return (int) (amount * (1 - DAMAGE_DECREASE));
-    }
-
-    @Override
-    public void decay() {
-        // decays one-by-one
-        decreaseCounter(1);
     }
 }

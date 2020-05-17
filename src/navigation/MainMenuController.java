@@ -27,12 +27,12 @@ public class MainMenuController implements Initializable, ControlledScreen {
 
     @FXML
     void loadGame(ActionEvent event) {
-        System.out.println("Loading Game");
+        //System.out.println("Loading Game");
         if(!Game.getInstance().getLoadedGameExist()){
             System.out.println("there is no loaded game");
         }
         else {
-            System.out.println("LOAD");
+            //System.out.println("LOAD");
             RunUIManager myRun = new RunUIManager();
             Game.getInstance().loadRun();
 
@@ -62,11 +62,6 @@ public class MainMenuController implements Initializable, ControlledScreen {
 
     }
 
-    @FXML
-    void testCombatManager(ActionEvent event) {
-        CombatTest test = new CombatTest();
-        test.testCombat(CombatManager.getInstance().getStage());
-    }
 
 
 

@@ -1,3 +1,3 @@
 public interface TriggeredAtCombatEnd extends Triggered{
-    void triggered();
+    void triggered( Object triggerSource);  //passed triggerSource is null.
 }
