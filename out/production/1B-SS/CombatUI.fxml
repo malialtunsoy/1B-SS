@@ -16,7 +16,7 @@
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
     <AnchorPane prefHeight="800.0" prefWidth="1200.0">
       <children>
-         <ImageView fitHeight="785.0" fitWidth="1213.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
+         <ImageView fitHeight="785.0" fitWidth="1213.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
             <image>
                <Image url="@combatBackground.jpg" />
             </image>
@@ -36,7 +36,8 @@
                      <Image url="@character.png" />
                   </image>
                </ImageView>
-               <FlowPane fx:id="statusEffects" layoutX="-1.0" layoutY="208.0" prefHeight="86.0" prefWidth="168.0" />
+               <Label fx:id="energy" alignment="CENTER" layoutX="11.0" layoutY="203.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
+               <FlowPane fx:id="statusEffects" layoutX="-1.0" layoutY="230.0" prefHeight="64.0" prefWidth="168.0" />
             </children>
          </AnchorPane>
          <FlowPane fx:id="potions" layoutX="142.0" layoutY="11.0" prefHeight="53.0" prefWidth="283.0" />
@@ -200,11 +201,5 @@
                <Image url="@EndTurn.png" />
             </image>
          </ImageView>
-         <ImageView fitHeight="90.0" fitWidth="61.0" layoutX="57.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@Energy.png" />
-            </image>
-         </ImageView>
-         <Label fx:id="energy" alignment="CENTER" layoutX="15.0" layoutY="134.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
       </children></AnchorPane>
 </Scene>

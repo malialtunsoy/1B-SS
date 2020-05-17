@@ -162,7 +162,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
             }
 
-        energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
+        energy.setText(CombatManager.getInstance().uiEnergyString());
 
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
     }
