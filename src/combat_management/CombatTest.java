@@ -28,10 +28,26 @@ public class CombatTest {
         Card sample2 = new Defend();
         Card sample3 = new Strengthen();
         Card sample4 = new Bash();
+        Card sample5 = new Anger();
+        Card sample6 = new BodySlam();
+        Card sample7 = new Clash();
+        Card sample8 = new Cleave();
+        Card sample9 = new Clothesline();
+        //for plus card
+        Card sample10 = new StrikePlus();
+        Card sample11 = new DefendPlus();
+        Card sample12 = new StrengthenPlus();
+        Card sample13 = new BashPlus();
+        Card sample14 = new AngerPlus();
+        Card sample15 = new BodySlamPlus();
+        Card sample16 = new ClashPlus();
+        Card sample17 = new CleavePlus();
+        Card sample18 = new ClotheslinePlus();
+
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
 
-        player.addToDeck(sample);
+       /* player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample3);
         player.addToDeck(sample4);
@@ -45,10 +61,29 @@ public class CombatTest {
         player.addToDeck(sample2);
         player.addToDeck(sample2);
         player.addToDeck(sample);
+        player.addToDeck(sample);*/
+        player.addToDeck(sample);
         player.addToDeck(sample3);
         player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
+        player.addToDeck(sample3);
+        player.addToDeck(sample4);
+        player.addToDeck(sample2);
+        player.addToDeck(sample5);
+        player.addToDeck(sample6);
+        player.addToDeck(sample7);
+        player.addToDeck(sample8);
+        player.addToDeck(sample10);
+        /*
+        player.addToDeck(sample10);
+        player.addToDeck(sample11);
+        player.addToDeck(sample12);
+        player.addToDeck(sample13);
+        player.addToDeck(sample14);
+        player.addToDeck(sample15);
+        player.addToDeck(sample16);
+        player.addToDeck(sample17);
+        player.addToDeck(sample18);*/
+
         player.addPot(new HealthPotion());
         player.addPot(new DamagePotion());
     }
