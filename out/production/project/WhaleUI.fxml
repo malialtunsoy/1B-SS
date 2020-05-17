@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WhaleUI">
+   <children>
+      <ImageView fitHeight="412.0" fitWidth="724.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/whale.png" />
+         </image>
+      </ImageView>
+      <Button blendMode="DIFFERENCE" layoutX="60.0" layoutY="304.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="222.0" text="MaxHp+8" />
+      <Button blendMode="DIFFERENCE" layoutX="60.0" layoutY="356.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="222.0" text="Relic Usage" />
+   </children>
+</AnchorPane>
