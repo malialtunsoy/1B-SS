@@ -14,7 +14,7 @@ public class CombatTest {
     public void testCombat(Stage primaryStage) {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
-        manager.setStage(primaryStage);
+
 
 
         Player player = new Player(true,"playerName","Ironclad",50, 50, 3, 0, 0, 0);
