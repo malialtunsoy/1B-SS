@@ -258,7 +258,7 @@ public class Map {
         String randomVertex = null;
         while(randomVertex == null) {
             int i = (int) (Math.random() * 5);
-            System.out.println("Random number: " + i);
+            //System.out.println("Random number: " + i);
 
             if (i == 0 && numberOfCombatLeft > 0) {
                 randomVertex = "Combat";
@@ -281,7 +281,7 @@ public class Map {
                 numberOfEliteCombat--;
             }
         }
-        System.out.println(randomVertex);
+        //System.out.println(randomVertex);
         return randomVertex;
     }
 
@@ -423,7 +423,7 @@ public class Map {
             path4curNode.setNext(tempNode); path4curNode = path4curNode.getNext();
         }
 
-        for(VertexNode a = path1Root; a != null; a = a.getNext()){
+        /*for(VertexNode a = path1Root; a != null; a = a.getNext()){
             System.out.print(a.getVertex()+": "+ a.getPathNumber() +", " + a.getPathIndex() + "-------->");
         }
         System.out.println();
@@ -438,7 +438,7 @@ public class Map {
         for(VertexNode a = path4Root; a != null; a = a.getNext()){
             System.out.print(a.getVertex()+": "+ a.getPathNumber() +", " + a.getPathIndex() + "-------->");
         }
-        System.out.println();
+        System.out.println();*/
 
         // SET LOCATION AND BRANCHES========================================================
 
@@ -578,11 +578,11 @@ public class Map {
         if(path == 99 && index == 2){return  rest2;} //rest2
         VertexNode curVertex = getPaths()[path-1];
 
-        System.out.println(curVertex.getPathIndex());
-        System.out.println(path + "  " + index);
+        //System.out.println(curVertex.getPathIndex());
+        //System.out.println(path + "  " + index);
 
         while(curVertex.getPathIndex() != index){
-            System.out.println(curVertex.getVertex());
+        //    System.out.println(curVertex.getVertex());
             curVertex = curVertex.getNext();
         }
 

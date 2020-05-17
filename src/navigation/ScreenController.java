@@ -117,8 +117,7 @@ public class ScreenController extends StackPane {
     public boolean screenLoadFromOtherSubs(ArrayList<String> screenNames, ArrayList<String> screenFiles ){
 
         for(int i = 0; i < screenNames.size(); i++){
-            System.out.println(loadScreen( screenNames.get(i) , screenFiles.get(i)  ) );
-            System.out.println(screenNames.get(i) +"    " +  screenFiles.get(i) );
+            loadScreen( screenNames.get(i) , screenFiles.get(i)  );
         }
         return true;
     }
