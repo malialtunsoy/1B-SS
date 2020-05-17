@@ -15,8 +15,6 @@ public class CombatTest {
         manager = CombatManager.getInstance();
         initializeGUI(primaryStage);
 
-
-
         Player player = new Player(true,"playerName","Ironclad",50, 50, 3, 0, 0, 0);
         manager.setPlayer(player);
 
@@ -27,28 +25,28 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new Strengthen();
+        Card sample5 = new Pummel();
         Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
 
-        player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample3);
-        player.addToDeck(sample4);
-        player.addToDeck(sample2);
-        player.addToDeck(sample3);
+        player.addToDeck(sample5);
+        player.addToDeck(sample5);
+        player.addToDeck(sample5);
+        player.addToDeck(sample5);
         player.addToDeck(sample2);
         player.addToDeck(sample4);
-        player.addToDeck(sample2);
         player.addToDeck(sample4);
-        player.addToDeck(sample3);
+        player.addToDeck(sample4);
+        player.addToDeck(sample5);
         player.addToDeck(sample2);
         player.addToDeck(sample2);
-        player.addToDeck(sample);
-        player.addToDeck(sample3);
-        player.addToDeck(sample);
+        player.addToDeck(sample2);
         player.addToDeck(sample);
         player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+
         player.addPot(new HealthPotion());
         player.addPot(new DamagePotion());
     }
