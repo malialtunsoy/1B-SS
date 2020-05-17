@@ -16,6 +16,6 @@ public class ClotheslinePlus extends Card {
         target.addStatusEffect( new Weak(WEAK_APPLIED));
     }
     public Card upgradedVersion() {
-        return new ClotheslinePlus();
+        return null;
     }
 }
