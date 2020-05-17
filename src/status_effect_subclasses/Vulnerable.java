@@ -4,14 +4,11 @@ public class Vulnerable extends StatusEffect implements IncomingDamageModifier {
 
     public Vulnerable(int counter) {
         super("Vulnerable", counter, DESCRIPTION);
+        setDecayBehaviour(new DecayOncePerTurn(this));
     }
 
     @Override
     public int modify(int amount) {
         return (int) (amount * (1 + INCREASE_FACTOR));
-    }
-
-    public void decay() {
-        decreaseCounter(1);
     }
 }

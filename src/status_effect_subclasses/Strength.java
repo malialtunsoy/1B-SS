@@ -11,9 +11,4 @@ public class Strength extends StatusEffect implements OutgoingDamageModifier{
     public int modify(int amount) {
         return amount + getCounter();
     }
-
-    @Override
-    public void decay() {
-        // does not decay
-    }
 }
