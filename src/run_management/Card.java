@@ -31,7 +31,7 @@ public abstract class Card {
     }
 
     public boolean getTargetRequirement() { return requiresTarget;}
-    public String getImage (){ return cardName + ".png"; }
+    public String getImage (){ return getClass().getName() + ".png"; }
     public String getName(){
         return cardName;
     };

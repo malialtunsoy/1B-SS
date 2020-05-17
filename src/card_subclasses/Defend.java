@@ -15,6 +15,6 @@ public class Defend extends Card{
         CombatManager.getInstance().getPlayer().addStatusEffect(new Block(BLOCK_AMOUNT));
     }
     public Card upgradedVersion() {
-        return new BashPlus();
+        return new DefendPlus();
     }
 }
