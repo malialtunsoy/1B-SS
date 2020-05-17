@@ -16,7 +16,7 @@
 0###PlayerRelics###    ****
 1###Combat::Ongoing###	**true**
 2###Combat::Enemies###	**JawWorm**JawWorm**
-2###Combat::Enemy@0::HP/MAXHP###	**40**40**
+2###Combat::Enemy@0::HP/MAXHP###	**34**40**
 0###Combat::Enemy@0::StatusEffects::Names###	****
 0###Combat::Enemy@0::StatusEffects::Counters###	****
 0###Combat::Enemy@0::StatusEffects::AppliedByAnEnemy###	****
@@ -24,11 +24,11 @@
 0###Combat::Enemy@1::StatusEffects::Names###	****
 0###Combat::Enemy@1::StatusEffects::Counters###	****
 0###Combat::Enemy@1::StatusEffects::AppliedByAnEnemy###	****
-0###Combat::Player::StatusEffects::Names###	****
-0###Combat::Player::StatusEffects::Counters###	****
-0###Combat::Player::StatusEffects::AppliedByAnEnemy###	****
-7###Combat::Hand###	**Strengthen**Defend**Defend**Strike**Defend**Strike**Strike**
-21###Combat::DrawPile###	**Strike**Defend**Strike**Defend**Defend**Bash**Defend**Strike**Strike**Strike**Strengthen**Bash**Defend**Strike**Defend**Strengthen**Defend**Strike**Bash**Strengthen**Strike**
-0###Combat::DiscardPile###	**
-3###Combat::Energy/MaxEnergy/Turn###	**3**3**1**
+1###Combat::Player::StatusEffects::Names###	**Block**
+1###Combat::Player::StatusEffects::Counters###	**5**
+1###Combat::Player::StatusEffects::AppliedByAnEnemy###	**false**
+3###Combat::Hand###	**Strike**Strike**Defend**
+16###Combat::DrawPile###	**Defend**Strike**Strike**Defend**Strike**Bash**Strengthen**Bash**Defend**Strengthen**Strike**Defend**Strengthen**Strike**Strike**Defend**
+9###Combat::DiscardPile###	**Defend**Strike**Strengthen**Defend**Defend**Bash**Strike**Defend**Strike**
+3###Combat::Energy/MaxEnergy/Turn###	**1**3**2**
 

@@ -59,7 +59,7 @@ public class RestController implements Initializable, ControlledScreen {
         ArrayList<Card> myCards = new ArrayList<Card>();
 
         for(int i = 0; i < Game.getInstance().myPlayer.getDeck().size(); i++){
-            if(!Game.getInstance().myPlayer.getDeck().get(i).getIsUpgraded()){
+            if(!(Game.getInstance().myPlayer.getDeck().get(i).upgradedVersion() == null)) {
             myCards.add(Game.getInstance().myPlayer.getDeck().get(i));}
         }
         int numberOfCardsToDisplay = myCards.size();
