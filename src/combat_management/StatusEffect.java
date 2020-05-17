@@ -7,6 +7,7 @@ public abstract class StatusEffect {
     private CombatEntity affectee;
     private boolean appliedByAnEnemy;   // affects when the status effect decays
     private String description;
+    private DecayBehaviour decay;
 
     // --- constructors ---
     // appliedByAnEnemy defaults to false. Intent realizations call the set method
@@ -15,6 +16,7 @@ public abstract class StatusEffect {
         this.counter = counter;
         this.name = name;
         this.description = description;
+        this.decay = new NoDecay(this);  // defaults to NoDecay
     }
 
 
@@ -22,6 +24,8 @@ public abstract class StatusEffect {
     public void setAppliedByAnEnemy(boolean appliedByAnEnemy) {
         this.appliedByAnEnemy = appliedByAnEnemy;
     }
+
+    public void setDecayBehaviour( DecayBehaviour decay) {this.decay = decay;}
 
     public void decreaseCounter(int amount) {
         counter -= amount;
@@ -51,7 +55,9 @@ public abstract class StatusEffect {
     // intents are realized.
     public boolean decayAtTurnStart() { return !appliedByAnEnemy; }
 
-    abstract void decay();   // some SE might decrease their counter by 1 per turn (Poison), some might set it to 0 (Block) etc.
-
     public String toString() {return name + "(" + counter + ")";}
+
+    public void decay() {
+        decay.decay();
+    }
 }

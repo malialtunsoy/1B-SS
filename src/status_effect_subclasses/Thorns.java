@@ -12,7 +12,4 @@ public class Thorns extends StatusEffect implements TriggeredAtTurnEnd {
         hitBy.takeDamage(getCounter());
         decreaseCounter(1);
     }
-
-    @Override
-    void decay() {} // does not decay
 }

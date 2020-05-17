@@ -10,6 +10,4 @@ public class Ritual extends StatusEffect implements TriggeredAtTurnEnd {
         getAffectee().addStatusEffect(new Strength(getCounter()));
     }
 
-    @Override
-    void decay() {} // does not decay
 }
