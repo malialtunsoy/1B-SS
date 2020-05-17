@@ -6,8 +6,8 @@ public abstract class Enemy extends CombatEntity{
     ArrayList<Intent> intents;
 
     // --- constructors ---
-    public Enemy(String name, int maxHP) {
-        super(maxHP);
+    public Enemy(String name, int maxHPLowerLimit, int maxHPUpperLimit) {
+        super(RandomUtil.generateEnemyHP(maxHPLowerLimit, maxHPUpperLimit));
         this.name       = name;
         intents         = new ArrayList<Intent>();
     }
@@ -41,5 +41,5 @@ public abstract class Enemy extends CombatEntity{
         CombatManager.getInstance().removeEnemy(this);
     }
 
-    public abstract void restoreExtraState(String[] extraParams);
+    public void restoreExtraState(String[] extraParams) {}
 }
