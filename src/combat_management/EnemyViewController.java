@@ -85,6 +85,8 @@ public class EnemyViewController {
                 intent.setImage(new Image("Strategic.png"));
             else if( i instanceof  BuffIntent)
                 intent.setImage(new Image("Buff.png"));
+            else if( i instanceof HiddenIntent)
+                intent.setImage(new Image("Strategic.png"));
         }
         else {
             Intent i1 = intents.get(0);
@@ -94,13 +96,13 @@ public class EnemyViewController {
                     intent.setImage(new Image("Aggressive_defensive.png"));
                 if(i2 instanceof BuffIntent)
                     intent.setImage(new Image("AggressiveBuff.png"));
-                if(i2 instanceof StrategicIntent)
+                if(i2 instanceof StrategicIntent || i2 instanceof HiddenIntent)
                     intent.setImage(new Image("Aggressive_strategic.png"));
             }
             else if( i1 instanceof DefensiveIntent) {
                 if(i2 instanceof AggressiveIntent)
                     intent.setImage(new Image("Aggressive_defensive.png"));
-                if(i2 instanceof StrategicIntent)
+                if(i2 instanceof StrategicIntent || i2 instanceof HiddenIntent)
                     intent.setImage(new Image("Aggressive_defensive.png"));
                 if(i2 instanceof BuffIntent)
                     intent.setImage(new Image("DefendBuff.png"));
@@ -110,10 +112,10 @@ public class EnemyViewController {
                     intent.setImage(new Image("AggressiveBuff.png"));
                 if(i2 instanceof DefensiveIntent)
                     intent.setImage(new Image("DefendBuff.png"));
-                if(i2 instanceof StrategicIntent)
+                if(i2 instanceof StrategicIntent || i2 instanceof HiddenIntent)
                     intent.setImage(new Image("DefendBuff.png"));
             }
-            else if( i1 instanceof StrategicIntent) {
+            else if( i1 instanceof StrategicIntent || i2 instanceof HiddenIntent) {
                 if(i2 instanceof DefensiveIntent)
                     intent.setImage(new Image("DefendBuff.png"));
                 if(i2 instanceof AggressiveIntent)
