@@ -29,6 +29,7 @@ public class CombatTest {
         Card sample3 = new Strengthen();
         Card sample5 = new Pummel();
         Card sample4 = new Bash();
+        Card sample7 = new Clothesline();
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
 
@@ -48,6 +49,7 @@ public class CombatTest {
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample);
+        player.addToDeck(sample7);
 
 
         player.addRewardPotion(new HealthPotion());
