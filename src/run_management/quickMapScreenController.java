@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -51,8 +52,115 @@ public class quickMapScreenController implements Initializable, ControlledScreen
         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
         reloadPotions();
         reloadRelics();
+        createMap();
+    }
 
+    @FXML
+    private AnchorPane mapAnchorPane;
 
+    void createMap() { //--------------------109,136 -------- 946,136"
+        System.out.println("map drawn");//    -                  -      488
+        //  109,624-----------946,624
+        int numberOfVertices = 25;          //       837
+        int verticesSize = 50;
+        int index = 0;
+
+        mapAnchorPane.getChildren().clear();
+
+        Button[] vertices = new Button[numberOfVertices];
+        ImageView[] verticesImage = new ImageView[numberOfVertices];
+        Image[] verticesImageIn = new Image[numberOfVertices];
+
+        Map.VertexNode[] paths = Game.getInstance().myPlayer.myMap.getPaths();
+
+        String verticeType;
+
+        for (int i = 0; i < 4; i++) {    //DRAW LINES
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext()) {
+                Line tempLine = null;
+                Line tempLine2 = null;
+                if (temp.getNext() != null) {
+                    tempLine = new Line(temp.getLocationX() + 35, temp.getLocationY() + 75, temp.getNext().getLocationX() + 35, temp.getNext().getLocationY() + 75);
+                    tempLine.getStrokeDashArray().addAll(10d, 10d);
+                }
+
+                if (temp.getAlternativeNext() != null) {
+                    tempLine2 = new Line(temp.getLocationX() + 35, temp.getLocationY() + 75, temp.getAlternativeNext().getLocationX() + 35, temp.getAlternativeNext().getLocationY() + 75);
+                    tempLine2.getStrokeDashArray().addAll(10d, 10d);
+                }
+
+                if (tempLine != null) mapAnchorPane.getChildren().add(tempLine);
+                if (tempLine2 != null) mapAnchorPane.getChildren().add(tempLine2);
+
+            }
+
+        }
+
+        for (int i = 0; i < 4; i++) { //DRAW BUTTONS
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext(), index++) {
+
+                vertices[index] = new Button();
+                vertices[index].setPrefHeight(verticesSize);
+                vertices[index].setPrefWidth(verticesSize);
+
+                verticesImage[index] = new ImageView();
+                verticesImage[index].setFitHeight(verticesSize);
+                verticesImage[index].setFitWidth(verticesSize);
+                verticesImage[index].setPickOnBounds(true);
+                verticesImage[index].setPreserveRatio(true);
+
+                verticesImageIn[index] = new Image(findImage(temp.getVertex()));
+                verticesImage[index].setImage(verticesImageIn[index]);
+
+                vertices[index].setGraphic(verticesImage[index]);
+
+                vertices[index].setLayoutX(temp.getLocationX()+10);
+                vertices[index].setLayoutY(temp.getLocationY()+40);
+
+                vertices[index].setDisable(true);
+                vertices[index].setOpacity(100);
+
+                Map.VertexNode thisVertex = temp;
+                mapAnchorPane.getChildren().add(vertices[index]);
+
+            }
+        }
+
+        //put pin
+        ImageView pin = new ImageView();
+        pin.setFitHeight(30);
+        pin.setFitWidth(30);
+        pin.setPickOnBounds(true);
+        pin.setPreserveRatio(true);
+        Map.VertexNode curNode = Game.getInstance().myPlayer.myMap.getCurrentVertex();
+        if(Game.getInstance().myPlayer.myMap.getLevel() > 0) {
+            pin.setLayoutX(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationX()+28);
+            pin.setLayoutY(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationY()+10);
+
+            Image pinImage = new Image("mapPin.png");
+            pin.setImage(pinImage);
+
+            mapAnchorPane.getChildren().add(pin);
+        }
+
+    }
+    public String findImage (String VertexName){
+        if (VertexName.equals("Combat")) {
+            return "combat+.png";
+        }
+        if (VertexName.equals("Rest")) {
+            return "rest+.png";
+        }
+        if (VertexName.equals("Treasure")) {
+            return "treasure+.png";
+        }
+        if (VertexName.equals("Merchant")) {
+            return "merchant+.png";
+        }
+        if (VertexName.equals("Boss")) {
+            return "boss+.png";
+        }
+        return null;
     }
 
     @FXML
@@ -75,6 +183,7 @@ public class quickMapScreenController implements Initializable, ControlledScreen
         if(myController.getBackFromMap().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromMap();}
         else{myController.changeScreen(myController.getBackFromMap());}
     }
+
 
     @FXML
     private ImageView potionSlot1;

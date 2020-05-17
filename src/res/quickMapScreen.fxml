@@ -22,7 +22,8 @@
                 <Image url="@bar.png" />
             </image>
         </ImageView>
-        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#back" text="Back " />
+        <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1030.0" />
+      <AnchorPane fx:id="mapAnchorPane" prefHeight="800.0" prefWidth="1200.0" />
         <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1210.0">
             <children>
                 <AnchorPane prefHeight="65.0" prefWidth="236.0">
@@ -121,7 +122,6 @@
                 </HBox>
             </children>
         </HBox>
-        <ScrollPane layoutX="83.0" layoutY="166.0" opacity="0.74" prefHeight="530.0" prefWidth="1030.0" />
         <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
             <children>
                 <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
@@ -155,5 +155,6 @@
             <Font size="40.0" />
          </font>
       </Text>
+        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#back" text="Back " />
     </children>
 </AnchorPane>
