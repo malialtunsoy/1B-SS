@@ -52,6 +52,8 @@ public class Player extends CombatEntity {
         rewardGold = 0;
         if(isItNewGame){initializePlayer();}
         else{loadPlayer();}
+        if(isItNewGame){initializePlayer(); myMap.initializeMap();}
+        else{loadPlayer(); myMap.loadMap();}
     }
 
     //methods

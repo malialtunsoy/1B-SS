@@ -15,13 +15,15 @@ public class FileRead {
      for(String fileNames : aa.list()){ System.out.println(fileNames);}*/
 
       Scanner in = new Scanner(new File(fileName)); //input scanner
-
+     String line = "";
      while(in.hasNext()){
 
-         String line = in.nextLine();
-
+          line = in.nextLine();
+         //System.out.println("line: " + line);
 
          String id = findIn(line);
+
+         //System.out.println("id: " + id);
          //System.out.println(id);
          if(key.equals(id))
          {
@@ -31,7 +33,7 @@ public class FileRead {
 
      }
      in.close();
-
+     //System.out.println("Fail to read: " +key +" at "+ line);
      String[] fail = {};
      return fail;
  }
