@@ -129,7 +129,7 @@ public class CombatManager {
         }
         c.affect(target);
         hand.remove(c);
-        if (!selectedCard.getExtraAttributes().contains(Card.ExtraCardAttribute.EXHAUST)) {
+        if (!c.getExtraAttributes().contains(Card.ExtraCardAttribute.EXHAUST)) {
             discardPile.add(c);
         }
         energy -= c.getEnergy();

@@ -39,6 +39,13 @@ public class CombatTest {
         player.addToDeck(sample4);
         player.addToDeck(sample4);
         player.addToDeck(sample5);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample2);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
+        player.addToDeck(sample);
 
         player.addPot(new HealthPotion());
         player.addPot(new DamagePotion());
