@@ -44,6 +44,7 @@ public class CombatUIAdapter {
 
         controller.updateCardPiles();
         controller.updatePotions();
+        controller.reloadRelics();
     }
 
     public void endTurnPressed() {
