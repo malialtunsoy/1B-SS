@@ -332,5 +332,10 @@ public class Map {
         if(vertex.getAlternativeNext() != null){vertex.getAlternativeNext().setAvailable(true);}
     }
 
+    public void setCurrentVertex(VertexNode vertex){
+        currentMainVertex = vertex;
+        detectNextPossibleVertices(vertex);
+    }
+
 
 }

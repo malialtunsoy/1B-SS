@@ -234,7 +234,7 @@ public class RunController implements Initializable, ControlledScreen {
                 vertices[index].setDisable(!temp.getAvailable());
 
                 Map.VertexNode thisVertex = temp;
-                vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.detectNextPossibleVertices(thisVertex);
+                vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.setCurrentVertex(thisVertex);
                 createMap();});
 
 
