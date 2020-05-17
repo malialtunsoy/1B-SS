@@ -35,7 +35,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML AnchorPane hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
-    @FXML Label playerStatus;
+    @FXML FlowPane statusEffects;
     @FXML Label energy;
     @FXML Label numDraw;
     @FXML Label numDiscard;
@@ -147,12 +147,21 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         this.adapter = adapter;
     }
 
-    public void updatePlayer(){
-        String status = "";
+    public void updatePlayer() throws IOException{
+        statusEffects.getChildren().clear();
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
-            if(! (effect instanceof RelicEffect))
-                status = status + effect.toString() + "\n";//change this to effect.getName() later
-        playerStatus.setText(status);
+            if(! (effect instanceof RelicEffect)){
+                FileInputStream file = new FileInputStream("src/res/StatusEffectView.fxml");
+                FXMLLoader loader = new FXMLLoader();
+                AnchorPane pane = loader.load(file);
+                StatusEffectViewController controller = loader.getController();
+                controller.setImage(effect.getImage());
+                controller.setCounter(effect.getCounter());
+                Tooltip.install(pane, new Tooltip(effect.getDescription()));
+                statusEffects.getChildren().add(pane);
+
+            }
+
         energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
 
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
@@ -179,6 +188,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             });
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
+
             enemies.getChildren().add(pane);
         }
     }
