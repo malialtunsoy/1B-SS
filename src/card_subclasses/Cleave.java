@@ -1,25 +1,21 @@
-/*
- * A concrete subclass of Card.
- * Used in tests within Combat Management right now.
- * author: Can Cebeci
- */
-
-public class Strike extends Card {
+public class Cleave extends Card {
     // --- constants ---
     private static final int ENERGY_COST = 1;
-    private static final int DAMAGE = 6;
-    private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
-    private static final boolean TARGET_REQUIREMENT = true;
-    private static int COST = 140;
+    private static final int DAMAGE = 8;
+    private static final String DESCRIPTION = "Deals " + DAMAGE + " damage to all enemies.";
+    private static final boolean TARGET_REQUIREMENT = false;
+    private static int COST = 200;
     // constructors
-    public Strike() {
+    public Cleave() {
         super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
     }
 
     public void affect(Enemy target) {
-        CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
+        for (Enemy e: CombatManager.getInstance().getEnemies()) {
+            CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
+        }
     }
     public Card upgradedVersion() {
-        return new StrikePlus();
+        return new CleavePlus();
     }
 }
