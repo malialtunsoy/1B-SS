@@ -36,8 +36,8 @@
                      <Image url="@character.jpg" />
                   </image>
                </ImageView>
-               <Label fx:id="playerStatus" alignment="TOP_CENTER" layoutY="230.0" prefHeight="69.0" prefWidth="167.0" text="Status Effects" textAlignment="CENTER" textFill="WHITE" />
                <Label fx:id="energy" alignment="CENTER" layoutX="11.0" layoutY="203.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
+               <FlowPane fx:id="statusEffects" layoutX="-1.0" layoutY="230.0" prefHeight="64.0" prefWidth="168.0" />
             </children>
          </AnchorPane>
          <FlowPane fx:id="potions" layoutX="142.0" layoutY="11.0" prefHeight="53.0" prefWidth="283.0" />

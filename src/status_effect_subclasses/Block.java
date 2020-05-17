@@ -1,6 +1,7 @@
 public class Block extends StatusEffect implements IncomingDamageModifier{
+    public static final String DESCRIPTION = "Block: Prevents damage.";
     public Block(int counter) {
-        super("Block", counter);
+        super("Block", counter, DESCRIPTION);
     }
 
     @Override
