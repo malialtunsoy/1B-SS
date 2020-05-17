@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Random;
-=======
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
->>>>>>> be858963a6be869675bf60e0efab08ce92bd110b
 
 public class Map {
     int vertexSize = 11; // 18 - (4 inital combat) - (last 2 rest and boss)
