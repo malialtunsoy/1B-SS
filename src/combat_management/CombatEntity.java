@@ -114,7 +114,7 @@ public abstract class CombatEntity {
         return amount;
     }
 
-    public <T extends Triggered> void triggerAll(Class<T> cls) {
+    public <T extends Triggered> void triggerAll(Class<T> cls, Object triggerSource) {
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
@@ -122,7 +122,7 @@ public abstract class CombatEntity {
         for (int i = 0; i < shallowCopy.size(); i++) {
             StatusEffect se = shallowCopy.get(i);
             if (cls.isAssignableFrom(se.getClass())) {
-                ((T) se).triggered();
+                ((T) se).triggered(triggerSource);
             }
         }
     }
@@ -130,6 +130,7 @@ public abstract class CombatEntity {
     // returns false if target dies
     public boolean dealDamage(int amount, CombatEntity target) {
         int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
+        triggerAll(TriggeredOnDamageTake.class, this);
         return target.takeDamage(modifiedAmount);
     }
 

@@ -18,4 +18,19 @@ public class SystemConstants {
             Strike.class
     };
 
+    public static Class<?>[] potions = {
+            DamagePotion.class,
+            HealthPotion.class
+    };
+
+    public static Class<?>[] relics = {
+            BurningBlood.class,
+            RingOfTheSnake.class
+    };
+
+    public static Class<?>[] enemies = {
+            Alternatron.class,
+            Cultist.class,
+            JawWorm.class
+    };
 }
