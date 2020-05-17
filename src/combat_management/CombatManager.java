@@ -337,10 +337,16 @@ public class CombatManager {
 
         instance.selectedCard = null;
 
+        //add relic effects
+        for (int i = 0; i < instance.player.getRelics().size(); i++) {
+            instance.player.addStatusEffect(instance.player.getRelics().get(i).getEffect());
+        }
+
         // don't call playTurn(), we don't want to reset the turn upon loading.
         instance.declareIntents();  // intents not saved right now.
         instance.playersTurn = true;
         try { instance.uiAdapter = new CombatUIAdapter(instance.stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        instance.uiAdapter.updateView();
     }
 
     public String getCombatState() {
@@ -352,14 +358,17 @@ public class CombatManager {
         if (enemies.size() == 0) {
             enemyNames += "**";
         }
-        enemyNames = enemies.size() + "###Combat::Enemies###\t" + enemyNames + "\n";
+        enemyNames = enemies.size() + "###Combat::Enemies###\t" + enemyNames;
 
         // compute all lines for enemy status effects
-        String enemyStatusEffects = "";
+        String enemyStates = "";
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
-            enemyStatusEffects += getStatusEffectsString(e, i);
+            enemyStates += "2###Combat::Enemy@" + i + "::HP/MAXHP###\t**" + e.getHP() + "**" + e.getMaxHP() + "**\n";
+            enemyStates += getStatusEffectsString(e, i) + "\n";
         }
+
+
 
         String playerStatusEffects = getStatusEffectsString(instance.player, -1);
 
@@ -371,7 +380,7 @@ public class CombatManager {
 
         return "1###Combat::Ongoing###\t**true**\n" +
                 enemyNames + "\n" +
-                enemyStatusEffects + "\n" +
+                enemyStates + // already has \n
                 playerStatusEffects + "\n" +
                 handString + "\n" +
                 drawPileString + "\n" +
@@ -406,12 +415,16 @@ public class CombatManager {
         String effectNames = "**";
         String effectCounters = "**";
         String effectAppliedByEnemy = "**";
+        int numNonRelicEffects = 0;
         for (StatusEffect se : ent.getStatusEffects()) {
-            effectNames += se.getClass().getName() + "**";
-            effectCounters += se.getCounter() + "**";
-            effectAppliedByEnemy += (!se.decayAtTurnStart()) + "**";
+            if (!(se instanceof RelicEffect)) { // relic effects are not saved. Relics themselves are.
+                effectNames += se.getClass().getName() + "**";
+                effectCounters += se.getCounter() + "**";
+                effectAppliedByEnemy += (!se.decayAtTurnStart()) + "**";
+                numNonRelicEffects++;
+            }
         }
-        if (ent.getStatusEffects().size() == 0) {
+        if (numNonRelicEffects == 0) {
             effectNames += "**";
             effectCounters += "**";
             effectAppliedByEnemy += "**";
@@ -423,7 +436,7 @@ public class CombatManager {
             identifier = "Enemy@" + index;
         }
 
-        String lineStart = ent.getStatusEffects().size() + "###Combat::";
+        String lineStart = numNonRelicEffects + "###Combat::";
 
         effectNames = lineStart + identifier + "::StatusEffects::Names###\t" + effectNames;
         effectCounters = lineStart + identifier +"::StatusEffects::Counters###\t" + effectCounters;
