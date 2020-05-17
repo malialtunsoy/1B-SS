@@ -173,7 +173,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
             FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
-            AnchorPane pane = loader.load(file);
+            FlowPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
@@ -292,8 +292,13 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         CombatManager.getInstance().showSettings();
     }
 
-    void showPrompt(boolean show ,String name) {
+    public void showPrompt(boolean show ,String name) {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
+    }
+
+    @FXML
+    private void save() {
+        SaveAndExit.save();
     }
 }

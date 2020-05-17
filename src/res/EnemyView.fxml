@@ -5,12 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane prefHeight="347.0" prefWidth="156.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EnemyViewController">
-    <children>
-        <Label fx:id="hp" alignment="CENTER" layoutX="4.0" layoutY="205.0" prefHeight="47.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
-      <Label fx:id="name" alignment="CENTER" layoutX="2.0" layoutY="188.0" prefHeight="33.0" prefWidth="167.0" text="Label" textFill="WHITE" />
-      <Label fx:id="intent" alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="23.0" prefWidth="167.0" text="Label" textFill="WHITE" />
-      <ImageView fx:id="image" fitHeight="162.0" fitWidth="186.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-      <FlowPane fx:id="statusEffects" layoutX="4.0" layoutY="240.0" prefHeight="127.0" prefWidth="167.0" />
-    </children>
-</AnchorPane>
+<FlowPane prefHeight="423.0" prefWidth="189.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EnemyViewController">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="188.0">
+         <children>
+            <ImageView fx:id="intent" fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="intentAmount" layoutX="101.0" layoutY="38.0" text="Label" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="image" fitHeight="162.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name" alignment="CENTER" prefHeight="33.0" prefWidth="167.0" text="Label" textFill="WHITE" />
+      <Label fx:id="hp" alignment="CENTER" prefHeight="47.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
+      <FlowPane fx:id="statusEffects" prefHeight="127.0" prefWidth="167.0" />
+   </children>
+</FlowPane>
