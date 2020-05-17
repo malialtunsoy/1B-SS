@@ -3,6 +3,10 @@ import java.util.Random;
 public class RandomUtil {
     private static Random rand = new Random();
 
+    public static int generateEnemyHP(int lowerLimit, int upperLimit) {
+        return lowerLimit + rand.nextInt(upperLimit - lowerLimit + 1);
+    }
+
     public static Card getRandomBaseCard() {
         int index = rand.nextInt(SystemConstants.baseCards.length);
         Card choice = null;
