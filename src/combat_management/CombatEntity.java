@@ -44,6 +44,15 @@ public abstract class CombatEntity {
 
     public int getMaxHP() {return maxHP;}
 
+    // setters used when loading the game
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+
     public void addStatusEffect(StatusEffect newEffect) {
         // see if an effect of the same sort is already applied
         StatusEffect sameEffect = null;
@@ -56,7 +65,6 @@ public abstract class CombatEntity {
         if (sameEffect == null) {
             // add the effect
             newEffect.setAffectee(this);
-            System.out.println("IN");
             affectedBy.add(newEffect);
         } else {
             // stack the counter of the new effect to the existing one
@@ -75,7 +83,7 @@ public abstract class CombatEntity {
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         for (int i = 0; i < shallowCopy.size(); i++) {
-            StatusEffect se = affectedBy.get(i);
+            StatusEffect se = shallowCopy.get(i);
             if (isTurnStart == se.decayAtTurnStart()) {
                 se.decay();
             }

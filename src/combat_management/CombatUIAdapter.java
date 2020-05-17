@@ -37,10 +37,14 @@ public class CombatUIAdapter {
     // --- methods ---
     public void updateView() {
 
-        try{controller.updateEnemies();}catch(IOException e){System.out.println(e.getMessage());}
-        controller.updatePlayer();
+        try{
+            controller.updateEnemies();
+            controller.updatePlayer();
+        }catch(IOException e){System.out.println(e.getMessage());}
+
         controller.updateCardPiles();
         controller.updatePotions();
+        controller.reloadRelics();
     }
 
     public void endTurnPressed() {

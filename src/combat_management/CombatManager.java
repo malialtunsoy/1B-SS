@@ -39,7 +39,7 @@ public class CombatManager {
     private ArrayList<Card> discardPile;
 
     private boolean playersTurn;
-
+    private boolean ongoing;
     private Card selectedCard;
     private Potion selectedPotion;
 
@@ -48,7 +48,8 @@ public class CombatManager {
     // -----  methods  ----
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
-    public void playCombat(){
+    public void playCombat() {
+        ongoing = true;
         initializeCombat();
         playTurn();
     }
@@ -141,6 +142,7 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
+        System.out.println("SKUDFODUILFBSOGHDSFG");
         // player ends "his turn". trigger his end-turn effects.
         player.triggerAll(TriggeredAtTurnEnd.class);
 
@@ -223,14 +225,13 @@ public class CombatManager {
     }
 
     private void combatWon() {
-        System.out.println("asd");
-
         // trigger end of combat effects, no need to consider enemies. The list is empty.
         player.triggerAll(TriggeredAtCombatEnd.class);
 
         // remove all status effects from the player
         player.getStatusEffects().clear();
 
+        ongoing = false;
         // TODO: interface with run management
     }
 
@@ -315,7 +316,134 @@ public class CombatManager {
         stage.setScene(currentScene);
     }
 
-    public String getCombatState() {
-        return "getCombatState() not implemented yet.";
+    /*Changes the singleton instance. called when loading a game
+     *
+     *   how to call:   1) call setPlayer
+     *                  2) call loadState
+     */
+    public static void loadState(ArrayList<Enemy> enemies,
+                             ArrayList<Card> hand, ArrayList<Card> drawPile, ArrayList<Card> discardPile,
+                             int energy, int maxEnergy, int turn) {
+
+        // standard setters
+        instance.enemies = enemies;
+        instance.hand = hand;
+        instance.drawPile = drawPile;
+        Collections.shuffle(drawPile);  // re-shuffle in order to keep the user from checking the save file to see next draw.
+        instance.discardPile = discardPile;
+        instance.energy = energy;
+        instance.maxEnergy = maxEnergy;
+        instance.turn = turn;
+
+        instance.selectedCard = null;
+
+        //add relic effects
+        for (int i = 0; i < instance.player.getRelics().size(); i++) {
+            instance.player.addStatusEffect(instance.player.getRelics().get(i).getEffect());
+        }
+
+        // don't call playTurn(), we don't want to reset the turn upon loading.
+        instance.declareIntents();  // intents not saved right now.
+        instance.playersTurn = true;
+        try { instance.uiAdapter = new CombatUIAdapter(instance.stage); } catch (IOException e ) {System.out.println("Error: " + e.getMessage());}
+        instance.uiAdapter.updateView();
     }
+
+    public String getCombatState() {
+        // compute the line Combat::Enemies
+        String enemyNames = "**";
+        for (Enemy e : enemies) {
+            enemyNames += e.getClass().getName() + "**";
+        }
+        if (enemies.size() == 0) {
+            enemyNames += "**";
+        }
+        enemyNames = enemies.size() + "###Combat::Enemies###\t" + enemyNames;
+
+        // compute all lines for enemy status effects
+        String enemyStates = "";
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy e = enemies.get(i);
+            enemyStates += "2###Combat::Enemy@" + i + "::HP/MAXHP###\t**" + e.getHP() + "**" + e.getMaxHP() + "**\n";
+            enemyStates += getStatusEffectsString(e, i) + "\n";
+        }
+
+
+
+        String playerStatusEffects = getStatusEffectsString(instance.player, -1);
+
+        String handString = getCardPileString(hand);
+        String drawPileString = getCardPileString(drawPile);
+        String discardPileString = getCardPileString(discardPile);
+
+        String EngMaxEngTurn = "3###Combat::Energy/MaxEnergy/Turn###\t**" + energy + "**" + maxEnergy + "**" + turn + "**";
+
+        return "1###Combat::Ongoing###\t**true**\n" +
+                enemyNames + "\n" +
+                enemyStates + // already has \n
+                playerStatusEffects + "\n" +
+                handString + "\n" +
+                drawPileString + "\n" +
+                discardPileString + "\n" +
+                EngMaxEngTurn + "\n";
+    }
+
+    // Helper method for getCombatState. index unused if ent is Player.
+    private static String getCardPileString( ArrayList<Card> pile) {
+        String classNames = "**";
+        for (Card c: pile) {
+            classNames += c.getClass().getName() + "**";
+        }
+        if (pile.size() < 0) {
+            classNames += "**";
+        }
+
+        String lineStart = pile.size() + "###Combat::";
+        if (pile == instance.hand) {
+            lineStart += "Hand";
+        } else if (pile == instance.drawPile) {
+            lineStart += "DrawPile";
+        } else if (pile == instance.discardPile) {
+            lineStart += "DiscardPile";
+        }
+
+        return lineStart + "###\t" + classNames;
+    }
+
+    // Helper method for getCombatState. index unused if ent is Player.
+    private static String getStatusEffectsString( CombatEntity ent, int index) {
+        String effectNames = "**";
+        String effectCounters = "**";
+        String effectAppliedByEnemy = "**";
+        int numNonRelicEffects = 0;
+        for (StatusEffect se : ent.getStatusEffects()) {
+            if (!(se instanceof RelicEffect)) { // relic effects are not saved. Relics themselves are.
+                effectNames += se.getClass().getName() + "**";
+                effectCounters += se.getCounter() + "**";
+                effectAppliedByEnemy += (!se.decayAtTurnStart()) + "**";
+                numNonRelicEffects++;
+            }
+        }
+        if (numNonRelicEffects == 0) {
+            effectNames += "**";
+            effectCounters += "**";
+            effectAppliedByEnemy += "**";
+        }
+        String identifier = "";
+        if (ent == instance.player) {
+            identifier = "Player";
+        } else {
+            identifier = "Enemy@" + index;
+        }
+
+        String lineStart = numNonRelicEffects + "###Combat::";
+
+        effectNames = lineStart + identifier + "::StatusEffects::Names###\t" + effectNames;
+        effectCounters = lineStart + identifier +"::StatusEffects::Counters###\t" + effectCounters;
+        effectAppliedByEnemy = lineStart + identifier + "::StatusEffects::AppliedByAnEnemy###\t" + effectAppliedByEnemy;
+
+        return effectNames + "\n" + effectCounters + "\n" + effectAppliedByEnemy;
+    }
+
+    public boolean combatOngoing() {return ongoing;}
 }

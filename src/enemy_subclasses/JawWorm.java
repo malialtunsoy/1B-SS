@@ -22,6 +22,7 @@ public class JawWorm extends Enemy {
     public void declareIntent() {
         double [] probs = {CHOMP_PROB, THRASH_PROB, BELLOW_PROB};
         int choice = ProbUtilities.indexWithProb(probs);
+        System.out.println("JawWorm choice: " + choice);
         if (CombatManager.getInstance().getTurn() == 0) {
             choice = 0; // always chomp at the first turn
         }
@@ -38,4 +39,7 @@ public class JawWorm extends Enemy {
             addIntent(new DefensiveIntent(this, BELLOW_BLOCK));
         }
     }
+
+    @Override
+    public void restoreExtraState(String[] extraParams) {} // no extra state
 }

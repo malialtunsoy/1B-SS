@@ -35,6 +35,22 @@ public class FileRead {
      String[] fail = {};
      return fail;
  }
+    public static <T> ArrayList<T> convertTo(Class<T> cls, String [] names) {
+        ArrayList<T> result = new ArrayList<T>();
+        try {
+            for (int i = 0; i < names.length; i++) {
+                T newObj = (T) (Class.forName(names[i]).getConstructor().newInstance());
+                result.add(newObj);
+            }
+        } catch (ClassNotFoundException e) {
+            System.err.println("Exception caused by invalid subclass name in load" + e.getMessage());
+        } catch (NoSuchMethodException e) {
+            System.err.println("Exception caused by subclass load with no default constructor:" + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Exception in convertTo caused by call to newInstance()");
+        }
+        return result;
+    }
 
  static public int[] convertToInt(String[] array){
 

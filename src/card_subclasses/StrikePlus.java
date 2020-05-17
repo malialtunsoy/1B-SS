@@ -10,24 +10,17 @@ public class StrikePlus extends Card {
     private static final int DAMAGE = 8;
     private static final String DESCRIPTION = "Deals " + DAMAGE + " damage";
     private static final boolean TARGET_REQUIREMENT = true;
-    private static final boolean IS_UPGRADED = true;
     private static int COST = -1;
 
     // constructors
     public StrikePlus() {
-        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,IS_UPGRADED, COST);
+        super("Strike+", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT, COST);
     }
 
     public void affect(Enemy target) {
         CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
     }
-    public Card upgradedVersion()
-    {
-        if( IS_UPGRADED == false)
-        {
-            Card upgVer = new StrikePlus();//ui strikeplus çizemiyor dikkat
-            return upgVer;
-        }
+    public Card upgradedVersion() {
         return null;
     }
 }
