@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class CombatTest {
 
@@ -47,6 +49,15 @@ public class CombatTest {
         player.addToDeck(sample);
         player.addToDeck(sample);
 
+
+        player.addRewardPotion(new HealthPotion());
+        player.addRewardRelic(new RingOfTheSnake());
+        player.addRewardRelic(new BurningBlood());
+        player.addRewardCard(new Strengthen());
+        player.addRewardCard(new Bash());
+        player.addRewardCard(new Pummel());
+        player.setRewardGold(220);
+
         player.addPot(new HealthPotion());
         player.addPot(new DamagePotion());
     }
@@ -86,6 +97,7 @@ public class CombatTest {
             @Override
             public void handle(ActionEvent event) {
                 Enemy e = new JawWorm();
+                e.setCurrentHP(1);
                 CombatManager.getInstance().addEnemy(e);
             }
         });

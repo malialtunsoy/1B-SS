@@ -26,6 +26,11 @@ public class Player extends CombatEntity {
     ArrayList<Relic> allRelics;
     ArrayList<Potion> allPots;
 
+    ArrayList<Potion> rewardPotions;
+    ArrayList<Relic> rewardRelics;
+    ArrayList<Card> rewardCards;
+    int rewardGold;
+
     public Player(boolean isItNewGame, String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
         super(maxHp);
@@ -41,6 +46,10 @@ public class Player extends CombatEntity {
         deck = new ArrayList<Card>();
         myMap = new Map();
         potCount = 0;
+        rewardPotions = new ArrayList<Potion>();
+        rewardRelics = new ArrayList<Relic>();
+        rewardCards = new ArrayList<Card>();
+        rewardGold = 0;
         if(isItNewGame){initializePlayer();}
         else{loadPlayer();}
     }
@@ -83,6 +92,30 @@ public class Player extends CombatEntity {
 
     public ArrayList<Potion> getPots() {
         return potions;
+    }
+
+    public ArrayList<Potion> getRewardPotions() {
+        return rewardPotions;
+    }
+
+    public ArrayList<Relic> getRewardRelics() {
+        return rewardRelics;
+    }
+
+    public ArrayList<Card> getRewardCards() { return rewardCards; }
+
+    public int getRewardGold(){ return rewardGold;}
+
+    public void addRewardCard(Card card) { rewardCards.add(card);}
+
+    public void setRewardGold(int rewardGold) { this.rewardGold = rewardGold;}
+
+    public void addRewardRelic(Relic relic) {
+        rewardRelics.add(relic);
+    }
+
+    public void addRewardPotion(Potion pot) {
+        rewardPotions.add(pot);
     }
 
     public void initializePlayer(){

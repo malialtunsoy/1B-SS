@@ -235,6 +235,8 @@ public class CombatManager {
 
         ongoing = false;
         // TODO: interface with run management
+
+        uiAdapter.loadRewardsScreen();
     }
 
     // ---- methods used by UIAdapter to update the view: ----
