@@ -207,14 +207,12 @@ public class RunController implements Initializable, ControlledScreen {
 
                 Line tempLine = null;
                 if(temp.getNext() != null){
-                tempLine = new Line(temp.getLocationX()+25, temp.locationY+25, temp.getNext().getLocationX()+25, temp.getNext().getLocationY()+25);}
+                tempLine = new Line(temp.getLocationX()+25, temp.locationY+25, temp.getNext().getLocationX()+25, temp.getNext().getLocationY()+25);
+                    tempLine.getStrokeDashArray().addAll(10d, 10d);}
 
                 if(tempLine != null)anchorPaneMain.getChildren().add(tempLine);
                 anchorPaneMain.getChildren().add(vertices[index]);
 
-                if (index > 3) {
-                    vertices[index].setDisable(true);
-                }
             }
        }
        /* int layerXstart = 110;
