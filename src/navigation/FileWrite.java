@@ -31,6 +31,11 @@ public class FileWrite extends Game{
         int playerLocationOnMap;
         String[] mapVertices;
 
+        //mapData
+        String[][] mapPathsData = Game.getInstance().myPlayer.myMap.getDataPath();
+        int[][] mapPathsDataNumberic = Game.getInstance().myPlayer.myMap.getDataPathNumeric();
+        int[] mapCurrentVertex = Game.getInstance().myPlayer.myMap.getCurrentVertexData();
+
 
         out.println("1###loadedGame###    **" + Game.getInstance().getLoadedGameExist() + "**");
         out.println("1###PlayerName###    **" + Game.getInstance().getPlayerName() + "**");
@@ -101,6 +106,39 @@ public class FileWrite extends Game{
         if(playerRelics.size() == 0){out.print("**");}
         out.println();
 
+
+        //MAP--------------
+        for(int j = 0; j < 4; j++) {
+            out.print(mapPathsData[j].length + "###MapPath"+(j+1)+"###    **");
+            for (int i = 0; i < mapPathsData[j].length; i++) {
+                out.print(mapPathsData[j][i] + "**");
+            }
+            if (mapPathsData[j].length == 0) {
+                out.print("**");
+            }
+            out.println();
+
+        }
+
+        for(int j = 0; j < 4; j++) {
+            out.print(mapPathsDataNumberic[j].length + "###MapPathNumeric"+(j+1)+"###    **");
+            for (int i = 0; i < mapPathsDataNumberic[j].length; i++) {
+                out.print(mapPathsDataNumberic[j][i] + "**");
+            }
+            if (mapPathsDataNumberic[j].length == 0) {
+                out.print("**");
+            }
+            out.println();
+
+        }
+
+        out.print(mapCurrentVertex.length+"###MapCurrentVertex###    **");
+        for(int i = 0; i < mapCurrentVertex.length; i++){
+            out.print(mapCurrentVertex[i] + "**");
+        }
+        if(mapCurrentVertex.length == 0){out.print("**");}
+        out.println();
+        //**************************************************************
 
         // --- COMBAT STATE ---
         if (CombatManager.getInstance().combatOngoing()) {
