@@ -42,4 +42,17 @@ public class RandomUtil {
         return choice;
     }
 
+    public static Enemy getRandomEnemy() {
+        int index = rand.nextInt(SystemConstants.relics.length);
+        Enemy choice = null;
+        try {
+            choice = (Enemy) SystemConstants.enemies[index].getConstructor().newInstance();
+        } catch (NoSuchMethodException e) {
+            System.err.println("Exception in getRandomEnemies caused by an Enemy in system without a default constructor: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Generic Exception in getRandomEnemies: " + e.getMessage());
+        }
+        return choice;
+    }
+
 }

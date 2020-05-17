@@ -28,4 +28,9 @@ public class SystemConstants {
             RingOfTheSnake.class
     };
 
+    public static Class<?>[] enemies = {
+            Alternatron.class,
+            Cultist.class,
+            JawWorm.class
+    };
 }
