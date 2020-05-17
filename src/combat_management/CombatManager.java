@@ -129,7 +129,9 @@ public class CombatManager {
         }
         c.affect(target);
         hand.remove(c);
-        discardPile.add(c);
+        if (!c.getExtraAttributes().contains(Card.ExtraCardAttribute.EXHAUST)) {
+            discardPile.add(c);
+        }
         energy -= c.getEnergy();
         uiAdapter.updateView();
     }
@@ -144,7 +146,7 @@ public class CombatManager {
     public void endTurn() {
         System.out.println("SKUDFODUILFBSOGHDSFG");
         // player ends "his turn". trigger his end-turn effects.
-        player.triggerAll(TriggeredAtTurnEnd.class);
+        player.triggerAll(TriggeredAtTurnEnd.class, null);
 
         playersTurn = false;
         // discard all cards
@@ -161,7 +163,7 @@ public class CombatManager {
 
         // enemies end "their turn", trigger their end-turn effects.
         for ( Enemy e: enemies) {
-            e.triggerAll(TriggeredAtTurnEnd.class);
+            e.triggerAll(TriggeredAtTurnEnd.class, null);
         }
 
         // restore energy
@@ -226,13 +228,15 @@ public class CombatManager {
 
     private void combatWon() {
         // trigger end of combat effects, no need to consider enemies. The list is empty.
-        player.triggerAll(TriggeredAtCombatEnd.class);
+        player.triggerAll(TriggeredAtCombatEnd.class, null);
 
         // remove all status effects from the player
         player.getStatusEffects().clear();
 
         ongoing = false;
         // TODO: interface with run management
+
+        uiAdapter.loadRewardsScreen();
     }
 
     // ---- methods used by UIAdapter to update the view: ----

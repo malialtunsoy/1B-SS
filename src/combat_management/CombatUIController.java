@@ -51,8 +51,19 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot3;
     @FXML ImageView closePopUp;
 
+    @FXML private ImageView rewardCard1;
+    @FXML private ImageView rewardCard2;
+    @FXML private ImageView rewardCard3;
+
+
+    @FXML private AnchorPane rewardsScreen;
+    @FXML private FlowPane rewardPanes;
+
+    boolean rewardCardPicked;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        rewardCardPicked = false;
         playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
 
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
@@ -70,20 +81,25 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             }
         });
         targetPrompt.setVisible(false);
+
+        rewardsScreen.setVisible(false);
+        rewardsScreen.setDisable(true);
     }
 
     public void reloadPotions(){
+        System.out.println("enabled");
         ArrayList<Potion> pots = CombatManager.getInstance().getPlayer().getPots();
 
         if(pots.size() > 0){
             Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
             Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
-            potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    CombatManager.getInstance().potionSelected(pots.get(0));
-                }
-            });
+            if(CombatManager.getInstance().combatOngoing())
+                potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().potionSelected(pots.get(0));
+                    }
+                });
             potionSlot1.setDisable(false);
         }
         else{potionSlot1.setImage(null);potionSlot1.setDisable(true);}
@@ -92,25 +108,27 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
             Tooltip.install(potionSlot2, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
-            potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    CombatManager.getInstance().potionSelected(pots.get(1));
-                }
+            if(CombatManager.getInstance().combatOngoing())
+                potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().potionSelected(pots.get(1));
+                    }
 
-            });
+                });
             potionSlot2.setDisable(false);
         }
         else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
         if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
             Tooltip.install(potionSlot3, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
-            potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
+            if(CombatManager.getInstance().combatOngoing())
+                potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                   @Override
+                    public void handle(MouseEvent event) {
                     CombatManager.getInstance().potionSelected(pots.get(2));
                 }
-            });
+                });
             potionSlot3.setDisable(false);
         }
         else{potionSlot3.setImage(null);potionSlot3.setDisable(true);}
@@ -271,6 +289,121 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             cards.getChildren().add(img);
         }
         System.out.println("Showing discard pile");
+    }
+
+    public void loadRewardsScreen() throws IOException{
+        rewardsScreen.setDisable(false);
+        rewardsScreen.setVisible(true);
+
+        FileInputStream goldFile = new FileInputStream("src/res/RewardPane.fxml");
+        FXMLLoader goldLoader = new FXMLLoader();
+        AnchorPane goldPane = goldLoader.load(goldFile);
+        RewardPaneController goldController = goldLoader.getController();
+        goldController.setParentController(this);
+        goldController.setRewardGold(CombatManager.getInstance().getPlayer().getRewardGold());
+        rewardPanes.getChildren().add(goldPane);
+
+        for(Potion pot : CombatManager.getInstance().getPlayer().getRewardPotions()) {
+            FileInputStream file = new FileInputStream("src/res/RewardPane.fxml");
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane rewardPane = loader.load(file);
+            RewardPaneController controller = loader.getController();
+            controller.setParentController(this);
+            controller.setRewardPotion(pot);
+            rewardPanes.getChildren().add(rewardPane);
+        }
+
+        for(Relic relic : CombatManager.getInstance().getPlayer().getRewardRelics()) {
+            FileInputStream file = new FileInputStream("src/res/RewardPane.fxml");
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane rewardPane = loader.load(file);
+            RewardPaneController controller = loader.getController();
+            controller.setRewardRelic(relic);
+            controller.setParentController(this);
+            rewardPanes.getChildren().add(rewardPane);
+        }
+
+        rewardCard1.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(0).getImage()));
+        rewardCard1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(0));
+                rewardCard1.setVisible(false);
+                disableRewardCards();
+            }
+        });
+        rewardCard2.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(1).getImage()));
+        rewardCard2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(1));
+                rewardCard2.setVisible(false);
+                disableRewardCards();
+            }
+        });
+        rewardCard3.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(2).getImage()));
+        rewardCard3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(2));
+                rewardCard3.setVisible(false);
+                disableRewardCards();
+            }
+        });
+        disablePotionButtons();
+    }
+
+    public void disableRewardCards() {
+        rewardCard1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
+
+        rewardCard2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
+
+        rewardCard3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
+
+        rewardCardPicked = true;
+        checkRewardsDone();
+    }
+
+    public void checkRewardsDone() {
+        if(rewardPanes.getChildren().isEmpty() && rewardCardPicked)
+            backToMap();
+    }
+
+    public void disablePotionButtons() {
+        System.out.println("disabled");
+        potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
+        potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
+        potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                return;
+            }
+        });
     }
 
     @FXML

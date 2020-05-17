@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -138,8 +139,8 @@ public class RunController implements Initializable, ControlledScreen {
 
     @FXML
     void goToCombat(ActionEvent event) {
-
-        //myController.changeScreen(RunUIManager.combatScreen);
+        CombatTest test = new CombatTest();
+        test.testCombat(CombatManager.getInstance().getStage());
     }
 
 
@@ -168,75 +169,100 @@ public class RunController implements Initializable, ControlledScreen {
         SaveAndExit.save();
     }
 
+    @FXML
+    private AnchorPane mapAnchorPane;
 
-    void createMap(){ //--------------------109,136 -------- 946,136"
+    void createMap() { //--------------------109,136 -------- 946,136"
         System.out.println("map drawn");//    -                  -      488
-                                        //  109,624-----------946,624
-        int numberOfVertices = 18;          //       837
+        //  109,624-----------946,624
+        int numberOfVertices = 25;          //       837
         int verticesSize = 50;
+        int index = 0;
+
+        mapAnchorPane.getChildren().clear();
 
         Button[] vertices = new Button[numberOfVertices];
         ImageView[] verticesImage = new ImageView[numberOfVertices];
         Image[] verticesImageIn = new Image[numberOfVertices];
 
-        int layerXstart = 110;
-        int layerXend = 200;
+        Map.VertexNode[] paths = Game.getInstance().myPlayer.myMap.getPaths();
 
-        int layerYstart = 140;
-        int layerYend = 210;
+        String verticeType;
 
-        int positionY = 136;
-        int positionX = 110;
+        for (int i = 0; i < 4; i++) {    //DRAW LINES
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext()) {
+                Line tempLine = null;
+                Line tempLine2 = null;
+                if (temp.getNext() != null) {
+                    tempLine = new Line(temp.getLocationX() + 25, temp.getLocationY() + 25, temp.getNext().getLocationX() + 25, temp.getNext().getLocationY() + 25);
+                    tempLine.getStrokeDashArray().addAll(10d, 10d);
+                }
 
-        for(int i = 0; i < numberOfVertices; i++){
-            String verticeType;
-            int randomVertice = (int) ((Math.random()*4));
-            verticeType = "combat+.png";
-            if(randomVertice == 0){verticeType = "combat+.png";}
-            if(randomVertice == 1){verticeType = "rest+.png";}
-            if(randomVertice == 2){verticeType = "treasure+.png";}
-            if(randomVertice == 3){verticeType = "merchant+.png";}
-            if(i == numberOfVertices-1){verticeType = "boss+.png";}
+                if (temp.getAlternativeNext() != null) {
+                    tempLine2 = new Line(temp.getLocationX() + 25, temp.getLocationY() + 25, temp.getAlternativeNext().getLocationX() + 25, temp.getAlternativeNext().getLocationY() + 25);
+                    tempLine2.getStrokeDashArray().addAll(10d, 10d);
+                }
 
+                if (tempLine != null) mapAnchorPane.getChildren().add(tempLine);
+                if (tempLine2 != null) mapAnchorPane.getChildren().add(tempLine2);
 
-
-            vertices[i] = new Button();
-            vertices[i].setPrefHeight(verticesSize);
-            vertices[i].setPrefWidth(verticesSize);
-
-            verticesImage[i] = new ImageView();
-            verticesImage[i].setFitHeight(verticesSize);
-            verticesImage[i].setFitWidth(verticesSize);
-            verticesImage[i].setPickOnBounds(true);
-            verticesImage[i].setPreserveRatio(true);
-
-            verticesImageIn[i] = new Image(verticeType );
-            verticesImage[i].setImage(verticesImageIn[i]);
-
-            vertices[i].setGraphic(verticesImage[i]);
-
-            anchorPaneMain.getChildren().add(vertices[i]);
-
-            if(i % 3 == 2){layerXstart = layerXend + 100; layerXend+=100;}
-
-            if(i % 3 == 0){layerYstart  = 140; layerYend = 210;}
-            if(i % 3 == 1){layerYstart  = 280; layerYend = 350;}
-            if(i % 3 == 2){layerYstart  = 420; layerYend = 500;}
-
-            positionX = (int)(Math.random()* (layerXend - layerXstart) + layerXstart);
-            positionY = (int)(Math.random()* (layerYend - layerYstart) + layerYstart);
-
-            vertices[i].setLayoutX(positionX);
-            vertices[i].setLayoutY(positionY);
-
-           // System.out.println(i % 3+": "+positionX+","+positionY + "       " + layerYstart + "," + layerYend);
-            if(i > 3){vertices[i].setDisable(true);}
-
+            }
 
         }
 
+        for (int i = 0; i < 4; i++) { //DRAW BUTTONS
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext(), index++) {
+
+                vertices[index] = new Button();
+                vertices[index].setPrefHeight(verticesSize);
+                vertices[index].setPrefWidth(verticesSize);
+
+                verticesImage[index] = new ImageView();
+                verticesImage[index].setFitHeight(verticesSize);
+                verticesImage[index].setFitWidth(verticesSize);
+                verticesImage[index].setPickOnBounds(true);
+                verticesImage[index].setPreserveRatio(true);
+
+                verticesImageIn[index] = new Image(findImage(temp.getVertex()));
+                verticesImage[index].setImage(verticesImageIn[index]);
+
+                vertices[index].setGraphic(verticesImage[index]);
+
+                vertices[index].setLayoutX(temp.getLocationX());
+                vertices[index].setLayoutY(temp.getLocationY());
+
+                vertices[index].setDisable(!temp.getAvailable());
+
+                Map.VertexNode thisVertex = temp;
+                vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.setCurrentVertex(thisVertex);
+                createMap();});
+
+
+                mapAnchorPane.getChildren().add(vertices[index]);
+
+            }
+        }
 
     }
+        public String findImage (String VertexName){
+            if (VertexName.equals("Combat")) {
+                return "combat+.png";
+            }
+            if (VertexName.equals("Rest")) {
+                return "rest+.png";
+            }
+            if (VertexName.equals("Treasure")) {
+                return "treasure+.png";
+            }
+            if (VertexName.equals("Merchant")) {
+                return "merchant+.png";
+            }
+            if (VertexName.equals("Boss")) {
+                return "boss+.png";
+            }
+            return null;
+        }
+
 
 
 }

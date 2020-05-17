@@ -1,25 +1,37 @@
+import java.util.ArrayList;
+
 public abstract class Card {
     private String cardName;
     private String cardType;
     private int energy;
     private String description;
     private int cost;
-    private boolean isUpgraded;
 
     private boolean requiresTarget;
 
-    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget,boolean isUpgraded, int cost){
+    public enum ExtraCardAttribute {EXHAUST, ETHEREAL};
+    private ArrayList<ExtraCardAttribute> extraAttributes;
+
+    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget, int cost){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
         this.description = description;
         this.requiresTarget = requiresTarget;
-        this.isUpgraded = isUpgraded;
         this.cost = cost;
+        this.extraAttributes = new ArrayList();     // defaults to none
+    }
+
+    public ArrayList<ExtraCardAttribute> getExtraAttributes() {
+        return extraAttributes;
+    }
+
+    public void addExtraAttribute(ExtraCardAttribute extraAttribute) {
+        this.extraAttributes.add(extraAttribute);
     }
 
     public boolean getTargetRequirement() { return requiresTarget;}
-    public String getImage (){ return cardName + ".png"; }
+    public String getImage (){ return getClass().getName() + ".png"; }
     public String getName(){
         return cardName;
     };
@@ -42,7 +54,6 @@ public abstract class Card {
         return energy;
     }
     public int getCost(){return cost;}
-    public boolean getIsUpgraded(){return isUpgraded;}
     abstract public void affect( Enemy target); // target = null if the card is not targeted.
     abstract public Card upgradedVersion();
 

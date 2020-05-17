@@ -56,4 +56,6 @@ public class CombatUIAdapter {
     public void showPrompt(boolean show, String name){
         controller.showPrompt(show, name);
     }
+
+    public void loadRewardsScreen() { try{controller.loadRewardsScreen();}catch(IOException e){System.out.println(e.getMessage());}}
 }
