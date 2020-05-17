@@ -26,7 +26,7 @@ public class CombatTest {
         
         Card sample = new Strike();
         Card sample2 = new Defend();
-        Card sample3 = new TEST_PURPOSE_CARD_Strengthen();
+        Card sample3 = new Strengthen();
         Card sample4 = new Bash();
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());

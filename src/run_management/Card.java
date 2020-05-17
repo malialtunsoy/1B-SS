@@ -7,13 +7,12 @@ public abstract class Card {
     private boolean isUpgraded;
     private boolean requiresTarget;
 
-    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget,boolean isUpgraded, int cost){
+    public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget, int cost){
         this.cardName = cardName;
         this.cardType = cardType;
         this.energy = energy;
         this.description = description;
         this.requiresTarget = requiresTarget;
-        this.isUpgraded = isUpgraded;
         this.cost = cost;
     }
 
@@ -41,7 +40,6 @@ public abstract class Card {
         return energy;
     }
     public int getCost(){return cost;}
-    public boolean getIsUpgraded(){return isUpgraded;}
     abstract public void affect( Enemy target); // target = null if the card is not targeted.
     abstract public Card upgradedVersion();
 

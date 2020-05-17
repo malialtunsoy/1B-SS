@@ -117,7 +117,18 @@ public class Game {
         CombatManager.getInstance().setPlayer(myPlayer);
         ArrayList<Enemy> enemies = getSavedEnemies();
 
-        CombatManager.loadState(enemies);
+        ArrayList<Card> hand = FileRead.convertTo(Card.class, FileRead.readFile(LOAD_FILENAME, "Combat::Hand"));
+        ArrayList<Card> drawPile = FileRead.convertTo(Card.class,FileRead.readFile(LOAD_FILENAME, "Combat::DrawPile"));
+        ArrayList<Card> discardPile = FileRead.convertTo(Card.class,FileRead.readFile(LOAD_FILENAME, "Combat::DiscardPile"));
+
+        int [] nums = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "Combat::Energy/MaxEnergy/Turn"));
+        if ( nums.length != 3) {
+            System.err.println("ERROR: Load file has incorrect number of arguments in line Combat::Energy/MaxEnergy/Turn");
+            return;
+        }
+
+        loadPlayerStatusEffects();
+        CombatManager.loadState(enemies, hand, drawPile, discardPile, nums[0], nums[1], nums[2]);
     }
 
     private ArrayList<Enemy> getSavedEnemies() throws IOException{
@@ -163,18 +174,31 @@ public class Game {
             }
 
             // add status effects
-            try {
-                for (int j = 0; j < effectNamesStr.length; j++) {
+            for (int j = 0; j < effectNamesStr.length; j++) {
+                System.err.println("HELLO: "+ j);
+                try {
                     StatusEffect newEffect = (StatusEffect) (Class.forName(effectNamesStr[j]).getConstructor(int.class).newInstance(counters[j]));
                     newEffect.setAppliedByAnEnemy(appliedByAnEnemy[j]);
                     enemies.get(i).addStatusEffect(newEffect);
+                    System.err.println("SE(int) ADDED");
+                } catch (ClassNotFoundException e) {
+                    System.err.println("Exception caused by invalid StatusEffect subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
+                } catch (NoSuchMethodException e) {
+                    try {
+                        StatusEffect newEffect = (StatusEffect) (Class.forName(effectNamesStr[j]).getConstructor().newInstance());
+                        newEffect.setAppliedByAnEnemy(appliedByAnEnemy[j]);
+                        enemies.get(i).addStatusEffect(newEffect);
+                        System.err.println("SE() ADDED");
+                    } catch (NoSuchMethodException e2) {
+                        System.err.println("Exception caused by StatusEffect subclass with no (int) constructor in " + LOAD_FILENAME+ ": " + e2.getMessage());
+                    } catch (Exception e2) {
+                        //ClassNotFoundException never reaches here always caught in outer-level handler
+                        // as for the rest, I won't code them at 5AM. If the program crashes here, may it rest in peace.
+                        System.err.println(e2.getMessage());
+                    }
+                } catch (Exception e) {
+                    System.err.println("Exception in loadCombat ABCD caused by call to newInstance()");
                 }
-            } catch (ClassNotFoundException e) {
-                System.err.println("Exception caused by invalid StausEffect subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
-            } catch (NoSuchMethodException e) {
-                System.err.println("Exception caused by StatusEffect subclass with no (int) constructor in " + LOAD_FILENAME+ ": " + e.getMessage());
-            } catch (Exception e) {
-                System.err.println("Exception in loadCombat ABCD caused by call to newInstance()");
             }
 
             String [] extraParams = FileRead.readFile(LOAD_FILENAME, "Combat::Enemy@" + i + "::ExtraParams");
@@ -185,4 +209,42 @@ public class Game {
 
         return enemies;
     }
+
+    private void loadPlayerStatusEffects() throws IOException {
+        String [] effectNamesStr = FileRead.readFile(LOAD_FILENAME, "Combat::Player::StatusEffects::Names" );
+        Boolean [] appliedByAnEnemy = FileRead.convertToBool(FileRead.readFile(LOAD_FILENAME, "Combat::Player::StatusEffects::AppliedByAnEnemy"));
+        int [] counters = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "Combat::Player::StatusEffects::Counters"));
+
+        if (effectNamesStr.length != appliedByAnEnemy.length || effectNamesStr.length != counters.length) {
+            System.err.println("Combat::Player in " + LOAD_FILENAME + " has inconsistent number of entries in lines related to status effects");
+        }
+
+        // add status effects
+        for (int j = 0; j < effectNamesStr.length; j++) {
+            try {
+                StatusEffect newEffect = (StatusEffect) (Class.forName(effectNamesStr[j]).getConstructor(int.class).newInstance(counters[j]));
+                newEffect.setAppliedByAnEnemy(appliedByAnEnemy[j]);
+                myPlayer.addStatusEffect(newEffect);
+            } catch (ClassNotFoundException e) {
+                System.err.println("Exception caused by invalid StatusEffect subclass in " + LOAD_FILENAME+ ": " + e.getMessage());
+            } catch (NoSuchMethodException e) {
+                try {
+                    StatusEffect newEffect = (StatusEffect) (Class.forName(effectNamesStr[j]).getConstructor().newInstance());
+                    newEffect.setAppliedByAnEnemy(appliedByAnEnemy[j]);
+                    myPlayer.addStatusEffect(newEffect);
+                } catch (NoSuchMethodException e2) {
+                    System.err.println("Exception caused by StatusEffect subclass with no (int) or () constructor in " + LOAD_FILENAME+ ": " + e2.getMessage());
+                } catch (Exception e2) {
+                    //ClassNotFoundException never reaches here always caught in outer-level handler
+                    // as for the rest, I won't code them at 5AM. If the program crashes here, may it rest in peace.
+                    System.err.println(e2.getMessage());
+                }
+            } catch (Exception e) {
+                System.err.println("Exception in loadCombat ABCD caused by call to newInstance()");
+            }
+        }
+
+    }
+
+
 }

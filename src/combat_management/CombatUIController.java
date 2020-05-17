@@ -35,7 +35,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML AnchorPane hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
-    @FXML Label playerStatus;
+    @FXML FlowPane statusEffects;
     @FXML Label energy;
     @FXML Label numDraw;
     @FXML Label numDiscard;
@@ -147,13 +147,22 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         this.adapter = adapter;
     }
 
-    public void updatePlayer(){
-        String status = "";
+    public void updatePlayer() throws IOException{
+        statusEffects.getChildren().clear();
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
-            if(! (effect instanceof RelicEffect))
-                status = status + effect.toString() + "\n";//change this to effect.getName() later
-        playerStatus.setText(status);
-        energy.setText("Energy: " + CombatManager.getInstance().uiEnergyString());
+            if(! (effect instanceof RelicEffect)){
+                FileInputStream file = new FileInputStream("src/res/StatusEffectView.fxml");
+                FXMLLoader loader = new FXMLLoader();
+                AnchorPane pane = loader.load(file);
+                StatusEffectViewController controller = loader.getController();
+                controller.setImage(effect.getImage());
+                controller.setCounter(effect.getCounter());
+                Tooltip.install(pane, new Tooltip(effect.getDescription()));
+                statusEffects.getChildren().add(pane);
+
+            }
+
+        energy.setText(CombatManager.getInstance().uiEnergyString());
 
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
     }
@@ -164,25 +173,22 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
             FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
-            AnchorPane pane = loader.load(file);
+            FlowPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
-            ImageView img = new ImageView(e.getImage());
-            img.setFitWidth(150);
-            img.setFitHeight(150);
-            controller.getButton().setGraphic(img);
-            controller.getButton().setText("");
-            controller.getButton().setOnAction(
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent actionEvent) {
-                            CombatManager.getInstance().targetSelected(e);
-                        }
-                    }
-            );
+            controller.getImage().setImage(new Image(e.getImage()));
+            controller.getImage().setFitWidth(150);
+            controller.getImage().setFitHeight(150);
+            controller.getImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().targetSelected(e);
+                }
+            });
             controller.setStatus(e.getStatusEffects());
             controller.setName(e.getName());
+
             enemies.getChildren().add(pane);
         }
     }
@@ -197,37 +203,28 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         int i = 0;
 
         for (Card c : cards) {
-            Button cardBtn = new Button("");
             ImageView img = new ImageView(c.getImage());
             img.setFitWidth(147);
             img.setFitHeight(200.0);
-            cardBtn.setGraphic(img);
-            cardBtn.setOnAction(new EventHandler<ActionEvent>() {
+            img.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void handle(MouseEvent event) {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-            hand.getChildren().add(cardBtn);
-            cardBtn.setLayoutX(155 * i);
-            cardBtn.setLayoutY(0);
+            hand.getChildren().add(img);
+            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+            img.setLayoutX(147 * i);
+            img.setLayoutY(0);
             i++;
         }
+
+        hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         //hand.setPrefWrapLength(147 * cards.size());
 
-        drawPile.setText("");
-        ImageView drawPileImg = new ImageView("CardBackRed.png");
-        drawPileImg.setFitHeight(200);
-        drawPileImg.setFitWidth(147 );
-        drawPile.setGraphic(drawPileImg);
-        drawPile.setGraphicTextGap(0);
         numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");
-
-        ImageView discardPileImg = new ImageView("CardBackBlue.png");
-        discardPileImg.setFitHeight(200);
-        discardPileImg.setFitWidth(147 );
-        discardPile.setText("");
-        discardPile.setGraphic(discardPileImg);
         numDiscard.setText(CombatManager.getInstance().getDiscardPileSize() +"");
 
     }
@@ -243,6 +240,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             return;
         popUpDisplay.setDisable(false);
         popUpDisplay.setVisible(true);
+        popUpDisplay.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        popUpDisplay.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
         cards.getChildren().clear();
         for(Card c : CombatManager.getInstance().getDrawPile()) {
@@ -250,6 +249,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             img.setFitWidth(148*1.5);
             img.setFitHeight(200*1.5);
             cards.getChildren().add(img);
+            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
         }
         System.out.println("Showing draw pile");
     }
@@ -288,8 +288,13 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         CombatManager.getInstance().showSettings();
     }
 
-    void showPrompt(boolean show ,String name) {
+    public void showPrompt(boolean show ,String name) {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
+    }
+
+    @FXML
+    private void save() {
+        SaveAndExit.save();
     }
 }

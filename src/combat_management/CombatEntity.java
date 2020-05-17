@@ -70,7 +70,6 @@ public abstract class CombatEntity {
         if (sameEffect == null) {
             // add the effect
             newEffect.setAffectee(this);
-            System.out.println("IN");
             affectedBy.add(newEffect);
         } else {
             // stack the counter of the new effect to the existing one
@@ -85,18 +84,14 @@ public abstract class CombatEntity {
     // makes all status effects on this entity decay polymorphically.
     // called at the start of each turn.
     public void decayAllAffected( boolean isTurnStart) {
-        System.err.println("YABADABADOOOO::  " + affectedBy.size());
-
         // if any SE runs out, it will remove itself from affectedBy but not from the shallow copy.
         ArrayList<StatusEffect> shallowCopy = new ArrayList<StatusEffect>(affectedBy);
 
         for (int i = 0; i < shallowCopy.size(); i++) {
-            System.err.println("YOOOOOOOOOOO::  " + shallowCopy.size());
             StatusEffect se = shallowCopy.get(i);
             if (isTurnStart == se.decayAtTurnStart()) {
                 se.decay();
             }
-            System.err.println("YEEEEEEEEEEE::  " + shallowCopy.size());
         }
     }
 

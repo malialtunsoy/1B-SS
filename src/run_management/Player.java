@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends CombatEntity {
+    private static final String LOAD_FILENAME = "Data.txt";
+
 
     String playerName;
     String playerChar;
@@ -140,46 +142,28 @@ public class Player extends CombatEntity {
     }
    // =========================================================LOAD===============================================
 
-    public void loadDeck(){
+    public void loadDeck() {
         String[] deckCardNames;
-        try{deckCardNames = FileRead.readFile("Data.txt", "PlayerDeck");
-            ArrayList<Card> loadDeck = new ArrayList<Card>();
-
-            for(int i = 0; i < deckCardNames.length; i++){
-                if(deckCardNames[i].equals("Strike")){loadDeck.add(new Strike());}
-                if(deckCardNames[i].equals("Defend")){loadDeck.add(new Defend());}
-                if(deckCardNames[i].equals("Bash")){loadDeck.add(new Bash());}
-                if(deckCardNames[i].equals("Strike+")){loadDeck.add(new StrikePlus());}
-            }
-            deck = loadDeck;
-        }
-        catch (IOException e){System.out.println(e);}
+        try {
+            deckCardNames = FileRead.readFile(LOAD_FILENAME, "PlayerDeck");
+            deck = FileRead.convertTo(Card.class, deckCardNames);
+        } catch (IOException e){System.err.println(e.getMessage());}
     }
-    public void loadPotion(){
+
+    public void loadPotion() {
         String[] potionNames;
-        try{potionNames = FileRead.readFile("Data.txt", "PlayerPotions");
-            ArrayList<Potion> loadPots = new ArrayList<Potion>();
-
-            for(int i = 0; i < potionNames.length; i++){
-                if(potionNames[i].equals("Damage Potion")){loadPots.add(new DamagePotion());}
-                if(potionNames[i].equals("Health Potion")){loadPots.add(new HealthPotion());}
-            }
-            potions = loadPots;
+        try{potionNames = FileRead.readFile(LOAD_FILENAME, "PlayerPotions");
+            potions = FileRead.convertTo(Potion.class, potionNames);
         }
-        catch (IOException e){System.out.println(e);}
+        catch (IOException e){System.err.println(e.getMessage());}
     }
+
     public void loadRelic(){
         String[] relicNames;
-        try{relicNames = FileRead.readFile("Data.txt", "PlayerRelics");
-            ArrayList<Relic> loadRelics = new ArrayList<Relic>();
-
-            for(int i = 0; i < relicNames.length; i++){
-                if(relicNames[i].equals("Burning Blood")){loadRelics.add(new BurningBlood());}
-                if(relicNames[i].equals("Ring of the Snake")){loadRelics.add(new RingOfTheSnake());}
-            }
-            relics = loadRelics;
+        try{relicNames = FileRead.readFile(LOAD_FILENAME, "PlayerRelics");
+            relics = FileRead.convertTo(Relic.class, relicNames);
         }
-        catch (IOException e){System.out.println(e);}
+        catch (IOException e){System.err.println(e.getMessage());}
     }
 
     public void loadMerchantDeck(){ }
