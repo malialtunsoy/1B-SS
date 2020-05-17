@@ -117,9 +117,9 @@ public class Game {
         CombatManager.getInstance().setPlayer(myPlayer);
         ArrayList<Enemy> enemies = getSavedEnemies();
 
-        ArrayList<Card> hand = FileRead.convertToCards(FileRead.readFile(LOAD_FILENAME, "Combat::Hand"));
-        ArrayList<Card> drawPile = FileRead.convertToCards(FileRead.readFile(LOAD_FILENAME, "Combat::DrawPile"));
-        ArrayList<Card> discardPile = FileRead.convertToCards(FileRead.readFile(LOAD_FILENAME, "Combat::DiscardPile"));
+        ArrayList<Card> hand = FileRead.convertTo(Card.class, FileRead.readFile(LOAD_FILENAME, "Combat::Hand"));
+        ArrayList<Card> drawPile = FileRead.convertTo(Card.class,FileRead.readFile(LOAD_FILENAME, "Combat::DrawPile"));
+        ArrayList<Card> discardPile = FileRead.convertTo(Card.class,FileRead.readFile(LOAD_FILENAME, "Combat::DiscardPile"));
 
         int [] nums = FileRead.convertToInt(FileRead.readFile(LOAD_FILENAME, "Combat::Energy/MaxEnergy/Turn"));
         if ( nums.length != 3) {

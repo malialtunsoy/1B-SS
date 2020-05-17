@@ -64,6 +64,9 @@ public class FileWrite extends Game{
         if(optionss.length == 0){out.print("**");}
         out.println();
 
+        // ############################################################
+        // ######## WHY DO WE HAVE BOTH CardsInDeck and PlayerDeck ???????????
+        // #########################################################
         out.print(cardOwned.length+"###CardsInDeck###    **");
         for(int i = 0; i < cardOwned.length; i++){
             out.print(cardOwned[i] + "**");
@@ -79,21 +82,21 @@ public class FileWrite extends Game{
 
         out.print( playerDeck.size()+"###PlayerDeck###    **");
         for(int i = 0; i < playerDeck.size(); i++){
-            out.print(playerDeck.get(i).getName() + "**");
+            out.print(playerDeck.get(i).getClass().getName() + "**");
         }
         if(playerDeck.size() == 0){out.print("**");}
         out.println();
 
         out.print(playerPots.size()+"###PlayerPotions###    **");
         for(int i = 0; i < playerPots.size(); i++){
-            out.print(playerPots.get(i).getName() + "**");
+            out.print(playerPots.get(i).getClass().getName() + "**");
         }
         if(playerPots.size() == 0){out.print("**");}
         out.println();
 
         out.print(playerRelics.size()+"###PlayerRelics###    **");
         for(int i = 0; i < playerRelics.size(); i++){
-            out.print(playerRelics.get(i).getName() + "**");
+            out.print(playerRelics.get(i).getClass().getName() + "**");
         }
         if(playerRelics.size() == 0){out.print("**");}
         out.println();
@@ -115,7 +118,7 @@ public class FileWrite extends Game{
         String[] deckCardNames = new String[deck.size()];
 
         for(int i= 0; i < deck.size(); i++ ){
-            deckCardNames[i]  = deck.get(i).getName();
+            deckCardNames[i]  = deck.get(i).getClass().getName(); // changed to get the class name directly
         }
 
         return deckCardNames;
