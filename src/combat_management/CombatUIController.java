@@ -173,7 +173,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
             FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
-            AnchorPane pane = loader.load(file);
+            FlowPane pane = loader.load(file);
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
