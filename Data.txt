@@ -1,6 +1,6 @@
 1###loadedGame###    **true**
 1###PlayerName###    **yeniOyun**
-1###Character###    **Defect**
+1###Character###    **Ironclad**
 7###Achievements###    **Start new Game**Load Game**End Game**Talk with Merchant**Fight with a Boss**Buy a Relic**Buy a potion**
 7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
@@ -14,6 +14,7 @@
 20###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**Strike**Strike**Strike**Strike**Strike**Defend**Defend**Defend**Defend**Defend**
 0###PlayerPotions###    ****
 0###PlayerRelics###    ****
+<<<<<<< HEAD
 7###MapPath1###    **Combat**Merchant**Combat**Rest**Rest**Boss**null**
 7###MapPath2###    **Combat**Combat**Treasure**Treasure**Rest**Boss**null**
 6###MapPath3###    **Combat**Combat**Merchant**Rest**Boss**null**
@@ -24,3 +25,15 @@
 35###MapPathNumeric4###    **0**3**1**132**510**1**-1**-1**274**514**2**-1**-1**392**537**3**-1**-1**484**501**2**-1**-1**614**545**99**-1**-1**710**527**0**0**0**0**0**
 2###MapCurrentVertex###    **2**2**
 1###mapLevel###    **3**
+=======
+7###MapPath1###    **Combat**Rest**Combat**Treasure**Rest**Boss**null**
+7###MapPath2###    **Combat**Merchant**Combat**Combat**Rest**Boss**null**
+6###MapPath3###    **Combat**Combat**Treasure**Rest**Boss**null**
+7###MapPath4###    **Combat**Merchant**Merchant**Treasure**Rest**Boss**null**
+35###MapPathNumeric1###    **0**-1**-1**117**164**1**2**2**275**140**2**-1**-1**348**177**3**-1**-1**477**143**1**-1**-1**626**287**99**-1**-1**694**496**0**0**0**0**0**
+35###MapPathNumeric2###    **0**1**1**116**313**1**-1**-1**265**291**2**-1**-1**348**305**3**-1**-1**463**307**1**-1**-1**626**287**99**-1**-1**694**496**0**0**0**0**0**
+30###MapPathNumeric3###    **0**4**1**161**392**1**2**2**243**405**2**-1**-1**353**410**2**-1**-1**572**531**99**-1**-1**694**496**0**0**0**0**0**
+35###MapPathNumeric4###    **0**-1**-1**165**534**1**-1**-1**259**516**2**-1**-1**378**541**3**-1**-1**460**511**2**-1**-1**572**531**99**-1**-1**694**496**0**0**0**0**0**
+2###MapCurrentVertex###    **-1**-1**
+1###mapLevel###    **0**
+>>>>>>> master
