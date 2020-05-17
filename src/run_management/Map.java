@@ -141,6 +141,8 @@ public class Map {
         path4curNode.setNext(lastRestNode2);// [] [] [] [] []  []
 
         locationOrganizer();
+
+        branchWithOtherNodes();
     }
 
     public String randomVertex(){
@@ -169,6 +171,35 @@ public class Map {
         }
         System.out.println(randomVertex);
         return randomVertex;
+    }
+
+    public void branchWithOtherNodes(){
+        int rand = (int)(Math.random() * 10);
+        VertexNode[] curNodes = getPaths();
+
+
+        for(int layers = 0; layers < 3; layers++) { //layer 1 to 4
+            for(int path = 0; path < 4; path++ ) {  //path no
+                rand = (int)(Math.random() * 10);
+                if (rand < 3) { //3/10 possibility
+
+                    if(path == 0){         curNodes[path].setAlternativeNext(curNodes[1].getNext());         }
+
+                    if(path == 1){
+                        if(curNodes[0].getAlternativeNext() == null) { curNodes[path].setAlternativeNext(curNodes[0].getNext()); }
+                    else {curNodes[path].setAlternativeNext(curNodes[2].getNext());}}
+
+                    if(path == 2){
+                        if(curNodes[1].getAlternativeNext() == null) { curNodes[path].setAlternativeNext(curNodes[1].getNext()); }
+                        else {curNodes[path].setAlternativeNext(curNodes[3].getNext());}}
+
+                    if(path == 3 && curNodes[2].getAlternativeNext() == null){       curNodes[path].setAlternativeNext(curNodes[2].getNext());           }
+                }
+            }
+           for(int i = 0; i< 4; i++){
+               curNodes[i] = curNodes[i].getNext();
+           }
+        }
     }
 
     public void locationOrganizer(){

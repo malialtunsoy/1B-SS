@@ -176,7 +176,7 @@ public class RunController implements Initializable, ControlledScreen {
         int numberOfVertices = 25;          //       837
         int verticesSize = 50;
         int index = 0;
-
+        
         Button[] vertices = new Button[numberOfVertices];
         ImageView[] verticesImage = new ImageView[numberOfVertices];
         Image[] verticesImageIn = new Image[numberOfVertices];
@@ -184,7 +184,28 @@ public class RunController implements Initializable, ControlledScreen {
         Map.VertexNode[] paths = Game.getInstance().myPlayer.myMap.getPaths();
 
         String verticeType;
-        for(int i = 0; i < 4; i++) {
+
+        for(int i = 0; i < 4; i++) {    //DRAW LINES
+            for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext()) {
+                Line tempLine = null;
+                Line tempLine2 = null;
+                if(temp.getNext() != null){
+                    tempLine = new Line(temp.getLocationX()+25, temp.getLocationY()+25, temp.getNext().getLocationX()+25, temp.getNext().getLocationY()+25);
+                    tempLine.getStrokeDashArray().addAll(10d, 10d);}
+
+                if(temp.getAlternativeNext() != null){
+                    tempLine2 = new Line(temp.getLocationX()+25, temp.getLocationY()+25, temp.getAlternativeNext().getLocationX()+25, temp.getAlternativeNext().getLocationY()+25);
+                    tempLine2.getStrokeDashArray().addAll(10d, 10d);
+                }
+
+                if(tempLine != null)anchorPaneMain.getChildren().add(tempLine);
+                if(tempLine2 != null)anchorPaneMain.getChildren().add(tempLine2);
+
+            }
+
+        }
+
+        for(int i = 0; i < 4; i++) { //DRAW BUTTONS
             for (Map.VertexNode temp = paths[i]; temp != null; temp = temp.getNext(), index++) {
 
                 vertices[index] = new Button();
@@ -205,16 +226,15 @@ public class RunController implements Initializable, ControlledScreen {
                 vertices[index].setLayoutX(temp.getLocationX());
                 vertices[index].setLayoutY(temp.getLocationY());
 
-                Line tempLine = null;
-                if(temp.getNext() != null){
-                tempLine = new Line(temp.getLocationX()+25, temp.locationY+25, temp.getNext().getLocationX()+25, temp.getNext().getLocationY()+25);
-                    tempLine.getStrokeDashArray().addAll(10d, 10d);}
 
-                if(tempLine != null)anchorPaneMain.getChildren().add(tempLine);
                 anchorPaneMain.getChildren().add(vertices[index]);
 
             }
        }
+
+
+
+
        /* int layerXstart = 110;
         int layerXend = 200;
 
