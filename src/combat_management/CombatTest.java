@@ -33,12 +33,8 @@ public class CombatTest {
 
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
-        player.addRelic(new BurningBlood());
         player.addRelic(new BronzeScales());
-        player.addRelic(new BurningBlood());
-        player.addRelic(new RingOfTheSnake());
 
-        //player.addRelic(new BronzeScales());
 
         player.addToDeck(sample5);
         player.addToDeck(sample5);
