@@ -99,8 +99,10 @@ public class FileWrite extends Game{
         out.println();
 
 
-
-
+        // --- COMBAT STATE ---
+        if (CombatManager.getInstance().combatOngoing()) {
+            out.println(CombatManager.getInstance().getCombatState());
+        }
 
         out.close();
 
@@ -117,10 +119,5 @@ public class FileWrite extends Game{
         }
 
         return deckCardNames;
-
     }
-
-
-
-
 }
