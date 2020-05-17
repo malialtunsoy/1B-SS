@@ -29,7 +29,7 @@ public abstract class Enemy extends CombatEntity{
     }
 
     public String getImage() {
-        return name + ".png";
+        return getClass().getName() + ".png";
     }
     public ArrayList<Intent> getIntents() {
         return intents;
