@@ -69,6 +69,7 @@ public class CombatManager {
          deckClickedBefore = false;
          settingsClickedBefore = false;
          mapClickedBefore = false;
+        sceneChanged = false;
         // add relic effects
         for (int i = 0; i < player.getRelics().size(); i++) {
             player.addStatusEffect(player.getRelics().get(i).getEffect());
@@ -504,9 +505,8 @@ public class CombatManager {
     public void gameOver(){
         myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
-
+        enemies = new ArrayList<Enemy>();
         myController.playGameOver();
-
         stage.show();
     }
 }

@@ -105,6 +105,8 @@ public class RandomUtil {
             classPool = SystemConstants.ironcladCards;
         } else if (character.equals("Silent")){
             classPool = SystemConstants.silentCards;
+        } else if (character.equals("Watcher")) {
+            classPool = SystemConstants.watcherCards;
         } else {
             System.err.println("Character class not recognized");
         }
