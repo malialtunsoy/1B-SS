@@ -323,6 +323,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             rewardPanes.getChildren().add(rewardPane);
         }
 
+
         rewardCard1.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(0).getImage()));
         rewardCard1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -332,6 +333,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 disableRewardCards();
             }
         });
+
         rewardCard2.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(1).getImage()));
         rewardCard2.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -341,6 +343,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 disableRewardCards();
             }
         });
+
         rewardCard3.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(2).getImage()));
         rewardCard3.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
