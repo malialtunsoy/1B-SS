@@ -13,7 +13,18 @@ import java.util.HashMap;
 public class ScreenController extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<String, Node>();
-    MediaPlayer mediaPlayer;
+
+    MediaPlayer mediaPlayer; //mainTheme
+    MediaPlayer charSelectPlayer; //char selection
+    MediaPlayer fightPlayer;
+    MediaPlayer gameOverPlayer;
+    MediaPlayer healPlayer;
+    MediaPlayer inventoryPlayer;
+    MediaPlayer knifeStabPlayer;
+    MediaPlayer merchantOpeningPlayer;
+    MediaPlayer treasureOpeningPlayer;
+    MediaPlayer upgradeCardPlayer;
+
 
     private ArrayList<String> keys = new ArrayList<String>();
     private ArrayList<String> keysFile = new ArrayList<String>();
@@ -26,19 +37,9 @@ public class ScreenController extends StackPane {
     public ScreenController(){
         super();
 
-        String musicFile = "music2.wav";
-        Media music = new Media(new File(musicFile).toURI().toString());
-        mediaPlayer = new MediaPlayer(music);
+        prepareMusicFiles();
     }
 
-    public void playMusic(){
-
-        mediaPlayer.play();
-    }
-
-    public void stopMusic(){
-        mediaPlayer.stop();
-    }
 
     public void addScreen(String screenName, Node screen){
         screens.put(screenName, screen);
@@ -151,5 +152,54 @@ public class ScreenController extends StackPane {
 
     public String getBackFromMap(){return backFromMap;}
 
+    public void prepareMusicFiles(){
+        String musicFile = "music2.wav";
+        Media music = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(music);
 
+         Media charSelectMusic = new Media(new File("charSelection.wav").toURI().toString());
+         charSelectPlayer = new MediaPlayer(charSelectMusic);
+
+         Media fightMusic = new Media(new File("fight.wav").toURI().toString());
+         fightPlayer = new MediaPlayer(fightMusic);
+
+         Media gameOverMusic = new Media(new File("gameOver.wav").toURI().toString());
+         gameOverPlayer = new MediaPlayer(gameOverMusic);
+
+         Media healMusic = new Media(new File("heal.wav").toURI().toString());
+         healPlayer = new MediaPlayer(healMusic);
+
+         Media inventoryAddMusic = new Media(new File("inventoryAdd.wav").toURI().toString());
+         inventoryPlayer = new MediaPlayer(inventoryAddMusic);
+
+         Media knifeStabMusic = new Media(new File("knifeStab.wav").toURI().toString());
+         knifeStabPlayer = new MediaPlayer(knifeStabMusic);
+
+         Media merchantOpeningMusic = new Media(new File("merchantOpening.wav").toURI().toString());
+         merchantOpeningPlayer = new MediaPlayer(merchantOpeningMusic);
+
+         Media treasureMusic = new Media(new File("treasureOpen.wav").toURI().toString());
+        treasureOpeningPlayer = new MediaPlayer(treasureMusic);
+
+         Media upgradeCardMusic = new Media(new File("upgradeCard.wav").toURI().toString());
+         upgradeCardPlayer = new MediaPlayer(upgradeCardMusic);
+    }
+
+    public void playMusic(){
+        mediaPlayer.play();
+    }
+
+    public void stopMusic(){
+        mediaPlayer.stop();
+    }
+
+   public void playCharSelect(){ charSelectPlayer.play(); }
+    public void playFight(){ fightPlayer.play(); }
+    public void playGameOver(){ gameOverPlayer.play(); }
+    public void playHeal(){ healPlayer.play(); }
+    public void playInventory(){ inventoryPlayer.play(); }
+    public void playKnifeStab(){ knifeStabPlayer.play(); }
+    public void playMerchant(){ merchantOpeningPlayer.play(); }
+    public void playTreasure(){ treasureOpeningPlayer.play(); }
+    public void playUpgradeCard(){ upgradeCardPlayer.play(); }
 }

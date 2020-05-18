@@ -156,7 +156,7 @@
                <graphic>
                   <ImageView fx:id="secondImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@BurningBloodRelic.png" />
+                        <Image url="@BurningBlood.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -168,7 +168,7 @@
                <graphic>
                   <ImageView fx:id="thirdImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@BurningBloodRelic.png" />
+                        <Image url="@BurningBlood.png" />
                      </image>
                   </ImageView>
                </graphic>

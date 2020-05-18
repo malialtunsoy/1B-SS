@@ -197,7 +197,7 @@ public class RestController implements Initializable, ControlledScreen {
 
                 upgradedCardVBox.getChildren().add(text2);
                 Game.getInstance().myPlayer.upgradeCard(myCards.get(temp),temp);//does when card choosed but must do when 'confirmed'
-
+                myController.playUpgradeCard();
             });//*************************************************************
 
             bottomBox.getChildren().add(cardButton[i]);
@@ -227,7 +227,7 @@ public class RestController implements Initializable, ControlledScreen {
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
             Image relicImage = new Image(relics.get(i).getImage());
-            //Image relicImage = new Image("BurningBloodRelic.png");
+            //Image relicImage = new Image("BurningBlood.png");
             tempRelicImage.setImage(relicImage);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
@@ -294,7 +294,7 @@ public class RestController implements Initializable, ControlledScreen {
 
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
-
+        myController.playHeal();
         System.out.println("Players HP: "+Game.getInstance().myPlayer.getHP());
 
     }

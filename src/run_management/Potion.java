@@ -42,6 +42,7 @@
      public String toString(){return getPotionDescription();}
 }
 
+
 class HealthPotion extends Potion {
     private static final String NAME = "Health Potion";
     private static final int COST = 250; // what does this parameter mean?
