@@ -4,6 +4,6 @@ public class BuffIntent extends IntentWithStatusEffect {
     }
 
     public String toString() {
-        return "BuffIntent";
+        return "This enemy intends to apply a buff.\n";
     }
 }
