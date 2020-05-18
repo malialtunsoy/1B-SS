@@ -16,10 +16,14 @@ public class SystemConstants {
     };
 
     public static Class<?>[] ironcladCards = {
+            Anger.class,
             Bash.class,
-            // Anger.class,
-            Strengthen.class,
-            Pummel.class
+            BodySlam.class,
+            Clash.class,
+            Cleave.class,
+            Clothesline.class,
+            Pummel.class,
+            Strengthen.class
     };
 
     public static Class<?>[] potions = {
@@ -37,6 +41,7 @@ public class SystemConstants {
             Alternatron.class,
             Cultist.class,
             JawWorm.class,
-            AnnoyingHedgehog.class
+            AnnoyingHedgehog.class,
+            AcidSlimeMedium.class
     };
 }

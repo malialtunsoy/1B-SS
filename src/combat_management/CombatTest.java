@@ -54,7 +54,7 @@ public class CombatTest {
         player.addToDeck(sample);
         player.addToDeck(sample7);
 
-
+        
         player.addRewardPotion(new HealthPotion());
         player.addRewardRelic(new RingOfTheSnake());
         player.addRewardRelic(new BurningBlood());
