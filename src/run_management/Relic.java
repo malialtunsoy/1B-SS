@@ -1,10 +1,9 @@
-public class Relic {
+public abstract class Relic {
     //attributes
     private String name;
     private int relicCost;
     private String relicDescription;
     private RelicEffect effect;
-
 
     //constructors
     public Relic(String name, int relicCost, String relicDescription){

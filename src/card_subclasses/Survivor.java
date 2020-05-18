@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-
-public class Survivor extends Card implements MakesCardChoice{
+public class Survivor extends Card implements MakesCardChoice {
     // --- constants ---
     private static final int ENERGY_COST = 1;
     private static final int BLOCK_AMOUNT = 8;
@@ -19,7 +18,7 @@ public class Survivor extends Card implements MakesCardChoice{
         ArrayList<Card> chooseFrom = new ArrayList<Card>(CombatManager.getInstance().getHand());
         chooseFrom.remove(this);
         CombatManager.getInstance().getPlayer().addStatusEffect(new Block(BLOCK_AMOUNT));
-        CombatManager.getInstance().chooseCard( chooseFrom, CHOOSE_PROMPT,this );
+        CombatManager.getInstance().chooseCard( chooseFrom, CHOOSE_PROMPT,this);
     }
 
     @Override
