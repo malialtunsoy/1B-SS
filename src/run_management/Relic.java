@@ -32,7 +32,7 @@ public class Relic {
     }
 
     public void setImage(String image){this.image = image;}
-    public String getImage(){return image;}
+    public String getImage(){return getClass().getName() + ".png";}
 
     public void setCost(int cost){relicCost = cost;}
     public int getCost(){return relicCost;}

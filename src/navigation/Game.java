@@ -22,7 +22,7 @@ public class Game {
      boolean loadedGameExist;
 
     public Game(){
-        System.out.println("New Game created");
+        System.out.println("Welcome to Slay the Spire");
         achievements = new Achievements();
         options = new GameOptions();
         //myPlayer = new Player("null", "null", 0,0,0,0,0,0);

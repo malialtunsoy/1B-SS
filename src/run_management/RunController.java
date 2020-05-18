@@ -120,6 +120,7 @@ public class RunController implements Initializable, ControlledScreen {
     void goToTreasure(ActionEvent event) {
         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.changeScreen(RunUIManager.treasureScreen);
+        myController.playTreasure();
         SaveAndExit.save();
     }
 
@@ -127,6 +128,7 @@ public class RunController implements Initializable, ControlledScreen {
     void goToMerchant(ActionEvent event) {
         myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
         myController.changeScreen(RunUIManager.merchantScreen);
+        myController.playMerchant();
         SaveAndExit.save();
     }
 
@@ -173,7 +175,7 @@ public class RunController implements Initializable, ControlledScreen {
     private AnchorPane mapAnchorPane;
 
     void createMap() { //--------------------109,136 -------- 946,136"
-        System.out.println("map drawn");//    -                  -      488
+        //System.out.println("map drawn");//    -                  -      488
         //  109,624-----------946,624
         int numberOfVertices = 25;          //       837
         int verticesSize = 50;
@@ -232,6 +234,7 @@ public class RunController implements Initializable, ControlledScreen {
                 vertices[index].setLayoutY(temp.getLocationY());
 
                 vertices[index].setDisable(!temp.getAvailable());
+                vertices[index].setOpacity(100);
 
                 Map.VertexNode thisVertex = temp;
                 vertices[index].setOnAction(e -> {Game.getInstance().myPlayer.myMap.setCurrentVertex(thisVertex);
@@ -240,6 +243,7 @@ public class RunController implements Initializable, ControlledScreen {
                 if(thisVertex.getVertex().equals("Merchant")){
                     myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
                     myController.changeScreen(RunUIManager.merchantScreen);
+                    myController.playMerchant();
                     SaveAndExit.save();
                 }
 
@@ -252,11 +256,17 @@ public class RunController implements Initializable, ControlledScreen {
                     if(thisVertex.getVertex().equals("Treasure")){
                         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
                         myController.changeScreen(RunUIManager.treasureScreen);
+                        myController.playTreasure();
                         SaveAndExit.save();
                     }
 
                     if(thisVertex.getVertex().equals("Combat")){
                         Game.getInstance().myPlayer.setupCombat(false);
+                    }
+
+                    if(thisVertex.getVertex().equals("EliteCombat")){
+                        System.out.println("ELITE COMBAT");
+                        //To be added
                     }
 
                     if(thisVertex.getVertex().equals("Boss")){
@@ -272,10 +282,30 @@ public class RunController implements Initializable, ControlledScreen {
             }
         }
 
+        //put pin
+        ImageView pin = new ImageView();
+        pin.setFitHeight(30);
+        pin.setFitWidth(30);
+        pin.setPickOnBounds(true);
+        pin.setPreserveRatio(true);
+        Map.VertexNode curNode = Game.getInstance().myPlayer.myMap.getCurrentVertex();
+        if(Game.getInstance().myPlayer.myMap.getLevel() > 0) {
+            pin.setLayoutX(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationX()+18);
+            pin.setLayoutY(Game.getInstance().myPlayer.myMap.getCurrentVertex().getLocationY()-20);
+
+            Image pinImage = new Image("mapPin.png");
+            pin.setImage(pinImage);
+
+            mapAnchorPane.getChildren().add(pin);
+        }
+
     }
         public String findImage (String VertexName){
             if (VertexName.equals("Combat")) {
                 return "combat+.png";
+            }
+            if (VertexName.equals("EliteCombat")) {
+                return "eliteCombat+.png";
             }
             if (VertexName.equals("Rest")) {
                 return "rest+.png";

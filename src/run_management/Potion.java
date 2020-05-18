@@ -35,22 +35,13 @@
      public int getPotionCost(){return potionCost;}
      public boolean getTargetRequirement() { return targetRequirement;}
      public void setImage( String image ){this.image = image;}
-     public String getImage(){return image;}
+     public String getImage(){return getClass().getName() + ".png";}
 
      public void setCost(int cost){potionCost = cost;}
      public int getCost(){return potionCost;}
      public String toString(){return getPotionDescription();}
 }
 
-class EmptyPotion extends Potion
-{
-    public EmptyPotion(String potionName, int potionCost, String potionDescription, String image, boolean targetRequirement)
-    {
-        super(potionName,potionCost,potionDescription,  image, targetRequirement);
-    }
-
-    public void affect(CombatEntity target) {}
-}
 
 class HealthPotion extends Potion {
     private static final String NAME = "Health Potion";
@@ -58,7 +49,7 @@ class HealthPotion extends Potion {
     private static final int RESTORE_PERCENT = 30;
     private static final String DESCRIPTION = "Restores %" + RESTORE_PERCENT + " of the player's maximum health";
     private static final boolean TARGET_REQUIREMENT = false;
-    private static final String IMAGE = "BloodPotion.png";
+    private static final String IMAGE = "HealthPotion.png";
 
     public HealthPotion() {
         super(NAME, COST, DESCRIPTION, IMAGE, TARGET_REQUIREMENT);
@@ -77,7 +68,7 @@ class DamagePotion extends Potion {
     private static final int DAMAGE = 35;
     private static final String DESCRIPTION = "Deal " + DAMAGE + " damage to the target";
     private static final boolean TARGET_REQUIREMENT = true;
-    private static final String IMAGE = "FirePotion.png";
+    private static final String IMAGE = "DamagePotion.png";
     
     public DamagePotion() {
         super(NAME, COST, DESCRIPTION, IMAGE, TARGET_REQUIREMENT);

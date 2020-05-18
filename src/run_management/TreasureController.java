@@ -160,6 +160,7 @@ public class TreasureController implements Initializable, ControlledScreen {
         else{  Game.getInstance().myPlayer.addRelic(relics[0]); }
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+        myController.playInventory();
     }
 
     @FXML
@@ -168,6 +169,7 @@ public class TreasureController implements Initializable, ControlledScreen {
         else{  Game.getInstance().myPlayer.addRelic(relics[1]); }
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+        myController.playInventory();
     }
 
     @FXML
@@ -176,6 +178,7 @@ public class TreasureController implements Initializable, ControlledScreen {
         else{  Game.getInstance().myPlayer.addRelic(relics[2]); }
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.changeScreen(RunUIManager.mainRunScreen);
+        myController.playInventory();
     }
 
     @FXML

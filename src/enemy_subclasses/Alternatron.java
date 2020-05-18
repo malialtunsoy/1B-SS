@@ -1,7 +1,8 @@
 // a concrete enemy class. Alternates each turn between gaining block and attacking
 public class Alternatron extends Enemy {
     // --- constants ---
-    private static final int HP = 40;
+    private static final int MIN_HP = 30;
+    private static final int MAX_HP = 40;
     private static final int BLOCK_AMOUNT = 4;
     private static final int DAMAGE = 4;
     private static final boolean ATTACK_FIRST_TURN = true;
@@ -11,7 +12,7 @@ public class Alternatron extends Enemy {
 
     // --- constructors ---
     public Alternatron() {
-        super("Alternatron", HP);
+        super("Alternatron", MIN_HP, MAX_HP);
         attackThisTurn = ATTACK_FIRST_TURN;
     }
 

@@ -1,6 +1,7 @@
 public class JawWorm extends Enemy {
     // --- constants ---
-    private static final int HP = 40;
+    private static final int MIN_HP = 40;
+    private static final int MAX_HP = 44;
 
     private static final int CHOMP_DAMAGE = 11;
     private static final double CHOMP_PROB = 0.25;
@@ -15,13 +16,13 @@ public class JawWorm extends Enemy {
 
     // --- constructors ---
     public JawWorm() {
-        super("JawWorm", HP);
+        super("Jaw Worm", MIN_HP, MAX_HP);
     }
 
     @Override
     public void declareIntent() {
         double [] probs = {CHOMP_PROB, THRASH_PROB, BELLOW_PROB};
-        int choice = ProbUtilities.indexWithProb(probs);
+        int choice = RandomUtil.indexWithProb(probs);
         System.out.println("JawWorm choice: " + choice);
         if (CombatManager.getInstance().getTurn() == 0) {
             choice = 0; // always chomp at the first turn
@@ -40,6 +41,4 @@ public class JawWorm extends Enemy {
         }
     }
 
-    @Override
-    public void restoreExtraState(String[] extraParams) {} // no extra state
 }
