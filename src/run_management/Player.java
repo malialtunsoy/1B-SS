@@ -50,8 +50,8 @@ public class Player extends CombatEntity {
         rewardRelics = new ArrayList<Relic>();
         rewardCards = new ArrayList<Card>();
         rewardGold = 0;
-        if(isItNewGame){initializePlayer();}
-        else{loadPlayer();}
+        //if(isItNewGame){initializePlayer();}
+        //else{loadPlayer();}
         if(isItNewGame){initializePlayer(); myMap.initializeMap();}
         else{loadPlayer(); myMap.loadMap();}
     }
@@ -161,6 +161,7 @@ public class Player extends CombatEntity {
         deck.add(new Defend() );
         deck.add(new Defend() );
         deck.add(new Defend() );
+        deck.add(new Anger());
 
     }
 
@@ -262,11 +263,24 @@ public class Player extends CombatEntity {
     }
 
     public ArrayList<Card> getMerchantDeck(){
-        return merchantCard;
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for( int i = 0; i < 7; i++ )
+            cards.add(RandomUtil.getRandomBaseCard(playerChar));
+        return cards;
     }
-    public ArrayList<Relic> getMerchantRelics() { return merchantRelic; }
+    public ArrayList<Relic> getMerchantRelics() {
+        ArrayList<Relic> relics = new ArrayList<Relic>();
+        for( int i = 0; i < 3; i++ )
+            relics.add(RandomUtil.getRandomRelic());
+        return relics;
+    }
 
-    public ArrayList<Potion> getMerchantPotions() { return merchantPotion; }
+    public ArrayList<Potion> getMerchantPotions() {
+        ArrayList<Potion> potions = new ArrayList<Potion>();
+        for( int i = 0; i < 3; i++ )
+            potions.add(RandomUtil.getRandomPotion());
+        return potions;
+    }
     //END OF MERCHANT ********************************************************************
 
 
