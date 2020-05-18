@@ -17,10 +17,10 @@ public class Map {
     int level;
 
     int vertexSize = 11; // 18 - (4 inital combat) - (last 2 rest and boss)
-    int numberOfCombatLeft = 3; // 8 - 4
+    int numberOfCombatLeft = 3; // 7 - 4
     int numberOfMerchantLeft = 3;
     int numberOfRestLeft = 1; // 3 - 2
-    int numberOfTreasureLeft = 4;
+    int numberOfTreasureLeft = 3;
     int numberOfEliteCombat = 2;
 
     int mapStartAtXLocation = 109;
