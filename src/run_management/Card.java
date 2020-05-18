@@ -9,7 +9,7 @@ public abstract class Card {
 
     private boolean requiresTarget;
 
-    public enum ExtraCardAttribute {EXHAUST, ETHEREAL};
+    public enum ExtraCardAttribute {EXHAUST, RETAIN};
     private ArrayList<ExtraCardAttribute> extraAttributes;
 
     public Card(String cardName, String cardType, int energy, String description, boolean requiresTarget, int cost){

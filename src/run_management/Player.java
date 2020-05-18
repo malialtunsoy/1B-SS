@@ -156,8 +156,8 @@ public class Player extends CombatEntity {
         deck.add( new Eruption() );
         deck.add( new Eruption() );
 
-        deck.add(new Survivor() );
-        deck.add(new Survivor() );
+        deck.add(new Crescendo() );
+        deck.add(new CrescendoPlus() );
         deck.add(new Survivor() );
         deck.add(new Survivor() );
         deck.add(new Defend() );
