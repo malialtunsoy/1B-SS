@@ -7,7 +7,7 @@ public class Cleave extends Card {
     private static int COST = 200;
     // constructors
     public Cleave() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
+        super("Cleave", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
     }
 
     public void affect(Enemy target) {

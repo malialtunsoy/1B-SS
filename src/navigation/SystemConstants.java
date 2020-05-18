@@ -24,7 +24,10 @@ public class SystemConstants {
             Cleave.class,
             Clothesline.class,
             Pummel.class,
-            Strengthen.class
+            Strengthen.class,
+            IronWave.class,
+            Thunderclap.class,
+            TwinStrike.class
     };
 
     public static Class<?> ironcladRelic = BurningBlood.class;

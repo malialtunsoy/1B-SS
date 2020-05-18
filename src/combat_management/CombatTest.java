@@ -25,11 +25,11 @@ public class CombatTest {
         // Seems not to cause an issue now but better to be aware of it.
         
         Card sample = new Consecrate();
-        Card sample2 = new BowlingBash();
-        Card sample3 = new PoisonedStab();
+        Card sample2 = new IronWave();
+        Card sample3 = new Thunderclap();
         Card sample5 = new Tranquility();
         Card sample4 = new Vigilance();
-        Card sample7 = new Eruption();
+        Card sample7 = new TwinStrike();
 
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());

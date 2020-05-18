@@ -7,7 +7,7 @@ public class BowlingBash extends Card {
     private static int COST = 200;
     // constructors
     public BowlingBash() {
-        super("Strike", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
+        super("Bowling Bash", "Attack", ENERGY_COST, DESCRIPTION, TARGET_REQUIREMENT,COST);
     }
 
     public void affect(Enemy target) {
