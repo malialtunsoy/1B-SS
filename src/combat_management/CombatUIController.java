@@ -466,9 +466,4 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
     }
-
-    @FXML
-    private void save() {
-        SaveAndExit.save();
-    }
 }

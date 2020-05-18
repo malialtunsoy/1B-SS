@@ -28,7 +28,6 @@
                <AnchorPane fx:id="hand" prefHeight="200.0" prefWidth="200.0" />
             </content>
          </ScrollPane>
-         <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
          <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
             <children>
                <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +87,6 @@
                <Font size="30.0" />
             </font>
          </Label>
-         <Button layoutX="1102.0" layoutY="121.0" mnemonicParsing="false" onAction="#save" text="Save" />
          <ImageView fitHeight="67.0" fitWidth="151.0" layoutX="1038.0" layoutY="513.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@EndTurn.png" />
