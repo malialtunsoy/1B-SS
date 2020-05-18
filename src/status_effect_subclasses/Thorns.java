@@ -8,8 +8,7 @@ public class Thorns extends StatusEffect implements TriggeredOnDamageTake {
     @Override
     public void triggered( Object triggerSource) {
         // damage dealt is not an attack, will not go through OutgoingDamageModifier s
-        System.out.println("Triggered Thorns !!!!!!!!!!");
-        CombatEntity hitBy = (CombatEntity) triggerSource;
+        CombatEntity hitBy = (CombatEntity) ((Object []) triggerSource)[0];
         hitBy.takeDamage(getCounter());
     }
 }

@@ -63,6 +63,9 @@ public class CombatManager {
         }
         playTurn();
     }
+    public void redrawUI() {
+        uiAdapter.updateView();
+    }
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
     private void initializeCombat() {
