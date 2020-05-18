@@ -8,7 +8,7 @@ public class RandomUtil {
     public static ArrayList<Card> getRandomBaseCardsNoDuplicate( int count, String playerChar){
         ArrayList<Card> current = new ArrayList<Card>();
         boolean duplicate = true;
-        for( int i = 0; i < 3; i++){
+        for( int i = 0; i < count; i++){
             Card card = null;
             while(duplicate) {
                 duplicate = false;
@@ -20,6 +20,44 @@ public class RandomUtil {
             }
             duplicate = true;
             current.add(card);
+        }
+        return current;
+    }
+
+    public static ArrayList<Relic> getRandomRelicsNoDuplicate(int count){
+        ArrayList<Relic> current = new ArrayList<Relic>();
+        boolean duplicate = true;
+        for( int i = 0; i < count; i++){
+            Relic relic = null;
+            while(duplicate) {
+                duplicate = false;
+                relic = RandomUtil.getRandomRelic();
+                for (Relic included : current) {
+                    if (included.getClass().getName().equals(relic.getClass().getName()))
+                        duplicate = true;
+                }
+            }
+            duplicate = true;
+            current.add(relic);
+        }
+        return current;
+    }
+
+    public static ArrayList<Potion> getRandomPotionsNoDuplicate(int count){
+        ArrayList<Potion> current = new ArrayList<Potion>();
+        boolean duplicate = true;
+        for( int i = 0; i < count; i++){
+            Potion potion = null;
+            while(duplicate) {
+                duplicate = false;
+                potion = RandomUtil.getRandomPotion();
+                for (Potion included : current) {
+                    if (included.getClass().getName().equals(potion.getClass().getName()))
+                        duplicate = true;
+                }
+            }
+            duplicate = true;
+            current.add(potion);
         }
         return current;
     }
