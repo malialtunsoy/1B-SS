@@ -484,4 +484,14 @@ public class CombatManager {
     }
 
     public boolean combatOngoing() {return ongoing;}
+
+
+    public void gameOver(){
+        myController.changeScreen(RunUIManager.gameOverScreen); //need a better solution.
+        stage.setScene(menu);
+
+        myController.playGameOver();
+
+        stage.show();
+    }
 }
