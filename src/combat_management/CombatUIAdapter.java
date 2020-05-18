@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CombatUIAdapter {
     // --- attributes ---
@@ -56,6 +57,8 @@ public class CombatUIAdapter {
     public void showPrompt(boolean show, String name){
         controller.showPrompt(show, name);
     }
+
+    public void chooseCard( ArrayList<Card> from) { controller.chooseCard(from);}
 
     public void loadRewardsScreen() { try{controller.loadRewardsScreen();}catch(IOException e){System.out.println(e.getMessage());}}
 }

@@ -17,6 +17,8 @@ public class CombatManager {
     }
 
     //attributes
+    MakesCardChoice callbackTarget;
+
     private static CombatManager instance = new CombatManager();
 
     private Stage stage;
@@ -183,6 +185,20 @@ public class CombatManager {
         selectedCard = null;
         selectedPotion = null;
         playTurn(); // play the next turn
+    }
+
+    //called after the combat ends by the run management
+    public void reportResults() {
+
+    }
+
+    public void chooseCard( ArrayList<Card> from, MakesCardChoice client) {
+        uiAdapter.chooseCard(from);
+        callbackTarget = client;
+    }
+
+    public void cardSelectedForCallback( Card c) {
+        callbackTarget.callback(c);
     }
 
     public void cardSelected(Card c) {
