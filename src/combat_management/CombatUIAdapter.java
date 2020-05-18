@@ -58,7 +58,7 @@ public class CombatUIAdapter {
         controller.showPrompt(show, name);
     }
 
-    public void chooseCard( ArrayList<Card> from) { controller.chooseCard(from);}
+    public void chooseCard( ArrayList<Card> from, String prompt) { controller.chooseCard(from,prompt);}
 
     public void loadRewardsScreen() { try{controller.loadRewardsScreen();}catch(IOException e){System.out.println(e.getMessage());}}
 }
