@@ -396,6 +396,10 @@ public class CombatManager {
     }
 
     public String getCombatState() {
+        if (!ongoing) {
+            return "1###Combat::Ongoing###\t**false**\n";
+        }
+
         // compute the line Combat::Enemies
         String enemyNames = "**";
         for (Enemy e : enemies) {
