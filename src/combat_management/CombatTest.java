@@ -30,8 +30,11 @@ public class CombatTest {
         Card sample5 = new Pummel();
         Card sample4 = new Bash();
         Card sample7 = new Clothesline();
+
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
+        player.addRelic(new BronzeScales());
+
 
         player.addToDeck(sample5);
         player.addToDeck(sample5);

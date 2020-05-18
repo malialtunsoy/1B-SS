@@ -7,7 +7,7 @@ public class AnnoyingHedgehog extends Enemy {
 
     // --- constructors ---
     public AnnoyingHedgehog() {
-        super("Annoying Hedgehog", MIN_HP, MAX_HP);
+        super("AnnoyingHedgehog", MIN_HP, MAX_HP);
     }
 
     @Override
