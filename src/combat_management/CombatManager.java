@@ -192,6 +192,10 @@ public class CombatManager {
 
     }
 
+    public void gainEnergy( int amount) {
+        energy += amount;
+    }
+
     public void chooseCard( ArrayList<Card> from, String propmt ,MakesCardChoice client) {
         uiAdapter.chooseCard(from,propmt);
         callbackTarget = client;
