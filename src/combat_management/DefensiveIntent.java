@@ -15,5 +15,5 @@ public class DefensiveIntent extends Intent {
         target.addStatusEffect(block);
     }
 
-    public String toString() { return "DefensiveIntent";}
+    public String toString() { return "This enemy intends to gain block.\n";}
 }

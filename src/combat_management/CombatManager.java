@@ -192,8 +192,8 @@ public class CombatManager {
 
     }
 
-    public void chooseCard( ArrayList<Card> from, MakesCardChoice client) {
-        uiAdapter.chooseCard(from);
+    public void chooseCard( ArrayList<Card> from, String propmt ,MakesCardChoice client) {
+        uiAdapter.chooseCard(from,propmt);
         callbackTarget = client;
     }
 

@@ -4,6 +4,6 @@ public class StrategicIntent extends IntentWithStatusEffect {
     }
 
     public String toString() {
-        return "StrategicIntent";
+        return "This enemy intends to apply a debuff.\n";
     }
 }
