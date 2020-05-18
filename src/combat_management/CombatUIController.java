@@ -437,6 +437,10 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         });
     }
 
+    public void reloadGold(){
+        MoneyLabel.setText(Game.getInstance().myPlayer.getGold()+"");
+    }
+
     @FXML
     void openMap(ActionEvent event) {
         CombatManager.getInstance().showMap();

@@ -191,7 +191,7 @@ public class CombatManager {
     public void reportResults() {
 
     }
-    
+
     public void chooseCard( ArrayList<Card> from, MakesCardChoice client) {
         uiAdapter.chooseCard(from);
         callbackTarget = client;
@@ -299,6 +299,7 @@ public class CombatManager {
     public void backToMap() {
         stage.setScene(menu);
         if(sceneChanged)
+            myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
             myController.changeScreen("MainRunScreen"); //need a better solution.
         stage.show();
     }
