@@ -141,6 +141,21 @@
                      <Image url="@backToMenu.png" />
                   </image>
                </ImageView>
+               <ImageView fx:id="cardHighlight1" fitHeight="150.0" fitWidth="200.0" layoutX="413.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <image>
+                     <Image url="@CardHighlight.png" />
+                  </image>
+               </ImageView>
+               <ImageView fx:id="cardHighlight2" fitHeight="150.0" fitWidth="200.0" layoutX="538.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <image>
+                     <Image url="@CardHighlight.png" />
+                  </image>
+               </ImageView>
+               <ImageView fx:id="cardHighlight3" fitHeight="150.0" fitWidth="200.0" layoutX="662.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <image>
+                     <Image url="@CardHighlight.png" />
+                  </image>
+               </ImageView>
             </children>
          </AnchorPane>
          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1210.0">
