@@ -1,11 +1,11 @@
-public class Eruption extends Card {
+public class EruptionPlus extends Card {
     private static final int DAMAGE = 9;
-    private static final int ENERGY_COST = 2;
+    private static final int ENERGY_COST = 1;
     private static final String DESCRIPTION = "Deal " + DAMAGE + " damage. Enter Wrath.";
     private static final int COST = 50;
 
-    public Eruption() {
-        super("Eruption", "Attack", ENERGY_COST, DESCRIPTION, true, COST);
+    public EruptionPlus() {
+        super("Eruption+", "Attack", ENERGY_COST, DESCRIPTION, true, COST);
     }
 
     @Override
@@ -16,6 +16,6 @@ public class Eruption extends Card {
 
     @Override
     public Card upgradedVersion() {
-        return new EruptionPlus();
+        return null;
     }
 }
