@@ -29,12 +29,14 @@ public class SystemConstants {
 
     public static Class<?>[] relics = {
             BurningBlood.class,
-            RingOfTheSnake.class
+            RingOfTheSnake.class,
+            BronzeScales.class
     };
 
     public static Class<?>[] enemies = {
             Alternatron.class,
             Cultist.class,
-            JawWorm.class
+            JawWorm.class,
+            AnnoyingHedgehog.class
     };
 }
