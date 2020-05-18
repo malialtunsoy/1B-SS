@@ -12,7 +12,7 @@ public class AnnoyingHedgehog extends Enemy {
 
     @Override
     public void declareIntent() {
-        addIntent(new BuffIntent(this, this, new Thorns(THORNS_PER_TURN)));
+        addIntent(new BuffIntent(this, this, new StatusEffect[]{new Thorns(THORNS_PER_TURN)}));
     }
 
 }

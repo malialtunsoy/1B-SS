@@ -36,7 +36,7 @@ public class JawWorm extends Enemy {
             addIntent(new AggressiveIntent(this, THRASH_DAMAGE));
         } else if (choice == 2) {
             // bellow
-            addIntent(new BuffIntent(this, this, new Strength(BELLOW_STRENGTH_GAIN)));
+            addIntent(new BuffIntent(this, this, new StatusEffect[]{new Strength(BELLOW_STRENGTH_GAIN)}));
             addIntent(new DefensiveIntent(this, BELLOW_BLOCK));
         }
     }
