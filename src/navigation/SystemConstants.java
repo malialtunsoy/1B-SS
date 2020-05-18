@@ -30,7 +30,10 @@ public class SystemConstants {
     public static Class<?>[] silentCards = {
             BladeDance.class,
             CloakAndDagger.class,
-            DeadlyPoison.class
+            DeadlyPoison.class,
+            DaggerSpray.class,
+            PoisonedStab.class,
+            Deflect.class
     };
 
     public static Class<?>[] potions = {
