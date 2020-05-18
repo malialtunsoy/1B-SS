@@ -25,10 +25,10 @@ public class CombatTest {
         // Seems not to cause an issue now but better to be aware of it.
         
         Card sample = new Strike();
-        Card sample2 = new Defend();
-        Card sample3 = new DeadlyPoison();
+        Card sample2 = new Deflect();
+        Card sample3 = new PoisonedStab();
         Card sample5 = new Pummel();
-        Card sample4 = new Bash();
+        Card sample4 = new Cleave();
         Card sample7 = new Clothesline();
 
         player.addRelic(new RingOfTheSnake());
