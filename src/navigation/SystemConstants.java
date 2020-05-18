@@ -29,7 +29,8 @@ public class SystemConstants {
 
     public static Class<?>[] silentCards = {
             BladeDance.class,
-            CloakAndDagger.class
+            CloakAndDagger.class,
+            DeadlyPoison.class
     };
 
     public static Class<?>[] potions = {
