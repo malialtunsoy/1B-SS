@@ -39,4 +39,17 @@ public class SystemConstants {
             JawWorm.class,
             AnnoyingHedgehog.class
     };
+
+
+    private static Class<?>[] alternatronElite = {
+            Alternatron.class,
+            Alternatron.class,
+            Alternatron.class,
+            Alternatron.class,
+            Alternatron.class,
+    };
+
+    public static Class<?>[][] elites = {
+            alternatronElite,
+    };
 }
