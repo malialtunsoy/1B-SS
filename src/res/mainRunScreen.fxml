@@ -30,14 +30,6 @@
          </font>
       </Text>
       <Button fx:id="backToMainMenuButton" layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back To Main Menu" />
-      <HBox layoutX="387.0" layoutY="668.0" prefHeight="100.0" prefWidth="547.0" spacing="20.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#goToTreasure" prefHeight="123.0" prefWidth="121.0" text="Treasure" />
-            <Button mnemonicParsing="false" onAction="#goToMerchant" prefHeight="123.0" prefWidth="121.0" text="Merchant" />
-            <Button mnemonicParsing="false" onAction="#goToRest" prefHeight="123.0" prefWidth="121.0" text="Rest" />
-            <Button mnemonicParsing="false" onAction="#goToCombat" prefHeight="123.0" prefWidth="121.0" text="Combat" />
-         </children>
-      </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1210.0">
          <children>
             <AnchorPane prefHeight="65.0" prefWidth="236.0">
