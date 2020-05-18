@@ -49,7 +49,7 @@ public class NavigationUI extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        System.out.println(System.getProperty("user.dir"));
+        //System.out.println(System.getProperty("user.dir"));
 
         ScreenController myScreens = new ScreenController();
 

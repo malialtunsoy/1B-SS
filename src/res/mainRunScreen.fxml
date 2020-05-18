@@ -136,8 +136,8 @@
             </HBox>
          </children>
       </HBox>
-      <ScrollPane layoutX="946.0" layoutY="201.0" opacity="0.62" prefHeight="386.0" prefWidth="161.0" />
-      <VBox alignment="TOP_CENTER" layoutX="956.0" layoutY="218.0" prefHeight="200.0" prefWidth="161.0" spacing="5.0">
+      <ScrollPane layoutX="946.0" layoutY="155.0" opacity="0.62" prefHeight="447.0" prefWidth="182.0" />
+      <VBox alignment="TOP_CENTER" layoutX="953.0" layoutY="172.0" prefHeight="200.0" prefWidth="161.0" spacing="5.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
                <children>
@@ -189,6 +189,20 @@
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Combat">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="161.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@eliteCombat+.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Elite Combat">
                      <font>
                         <Font size="18.0" />
                      </font>
