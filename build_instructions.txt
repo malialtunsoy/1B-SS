@@ -1,13 +1,26 @@
+Make sure you have Java SDK, JRE and javafx library installed.
+
 1) Navigate to the root directory (the directory that contains src, deliverables, this file and the sound files).
 
-2) Run the following command in the terminal (replace $PATH-TO-JAVAFX$ with the path to your javafx lib directory.):
+2) Run the following command in the terminal:
+
+javac -d out src/run_management/*.java src/combat_management/*.java src/card_subclasses/*.java src/enemy_subclasses/*.java src/navigation/*.java src/potion_subclasses/*.java src/relic_subclasses/*.java src/status_effect_DecayBehaviour/*.java src/status_effect_interfaces/*.java src/status_effect_subclasses/*.java
+
+if this command does not work (Depending on your Java version), run the following (replace $PATH-TO-JAVAFX$ with the path to your javafx lib directory.):
+
 javac -d out --module-path $PATH-TO-JAVAFX$ --add-modules javafx.controls,javafx.fxml,javafx.media src/run_management/*.java src/combat_management/*.java src/card_subclasses/*.java src/enemy_subclasses/*.java src/navigation/*.java src/potion_subclasses/*.java src/relic_subclasses/*.java src/status_effect_DecayBehaviour/*.java src/status_effect_interfaces/*.java src/status_effect_subclasses/*.java
+
+
 
 3) Copy the contents of "src/res" to the directory "out".
 
 4) Navigate to "out"
 
 5) Run the following command to launch the application (replace $PATH-TO-JAVAFX$ with the path to your javafx lib directory):
+
+java Main
+
+Similarly, run the following if the command does not work.
 
 java --module-path $PATH-TO-JAVAFX$--add-modules javafx.controls,javafx.fxml,javafx.media Main
 
