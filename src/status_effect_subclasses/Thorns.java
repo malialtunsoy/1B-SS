@@ -1,4 +1,4 @@
-public class Thorns extends StatusEffect implements TriggeredAtTurnEnd {
+public class Thorns extends StatusEffect implements TriggeredOnDamageTake {
     public static final String DESCRIPTION = "Thorns: When attacked, deals X damage back.";
 
     public Thorns(int counter) {

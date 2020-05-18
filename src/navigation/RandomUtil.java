@@ -3,7 +3,6 @@ import java.util.Random;
 public class RandomUtil {
     private static Random rand = new Random();
 
-<<<<<<< HEAD
     // has the input probability of returning true.
     public static boolean trueWithProb( double prob) {
         double rand = Math.random();
@@ -39,9 +38,6 @@ public class RandomUtil {
         return lowerLimit + rand.nextInt(upperLimit - lowerLimit + 1);
     }
 
-    public static Card getRandomBaseCard() {
-        int index = rand.nextInt(SystemConstants.baseCards.length);
-=======
     public static Card getRandomBaseCard( String character) {
 
         Class<?>[] cardPool = SystemConstants.ironcladCards;
@@ -57,7 +53,6 @@ public class RandomUtil {
         }
 
         int index = rand.nextInt(cardPool.length);
->>>>>>> origin/cem
         Card choice = null;
         try {
             choice = (Card) cardPool[index].getConstructor().newInstance();
