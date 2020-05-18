@@ -120,7 +120,7 @@ public class TreasureController implements Initializable, ControlledScreen {
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
             Image relicImage = new Image(relics.get(i).getImage());
-            //Image relicImage = new Image("BurningBloodRelic.png");
+            //Image relicImage = new Image("BurningBlood.png");
             tempRelicImage.setImage(relicImage);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
