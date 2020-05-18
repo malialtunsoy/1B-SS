@@ -51,7 +51,7 @@ public class SystemConstants {
     };
     public static Class<?> watcherRelic = PureWater.class;
 
-    public static Class<?> watcherRelic = RingOfTheSnake.class;
+    //public static Class<?> watcherRelic = RingOfTheSnake.class;
 
     public static Class<?>[] potions = {
             DamagePotion.class,
