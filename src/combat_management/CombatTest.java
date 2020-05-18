@@ -27,7 +27,7 @@ public class CombatTest {
         Card sample = new Consecrate();
         Card sample2 = new BowlingBash();
         Card sample3 = new PoisonedStab();
-        Card sample5 = new Pummel();
+        Card sample5 = new Tranquility();
         Card sample4 = new Vigilance();
         Card sample7 = new Eruption();
 

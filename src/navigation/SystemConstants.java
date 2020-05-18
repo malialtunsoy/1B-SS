@@ -46,7 +46,8 @@ public class SystemConstants {
             Vigilance.class,
             BowlingBash.class,
             Consecrate.class,
-            
+            Crescendo.class,
+            Tranquility.class
     };
 
     public static Class<?>[] potions = {
