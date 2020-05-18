@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<FlowPane prefHeight="423.0" prefWidth="189.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EnemyViewController">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="188.0">
+         <children>
+            <ImageView fx:id="intent" fitHeight="50.0" fitWidth="50.0" layoutX="60.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="intentAmount" layoutX="92.0" layoutY="37.0" text="Label" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="image" fitHeight="162.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name" alignment="CENTER" prefHeight="25.0" prefWidth="167.0" text="Label" textFill="WHITE" />
+      <Label fx:id="hp" alignment="CENTER" prefHeight="21.0" prefWidth="167.0" text="HP" textFill="WHITE" wrapText="true" />
+      <FlowPane fx:id="statusEffects" prefHeight="127.0" prefWidth="167.0" />
+   </children>
+</FlowPane>
