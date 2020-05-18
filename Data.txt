@@ -5,13 +5,13 @@
 7###AchievementLock###    **0**0**1**0**0**0**0**
 4###OptionNames###    **Volume**Music**Brightness**Contrass**
 4###Options###    **0**5**10**45**
-20###CardsInDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Deflect**DeadlyPoison**PoisonedStab**DaggerSpray**Anger**Bash**BodySlam**Clash**Cleave**Clothesline**Pummel**Defend**Defend**Defend**
+20###CardsInDeck###    **Strike**Strike**Strike**Eruption**Vigilance**Defend**DeadlyPoison**DaggerSpray**Bash**Clash**Cleave**Clothesline**Pummel**Defend**Defend**Defend**DeflectPlus**DeadlyPoisonPlus**PoisonedStabPlus**DaggerSprayPlus**
 1###playerHP###    **60**
 1###playerMaxHP###    **60**
 1###playerGold###    **330**
 1###maxPot###    **3**
 1###relicCount###    **3**
-20###PlayerDeck###    **Strike**Strike**Strike**Strike**Strike**Defend**Deflect**DeadlyPoison**PoisonedStab**DaggerSpray**Anger**Bash**BodySlam**Clash**Cleave**Clothesline**Pummel**Defend**Defend**Defend**
+20###PlayerDeck###    **Strike**Strike**Strike**Eruption**Vigilance**Defend**DeadlyPoison**DaggerSpray**Bash**Clash**Cleave**Clothesline**Pummel**Defend**Defend**Defend**DeflectPlus**DeadlyPoisonPlus**PoisonedStabPlus**DaggerSprayPlus**
 0###PlayerPotions###    ****
 0###PlayerRelics###    ****
 8###MapPath1###    **Combat**Rest**Treasure**Merchant**Rest**Boss**null**null**

@@ -24,11 +24,11 @@ public class CombatTest {
         // playCard removes the card from the hand using its reference directly (not its index in hand).
         // Seems not to cause an issue now but better to be aware of it.
         
-        Card sample = new Strike();
-        Card sample2 = new Deflect();
+        Card sample = new Consecrate();
+        Card sample2 = new BowlingBash();
         Card sample3 = new PoisonedStab();
-        Card sample5 = new Pummel();
-        Card sample4 = new Cleave();
+        Card sample5 = new Tranquility();
+        Card sample4 = new Vigilance();
         Card sample7 = new Eruption();
 
         player.addRelic(new RingOfTheSnake());

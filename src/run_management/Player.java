@@ -410,7 +410,7 @@ public class Player extends CombatEntity {
     }
     @Override
     // called when the player dies
-    public void die() {
+    public void die() { CombatManager.getInstance().gameOver();
         // TODO: combat lost
     }
 }
