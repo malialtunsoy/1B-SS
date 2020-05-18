@@ -194,6 +194,7 @@ public class CombatManager {
 
     public void cardSelectedForCallback( Card c) {
         callbackTarget.callback(c);
+        uiAdapter.updateView();
     }
 
     public void cardSelected(Card c) {
