@@ -191,7 +191,7 @@ public class CombatManager {
     public void reportResults() {
 
     }
-
+    
     public void chooseCard( ArrayList<Card> from, MakesCardChoice client) {
         uiAdapter.chooseCard(from);
         callbackTarget = client;
@@ -199,6 +199,7 @@ public class CombatManager {
 
     public void cardSelectedForCallback( Card c) {
         callbackTarget.callback(c);
+        uiAdapter.updateView();
     }
 
     public void cardSelected(Card c) {
