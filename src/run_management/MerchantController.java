@@ -362,12 +362,12 @@ public class MerchantController implements Initializable, ControlledScreen {
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         myController.setGetBackFromSettings(RunUIManager.merchantScreen);
         myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
     void backToMap(ActionEvent event) {
-        SaveAndExit.save();
+        //SaveAndExit.save();
         myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);

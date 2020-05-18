@@ -145,7 +145,7 @@ public class TreasureController implements Initializable, ControlledScreen {
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         myController.setGetBackFromSettings(RunUIManager.treasureScreen);
         myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+       // SaveAndExit.save();
     }
 
     @FXML

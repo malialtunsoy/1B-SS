@@ -310,11 +310,13 @@ public class CombatManager {
     public void setScreenController(ScreenController myController){this.myController = myController;}
 
     public void backToMap() {
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         stage.setScene(menu);
-        if(sceneChanged) {
-            myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
-            myController.changeScreen("MainRunScreen"); //need a better solution.
-        }
+
+        //if(sceneChanged) {
+
+            myController.changeScreen(RunUIManager.mainRunScreen); //need a better solution.
+      //  }
         stage.show();
     }
 
