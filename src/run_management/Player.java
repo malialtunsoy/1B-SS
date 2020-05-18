@@ -156,10 +156,10 @@ public class Player extends CombatEntity {
         deck.add( new Strike() );
         deck.add( new Strike() );
 
-        deck.add(new Defend() );
-        deck.add(new Defend() );
-        deck.add(new Defend() );
-        deck.add(new Defend() );
+        deck.add(new Survivor() );
+        deck.add(new Survivor() );
+        deck.add(new Survivor() );
+        deck.add(new Survivor() );
         deck.add(new Defend() );
         deck.add(new Anger());
 
@@ -331,15 +331,28 @@ public class Player extends CombatEntity {
 
     //******************Combat*********************
     public void setupCombat(boolean isElite){
-        setupEnemies();
-        setupRewards();
+        setupEnemies(isElite);
+        setupRewards(isElite);
         CombatManager.getInstance().setPlayer(this);
         CombatManager.getInstance().playCombat();
     }
 
-    public void setupEnemies() {
-        
+    public void setupEnemies(boolean isElite) {
+
         Random random = new Random();
+        if(isElite) {
+            Class<?> [][] encounterPool = SystemConstants.elites;
+            Class<?> []encounter = encounterPool[random.nextInt(encounterPool.length)];
+            for(Class<?> enemyClass : encounter)
+                try {
+                    CombatManager.getInstance().addEnemy((Enemy)enemyClass.getConstructor().newInstance());
+                } catch (NoSuchMethodException e) {
+                    System.err.println("Exception in getRandomBaseCard caused by a Card in system without a default constructor: " + e.getMessage());
+                } catch (Exception e) {
+                    System.err.println("Generic Exception in getRandomBaseCard: " + e.getMessage());
+                }
+
+        }
 
         int numberOfEnemies = random.nextInt(3 ) + 1;
         for( int i = 0; i < numberOfEnemies; i++) {
@@ -349,15 +362,16 @@ public class Player extends CombatEntity {
         }
     }
 
-    public void setupRewards() {
+    public void setupRewards(boolean isElite) {
 
         Random random = new Random();
         rewardCards = new ArrayList<Card>();
         rewardRelics = new ArrayList<Relic>();
         rewardPotions = new ArrayList<Potion>();
 
+        if(isElite)
+            addRewardRelic(RandomUtil.getRandomRelic());
         addRewardPotion(RandomUtil.getRandomPotion());
-        addRewardRelic(RandomUtil.getRandomRelic());
         setRewardGold(random.nextInt(40) * 5 + 200);
         addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
         addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
