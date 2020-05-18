@@ -12,7 +12,8 @@ public class SystemConstants {
             // Cleave.class,
             // Clothesline.class,
             Defend.class,
-            Strike.class
+            Strike.class,
+            Shiv.class
     };
 
     public static Class<?>[] ironcladCards = {
@@ -24,6 +25,10 @@ public class SystemConstants {
             Clothesline.class,
             Pummel.class,
             Strengthen.class
+    };
+
+    public static Class<?>[] silentCards = {
+        BladeDance.class
     };
 
     public static Class<?>[] potions = {
