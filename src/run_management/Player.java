@@ -166,7 +166,6 @@ public class Player extends CombatEntity {
     }
 
     public void intializeRelic(){
-        addRelic(new PureWater());
         try {
             if (playerChar.equals("Ironclad"))
                 relics.add((Relic)SystemConstants.ironcladRelic.getConstructor().newInstance());

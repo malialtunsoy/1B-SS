@@ -15,10 +15,4 @@ public class Block extends StatusEffect implements IncomingDamageModifier{
         decreaseCounter(amount);
         return result;
     }
-
-    @Override
-    public void decay() {
-        // lose all block
-        decreaseCounter(getCounter());
-    }
 }
