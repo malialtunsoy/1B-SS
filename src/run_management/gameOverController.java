@@ -35,6 +35,7 @@ public class gameOverController implements Initializable, ControlledScreen {
     @FXML
     void tryAgain(ActionEvent event) {
         Game.getInstance().setLoadedGameExist(false);
+        SaveAndExit.save();
         myController.changeScreen(NavigationUI.mainMenuScreen);
     }
 

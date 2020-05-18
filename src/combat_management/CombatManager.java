@@ -66,6 +66,9 @@ public class CombatManager {
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
     private void initializeCombat() {
+         deckClickedBefore = false;
+         settingsClickedBefore = false;
+         mapClickedBefore = false;
         // add relic effects
         for (int i = 0; i < player.getRelics().size(); i++) {
             player.addStatusEffect(player.getRelics().get(i).getEffect());
@@ -499,7 +502,7 @@ public class CombatManager {
 
 
     public void gameOver(){
-        myController.changeScreen(RunUIManager.gameOverScreen); //need a better solution.
+        myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
 
         myController.playGameOver();
