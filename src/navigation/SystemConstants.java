@@ -36,6 +36,7 @@ public class SystemConstants {
     public static Class<?>[] enemies = {
             Alternatron.class,
             Cultist.class,
-            JawWorm.class
+            JawWorm.class,
+            AnnoyingHedgehog.class
     };
 }
