@@ -166,7 +166,16 @@ public class Player extends CombatEntity {
     }
 
     public void intializeRelic(){
-
+        try {
+            if (playerChar == "Ironclad")
+                relics.add((Relic)SystemConstants.ironcladRelic.getConstructor().newInstance());
+            else if (playerChar == "Silent")
+                relics.add((Relic)SystemConstants.silentRelic.getConstructor().newInstance());
+        } catch (NoSuchMethodException e) {
+            System.err.println("Exception in initializeRelic caused by a Card in system without a default constructor: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Generic Exception in initializeRelic: " + e.getMessage());
+        }
     }
 
     public void intializePotion(){
@@ -347,9 +356,9 @@ public class Player extends CombatEntity {
                 try {
                     CombatManager.getInstance().addEnemy((Enemy)enemyClass.getConstructor().newInstance());
                 } catch (NoSuchMethodException e) {
-                    System.err.println("Exception in getRandomBaseCard caused by a Card in system without a default constructor: " + e.getMessage());
+                    System.err.println("Exception in setupEnemies caused by a Card in system without a default constructor: " + e.getMessage());
                 } catch (Exception e) {
-                    System.err.println("Generic Exception in getRandomBaseCard: " + e.getMessage());
+                    System.err.println("Generic Exception in setupEnemies: " + e.getMessage());
                 }
 
         }

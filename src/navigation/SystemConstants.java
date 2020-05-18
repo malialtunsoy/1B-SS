@@ -27,11 +27,15 @@ public class SystemConstants {
             Strengthen.class
     };
 
+    public static Class<?> ironcladRelic = BurningBlood.class;
+
     public static Class<?>[] silentCards = {
             BladeDance.class,
             CloakAndDagger.class,
             DeadlyPoison.class
     };
+
+    public static Class<?> silentRelic = RingOfTheSnake.class;
 
     public static Class<?>[] potions = {
             DamagePotion.class,
