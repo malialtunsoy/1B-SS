@@ -50,6 +50,8 @@ public class SystemConstants {
             Tranquility.class
     };
 
+    public static Class<?> watcherRelic = RingOfTheSnake.class;
+
     public static Class<?>[] potions = {
             DamagePotion.class,
             HealthPotion.class

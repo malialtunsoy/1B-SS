@@ -171,6 +171,8 @@ public class Player extends CombatEntity {
                 relics.add((Relic)SystemConstants.ironcladRelic.getConstructor().newInstance());
             else if (playerChar == "Silent")
                 relics.add((Relic)SystemConstants.silentRelic.getConstructor().newInstance());
+            else if (playerChar == "Watcher")
+                relics.add((Relic)SystemConstants.watcherRelic.getConstructor().newInstance());
         } catch (NoSuchMethodException e) {
             System.err.println("Exception in initializeRelic caused by a Card in system without a default constructor: " + e.getMessage());
         } catch (Exception e) {
