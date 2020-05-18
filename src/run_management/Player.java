@@ -338,6 +338,7 @@ public class Player extends CombatEntity {
     }
 
     public void setupEnemies() {
+        
         Random random = new Random();
 
         int numberOfEnemies = random.nextInt(3 ) + 1;

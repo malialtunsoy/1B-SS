@@ -130,7 +130,7 @@ public abstract class CombatEntity {
     // returns false if target dies
     public boolean dealDamage(int amount, CombatEntity target) {
         int modifiedAmount = invokeAllModifiers(OutgoingDamageModifier.class, amount);
-        triggerAll(TriggeredOnDamageTake.class, this);
+        target.triggerAll(TriggeredOnDamageTake.class, this);
         return target.takeDamage(modifiedAmount);
     }
 
