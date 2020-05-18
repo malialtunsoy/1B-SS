@@ -279,6 +279,28 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
 
+    void chooseCard(ArrayList<Card> options) {
+        popUpDisplay.setDisable(false);
+        popUpDisplay.setVisible(true);
+        FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
+        cards.getChildren().clear();
+
+        for(Card c : options) {
+            ImageView img = new ImageView(c.getImage());
+            img.setFitWidth(148*1.5);
+            img.setFitHeight(200*1.5);
+            cards.getChildren().add(img);
+            img.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    CombatManager.getInstance().cardSelectedForCallback(c);
+                    popUpDisplay.setVisible(false);
+                    popUpDisplay.setDisable(true);
+                }
+            });
+        }
+    }
+
 
     @FXML
     void showDiscardPile() {
