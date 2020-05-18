@@ -156,8 +156,8 @@ public class Player extends CombatEntity {
         deck.add( new Eruption() );
         deck.add( new Eruption() );
 
-        deck.add(new Survivor() );
-        deck.add(new Survivor() );
+        deck.add(new Crescendo() );
+        deck.add(new CrescendoPlus() );
         deck.add(new Survivor() );
         deck.add(new Survivor() );
         deck.add(new Defend() );
@@ -410,7 +410,7 @@ public class Player extends CombatEntity {
     }
     @Override
     // called when the player dies
-    public void die() {
+    public void die() { CombatManager.getInstance().gameOver();
         // TODO: combat lost
     }
 }

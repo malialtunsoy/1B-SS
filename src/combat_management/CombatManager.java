@@ -88,7 +88,7 @@ public class CombatManager {
         decayAllEffects(true);
         energy = maxEnergy;
         declareIntents();
-        hand = draw(DRAW_PER_TURN);
+        hand.addAll(draw(DRAW_PER_TURN));
         playersTurn = true;
         turn++;
         uiAdapter.updateView();
@@ -154,14 +154,22 @@ public class CombatManager {
 
     //ends the player's turn.
     public void endTurn() {
-        System.out.println("SKUDFODUILFBSOGHDSFG");
         // player ends "his turn". trigger his end-turn effects.
         player.triggerAll(TriggeredAtTurnEnd.class, null);
 
         playersTurn = false;
-        // discard all cards
+        // discard
+        // TODO: Bad impl. of RETAIN, fix later
+        ArrayList<Card> retained = new ArrayList<Card>();
+        for ( Card c : hand) {
+            if (c.getExtraAttributes().contains(Card.ExtraCardAttribute.RETAIN)) {
+                retained.add(c);
+            }
+        }
+        hand.removeAll(retained);
         discardPile.addAll(hand);
-        hand.clear();
+        hand = retained;
+
 
         // enemies' "turn starts"
         for (Enemy e : enemies) {
@@ -484,4 +492,14 @@ public class CombatManager {
     }
 
     public boolean combatOngoing() {return ongoing;}
+
+
+    public void gameOver(){
+        myController.changeScreen(RunUIManager.gameOverScreen); //need a better solution.
+        stage.setScene(menu);
+
+        myController.playGameOver();
+
+        stage.show();
+    }
 }

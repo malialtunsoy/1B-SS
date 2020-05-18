@@ -43,6 +43,9 @@ public class RunUIManager{
     public static String quickMapScreen = "QuickMapScreen";
     public static String quickMapScreenFile = "QuickMapScreen.fxml";
 
+    public static String gameOverScreen = "gameOverScreen";
+    public static String gameOverScreenFile = "gameOverScreen.fxml";
+
 
 
 
@@ -65,6 +68,7 @@ public class RunUIManager{
         screenNames.add(treasureScreen);
         screenNames.add(deckScreen);
         screenNames.add(quickMapScreen);
+        screenNames.add(gameOverScreen);
 
         screenFiles.add(mainRunScreenFile);
         screenFiles.add(merchantScreenFile);
@@ -72,6 +76,7 @@ public class RunUIManager{
         screenFiles.add(treasureScreenFile);
         screenFiles.add(deckScreenFile);
         screenFiles.add(quickMapScreenFile);
+        screenFiles.add(gameOverScreenFile);
 
 
 
