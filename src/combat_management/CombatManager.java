@@ -304,6 +304,7 @@ public class CombatManager {
     public void backToMap() {
         stage.setScene(menu);
         if(sceneChanged)
+            myController.changeScreen(RunUIManager.restScreen); //simple solution :P -Mali
             myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
             myController.changeScreen("MainRunScreen"); //need a better solution.
         stage.show();
