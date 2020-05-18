@@ -27,13 +27,31 @@ public class CombatTest {
         Card sample = new Strike();
         Card sample2 = new Defend();
         Card sample3 = new Strengthen();
-        Card sample5 = new Pummel();
-        Card sample4 = new Bash();
-        Card sample7 = new Clothesline();
+        Card sample4 = new Pummel();
+        Card sample5 = new Bash();
+        Card sample6 = new Anger();
+        Card sample7 = new Cleave();
+        Card sample8 = new Bash();
+        Card sample9 = new Clash();
+        Card sample10 = new Clothesline();
+        Card sample11 = new BodySlam();
+
+        Card sample12 = new StrikePlus();
+        Card sample13 = new DefendPlus();
+        Card sample14 = new StrengthenPlus();
+        Card sample15 = new PummelPlus();
+        Card sample16 = new BashPlus();
+        Card sample17 = new AngerPlus();
+        Card sample18 = new BashPlus();
+        Card sample19 = new ClashPlus();
+        Card sample20 = new ClotheslinePlus();
+        Card sample21 = new CleavePlus();
+        Card sample22 = new BodySlamPlus();
+
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
 
-        player.addToDeck(sample5);
+        /*player.addToDeck(sample5);
         player.addToDeck(sample5);
         player.addToDeck(sample5);
         player.addToDeck(sample5);
@@ -46,11 +64,29 @@ public class CombatTest {
         player.addToDeck(sample2);
         player.addToDeck(sample2);
         player.addToDeck(sample);
+        player.addToDeck(sample);*/
         player.addToDeck(sample);
-        player.addToDeck(sample);
-        player.addToDeck(sample);
+        player.addToDeck(sample2);
+        player.addToDeck(sample3);
+        player.addToDeck(sample4);
+        player.addToDeck(sample5);
+        player.addToDeck(sample6);
+        /*
         player.addToDeck(sample7);
-
+        player.addToDeck(sample8);
+        player.addToDeck(sample9);
+        player.addToDeck(sample10);
+        player.addToDeck(sample11);
+        player.addToDeck(sample12);
+        player.addToDeck(sample13);
+        player.addToDeck(sample14);
+        player.addToDeck(sample15);
+        player.addToDeck(sample16);
+        player.addToDeck(sample17);
+        player.addToDeck(sample18);
+        player.addToDeck(sample19);
+        player.addToDeck(sample20);
+        player.addToDeck(sample22);*/
 
         player.addRewardPotion(new HealthPotion());
         player.addRewardRelic(new RingOfTheSnake());

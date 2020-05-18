@@ -1,0 +1,25 @@
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WhaleController">
+    <children>
+        <ImageView fitHeight="615.0" fitWidth="799.0" layoutX="-9.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../res/whale.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="60.0" layoutY="329.0" mnemonicParsing="false" onAction="#hpButtonClicked" prefHeight="30.0" prefWidth="423.0" text="[Max HP +8]" textFill="#1fa438">
+            <font>
+                <Font name="System Bold" size="19.0" />
+            </font></Button>
+        <Button layoutX="60.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="423.0" text="[Enemies in your next 3 combats have one HP]" textFill="#1fa438">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Button>
+    </children>
+</AnchorPane>
