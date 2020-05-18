@@ -156,8 +156,8 @@ public class Player extends CombatEntity {
         deck.add( new Eruption() );
         deck.add( new Eruption() );
 
-        deck.add(new Survivor() );
-        deck.add(new Survivor() );
+        deck.add(new Crescendo() );
+        deck.add(new CrescendoPlus() );
         deck.add(new Survivor() );
         deck.add(new Survivor() );
         deck.add(new Defend() );
@@ -275,17 +275,11 @@ public class Player extends CombatEntity {
         return RandomUtil.getRandomBaseCardsNoDuplicate( 7, playerChar);
     }
     public ArrayList<Relic> getMerchantRelics() {
-        ArrayList<Relic> relics = new ArrayList<Relic>();
-        for( int i = 0; i < 3; i++ )
-            relics.add(RandomUtil.getRandomRelic());
-        return relics;
+        return RandomUtil.getRandomRelicsNoDuplicate(3);
     }
 
     public ArrayList<Potion> getMerchantPotions() {
-        ArrayList<Potion> potions = new ArrayList<Potion>();
-        for( int i = 0; i < 3; i++ )
-            potions.add(RandomUtil.getRandomPotion());
-        return potions;
+        return RandomUtil.getRandomPotionsNoDuplicate(2);
     }
     //END OF MERCHANT ********************************************************************
 
@@ -306,18 +300,9 @@ public class Player extends CombatEntity {
         tresRelics = new ArrayList<Relic>();
         Random randomG = new Random();
         int tresCount = 3;
-        int randomCount = randomG.nextInt(3);
-        int randomInd;
-        for(int i = 0; i < randomCount; i++)
-        {
-            randomInd = randomG.nextInt(allPots.size());
-            tresPots.add(allPots.get(randomInd));
-        }
-        for(int i = randomCount; i < tresCount; i++)
-        {
-            randomInd = randomG.nextInt(allRelics.size());
-            tresRelics.add(allRelics.get(randomInd));
-        }
+        int randomCount = randomG.nextInt(tresCount);
+        tresPots = RandomUtil.getRandomPotionsNoDuplicate(randomCount);
+        tresRelics = RandomUtil.getRandomRelicsNoDuplicate(tresCount - randomCount);
 
     }
     public void putAll()
@@ -355,9 +340,9 @@ public class Player extends CombatEntity {
                 } catch (NoSuchMethodException e) {
                     System.err.println("Exception in setupEnemies caused by a Card in system without a default constructor: " + e.getMessage());
                 } catch (Exception e) {
-                    System.err.println("Generic Excep-tion in setupEnemies: " + e.getMessage());
+                    System.err.println("Generic Exception in setupEnemies: " + e.getMessage());
                 }
-
+            return;
         }
 
         int numberOfEnemies = random.nextInt(3 ) + 1;
