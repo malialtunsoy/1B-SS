@@ -82,6 +82,7 @@ public class CombatManager {
     }
 
     private void playTurn() {
+        player.triggerAll(TriggeredAtTurnStart.class, null);
         decayAllEffects(true);
         energy = maxEnergy;
         declareIntents();
@@ -161,6 +162,9 @@ public class CombatManager {
         hand.clear();
 
         // enemies' "turn starts"
+        for (Enemy e : enemies) {
+            e.triggerAll(TriggeredAtTurnStart.class, null);
+        }
         decayAllEffects(false);
 
         // realize all enemy intents
@@ -179,11 +183,6 @@ public class CombatManager {
         selectedCard = null;
         selectedPotion = null;
         playTurn(); // play the next turn
-    }
-
-    //called after the combat ends by the run management
-    public void reportResults() {
-
     }
 
     public void cardSelected(Card c) {
