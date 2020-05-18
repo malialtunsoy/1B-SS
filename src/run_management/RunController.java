@@ -113,7 +113,7 @@ public class RunController implements Initializable, ControlledScreen {
     void backToMainMenu(ActionEvent event) {
         myController.reloadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
         myController.changeScreen(NavigationUI.mainMenuScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
@@ -121,7 +121,7 @@ public class RunController implements Initializable, ControlledScreen {
         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.changeScreen(RunUIManager.treasureScreen);
         myController.playTreasure();
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
@@ -129,14 +129,14 @@ public class RunController implements Initializable, ControlledScreen {
         myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
         myController.changeScreen(RunUIManager.merchantScreen);
         myController.playMerchant();
-        SaveAndExit.save();
+       // SaveAndExit.save();
     }
 
     @FXML
     void goToRest(ActionEvent event) {
         myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
         myController.changeScreen(RunUIManager.restScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
@@ -153,7 +153,7 @@ public class RunController implements Initializable, ControlledScreen {
         myController.setBackFromMap(RunUIManager.mainRunScreen);
         myController.reloadScreen(RunUIManager.quickMapScreen, RunUIManager.quickMapScreenFile);
         myController.changeScreen(RunUIManager.quickMapScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
@@ -161,14 +161,14 @@ public class RunController implements Initializable, ControlledScreen {
         myController.setBackFromDeck(RunUIManager.mainRunScreen);
         myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile);
         myController.changeScreen(RunUIManager.deckScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         myController.setGetBackFromSettings(RunUIManager.mainRunScreen);
         myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML
@@ -244,20 +244,20 @@ public class RunController implements Initializable, ControlledScreen {
                     myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
                     myController.changeScreen(RunUIManager.merchantScreen);
                     myController.playMerchant();
-                    SaveAndExit.save();
+                    //SaveAndExit.save();
                 }
 
                     if(thisVertex.getVertex().equals("Rest")){
                         myController.reloadScreen(RunUIManager.restScreen, RunUIManager.restScreenFile);
                         myController.changeScreen(RunUIManager.restScreen);
-                        SaveAndExit.save();
+                       // SaveAndExit.save();
                     }
 
                     if(thisVertex.getVertex().equals("Treasure")){
                         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
                         myController.changeScreen(RunUIManager.treasureScreen);
                         myController.playTreasure();
-                        SaveAndExit.save();
+                      //  SaveAndExit.save();
                     }
 
                     if(thisVertex.getVertex().equals("Combat")){

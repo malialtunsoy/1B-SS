@@ -48,7 +48,7 @@ public class MainMenuController implements Initializable, ControlledScreen {
     void drawOptions(ActionEvent event)throws IOException  {
         myController.setGetBackFromSettings(NavigationUI.mainMenuScreen);
         myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML

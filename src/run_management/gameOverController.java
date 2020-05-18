@@ -36,6 +36,7 @@ public class gameOverController implements Initializable, ControlledScreen {
     void tryAgain(ActionEvent event) {
         Game.getInstance().setLoadedGameExist(false);
         SaveAndExit.save();
+        myController.reloadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
         myController.changeScreen(NavigationUI.mainMenuScreen);
     }
 

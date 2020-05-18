@@ -46,7 +46,7 @@ public class Game {
 
      public  void setPlayerName(String playersName){
         playerName = playersName;
-        SaveAndExit.save();
+        //SaveAndExit.save();
          System.out.println("saved player name: " + playerName);
     }
 
@@ -56,7 +56,7 @@ public class Game {
 
     public void setCharacter(String characterChoosen){
         character = characterChoosen;
-        SaveAndExit.save( );
+        //SaveAndExit.save( );
         System.out.println("saved character: " + character);
     }
 
