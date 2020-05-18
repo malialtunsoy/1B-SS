@@ -72,6 +72,7 @@ public class CombatManager {
          deckClickedBefore = false;
          settingsClickedBefore = false;
          mapClickedBefore = false;
+        sceneChanged = false;
         // add relic effects
         for (int i = 0; i < player.getRelics().size(); i++) {
             player.addStatusEffect(player.getRelics().get(i).getEffect());
@@ -316,11 +317,13 @@ public class CombatManager {
     public void setScreenController(ScreenController myController){this.myController = myController;}
 
     public void backToMap() {
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         stage.setScene(menu);
-        if(sceneChanged) {
-            myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
-            myController.changeScreen("MainRunScreen"); //need a better solution.
-        }
+
+        //if(sceneChanged) {
+
+            myController.changeScreen(RunUIManager.mainRunScreen); //need a better solution.
+      //  }
         stage.show();
     }
 
@@ -507,9 +510,8 @@ public class CombatManager {
     public void gameOver(){
         myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
-
+        enemies = new ArrayList<Enemy>();
         myController.playGameOver();
-
         stage.show();
     }
 }
