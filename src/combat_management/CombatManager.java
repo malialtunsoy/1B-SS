@@ -51,6 +51,11 @@ public class CombatManager {
     public void playCombat() {
         ongoing = true;
         initializeCombat();
+        // TriggeredAtCombatStart effects triggered at all entities
+        player.triggerAll(TriggeredAtCombatStart.class, null);
+        for ( Enemy e : enemies) {
+            e.triggerAll(TriggeredAtCombatStart.class, null);
+        }
         playTurn();
     }
 
