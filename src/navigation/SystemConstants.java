@@ -41,6 +41,14 @@ public class SystemConstants {
 
     public static Class<?> silentRelic = RingOfTheSnake.class;
 
+    public static Class<?>[] watcherCards = {
+            Eruption.class,
+            Vigilance.class,
+            BowlingBash.class,
+            Consecrate.class,
+            
+    };
+
     public static Class<?>[] potions = {
             DamagePotion.class,
             HealthPotion.class
