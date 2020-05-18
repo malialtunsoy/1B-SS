@@ -1,0 +1,28 @@
+1###loadedGame###    **true**
+1###PlayerName###    **456**
+1###Character###    **Watcher**
+7###Achievements###    **Start new Game**Load Game**End Game**Talk with Merchant**Fight with a Boss**Buy a Relic**Buy a potion**
+7###AchievementLock###    **0**0**1**0**0**0**0**
+4###OptionNames###    **Volume**Music**Brightness**Contrass**
+4###Options###    **0**5**10**45**
+10###CardsInDeck###    **Strike**Vigilance**Vigilance**Eruption**Eruption**Crescendo**CrescendoPlus**Miracle**Defend**Anger**
+1###playerHP###    **60**
+1###playerMaxHP###    **60**
+1###playerGold###    **330**
+1###maxPot###    **3**
+1###relicCount###    **3**
+10###PlayerDeck###    **Strike**Vigilance**Vigilance**Eruption**Eruption**Crescendo**CrescendoPlus**Miracle**Defend**Anger**
+0###PlayerPotions###    ****
+1###PlayerRelics###    **PureWater**
+8###MapPath1###    **Combat**Merchant**EliteCombat**Merchant**Rest**Boss**null**null**
+8###MapPath2###    **Combat**Combat**Treasure**Treasure**Rest**Boss**null**null**
+8###MapPath3###    **Combat**Merchant**Rest**EliteCombat**Rest**Boss**null**null**
+8###MapPath4###    **Combat**Combat**Treasure**Treasure**Rest**Boss**null**null**
+40###MapPathNumeric1###    **0**-1**-1**145**172**1**-1**-1**253**138**2**2**3**410**182**3**-1**-1**533**163**1**-1**-1**723**293**99**-1**-1**847**216**0**0**0**0**0**0**0**0**0**0**
+40###MapPathNumeric2###    **0**-1**-1**160**273**1**-1**-1**258**265**2**3**3**428**267**3**-1**-1**588**309**1**-1**-1**723**293**99**-1**-1**847**216**0**0**0**0**0**0**0**0**0**0**
+40###MapPathNumeric3###    **0**2**1**156**376**1**2**2**287**410**2**-1**-1**444**420**3**99**1**563**387**2**-1**-1**669**535**99**-1**-1**847**216**0**0**0**0**0**0**0**0**0**0**
+40###MapPathNumeric4###    **0**-1**-1**116**509**1**-1**-1**306**520**2**-1**-1**438**535**3**-1**-1**572**497**2**-1**-1**669**535**99**-1**-1**847**216**0**0**0**0**0**0**0**0**0**0**
+2###MapCurrentVertex###    **-1**-1**
+1###mapLevel###    **0**
+1###Combat::Ongoing###	**false**
+
