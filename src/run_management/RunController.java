@@ -97,7 +97,7 @@ public class RunController implements Initializable, ControlledScreen {
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
             Image relicImage = new Image(relics.get(i).getImage());
-            //Image relicImage = new Image("BurningBloodRelic.png");
+            //Image relicImage = new Image("BurningBlood.png");
             tempRelicImage.setImage(relicImage);
             tempRelicImage.setPickOnBounds(true);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
@@ -120,6 +120,7 @@ public class RunController implements Initializable, ControlledScreen {
     void goToTreasure(ActionEvent event) {
         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
         myController.changeScreen(RunUIManager.treasureScreen);
+        myController.playTreasure();
         SaveAndExit.save();
     }
 
@@ -127,6 +128,7 @@ public class RunController implements Initializable, ControlledScreen {
     void goToMerchant(ActionEvent event) {
         myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
         myController.changeScreen(RunUIManager.merchantScreen);
+        myController.playMerchant();
         SaveAndExit.save();
     }
 
@@ -241,6 +243,7 @@ public class RunController implements Initializable, ControlledScreen {
                 if(thisVertex.getVertex().equals("Merchant")){
                     myController.reloadScreen(RunUIManager.merchantScreen, RunUIManager.merchantScreenFile);
                     myController.changeScreen(RunUIManager.merchantScreen);
+                    myController.playMerchant();
                     SaveAndExit.save();
                 }
 
@@ -253,6 +256,7 @@ public class RunController implements Initializable, ControlledScreen {
                     if(thisVertex.getVertex().equals("Treasure")){
                         myController.reloadScreen(RunUIManager.treasureScreen, RunUIManager.treasureScreenFile);
                         myController.changeScreen(RunUIManager.treasureScreen);
+                        myController.playTreasure();
                         SaveAndExit.save();
                     }
 

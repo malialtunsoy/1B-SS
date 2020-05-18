@@ -22,7 +22,9 @@ public class CombatManager {
     private Stage stage;
     private Scene menu;
     private ScreenController myController;
+    private boolean sceneChanged;
     private Scene currentScene;
+
     boolean deckClickedBefore = false;
     boolean settingsClickedBefore = false;
     boolean mapClickedBefore = false;
@@ -45,6 +47,7 @@ public class CombatManager {
 
     private CombatUIAdapter uiAdapter;
 
+
     // -----  methods  ----
 
     //plays the combat, acts as a main method for the Combat Management subsystem.
@@ -60,7 +63,7 @@ public class CombatManager {
         for (int i = 0; i < player.getRelics().size(); i++) {
             player.addStatusEffect(player.getRelics().get(i).getEffect());
         }
-
+        sceneChanged = false;
         drawPile = player.getDeck();
         Collections.shuffle(drawPile);
         discardPile = new ArrayList<Card>();
@@ -274,11 +277,13 @@ public class CombatManager {
 
     public void backToMap() {
         stage.setScene(menu);
-        myController.changeScreen("MainRunScreen"); //need a better solution.
+        if(sceneChanged)
+            myController.changeScreen("MainRunScreen"); //need a better solution.
         stage.show();
     }
 
     public void showMap(){
+        sceneChanged = true;
         myController.setBackFromMap("CombatUI.fxml");
         if(!mapClickedBefore){ myController.changeScreen(RunUIManager.quickMapScreen);}
         mapClickedBefore = true;
@@ -288,6 +293,7 @@ public class CombatManager {
     }
 
     public void showDeck(){
+        sceneChanged = true;
         myController.setBackFromDeck("CombatUI.fxml");
         if(!deckClickedBefore){ myController.changeScreen(RunUIManager.deckScreen);}
         deckClickedBefore = true;

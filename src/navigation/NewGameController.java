@@ -74,21 +74,25 @@ public class NewGameController implements Initializable, ControlledScreen {
     @FXML
     void char1selected(){ Game.getInstance().setCharacter("Ironclad");
     chacterSelectedText.setText("Ironclad");
+        myController.playCharSelect();
     }
 
     @FXML
     void char2selected(){
         Game.getInstance().setCharacter("Silent");chacterSelectedText.setText("Silent");
+        myController.playCharSelect();
     }
 
     @FXML
     void char3selected(){
         Game.getInstance().setCharacter("Defect");chacterSelectedText.setText("Defect");
+        myController.playCharSelect();
     }
 
     @FXML
     void char4selected(){
         Game.getInstance().setCharacter("Watcher");chacterSelectedText.setText("Watcher");
+        myController.playCharSelect();
     }
 
 
@@ -105,6 +109,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 
                 myController.screenLoadFromOtherSubs(myRun.screenNames, myRun.screenFiles);
                 myController.changeScreen("MainRunScreen");
+                myController.playFight();
             }
         }
     }

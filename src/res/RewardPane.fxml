@@ -17,7 +17,7 @@
       </ImageView>
       <ImageView fx:id="image" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="9.0" onMouseClicked="#claimReward" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@RingoftheSnake.png" />
+            <Image url="@RingOfTheSnake.png" />
          </image>
       </ImageView>
       <Label fx:id="text" layoutX="76.0" layoutY="18.0" onMouseClicked="#claimReward" text="Ring of the Snake" textFill="WHITE">

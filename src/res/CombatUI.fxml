@@ -23,7 +23,7 @@
          </ImageView>
 
          <FlowPane fx:id="enemies" layoutX="240.0" layoutY="198.0" prefHeight="315.0" prefWidth="964.0" />
-         <ScrollPane layoutX="229.0" layoutY="498.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
+         <ScrollPane layoutX="229.0" layoutY="570.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
             <content>
                <AnchorPane fx:id="hand" prefHeight="200.0" prefWidth="200.0" />
             </content>
@@ -31,9 +31,9 @@
          <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
          <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
             <children>
-               <ImageView fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@character.png" />
+                     <Image url="@Ironclad.png" />
                   </image>
                </ImageView>
                <FlowPane fx:id="statusEffects" layoutX="-1.0" layoutY="208.0" prefHeight="86.0" prefWidth="168.0" />
@@ -105,9 +105,15 @@
                <Image url="@DiscardPile.png" />
             </image>
          </ImageView>
-         <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" textFill="WHITE"/>
-         <Label fx:id="numDiscard" alignment="CENTER" layoutX="1045.0" layoutY="702.0" text="Label" textAlignment="CENTER"  />
-         <AnchorPane fx:id="rewardsScreen" layoutY="68.0" prefHeight="732.0" prefWidth="1210.0">
+         <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font></Label>
+         <Label fx:id="numDiscard" alignment="CENTER" layoutX="1045.0" layoutY="702.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font></Label>
+         <AnchorPane fx:id="rewardsScreen" disable="true" layoutY="68.0" prefHeight="732.0" prefWidth="1210.0">
             <children>
                <ImageView fitHeight="732.0" fitWidth="1210.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
                   <image>

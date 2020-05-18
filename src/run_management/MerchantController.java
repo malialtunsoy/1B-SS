@@ -132,7 +132,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             int temp  =i;
             cardButton[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseCard(myCards.get(temp));
                         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
-                });
+                myController.playInventory(); });
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);
@@ -222,7 +222,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             potionButton[i].setOnAction(e -> {
             Game.getInstance().myPlayer.purchasePotion(merchantPotion.get(temp));
                 MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
-                reloadPotions();});
+                reloadPotions();
+                myController.playInventory();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(potionButton[i]);
@@ -309,7 +310,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             int temp = i;
             relicsButtons[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseRelic(merchantRelic.get(temp));
             MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
-                reloadRelics();});
+                reloadRelics();
+                myController.playInventory();});
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);
@@ -335,7 +337,7 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempRelicImage.setFitWidth(56);
             tempRelicImage.setFitHeight(56);
             Image relicImage = new Image(relics.get(i).getImage());
-            //Image relicImage = new Image("BurningBloodRelic.png");
+            //Image relicImage = new Image("BurningBlood.png");
             tempRelicImage.setImage(relicImage);
             Tooltip.install(tempRelicImage, new Tooltip(relics.get(i).getName() + ": "+  relics.get(i).getRelicDescription()));
             relicSlotHBox.getChildren().add(tempRelicImage);
