@@ -10,4 +10,5 @@ public abstract class Stance extends StatusEffect {
             }
         }
     }
+
 }
