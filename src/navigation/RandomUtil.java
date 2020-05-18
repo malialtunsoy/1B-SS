@@ -41,16 +41,21 @@ public class RandomUtil {
     public static Card getRandomBaseCard( String character) {
 
         Class<?>[] cardPool = SystemConstants.ironcladCards;
+        Class<?>[] classPool = null;
         if( character.equals("Ironclad")){
-            cardPool = new Class<?>[SystemConstants.ironcladCards.length + SystemConstants.neutralCards.length];
-            for( int i = 0; i < SystemConstants.ironcladCards.length; i++)
-                cardPool[i] = SystemConstants.ironcladCards[i];
-            for( int i = 0; i < SystemConstants.neutralCards.length; i++)
-                cardPool[i + SystemConstants.ironcladCards.length] = SystemConstants.neutralCards[i];
-
+            classPool = SystemConstants.ironcladCards;
+        } else if (character.equals("Silent")){
+            classPool = SystemConstants.silentCards;
         } else {
             System.err.println("Character class not recognized");
         }
+
+        cardPool = new Class<?>[classPool.length + SystemConstants.neutralCards.length];
+        for( int i = 0; i < classPool.length; i++)
+            cardPool[i] = classPool[i];
+        for( int i = 0; i < SystemConstants.neutralCards.length; i++)
+            cardPool[i + classPool.length] = SystemConstants.neutralCards[i];
+
 
         int index = rand.nextInt(cardPool.length);
         Card choice = null;

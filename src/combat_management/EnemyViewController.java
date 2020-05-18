@@ -115,7 +115,7 @@ public class EnemyViewController {
                 if(i2 instanceof StrategicIntent || i2 instanceof HiddenIntent)
                     intent.setImage(new Image("DefendBuff.png"));
             }
-            else if( i1 instanceof StrategicIntent || i2 instanceof HiddenIntent) {
+            else if( i1 instanceof StrategicIntent || i1 instanceof HiddenIntent) {
                 if(i2 instanceof DefensiveIntent)
                     intent.setImage(new Image("DefendBuff.png"));
                 if(i2 instanceof AggressiveIntent)

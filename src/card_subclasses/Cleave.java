@@ -12,7 +12,7 @@ public class Cleave extends Card {
 
     public void affect(Enemy target) {
         for (Enemy e: CombatManager.getInstance().getEnemies()) {
-            CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, target);
+            CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, e);
         }
     }
     public Card upgradedVersion() {

@@ -10,7 +10,7 @@ public class AcidSlimeMedium extends Enemy {
     private static final int LICK_WEAK = 1;
 
     private static final double TACKLE_PROB = 0.4;
-    private static final int TACKLE_DAMAGE = 1;
+    private static final int TACKLE_DAMAGE = 10;
 
     // --- constructors ---
     public AcidSlimeMedium() {
@@ -26,7 +26,8 @@ public class AcidSlimeMedium extends Enemy {
             addIntent(new HiddenIntent(this, CombatManager.getInstance().getPlayer()) {
                 @Override
                 public void realize() {
-                    CombatManager.getInstance().getHand().add(new Slimed());
+                    System.out.println("ACID SLIME CARDINSERT");
+                    CombatManager.getInstance().getDiscardPile().add(new Slimed());
                 }
             });
             addIntent(new AggressiveIntent(this, CORROSIVE_SPIT_DAMAGE));

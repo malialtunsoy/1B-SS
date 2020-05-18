@@ -12,15 +12,33 @@ public class SystemConstants {
             // Cleave.class,
             // Clothesline.class,
             Defend.class,
-            Strike.class
+            Strike.class,
+            Shiv.class
     };
 
     public static Class<?>[] ironcladCards = {
+            Anger.class,
             Bash.class,
-            // Anger.class,
-            Strengthen.class,
-            Pummel.class
+            BodySlam.class,
+            Clash.class,
+            Cleave.class,
+            Clothesline.class,
+            Pummel.class,
+            Strengthen.class
     };
+
+    public static Class<?> ironcladRelic = BurningBlood.class;
+
+    public static Class<?>[] silentCards = {
+            BladeDance.class,
+            CloakAndDagger.class,
+            DeadlyPoison.class,
+            DaggerSpray.class,
+            PoisonedStab.class,
+            Deflect.class
+    };
+
+    public static Class<?> silentRelic = RingOfTheSnake.class;
 
     public static Class<?>[] potions = {
             DamagePotion.class,
@@ -37,7 +55,8 @@ public class SystemConstants {
             Alternatron.class,
             Cultist.class,
             JawWorm.class,
-            AnnoyingHedgehog.class
+            AnnoyingHedgehog.class,
+            AcidSlimeMedium.class
     };
 
 

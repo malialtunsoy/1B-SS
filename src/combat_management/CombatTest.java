@@ -25,10 +25,10 @@ public class CombatTest {
         // Seems not to cause an issue now but better to be aware of it.
         
         Card sample = new Strike();
-        Card sample2 = new Defend();
-        Card sample3 = new Strengthen();
+        Card sample2 = new Deflect();
+        Card sample3 = new PoisonedStab();
         Card sample5 = new Pummel();
-        Card sample4 = new Bash();
+        Card sample4 = new Cleave();
         Card sample7 = new Clothesline();
 
         player.addRelic(new RingOfTheSnake());
@@ -53,8 +53,10 @@ public class CombatTest {
         player.addToDeck(sample);
         player.addToDeck(sample);
         player.addToDeck(sample7);
+        player.addToDeck(sample3);
+        player.addToDeck(sample3);
 
-
+        
         player.addRewardPotion(new HealthPotion());
         player.addRewardRelic(new RingOfTheSnake());
         player.addRewardRelic(new BurningBlood());
@@ -102,7 +104,7 @@ public class CombatTest {
             @Override
             public void handle(ActionEvent event) {
                 Enemy e = new JawWorm();
-                e.setCurrentHP(1);
+                e.setCurrentHP(20);
                 CombatManager.getInstance().addEnemy(e);
             }
         });

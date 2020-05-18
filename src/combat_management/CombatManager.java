@@ -56,6 +56,11 @@ public class CombatManager {
     public void playCombat() {
         ongoing = true;
         initializeCombat();
+        // TriggeredAtCombatStart effects triggered at all entities
+        player.triggerAll(TriggeredAtCombatStart.class, null);
+        for ( Enemy e : enemies) {
+            e.triggerAll(TriggeredAtCombatStart.class, null);
+        }
         playTurn();
     }
 
@@ -79,6 +84,7 @@ public class CombatManager {
     }
 
     private void playTurn() {
+        player.triggerAll(TriggeredAtTurnStart.class, null);
         decayAllEffects(true);
         energy = maxEnergy;
         declareIntents();
@@ -158,6 +164,9 @@ public class CombatManager {
         hand.clear();
 
         // enemies' "turn starts"
+        for (Enemy e : enemies) {
+            e.triggerAll(TriggeredAtTurnStart.class, null);
+        }
         decayAllEffects(false);
 
         // realize all enemy intents
@@ -190,6 +199,7 @@ public class CombatManager {
 
     public void cardSelectedForCallback( Card c) {
         callbackTarget.callback(c);
+        uiAdapter.updateView();
     }
 
     public void cardSelected(Card c) {

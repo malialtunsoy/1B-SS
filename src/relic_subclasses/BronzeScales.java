@@ -5,10 +5,9 @@ public class BronzeScales extends Relic {
     private static final String DESCRIPTION = "Start each combat with " + THORNS_COUNTER + " Thorns.";
     private static final String IMAGE = "BronzeScales.png";
 
-    private class Effect extends RelicEffect implements TriggeredOnDamageTake {
-        private Thorns delegatedTo = new Thorns(THORNS_COUNTER);
+    private class Effect extends RelicEffect implements TriggeredAtCombatStart {
         public void triggered(Object triggerSource) {
-            delegatedTo.triggered(triggerSource);
+            CombatManager.getInstance().getPlayer().addStatusEffect(new Thorns(THORNS_COUNTER));
         }
     }
 
