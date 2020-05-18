@@ -8,6 +8,7 @@ public class SurvivorPlus extends Card implements MakesCardChoice {
     private static final String DESCRIPTION = "Gain " + BLOCK_AMOUNT + " Block. Discard " + DISCARD_AMOUNT + " cards.";
     private static final boolean TARGET_REQUIREMENT = false;
     private static int COST = 100;
+    private static String CHOOSE_PROMPT = "Choose a card to discard";
 
     // constructors
     public SurvivorPlus() {
@@ -18,7 +19,7 @@ public class SurvivorPlus extends Card implements MakesCardChoice {
         ArrayList<Card> chooseFrom = new ArrayList<Card>(CombatManager.getInstance().getHand());
         chooseFrom.remove(this);
         CombatManager.getInstance().getPlayer().addStatusEffect(new Block(BLOCK_AMOUNT));
-        CombatManager.getInstance().chooseCard( chooseFrom, this);
+        CombatManager.getInstance().chooseCard( chooseFrom, CHOOSE_PROMPT,this);
     }
 
     @Override

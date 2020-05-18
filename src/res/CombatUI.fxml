@@ -76,6 +76,11 @@
                      <Image url="@close.png" />
                   </image>
                </ImageView>
+               <Label fx:id="choosePrompt" alignment="CENTER" layoutX="35.0" layoutY="615.0" prefWidth="800.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                  <font>
+                     <Font size="30.0" />
+                  </font>
+               </Label>
             </children>
          </AnchorPane>
          <Label fx:id="targetPrompt" alignment="CENTER" layoutX="162.0" layoutY="150.0" prefHeight="36.0" prefWidth="950.0" text="Choose a Target!" textFill="WHITE">
@@ -113,9 +118,9 @@
             <font>
                <Font name="System Bold" size="13.0" />
             </font></Label>
-         <AnchorPane fx:id="rewardsScreen" disable="true" layoutY="68.0" prefHeight="732.0" prefWidth="1210.0">
+         <AnchorPane fx:id="rewardsScreen" disable="true" layoutY="68.0" opacity="0.09" prefHeight="732.0" prefWidth="1210.0">
             <children>
-               <ImageView fitHeight="732.0" fitWidth="1210.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="732.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@RewardScreenBackground.png" />
                   </image>
@@ -156,6 +161,7 @@
                      <Image url="@CardHighlight.png" />
                   </image>
                </ImageView>
+               <Label layoutX="576.0" layoutY="663.0" text="Label" />
             </children>
          </AnchorPane>
          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1210.0">

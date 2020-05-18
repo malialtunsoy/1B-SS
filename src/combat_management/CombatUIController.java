@@ -41,6 +41,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML Label numDiscard;
     @FXML AnchorPane popUpDisplay;
     @FXML Label targetPrompt;
+    @FXML Label choosePrompt;
 
     @FXML ImageView cardHighlight1;
     @FXML ImageView cardHighlight2;
@@ -260,6 +261,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDrawPile() {
+        choosePrompt.setText("");
         if(CombatManager.getInstance().getDrawPile().isEmpty())
             return;
         popUpDisplay.setDisable(false);
@@ -279,7 +281,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     }
 
 
-    void chooseCard(ArrayList<Card> options) {
+    void chooseCard(ArrayList<Card> options, String prompt) {
+        choosePrompt.setText(prompt);
         popUpDisplay.setDisable(false);
         popUpDisplay.setVisible(true);
         FlowPane cards = (FlowPane) (((ScrollPane)popUpDisplay.getChildren().get(0)).getContent());
@@ -304,6 +307,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML
     void showDiscardPile() {
+        choosePrompt.setText("");
         if(CombatManager.getInstance().getDiscardPile().isEmpty())
             return;
         popUpDisplay.setDisable(false);
@@ -338,6 +342,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             RewardPaneController controller = loader.getController();
             controller.setParentController(this);
             controller.setRewardPotion(pot);
+            Tooltip.install(rewardPane,new Tooltip(pot.getPotionDescription()));
             rewardPanes.getChildren().add(rewardPane);
         }
 
@@ -348,6 +353,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             RewardPaneController controller = loader.getController();
             controller.setRewardRelic(relic);
             controller.setParentController(this);
+            Tooltip.install(rewardPane,new Tooltip(relic.getRelicDescription()));
             rewardPanes.getChildren().add(rewardPane);
         }
 
