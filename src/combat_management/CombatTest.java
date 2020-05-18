@@ -29,7 +29,7 @@ public class CombatTest {
         Card sample3 = new PoisonedStab();
         Card sample5 = new Pummel();
         Card sample4 = new Cleave();
-        Card sample7 = new Clothesline();
+        Card sample7 = new Eruption();
 
         player.addRelic(new RingOfTheSnake());
         player.addRelic(new BurningBlood());
