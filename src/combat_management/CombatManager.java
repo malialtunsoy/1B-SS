@@ -17,6 +17,8 @@ public class CombatManager {
     }
 
     //attributes
+    MakesCardChoice callbackTarget;
+
     private static CombatManager instance = new CombatManager();
 
     private Stage stage;
