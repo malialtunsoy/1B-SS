@@ -158,21 +158,24 @@ public class Player extends CombatEntity {
 
         deck.add(new Crescendo() );
         deck.add(new CrescendoPlus() );
-        deck.add(new Survivor() );
-        deck.add(new Survivor() );
+        deck.add(new Miracle() );
+        //deck.add(new Miracle() );
         deck.add(new Defend() );
         deck.add(new Anger());
 
     }
 
     public void intializeRelic(){
+        addRelic(new PureWater());
         try {
-            if (playerChar == "Ironclad")
+            if (playerChar.equals("Ironclad"))
                 relics.add((Relic)SystemConstants.ironcladRelic.getConstructor().newInstance());
-            else if (playerChar == "Silent")
+            else if (playerChar.equals("Silent"))
                 relics.add((Relic)SystemConstants.silentRelic.getConstructor().newInstance());
+            else if (playerChar.equals("Watcher"))
+                relics.add((Relic)SystemConstants.watcherRelic.getConstructor().newInstance());
         } catch (NoSuchMethodException e) {
-            System.err.println("Exception in initializeRelic caused by a Card in system without a default constructor: " + e.getMessage());
+            System.err.println("Exception in initializeRelic caused by a Relic in system without a default constructor: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("Generic Exception in initializeRelic: " + e.getMessage());
         }

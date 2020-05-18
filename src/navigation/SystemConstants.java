@@ -49,6 +49,7 @@ public class SystemConstants {
             Crescendo.class,
             Tranquility.class
     };
+    public static Class<?> watcherRelic = PureWater.class;
 
     public static Class<?>[] potions = {
             DamagePotion.class,
