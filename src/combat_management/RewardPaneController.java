@@ -32,6 +32,7 @@ public class RewardPaneController {
         }
         ((FlowPane)(text.getParent().getParent())).getChildren().remove(text.getParent());
         parentController.reloadRelics();
+        parentController.reloadGold();
         parentController.reloadPotions();
         parentController.disablePotionButtons();
         parentController.checkRewardsDone();

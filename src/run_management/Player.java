@@ -358,7 +358,7 @@ public class Player extends CombatEntity {
                 } catch (NoSuchMethodException e) {
                     System.err.println("Exception in setupEnemies caused by a Card in system without a default constructor: " + e.getMessage());
                 } catch (Exception e) {
-                    System.err.println("Generic Exception in setupEnemies: " + e.getMessage());
+                    System.err.println("Generic Excep-tion in setupEnemies: " + e.getMessage());
                 }
 
         }

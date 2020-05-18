@@ -148,6 +148,9 @@ public class quickMapScreenController implements Initializable, ControlledScreen
         if (VertexName.equals("Combat")) {
             return "combat+.png";
         }
+        if (VertexName.equals("EliteCombat")) {
+            return "eliteCombat+.png";
+        }
         if (VertexName.equals("Rest")) {
             return "rest+.png";
         }

@@ -62,6 +62,11 @@ public class EnemyViewController {
     }
 
     public void setIntent(ArrayList<Intent> intents) {
+        String intentDesc = "";
+        for( Intent i : intents) {
+            intentDesc +=  i.toString();
+        }
+        Tooltip.install(intent, new Tooltip(intentDesc));
         intentAmount.setText("");
         if(intents.size() == 1) {
             Intent i = intents.get(0);

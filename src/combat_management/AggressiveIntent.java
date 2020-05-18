@@ -30,6 +30,6 @@ public class AggressiveIntent extends Intent {
     }
 
     public String toString() {
-        return "AggressiveIntent(" + damage + ")";
+        return "This enemy intends to deal " + damage +  " damage.\n";
     }
 }
