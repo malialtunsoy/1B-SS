@@ -367,7 +367,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 disableRewardCards();
             }
         });
-
+        System.out.println(CombatManager.getInstance().getPlayer().getRewardCards().get(1).getImage());
         rewardCard2.setImage(new Image(CombatManager.getInstance().getPlayer().getRewardCards().get(1).getImage()));
         rewardCard2.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -441,6 +441,10 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 return;
             }
         });
+    }
+
+    public void reloadGold(){
+        MoneyLabel.setText(Game.getInstance().myPlayer.getGold()+"");
     }
 
     @FXML

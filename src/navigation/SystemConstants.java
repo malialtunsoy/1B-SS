@@ -35,7 +35,8 @@ public class SystemConstants {
             DeadlyPoison.class,
             DaggerSpray.class,
             PoisonedStab.class,
-            Deflect.class
+            Deflect.class,
+            Survivor.class
     };
 
     public static Class<?> silentRelic = RingOfTheSnake.class;

@@ -30,6 +30,9 @@ public abstract class StatusEffect {
     public void decreaseCounter(int amount) {
         counter -= amount;
         if (counter <= 0) {
+            if (this instanceof TriggeredOnEffectRemoval) {
+                ((TriggeredOnEffectRemoval) this).triggered(null);
+            }
             affectee.removeStatusEffect(this);
         }
     }
