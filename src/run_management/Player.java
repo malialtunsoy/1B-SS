@@ -151,10 +151,10 @@ public class Player extends CombatEntity {
     public void intializeDeck(){
 
         deck.add( new Strike() );
-        deck.add( new Strike() );
-        deck.add( new Strike() );
-        deck.add( new Strike() );
-        deck.add( new Strike() );
+        deck.add( new Vigilance() );
+        deck.add( new Vigilance() );
+        deck.add( new Eruption() );
+        deck.add( new Eruption() );
 
         deck.add(new Survivor() );
         deck.add(new Survivor() );

@@ -194,6 +194,7 @@ public class CombatManager {
 
     public void gainEnergy( int amount) {
         energy += amount;
+        uiAdapter.updateView(); // not sure if necessary
     }
 
     public void chooseCard( ArrayList<Card> from, String propmt ,MakesCardChoice client) {
