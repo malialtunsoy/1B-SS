@@ -149,20 +149,17 @@ public class Player extends CombatEntity {
 
     //==========================================INITIALIZE====================================
     public void intializeDeck(){
-
         deck.add( new Strike() );
-        deck.add( new Vigilance() );
-        deck.add( new Vigilance() );
-        deck.add( new Eruption() );
-        deck.add( new Eruption() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
 
-        deck.add(new Crescendo() );
-        deck.add(new CrescendoPlus() );
-        deck.add(new Miracle() );
-        //deck.add(new Miracle() );
-        deck.add(new Defend() );
-        deck.add(new Anger());
-
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
     }
 
     public void intializeRelic(){
@@ -350,7 +347,6 @@ public class Player extends CombatEntity {
         int numberOfEnemies = random.nextInt(3 ) + 1;
         for( int i = 0; i < numberOfEnemies; i++) {
             Enemy e = RandomUtil.getRandomEnemy();
-            e.setCurrentHP(1);
             CombatManager.getInstance().addEnemy(e);
         }
     }
