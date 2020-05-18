@@ -42,6 +42,10 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML AnchorPane popUpDisplay;
     @FXML Label targetPrompt;
 
+    @FXML ImageView cardHighlight1;
+    @FXML ImageView cardHighlight2;
+    @FXML ImageView cardHighlight3;
+
     @FXML private Text MoneyLabel;
     @FXML private Text currentHPLabel;
     @FXML private Text maxHPLabel;
@@ -331,7 +335,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             @Override
             public void handle(MouseEvent event) {
                 CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(0));
-                rewardCard1.setVisible(false);
+                cardHighlight1.setVisible(true);
                 disableRewardCards();
             }
         });
@@ -341,7 +345,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             @Override
             public void handle(MouseEvent event) {
                 CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(1));
-                rewardCard2.setVisible(false);
+                cardHighlight2.setVisible(true);
                 disableRewardCards();
             }
         });
@@ -351,7 +355,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             @Override
             public void handle(MouseEvent event) {
                 CombatManager.getInstance().getPlayer().addToDeck(CombatManager.getInstance().getPlayer().getRewardCards().get(2));
-                rewardCard3.setVisible(false);
+                cardHighlight3.setVisible(true);
                 disableRewardCards();
             }
         });
