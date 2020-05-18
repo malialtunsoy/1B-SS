@@ -50,6 +50,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot2;
     @FXML private ImageView potionSlot3;
     @FXML ImageView closePopUp;
+    @FXML private ImageView character;
 
     @FXML private ImageView rewardCard1;
     @FXML private ImageView rewardCard2;
@@ -63,6 +64,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        character.setImage(new Image(CombatManager.getInstance().getPlayer().playerChar + ".png"));
         rewardCardPicked = false;
         playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
 

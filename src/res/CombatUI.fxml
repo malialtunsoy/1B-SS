@@ -31,9 +31,9 @@
          <Button layoutX="1043.0" layoutY="45.0" mnemonicParsing="false" onAction="#backToMap" text="back" />
          <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
             <children>
-               <ImageView fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@character.png" />
+                     <Image url="@Ironclad.png" />
                   </image>
                </ImageView>
                <FlowPane fx:id="statusEffects" layoutX="-1.0" layoutY="208.0" prefHeight="86.0" prefWidth="168.0" />
