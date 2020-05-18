@@ -272,10 +272,7 @@ public class Player extends CombatEntity {
     }
 
     public ArrayList<Card> getMerchantDeck(){
-        ArrayList<Card> cards = new ArrayList<Card>();
-        for( int i = 0; i < 7; i++ )
-            cards.add(RandomUtil.getRandomBaseCard(playerChar));
-        return cards;
+        return RandomUtil.getRandomBaseCardsNoDuplicate( 7, playerChar);
     }
     public ArrayList<Relic> getMerchantRelics() {
         ArrayList<Relic> relics = new ArrayList<Relic>();
@@ -382,9 +379,9 @@ public class Player extends CombatEntity {
             addRewardRelic(RandomUtil.getRandomRelic());
         addRewardPotion(RandomUtil.getRandomPotion());
         setRewardGold(random.nextInt(40) * 5 + 200);
-        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
-        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
-        addRewardCard(RandomUtil.getRandomBaseCard(playerChar));
+
+        //choose three different cards.
+        rewardCards = RandomUtil.getRandomBaseCardsNoDuplicate(3, playerChar);
     }
 
     //array arttır ekle

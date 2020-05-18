@@ -1,7 +1,28 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomUtil {
     private static Random rand = new Random();
+
+
+    public static ArrayList<Card> getRandomBaseCardsNoDuplicate( int count, String playerChar){
+        ArrayList<Card> current = new ArrayList<Card>();
+        boolean duplicate = true;
+        for( int i = 0; i < 3; i++){
+            Card card = null;
+            while(duplicate) {
+                duplicate = false;
+                card = RandomUtil.getRandomBaseCard(playerChar);
+                for (Card included : current) {
+                    if (included.getClass().getName().equals(card.getClass().getName()))
+                        duplicate = true;
+                }
+            }
+            duplicate = true;
+            current.add(card);
+        }
+        return current;
+    }
 
     // has the input probability of returning true.
     public static boolean trueWithProb( double prob) {
