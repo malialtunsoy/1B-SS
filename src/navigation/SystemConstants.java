@@ -28,7 +28,8 @@ public class SystemConstants {
     };
 
     public static Class<?>[] silentCards = {
-        BladeDance.class
+            BladeDance.class,
+            CloakAndDagger.class
     };
 
     public static Class<?>[] potions = {

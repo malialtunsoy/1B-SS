@@ -1,6 +1,6 @@
 public class CloakAndDagger extends Card {
     private static final int NUM_SHIVS = 1;
-    private static final int BLOCK_AMOUNT = 2;
+    private static final int BLOCK_AMOUNT = 6;
     private static final int ENERGY_COST = 1;
     private static final String DESCRIPTION = "Gain " + BLOCK_AMOUNT + " Block. Add " + NUM_SHIVS + " Shiv into your hand";
     private static final int COST = 50;

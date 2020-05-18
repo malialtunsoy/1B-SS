@@ -26,7 +26,7 @@ public class CombatTest {
         
         Card sample = new Strike();
         Card sample2 = new Defend();
-        Card sample3 = new BladeDance();
+        Card sample3 = new CloakAndDagger();
         Card sample5 = new Pummel();
         Card sample4 = new Bash();
         Card sample7 = new Clothesline();
