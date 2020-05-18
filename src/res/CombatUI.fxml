@@ -118,7 +118,7 @@
             <font>
                <Font name="System Bold" size="13.0" />
             </font></Label>
-         <AnchorPane fx:id="rewardsScreen" disable="true" layoutY="68.0" opacity="0.09" prefHeight="732.0" prefWidth="1210.0">
+         <AnchorPane fx:id="rewardsScreen" disable="true" layoutY="65.0" prefHeight="732.0" prefWidth="1210.0">
             <children>
                <ImageView fitHeight="732.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true">
                   <image>
