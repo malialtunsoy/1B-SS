@@ -1,0 +1,88 @@
+/*============================= MAIN MENU ========================== */
+.myButton {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+
+    -fx-font-family: "Assassin$";
+    -fx-font-size: 25px;
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.myButton:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+    -fx-font-size: 25px;
+}
+
+.myButton:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+}
+
+.myButtonLight {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+
+    -fx-font-family: "Assassin$";
+    -fx-font-size: 25px;
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.myButtonLight:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.8);
+    -fx-font-size: 25px;
+}
+
+.myButtonLight:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+}
+
+
+/* =======================CHARS=========================*/
+.ironclad {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+.ironclad:hover {
+    -fx-background-color: rgba(161, 48, 0, 0.7);
+}
+
+.ironclad:pressed {
+    -fx-background-color: rgba(38, 191, 4, 0.9);
+}
+
+
+.silent {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+.silent:hover {
+    -fx-background-color: rgba(0, 143, 43, 0.7);
+}
+
+.silent:pressed {
+    -fx-background-color: rgba(38, 191, 4, 0.9);
+}
+
+.defect {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+.defect:hover {
+    -fx-background-color: rgba(2, 212, 227, 0.7);
+}
+
+.defect:pressed {
+    -fx-background-color: rgba(38, 191, 4, 0.9);
+}
+
+.wathcer {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+}
+
+.wathcer:hover {
+    -fx-background-color: rgba(149, 0, 230, 0.7);
+}
+
+.wathcer:pressed {
+    -fx-background-color: rgba(38, 191, 4, 0.9);
+}
+
+
+/*============================= MAP ========================== */

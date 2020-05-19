@@ -13,7 +13,7 @@
             <Image url="@background.png" />
          </image>
       </ImageView>
-      <Button layoutX="603.0" layoutY="348.0" mnemonicParsing="false" onAction="#charSelect" prefHeight="44.0" prefWidth="221.0" text="Resume">
+      <Button layoutX="603.0" layoutY="348.0" mnemonicParsing="false" onAction="#charSelect" prefHeight="44.0" prefWidth="221.0" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Resume">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -21,7 +21,7 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Button layoutX="377.0" layoutY="348.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="44.0" prefWidth="221.0" text="Back">
+      <Button layoutX="377.0" layoutY="348.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="44.0" prefWidth="221.0" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back">
          <font>
             <Font size="20.0" />
          </font></Button>

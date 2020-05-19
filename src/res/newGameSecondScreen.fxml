@@ -19,35 +19,35 @@
          <font>
             <Font size="24.0" />
          </font></Text>
-      <Button layoutX="74.0" layoutY="711.0" mnemonicParsing="false" onAction="#newGame" text="Back">
+      <Button layoutX="74.0" layoutY="711.0" mnemonicParsing="false" onAction="#newGame" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back">
          <font>
             <Font size="19.0" />
          </font></Button>
-      <Button layoutX="1059.0" layoutY="711.0" mnemonicParsing="false" onAction="#Fight" text="Fight">
+      <Button layoutX="1061.0" layoutY="711.0" mnemonicParsing="false" onAction="#Fight" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Fight">
          <font>
             <Font size="19.0" />
          </font></Button>
-      <HBox layoutX="45.0" layoutY="175.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+      <HBox layoutX="45.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0" stylesheets="@Glowy.css">
          <children>
-            <Button mnemonicParsing="false" onAction="#char1selected">
+            <Button mnemonicParsing="false" onAction="#char1selected" styleClass="ironclad">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
                      <image>
                         <Image url="@IroncladChar.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#char2selected">
+            <Button mnemonicParsing="false" onAction="#char2selected" styleClass="silent">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
                      <image>
                         <Image url="@SilentChar.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#char3selected">
+            <Button mnemonicParsing="false" onAction="#char3selected" styleClass="defect" stylesheets="@Glowy.css">
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,7 +56,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#char4selected">
+            <Button mnemonicParsing="false" onAction="#char4selected" styleClass="wathcer">
                <graphic>
                   <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>

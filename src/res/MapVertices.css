@@ -1,0 +1,49 @@
+.button {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color:rgba(234, 255, 0, 0.3);
+}
+
+.button:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+    -fx-border-color:rgba(144, 0, 255, 0.5);
+
+
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    display: inline-block;
+}
+
+.button:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color:rgba(171, 14, 0, 0.5);
+}
+
+.button:disabled {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color:rgba(234, 255, 0, 0.0);
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
