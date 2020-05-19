@@ -80,10 +80,10 @@ public class ScreenController extends StackPane {
         Node screenToRemove;
         if(screens.get(sceneName) != null){   //screen loaded
 
-            final DoubleProperty opacity = opacityProperty(); //=========================
+           final DoubleProperty opacity = opacityProperty(); //=========================
             if(!getChildren().isEmpty()){    //if there is more than one screen ======================
 
-                Timeline fade = new Timeline( //=========================
+             /*   Timeline fade = new Timeline( //=========================
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),//=========================
                         new KeyFrame(new Duration(250), new EventHandler<ActionEvent>() {//=========================
                             @Override//=========================
@@ -104,10 +104,11 @@ public class ScreenController extends StackPane {
                 Timeline fadeIn = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
                         new KeyFrame(new Duration(600), new KeyValue(opacity, 1.0)));
-                fadeIn.play();
+                fadeIn.play();*/
 
                 //=================================
-                   /*     Node newNode = screens.get(sceneName);
+                Node newNode = screens.get(sceneName);
+                newNode.setOpacity(100);
                 screenToRemove = getChildren().get(0);
                 FadeTransition deneme2 = new FadeTransition(Duration.millis(500), screenToRemove);
                 deneme2.setFromValue(1.0);
@@ -126,8 +127,8 @@ public class ScreenController extends StackPane {
                 deneme.setToValue(1.0);
                 deneme.play();*/
 
-        /*    }else{
-                    getChildren().add(screens.get(sceneName));     */  //no one else been displayed, then just show
+            }else{
+                    getChildren().add(screens.get(sceneName));       //no one else been displayed, then just show
                 //==========================================
 
 
