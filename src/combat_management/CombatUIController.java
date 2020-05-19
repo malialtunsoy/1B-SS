@@ -240,25 +240,6 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-            /*imageButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    img.setStyle("-fx-scale-x: 1.1;");
-                    img.setStyle("-fx-scale-y: 1.1;");
-                    img.setStyle("-fx-scale-z: 1.1;");
-                }
-            });
-
-            imageButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    img.setStyle("-fx-scale-x: 1.0;");
-                    img.setStyle("-fx-scale-y: 1.0;");
-                    img.setStyle("-fx-scale-z: 1.0;");
-                }
-            });*/
 
             hand.getChildren().add(imageButton);
             //img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
