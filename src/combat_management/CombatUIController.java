@@ -32,7 +32,8 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @FXML FlowPane potions;
     @FXML FlowPane enemies;
-    @FXML AnchorPane hand;
+    //@FXML AnchorPane hand;
+    @FXML HBox hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
     @FXML FlowPane statusEffects;
@@ -229,24 +230,46 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         for (Card c : cards) {
             ImageView img = new ImageView(c.getImage());
-            img.setFitWidth(147);
-            img.setFitHeight(200.0);
-            img.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            img.setFitWidth(75);
+            img.setFitHeight(100);
+            Button imageButton = new Button("", img);
+            imageButton.getStylesheets().add("card.css");
+            imageButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-            hand.getChildren().add(img);
-            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-            img.setLayoutX(147 * i);
-            img.setLayoutY(0);
+            /*imageButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+                    img.setStyle("-fx-scale-x: 1.1;");
+                    img.setStyle("-fx-scale-y: 1.1;");
+                    img.setStyle("-fx-scale-z: 1.1;");
+                }
+            });
+
+            imageButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+                    img.setStyle("-fx-scale-x: 1.0;");
+                    img.setStyle("-fx-scale-y: 1.0;");
+                    img.setStyle("-fx-scale-z: 1.0;");
+                }
+            });*/
+
+            hand.getChildren().add(imageButton);
+            //img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+            imageButton.setLayoutX(147 * i);
+            imageButton.setLayoutY(0);
             i++;
         }
 
-        hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        /*hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
+        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
+        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");*/
         //hand.setPrefWrapLength(147 * cards.size());
 
         numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");

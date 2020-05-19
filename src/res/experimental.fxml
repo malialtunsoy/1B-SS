@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane id="AnchorPane" maxHeight="800" maxWidth="1200" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <children>
       <ImageView fitHeight="834.0" fitWidth="1463.0" layoutX="-132.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +20,7 @@
                 <Image url="@slay-the-spire-logo.png" />
             </image>
         </ImageView>
-      <HBox layoutX="160.0" layoutY="696.0" prefHeight="100.0" prefWidth="988.0" spacing="30.0">
+      <HBox layoutX="167.0" layoutY="277.0" prefHeight="100.0" prefWidth="988.0" spacing="30.0">
          <children>
               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="200.0" text="New Game" textAlignment="CENTER" textOverrun="CLIP">
                   <font>
@@ -44,5 +44,6 @@
             </Button>
          </children>
       </HBox>
+      <HBox fx:id="hand" alignment="CENTER" layoutX="0.0" layoutY="668.0" prefHeight="132.0" prefWidth="1200.0" />
     </children>
 </AnchorPane>

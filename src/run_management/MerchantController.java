@@ -101,6 +101,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             tempImage.setPickOnBounds(true);
             tempImage.setPreserveRatio(true);
 
+            //tempImage.getStyleClass().add("card");
+
             Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 

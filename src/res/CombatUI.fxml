@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
-    <AnchorPane prefHeight="800.0" prefWidth="1200.0">
+    <AnchorPane maxHeight="800" maxWidth="1200" prefHeight="800.0" prefWidth="1200.0">
       <children>
          <ImageView fitHeight="785.0" fitWidth="1213.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
             <image>
@@ -23,11 +23,12 @@
          </ImageView>
 
          <FlowPane fx:id="enemies" layoutX="240.0" layoutY="198.0" prefHeight="315.0" prefWidth="964.0" />
-         <ScrollPane layoutX="229.0" layoutY="570.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
+        <!-- <ScrollPane layoutX="229.0" layoutY="570.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
             <content>
                <AnchorPane fx:id="hand" prefHeight="200.0" prefWidth="200.0" />
             </content>
-         </ScrollPane>
+         </ScrollPane> -->
+         <HBox fx:id="hand" alignment="TOP_CENTER" layoutX="0.0" layoutY="670.0" prefHeight="132.0" prefWidth="1200.0" spacing="13" />
          <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
             <children>
                <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
