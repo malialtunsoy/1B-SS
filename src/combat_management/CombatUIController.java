@@ -29,8 +29,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     //ScreenController myController;
 
     private CombatUIAdapter adapter;
-
-    @FXML FlowPane potions;
+     @FXML FlowPane potions;
     @FXML FlowPane enemies;
     //@FXML AnchorPane hand;
     @FXML HBox hand;
@@ -70,6 +69,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         character.setImage(new Image(CombatManager.getInstance().getPlayer().playerChar + ".png"));
         rewardCardPicked = false;
         playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
@@ -206,7 +206,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             controller.getImage().setImage(new Image(e.getImage()));
             controller.getImage().setFitWidth(150);
             controller.getImage().setFitHeight(150);
-            controller.getImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     CombatManager.getInstance().targetSelected(e);

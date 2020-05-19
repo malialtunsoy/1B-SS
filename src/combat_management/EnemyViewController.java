@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -28,6 +29,9 @@ public class EnemyViewController {
     private ImageView intent;
 
     @FXML
+    private Button enemieButton;
+
+    @FXML
     private Label intentAmount;
 
     @FXML
@@ -35,6 +39,10 @@ public class EnemyViewController {
 
     public ImageView getImage() {
         return image;
+    }
+
+    public Button getButton() {
+        return enemieButton;
     }
 
     public void setHp(int hp, int maxHp) {
@@ -129,6 +137,11 @@ public class EnemyViewController {
                     intent.setImage(new Image("Buff.png"));
             }
         }
+    }
+
+    @FXML
+    void selectEnemie(ActionEvent event) {
+
     }
 }
 

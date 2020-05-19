@@ -249,6 +249,7 @@ public class CombatManager {
             uiAdapter.showPrompt(false, "");
             playCard(selectedCard,enemy);
             selectedCard = null;
+            myController.playKnifeStab();
         } else if (selectedPotion != null) {
             uiAdapter.showPrompt(false, "");
             usePotion(selectedPotion, enemy);
