@@ -1,3 +1,9 @@
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -5,10 +11,12 @@ import javafx.scene.layout.StackPane;
 import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class ScreenController extends StackPane {
 
@@ -70,20 +78,74 @@ public class ScreenController extends StackPane {
 
     public boolean changeScreen(final String sceneName){
         Node screenToRemove;
-             if(screens.get(sceneName) != null){   //screen loaded
-                 if(!getChildren().isEmpty()){    //if there is more than one screen
-                     getChildren().add(0, screens.get(sceneName));     //add the screen
-                     screenToRemove = getChildren().get(1);
-                     getChildren().remove(1);                    //remove the displayed screen
-                 }else{
-                    getChildren().add(screens.get(sceneName));       //no one else been displayed, then just show
-                 }
-             return true;
-             }else {
-                System.out.println("screen hasn't been loaded!!! \n");
-             return false;
-         }
-     }
+        if(screens.get(sceneName) != null){   //screen loaded
+
+            final DoubleProperty opacity = opacityProperty(); //=========================
+            if(!getChildren().isEmpty()){    //if there is more than one screen ======================
+
+                Timeline fade = new Timeline( //=========================
+                        new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),//=========================
+                        new KeyFrame(new Duration(250), new EventHandler<ActionEvent>() {//=========================
+                            @Override//=========================
+                            public void handle(ActionEvent t) {//=========================
+                                getChildren().remove(0);                    //remove the displayed screen
+                                getChildren().add(0, screens.get(sceneName));     //add the screen
+                                Timeline fadeIn = new Timeline(
+                                        new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
+                                        new KeyFrame(new Duration(200), new KeyValue(opacity, 1.0)));
+                                fadeIn.play();
+                            }
+                        }, new KeyValue(opacity, 0.0)));
+                fade.play();
+
+            } else {
+                setOpacity(0.0);
+                getChildren().add(screens.get(sceneName));       //no one else been displayed, then just show
+                Timeline fadeIn = new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
+                        new KeyFrame(new Duration(600), new KeyValue(opacity, 1.0)));
+                fadeIn.play();
+
+                //=================================
+                   /*     Node newNode = screens.get(sceneName);
+                screenToRemove = getChildren().get(0);
+                FadeTransition deneme2 = new FadeTransition(Duration.millis(500), screenToRemove);
+                deneme2.setFromValue(1.0);
+                deneme2.setToValue(0.0);
+                getChildren().add(0, newNode);     //add the screen
+                deneme2.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        getChildren().remove(1);
+                    }
+                });
+                deneme2.play();
+                //screenToRemove.setOpacity(100);
+                /*FadeTransition deneme = new FadeTransition(Duration.millis(500), screenToRemove);
+                deneme.setFromValue(0.0);
+                deneme.setToValue(1.0);
+                deneme.play();*/
+
+        /*    }else{
+                    getChildren().add(screens.get(sceneName));     */  //no one else been displayed, then just show
+                //==========================================
+
+
+               /* getChildren().add(0, screens.get(sceneName));     //add the screen
+                screenToRemove = getChildren().get(1);
+                getChildren().remove(1);                    //remove the displayed screen
+            }else{
+                getChildren().add(screens.get(sceneName));       //no one else been displayed, then just show*/
+
+
+
+            }//====================================================
+            return true;
+        }else {
+            System.out.println("screen hasn't been loaded!!! \n");
+            return false;
+        }
+    }
 
     public boolean unloadScreen(String SceneName) {
         if (screens.remove(SceneName) == null) {
