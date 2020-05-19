@@ -193,13 +193,13 @@ public class ScreenController extends StackPane {
         mediaPlayer.stop();
     }
 
-   public void playCharSelect(){ charSelectPlayer.play(); }
-    public void playFight(){ fightPlayer.play(); }
-    public void playGameOver(){ gameOverPlayer.play(); }
-    public void playHeal(){ healPlayer.play(); }
-    public void playInventory(){ inventoryPlayer.play(); }
-    public void playKnifeStab(){ knifeStabPlayer.play(); }
-    public void playMerchant(){ merchantOpeningPlayer.play(); }
-    public void playTreasure(){ treasureOpeningPlayer.play(); }
-    public void playUpgradeCard(){ upgradeCardPlayer.play(); }
+   public void playCharSelect(){ charSelectPlayer.play(); charSelectPlayer.seek(charSelectPlayer.getStartTime());}
+    public void playFight(){ fightPlayer.play();  fightPlayer.seek(fightPlayer.getStartTime());}
+    public void playGameOver(){ gameOverPlayer.play();  gameOverPlayer.seek(gameOverPlayer.getStartTime());}
+    public void playHeal(){ healPlayer.play(); healPlayer.seek(healPlayer.getStartTime()); }
+    public void playInventory(){ inventoryPlayer.play(); inventoryPlayer.seek(inventoryPlayer.getStartTime()); }
+    public void playKnifeStab(){ knifeStabPlayer.play();  knifeStabPlayer.seek(knifeStabPlayer.getStartTime());}
+    public void playMerchant(){ merchantOpeningPlayer.play();  merchantOpeningPlayer.seek(merchantOpeningPlayer.getStartTime());}
+    public void playTreasure(){ treasureOpeningPlayer.play(); treasureOpeningPlayer.seek(treasureOpeningPlayer.getStartTime()); }
+    public void playUpgradeCard(){ upgradeCardPlayer.play();  upgradeCardPlayer.seek(upgradeCardPlayer.getStartTime());}
 }

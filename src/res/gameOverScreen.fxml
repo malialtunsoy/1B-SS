@@ -23,7 +23,7 @@
             <Image url="@gameOver.png" />
          </image>
       </ImageView>
-      <Button layoutX="538.0" layoutY="732.0" mnemonicParsing="false" onAction="#tryAgain" text="TRY AGAIN" textFill="RED">
+      <Button layoutX="527.0" layoutY="721.0" mnemonicParsing="false" onAction="#tryAgain" styleClass="myButtonLight" stylesheets="@Glowy.css" text="TRY AGAIN" textFill="RED">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

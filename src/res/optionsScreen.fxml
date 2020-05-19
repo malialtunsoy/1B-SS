@@ -36,22 +36,22 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="235.0" layoutY="676.0" prefHeight="77.0" prefWidth="755.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#applySettings" text="Apply Changes">
+            <Button mnemonicParsing="false" onAction="#applySettings" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Apply Changes">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game">
+            <Button mnemonicParsing="false" onAction="#saveGame" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Save Game">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#saveAndExit" text="Save and Exit">
+            <Button mnemonicParsing="false" onAction="#saveAndExit" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Save and Exit">
                <font>
                   <Font size="20.0" />
                </font>

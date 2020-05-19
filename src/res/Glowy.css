@@ -41,6 +41,9 @@
 
 .ironclad:hover {
     -fx-background-color: rgba(161, 48, 0, 0.7);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 
 .ironclad:pressed {
@@ -54,6 +57,9 @@
 
 .silent:hover {
     -fx-background-color: rgba(0, 143, 43, 0.7);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 
 .silent:pressed {
@@ -66,6 +72,9 @@
 
 .defect:hover {
     -fx-background-color: rgba(2, 212, 227, 0.7);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 
 .defect:pressed {
@@ -78,11 +87,68 @@
 
 .wathcer:hover {
     -fx-background-color: rgba(149, 0, 230, 0.7);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 
 .wathcer:pressed {
     -fx-background-color: rgba(38, 191, 4, 0.9);
 }
 
+#ironcladPane{
+
+}
+
+#ironcladPane:hover{
+    -fx-image: url("SilentChar.png");
+}
+
 
 /*============================= MAP ========================== */
+
+/*============================= TREASURE ========================== */
+.treasure {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+
+
+    -fx-font-size: 34px;
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.treasure:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.8);
+    -fx-font-size: 34px;
+
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+.treasure:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+}
+
+/*============================= rest ========================== */
+.rest {
+    -fx-background-color: rgba(100, 100, 100, 0.0);
+
+
+
+
+}
+
+.rest:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.0);
+
+
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+.rest:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.0);
+}
+
+

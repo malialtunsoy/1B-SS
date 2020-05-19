@@ -31,7 +31,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#char1selected" styleClass="ironclad">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
+                  <ImageView id="ironcladPane" fx:id="ironcladPane" fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
                      <image>
                         <Image url="@IroncladChar.png" />
                      </image>
@@ -40,7 +40,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#char2selected" styleClass="silent">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
+                  <ImageView id="silentPane" fx:id="silentPane" fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" styleClass="charSelect">
                      <image>
                         <Image url="@SilentChar.png" />
                      </image>
@@ -49,7 +49,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#char3selected" styleClass="defect" stylesheets="@Glowy.css">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="defectPane" fx:id="defectPane" fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@DefectChar.png" />
                      </image>
@@ -58,7 +58,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#char4selected" styleClass="wathcer">
                <graphic>
-                  <ImageView fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="watcherPane" fx:id="watcherPane" fitHeight="442.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@WatcherChar.png" />
                      </image>
@@ -67,7 +67,7 @@
             </Button>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="425.0" layoutY="637.0" prefHeight="74.0" prefWidth="346.0">
+      <VBox alignment="TOP_CENTER" layoutX="425.0" layoutY="674.0" prefHeight="74.0" prefWidth="346.0">
          <children>
             <Text fx:id="chacterSelectedText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                <font>

@@ -44,6 +44,9 @@ public class MerchantController implements Initializable, ControlledScreen {
     @FXML
     private VBox relicsVBox;
 
+    @FXML
+    private ImageView bar;
+
 
     public void setScreenParent(ScreenController screenParent){
         myController = screenParent;
@@ -52,6 +55,7 @@ public class MerchantController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bar.getStyleClass().add("BuyButton.css");
         playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
         currentHPLabel.setText(""+(Game.getInstance().myPlayer.getHP()));
         maxHPLabel.setText(""+(Game.getInstance().myPlayer.getMaxHP()));
@@ -100,6 +104,9 @@ public class MerchantController implements Initializable, ControlledScreen {
             Image tempImageIn = new Image(myCards.get(i).getImage());
             tempImage.setImage(tempImageIn);
 
+            tempImage.getStyleClass().add("BuyButton.css");
+            tempImage.setId("cardDisplay");
+
             cards[i].getChildren().add(tempImage);
             //add text
             TextArea cardText = new TextArea();
@@ -133,6 +140,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             cardButton[i].setOnAction(e -> {Game.getInstance().myPlayer.purchaseCard(myCards.get(temp));
                         MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
                 myController.playInventory(); });
+
+            cardButton[i].getStylesheets().add("BuyButton.css");
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(cardButton[i]);
@@ -225,6 +234,8 @@ public class MerchantController implements Initializable, ControlledScreen {
                 reloadPotions();
                 myController.playInventory();});
 
+            potionButton[i].getStylesheets().add("BuyButton.css");
+
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(potionButton[i]);
 
@@ -312,6 +323,8 @@ public class MerchantController implements Initializable, ControlledScreen {
             MoneyLabel.setText(""+(Game.getInstance().myPlayer.getGold()));
                 reloadRelics();
                 myController.playInventory();});
+
+            relicsButtons[i].getStylesheets().add("BuyButton.css");
 
             bottomBox.getChildren().add(costText);
             bottomBox.getChildren().add(relicsButtons[i]);

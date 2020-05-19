@@ -126,6 +126,7 @@ public class RestController implements Initializable, ControlledScreen {
 
             cardButton[i] = new Button();
             cardButton[i].setText("Upgrade");
+            cardButton[i].getStylesheets().add("BuyButton.css");
             //BUTTON CLICKED **********************************************
             int temp = i;
             cardButton[i].setOnAction(e -> {

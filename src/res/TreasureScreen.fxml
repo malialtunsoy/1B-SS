@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -22,7 +23,7 @@
                 <Image url="@bar.png" />
             </image>
         </ImageView>
-        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMap" text="Back To Map" />
+        <Button layoutX="115.0" layoutY="705.0" mnemonicParsing="false" onAction="#backToMap" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back To Map" />
         <Text fill="WHITE" layoutX="513.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TREASURE" textAlignment="CENTER">
             <font>
                 <Font size="40.0" />
@@ -89,7 +90,7 @@
                 </ImageView>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#openMap" prefHeight="45.0" prefWidth="45.0">
+                        <Button mnemonicParsing="false" onAction="#openMap" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                             <graphic>
                                 <ImageView fitHeight="31.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -98,7 +99,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#showDeck" prefHeight="45.0" prefWidth="45.0">
+                        <Button mnemonicParsing="false" onAction="#showDeck" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                             <graphic>
                                 <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -107,7 +108,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#openSettings" prefHeight="45.0" prefWidth="45.0">
+                        <Button mnemonicParsing="false" onAction="#openSettings" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                             <graphic>
                                 <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -126,7 +127,7 @@
                 </HBox>
             </children>
         </HBox>
-      <ScrollPane layoutX="221.0" layoutY="171.0" opacity="0.72" prefHeight="488.0" prefWidth="769.0" />
+      <ScrollPane layoutX="149.0" layoutY="171.0" opacity="0.72" prefHeight="488.0" prefWidth="904.0" />
       <VBox alignment="TOP_CENTER" layoutX="216.0" layoutY="171.0" prefHeight="465.0" prefWidth="779.0" spacing="20.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick one">
@@ -137,7 +138,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Text>
-            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#firstButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Potion">
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#firstButtonClicked" prefHeight="99.0" prefWidth="670.0" styleClass="treasure" stylesheets="@Glowy.css" text="Potion">
                <graphic>
                   <ImageView fx:id="firstImage" fitHeight="94.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -149,7 +150,7 @@
                   <Font name="System Bold" size="34.0" />
                </font>
             </Button>
-            <Button fx:id="secondButton" mnemonicParsing="false" onAction="#secondButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Relic">
+            <Button fx:id="secondButton" mnemonicParsing="false" onAction="#secondButtonClicked" prefHeight="99.0" prefWidth="670.0" styleClass="treasure" stylesheets="@Glowy.css" text="Relic">
                <font>
                   <Font name="System Bold" size="34.0" />
                </font>
@@ -161,7 +162,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="thirdButton" mnemonicParsing="false" onAction="#thirdButtonClicked" prefHeight="99.0" prefWidth="670.0" text="Relic">
+            <Button fx:id="thirdButton" mnemonicParsing="false" onAction="#thirdButtonClicked" prefHeight="99.0" prefWidth="670.0" styleClass="treasure" stylesheets="@Glowy.css" text="Relic">
                <font>
                   <Font name="System Bold" size="34.0" />
                </font>

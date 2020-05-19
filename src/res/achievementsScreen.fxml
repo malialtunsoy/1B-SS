@@ -21,7 +21,7 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button focusTraversable="false" layoutX="99.0" layoutY="678.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" textOverrun="CLIP">
+      <Button focusTraversable="false" layoutX="99.0" layoutY="678.0" mnemonicParsing="false" onAction="#backToMainMenu" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back" textOverrun="CLIP">
          <font>
             <Font size="20.0" />
          </font>

@@ -22,7 +22,7 @@
             <Image url="@bar.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="109.0" layoutY="136.0" opacity="0.62" prefHeight="488.0" prefWidth="837.0" />
+      <ScrollPane layoutX="81.0" layoutY="136.0" opacity="0.62" prefHeight="488.0" prefWidth="865.0" />
       <AnchorPane fx:id="mapAnchorPane" prefHeight="800.0" prefWidth="1200.0" />
       <Text fill="WHITE" layoutX="563.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAP">
          <font>
