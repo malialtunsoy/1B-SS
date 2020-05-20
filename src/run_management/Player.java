@@ -411,4 +411,12 @@ public class Player extends CombatEntity {
     public void die() { CombatManager.getInstance().gameOver();
         // TODO: combat lost
     }
+
+    @Override
+    public boolean loseHP(int amount) { //Overritten for UI Animation Purposes
+       if(amount > 0){
+           CombatManager.getInstance().playerTakeDamageAnmiation();
+       }
+       return super.loseHP(amount);
+    }
 }

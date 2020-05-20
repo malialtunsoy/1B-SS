@@ -42,4 +42,12 @@ public abstract class Enemy extends CombatEntity{
     }
 
     public void restoreExtraState(String[] extraParams) {}
+
+    @Override
+    public boolean dealDamage(int amount, CombatEntity target) { //Overritten for UI Animation Purposes
+       if(amount > 0){
+           CombatManager.getInstance().enemyAttackAnimation(this);
+       }
+       return super.dealDamage(amount, target);
+    }
 }

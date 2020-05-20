@@ -50,6 +50,7 @@ public class EnemyViewController {
     }
 
     public void setStatus(ArrayList<StatusEffect> status) {
+        statusEffects.getChildren().clear();
         try {
             for (StatusEffect effect : status){
                 FileInputStream file = new FileInputStream("src/res/StatusEffectView.fxml");

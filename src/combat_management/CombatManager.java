@@ -507,6 +507,15 @@ public class CombatManager {
 
     public boolean combatOngoing() {return ongoing;}
 
+    public void playerTakeDamageAnmiation(){
+        myController.playTakeDamage();
+        uiAdapter.controller.takeDamageAnimation();
+    }
+
+    public void enemyAttackAnimation(Enemy e){
+
+        uiAdapter.controller.attackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
+    }
 
     public void gameOver(){
         myController.changeScreen(RunUIManager.gameOverScreen);

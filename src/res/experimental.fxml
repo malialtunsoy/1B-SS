@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="800" maxWidth="1200" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane id="AnchorPane" maxHeight="800" maxWidth="1200" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
     <children>
       <ImageView fitHeight="834.0" fitWidth="1463.0" layoutX="-132.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -45,5 +46,6 @@
          </children>
       </HBox>
       <HBox fx:id="hand" alignment="CENTER" layoutX="0.0" layoutY="668.0" prefHeight="132.0" prefWidth="1200.0" />
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#c30000" height="823.0" layoutX="-132.0" layoutY="-9.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1463.0" />
     </children>
 </AnchorPane>

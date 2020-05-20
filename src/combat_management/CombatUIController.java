@@ -1,3 +1,6 @@
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,12 +19,15 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.shape.*;
+import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CombatUIController implements  Initializable//,ControlledScreen {
@@ -66,6 +72,9 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private FlowPane rewardPanes;
 
     boolean rewardCardPicked;
+
+    public HashMap<Enemy, FlowPane> EnemiesAndTheirFlowPanes = new HashMap<Enemy, FlowPane>(); //GUI++
+    public HashMap<Enemy, EnemyViewController> EnemiesAndTheirControllers = new HashMap<Enemy, EnemyViewController>(); //GUI++
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -193,13 +202,69 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
     }
 
+    boolean firstTime = true;
     public void updateEnemies() throws IOException {
         enemies.getChildren().clear();
+        //====================================
+       // EnemiesAndTheirFlowPanes.clear(); //GUI++
+        if(firstTime){
+            for (Enemy e : CombatManager.getInstance().getEnemies()) {
+
+                FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
+                FXMLLoader loader = new FXMLLoader();
+                FlowPane pane = loader.load(file);
+                EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
+
+                EnemyViewController controller = loader.getController();
+
+                EnemiesAndTheirControllers.put(e, controller);
+                controller.setHp(e.getHP(), e.getMaxHP());
+                controller.setIntent(e.getIntents());
+                controller.getImage().setImage(new Image(e.getImage()));
+                controller.getImage().setFitWidth(150);
+                controller.getImage().setFitHeight(150);
+                controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().targetSelected(e);
+                    }
+                });
+                controller.setStatus(e.getStatusEffects());
+                controller.setName(e.getName());
+
+                enemies.getChildren().add(pane);
+            }
+            firstTime = false;
+        }
+        else{
+            for (Enemy e : CombatManager.getInstance().getEnemies()) {
+                FlowPane pane = EnemiesAndTheirFlowPanes.get(e);
+                EnemyViewController controller = EnemiesAndTheirControllers.get(e);
+                controller.setHp(e.getHP(), e.getMaxHP());
+                controller.setIntent(e.getIntents());
+                controller.getImage().setImage(new Image(e.getImage()));
+                controller.getImage().setFitWidth(150);
+                controller.getImage().setFitHeight(150);
+                controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().targetSelected(e);
+                    }
+                });
+                controller.setStatus(e.getStatusEffects());
+                controller.setName(e.getName());
+
+                enemies.getChildren().add(pane);
+            }
+        }
+        //======================================================
+        /*
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
 
             FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
             FlowPane pane = loader.load(file);
+            EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
@@ -216,7 +281,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             controller.setName(e.getName());
 
             enemies.getChildren().add(pane);
-        }
+        }*/
     }
 
     public void updatePotions(){
@@ -470,4 +535,56 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
     }
+
+    @FXML
+    private Rectangle rect;
+    public void takeDamageAnimation(){
+
+        rect.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(500), rect);
+        ft.setFromValue(0.3);
+        ft.setToValue(0.0);
+        //ft.setCycleCount(Timeline.INDEFINITE);
+       //ft.setAutoReverse(true);
+        ft.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rect.setVisible(false);
+            }
+        });
+        ft.play();
+
+    }
+
+    public void attackAnimation(FlowPane pane){
+
+        TranslateTransition translateTransition =
+                new TranslateTransition(Duration.millis(250), pane);
+        translateTransition.setFromX(0);
+        translateTransition.setToX(-25);
+        translateTransition.setCycleCount(1);
+        translateTransition.setAutoReverse(true);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), pane);
+                back.setFromX(-25);
+                back.setToX(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        translateTransition.play();
+    }
+
+
+
 }

@@ -13,7 +13,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Scene  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
+<?import javafx.scene.shape.*?>
+<Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
     <AnchorPane maxHeight="800" maxWidth="1200" prefHeight="800.0" prefWidth="1200.0">
       <children>
          <ImageView fitHeight="785.0" fitWidth="1213.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
@@ -282,5 +283,6 @@
                </ImageView>
             </children>
          </HBox>
+         <Rectangle  fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#c30000" height="810.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1210.0"  />
       </children></AnchorPane>
 </Scene>
