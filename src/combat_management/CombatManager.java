@@ -524,6 +524,7 @@ public class CombatManager {
     }
 
     public void gameOver(){
+        myController.reloadScreen(RunUIManager.gameOverScreen, RunUIManager.gameOverScreenFile);
         myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
         enemies = new ArrayList<Enemy>();
