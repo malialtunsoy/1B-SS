@@ -585,7 +585,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         translateTransition.play();
     }
 
-    public void playerAttackAnimation(){
+    public void playerAttackAnimation(FlowPane pane){
 
         TranslateTransition translateTransition =
                 new TranslateTransition(Duration.millis(250), character);
@@ -612,6 +612,32 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             }
         });
         translateTransition.play();
+
+        TranslateTransition target =
+                new TranslateTransition(Duration.millis(250), pane);
+        target.setFromY(0);
+        target.setToY(15);
+        target.setCycleCount(1);
+        target.setAutoReverse(true);
+        target.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), pane);
+                back.setFromY(15);
+                back.setToY(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        target.play();
     }
 
 

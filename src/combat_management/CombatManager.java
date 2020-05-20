@@ -517,9 +517,9 @@ public class CombatManager {
         uiAdapter.controller.attackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
     }
 
-    public void playerAttackAnimation(){
+    public void playerAttackAnimation(CombatEntity e){
 
-       uiAdapter.controller.playerAttackAnimation();
+       uiAdapter.controller.playerAttackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
         myController.playKnifeStab();
     }
 

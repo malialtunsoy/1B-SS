@@ -423,7 +423,7 @@ public class Player extends CombatEntity {
     @Override
     public boolean dealDamage(int amount, CombatEntity target) { //Overritten for UI Animation Purposes
         if(amount > 0){
-            CombatManager.getInstance().playerAttackAnimation();
+            CombatManager.getInstance().playerAttackAnimation(target);
         }
         return super.dealDamage(amount, target);
     }
