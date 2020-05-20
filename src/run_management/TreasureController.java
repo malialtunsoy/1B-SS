@@ -87,10 +87,11 @@ public class TreasureController implements Initializable, ControlledScreen {
             String name = treasurePots.get(i).getName();
             String imageSource = treasurePots.get(i).getImage();
             Image tempImage = new Image(imageSource);
+            String description = treasurePots.get(i).getPotionDescription();
 
-            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage);}
-            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage);}
-            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage);}
+            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage); Tooltip.install(firstButton, new Tooltip(description)); }
+            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage); Tooltip.install(secondButton, new Tooltip(description));}
+            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage); Tooltip.install(thirdButton, new Tooltip(description));}
             treasureType[currButton] = "Potion";
             potions[currButton] = treasurePots.get(i);
         }
@@ -99,10 +100,11 @@ public class TreasureController implements Initializable, ControlledScreen {
             String name = treasureRelics.get(i).getName();
             String imageSource = treasureRelics.get(i).getImage();
             Image tempImage = new Image(imageSource);
+            String description = treasureRelics.get(i).getRelicDescription();
 
-            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage);}
-            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage); }
-            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage); }
+            if(currButton == 0){firstButton.setText(name); firstImage.setImage(tempImage); Tooltip.install(firstButton, new Tooltip(description)); }
+            if(currButton == 1){secondButton.setText(name); secondImage.setImage(tempImage); Tooltip.install(secondButton, new Tooltip(description));}
+            if(currButton == 2){thirdButton.setText(name); thirdImage.setImage(tempImage); Tooltip.install(thirdButton, new Tooltip(description));}
             treasureType[currButton] = "Relic";
             relics[currButton] = treasureRelics.get(i);
         }
@@ -206,5 +208,7 @@ public class TreasureController implements Initializable, ControlledScreen {
         //if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3); }
         else{potionSlot3.setImage(null);}
     }
+
+    
 
 }

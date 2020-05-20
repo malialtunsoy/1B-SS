@@ -1,4 +1,5 @@
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -583,9 +584,41 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             }
         });
         translateTransition.play();
+        //MAKE PLAYER SMALLER
+        ScaleTransition smallPlayer =
+                new ScaleTransition(Duration.millis(250), character);
+        smallPlayer.setFromX(1);
+        smallPlayer.setFromY(1);
+        smallPlayer.setToX(0.9);
+        smallPlayer.setToY(0.9);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        smallPlayer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizePlayer =
+                        new ScaleTransition(Duration.millis(250), character);
+                resizePlayer.setFromX(0.9);
+                resizePlayer.setFromY(0.9);
+                resizePlayer.setToX(1);
+                resizePlayer.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizePlayer.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizePlayer.play();
+            }
+
+
+        });
+
+        smallPlayer.play();
+
+
     }
 
-    public void playerAttackAnimation(FlowPane pane){
+    public void playerAttackAnimation(FlowPane pane) {
 
         TranslateTransition translateTransition =
                 new TranslateTransition(Duration.millis(250), character);
@@ -613,7 +646,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         });
         translateTransition.play();
 
-        TranslateTransition target =
+        /*TranslateTransition target =
                 new TranslateTransition(Duration.millis(250), pane);
         target.setFromY(0);
         target.setToY(15);
@@ -637,7 +670,75 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 back.play();
             }
         });
-        target.play();
+        target.play();*/
+
+        ScaleTransition smallEnemy =
+                new ScaleTransition(Duration.millis(250), pane);
+        smallEnemy.setFromX(1);
+        smallEnemy.setFromY(1);
+        smallEnemy.setToX(0.8);
+        smallEnemy.setToY(0.8);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        smallEnemy.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizeEnemy =
+                        new ScaleTransition(Duration.millis(250), pane);
+                resizeEnemy.setFromX(0.8);
+                resizeEnemy.setFromY(0.8);
+                resizeEnemy.setToX(1);
+                resizeEnemy.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizeEnemy.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizeEnemy.play();
+            }
+
+
+        });
+
+        smallEnemy.play();
+
+    }
+
+
+    public void playerDefenceMotion(){
+
+        ScaleTransition biggerPlayer =
+                new ScaleTransition(Duration.millis(350), character);
+        biggerPlayer.setFromX(1);
+        biggerPlayer.setFromY(1);
+        biggerPlayer.setToX(1.2);
+        biggerPlayer.setToY(1.2);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        biggerPlayer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizePlayer =
+                        new ScaleTransition(Duration.millis(350), character);
+                resizePlayer.setFromX(1.2);
+                resizePlayer.setFromY(1.2);
+                resizePlayer.setToX(1);
+                resizePlayer.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizePlayer.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizePlayer.play();
+            }
+
+
+        });
+
+        biggerPlayer.play();
+
+
+
     }
 
 

@@ -13,6 +13,7 @@ public class Defend extends Card{
 
     public void affect(Enemy target) {
         CombatManager.getInstance().getPlayer().addStatusEffect(new Block(BLOCK_AMOUNT));
+        CombatManager.getInstance().playerDefenseAnimation(); //GUI purpose
     }
     public Card upgradedVersion() {
         return new DefendPlus();

@@ -22,16 +22,25 @@
          </font>
       </Text>
       <ScrollPane layoutX="328.0" layoutY="171.0" opacity="0.7" prefHeight="326.0" prefWidth="569.0" />
-      <VBox alignment="BASELINE_LEFT" layoutX="340.0" layoutY="184.0" prefHeight="408.0" prefWidth="546.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="340.0" layoutY="184.0" prefHeight="408.0" prefWidth="546.0" spacing="30.0">
          <children>
-            <CheckBox fx:id="advancedMainMenuBox" mnemonicParsing="Controller.advancedMainMenuSelected" text="Cheat Mode" />
             <CheckBox fx:id="musicCheckBox" mnemonicParsing="Controller.advancedMainMenuSelected" selected="true" text="Play Music" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="546.0">
                <children>
-                  <ColorPicker />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Character Color" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cheat Mode">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#hpHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="HP Hack" />
+                        <Button mnemonicParsing="false" onAction="#moneyHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Money Hack" />
+                        <Button mnemonicParsing="false" onAction="#cardHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Card Hack" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="235.0" layoutY="676.0" prefHeight="77.0" prefWidth="755.0" spacing="20.0">

@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class ScreenController extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<String, Node>();
+    private HashMap<String, String> screenFiles = new HashMap<String, String>();
 
     MediaPlayer mediaPlayer; //mainTheme
     MediaPlayer charSelectPlayer; //char selection
@@ -66,6 +67,7 @@ public class ScreenController extends StackPane {
             myScreenControler.setScreenParent(this);
             keys.add(name);
             keysFile.add(fileName);
+            screenFiles.put(name, fileName);
             addScreen(name, loadScreen);
             return true;
         } catch (Exception e) {
@@ -208,6 +210,7 @@ public class ScreenController extends StackPane {
     }
 
     public String getGetBackFromSettings(){
+        reloadScreen(getBackFromSettings, screenFiles.get(getBackFromSettings));
         return getBackFromSettings;
     }
 

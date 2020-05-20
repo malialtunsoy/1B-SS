@@ -523,6 +523,10 @@ public class CombatManager {
         myController.playKnifeStab();
     }
 
+    public void playerDefenseAnimation(){
+        uiAdapter.controller.playerDefenceMotion();
+    }
+
     public void gameOver(){
         myController.reloadScreen(RunUIManager.gameOverScreen, RunUIManager.gameOverScreenFile);
         myController.changeScreen(RunUIManager.gameOverScreen);
