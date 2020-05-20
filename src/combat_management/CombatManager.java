@@ -249,7 +249,7 @@ public class CombatManager {
             uiAdapter.showPrompt(false, "");
             playCard(selectedCard,enemy);
             selectedCard = null;
-            myController.playKnifeStab();
+            //myController.playKnifeStab();
         } else if (selectedPotion != null) {
             uiAdapter.showPrompt(false, "");
             usePotion(selectedPotion, enemy);
@@ -515,6 +515,12 @@ public class CombatManager {
     public void enemyAttackAnimation(Enemy e){
 
         uiAdapter.controller.attackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
+    }
+
+    public void playerAttackAnimation(){
+
+       uiAdapter.controller.playerAttackAnimation();
+        myController.playKnifeStab();
     }
 
     public void gameOver(){

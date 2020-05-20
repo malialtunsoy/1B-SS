@@ -205,7 +205,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     boolean firstTime = true;
     public void updateEnemies() throws IOException {
         enemies.getChildren().clear();
-        //====================================
+        //==================================== new
        // EnemiesAndTheirFlowPanes.clear(); //GUI++
         if(firstTime){
             for (Enemy e : CombatManager.getInstance().getEnemies()) {
@@ -257,7 +257,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 enemies.getChildren().add(pane);
             }
         }
-        //======================================================
+        //====================================================== old
         /*
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
 
@@ -570,6 +570,35 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
                 TranslateTransition back =
                         new TranslateTransition(Duration.millis(250), pane);
                 back.setFromX(-25);
+                back.setToX(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        translateTransition.play();
+    }
+
+    public void playerAttackAnimation(){
+
+        TranslateTransition translateTransition =
+                new TranslateTransition(Duration.millis(250), character);
+        translateTransition.setFromX(0);
+        translateTransition.setToX(25);
+        translateTransition.setCycleCount(1);
+        translateTransition.setAutoReverse(true);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), character);
+                back.setFromX(25);
                 back.setToX(0);
                 back.setCycleCount(1);
                 //back.

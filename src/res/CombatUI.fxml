@@ -30,9 +30,9 @@
             </content>
          </ScrollPane> -->
          <HBox fx:id="hand" alignment="TOP_CENTER" layoutX="0.0" layoutY="670.0" prefHeight="132.0" prefWidth="1200.0" spacing="13" />
-         <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
+         <AnchorPane layoutX="15.0" layoutY="250.0" prefHeight="287.0" prefWidth="167.0">
             <children>
-               <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="character" fitHeight="350.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@Ironclad.png" />
                   </image>
