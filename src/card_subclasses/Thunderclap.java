@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Thunderclap extends Card {
     // --- constants ---
     private static final int ENERGY_COST = 1;
@@ -12,7 +14,9 @@ public class Thunderclap extends Card {
     }
 
     public void affect(Enemy target) {
-        for (Enemy e: CombatManager.getInstance().getEnemies()) {
+        ArrayList<Enemy> shallowCopy = new ArrayList<Enemy>(CombatManager.getInstance().getEnemies());
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            Enemy e = shallowCopy.get(i);
             CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, e);
             e.addStatusEffect( new Vulnerable(VULNERABLE_APPLIED));
         }

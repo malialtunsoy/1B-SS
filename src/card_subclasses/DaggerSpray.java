@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DaggerSpray extends Card {
     // --- constants ---
     private static final int ENERGY_COST = 1;
@@ -12,12 +14,16 @@ public class DaggerSpray extends Card {
     }
 
     public void affect(Enemy target) {
-        for (Enemy e: CombatManager.getInstance().getEnemies()) {
-            for (int i = 0; i < NUM_HITS; i++) {
+        // use shallow copy to avoid errors if the enemy dies and removes itself from the list of enemies in CombatManager
+        ArrayList<Enemy> shallowCopy = new ArrayList<Enemy>(CombatManager.getInstance().getEnemies());
+        for (int i = 0; i < shallowCopy.size(); i++) {
+            Enemy e = shallowCopy.get(i);
+            for (int j = 0; j < NUM_HITS; j++) {
                 CombatManager.getInstance().getPlayer().dealDamage(DAMAGE, e);
             }
         }
     }
+
     public Card upgradedVersion() {
         return new DaggerSprayPlus();
     }
