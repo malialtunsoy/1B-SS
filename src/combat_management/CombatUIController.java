@@ -201,6 +201,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         energy.setText(CombatManager.getInstance().uiEnergyString());
 
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
+        maxHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getMaxHP()));
     }
 
     boolean firstTime = true;

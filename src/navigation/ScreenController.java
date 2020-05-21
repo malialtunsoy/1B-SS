@@ -34,6 +34,7 @@ public class ScreenController extends StackPane {
     MediaPlayer treasureOpeningPlayer;
     MediaPlayer upgradeCardPlayer;
     MediaPlayer takeDamagePlayer;
+    MediaPlayer shieldPlayer;
 
     private ArrayList<String> keys = new ArrayList<String>();
     private ArrayList<String> keysFile = new ArrayList<String>();
@@ -252,6 +253,9 @@ public class ScreenController extends StackPane {
 
         Media takeDamageMusic = new Media(new File("takeDamage.wav").toURI().toString());
         takeDamagePlayer = new MediaPlayer(takeDamageMusic);
+
+        Media shieldMusic = new Media(new File("shield.wav").toURI().toString());
+        shieldPlayer = new MediaPlayer(shieldMusic);
     }
 
     public void playMusic(){
@@ -272,4 +276,5 @@ public class ScreenController extends StackPane {
     public void playTreasure(){ treasureOpeningPlayer.play(); treasureOpeningPlayer.seek(treasureOpeningPlayer.getStartTime()); }
     public void playUpgradeCard(){ upgradeCardPlayer.play();  upgradeCardPlayer.seek(upgradeCardPlayer.getStartTime());}
     public void playTakeDamage(){ takeDamagePlayer.play();  takeDamagePlayer.seek(takeDamagePlayer.getStartTime());}
+    public void playShield(){ shieldPlayer.play();  shieldPlayer.seek(shieldPlayer.getStartTime());}
 }

@@ -525,6 +525,7 @@ public class CombatManager {
 
     public void playerDefenseAnimation(){
         uiAdapter.controller.playerDefenceMotion();
+        myController.playShield();
     }
 
     public void gameOver(){

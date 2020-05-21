@@ -67,6 +67,7 @@ public class Player extends CombatEntity {
 
     public void addGold(int lootedGold) {
         gold = gold + lootedGold;
+        if(gold > 999){setGold(999);}
     }
 
     public void subGold(int decrGold) {
