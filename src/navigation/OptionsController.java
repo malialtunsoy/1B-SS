@@ -99,7 +99,7 @@ public class OptionsController implements Initializable, ControlledScreen {
 
     @FXML
     void cardHack(ActionEvent event) {
-        Game.getInstance().myPlayer.addToDeck(new StrikePlus());
+        Game.getInstance().myPlayer.addToDeck(new Hack());
         myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile); back();
     }
 
