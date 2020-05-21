@@ -55,7 +55,7 @@ public abstract class Card {
     }
     public int getCost(){return cost;}
     abstract public void affect( Enemy target); // target = null if the card is not targeted.
-    abstract public Card upgradedVersion();
+    public Card upgradedVersion() {return null;}
 
     // added for test purposes to use in CombatManager.
     // implementers of RunManager can comment this out and write their own toString() if they need to

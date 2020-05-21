@@ -1,17 +1,15 @@
-public class Relic {
+public abstract class Relic {
     //attributes
     private String name;
     private int relicCost;
     private String relicDescription;
     private RelicEffect effect;
-    private String image;
 
     //constructors
-    public Relic(String name, int relicCost, String relicDescription, String image){
+    public Relic(String name, int relicCost, String relicDescription){
         this.name = name;
         this.relicCost = relicCost;
         this.relicDescription = relicDescription;
-        this.image = image;
     }
     //methods
     protected void setEffect( RelicEffect effect) {this.effect = effect;}
@@ -30,8 +28,6 @@ public class Relic {
     public String getRelicDescription(){
         return relicDescription;
     }
-
-    public void setImage(String image){this.image = image;}
     public String getImage(){return getClass().getName() + ".png";}
 
     public void setCost(int cost){relicCost = cost;}

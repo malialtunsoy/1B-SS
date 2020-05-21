@@ -63,9 +63,15 @@ public class CombatManager {
         }
         playTurn();
     }
+    public void redrawUI() {
+        uiAdapter.updateView();
+    }
 
     //the tasks that should be done at the start of every combat before the first turn is taken.
     private void initializeCombat() {
+         deckClickedBefore = false;
+         settingsClickedBefore = false;
+         mapClickedBefore = false;
         sceneChanged = false;
         // add relic effects
         for (int i = 0; i < player.getRelics().size(); i++) {
@@ -311,11 +317,13 @@ public class CombatManager {
     public void setScreenController(ScreenController myController){this.myController = myController;}
 
     public void backToMap() {
+        myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
         stage.setScene(menu);
-        if(sceneChanged) {
-            myController.reloadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
-            myController.changeScreen("MainRunScreen"); //need a better solution.
-        }
+
+        //if(sceneChanged) {
+
+            myController.changeScreen(RunUIManager.mainRunScreen); //need a better solution.
+      //  }
         stage.show();
     }
 
@@ -397,6 +405,10 @@ public class CombatManager {
     }
 
     public String getCombatState() {
+        if (!ongoing) {
+            return "1###Combat::Ongoing###\t**false**\n";
+        }
+
         // compute the line Combat::Enemies
         String enemyNames = "**";
         for (Enemy e : enemies) {
@@ -496,7 +508,7 @@ public class CombatManager {
 
 
     public void gameOver(){
-        myController.changeScreen(RunUIManager.gameOverScreen); //need a better solution.
+        myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
         enemies = new ArrayList<Enemy>();
         myController.playGameOver();

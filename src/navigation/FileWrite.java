@@ -144,9 +144,7 @@ public class FileWrite extends Game{
         //**************************************************************
 
         // --- COMBAT STATE ---
-        if (CombatManager.getInstance().combatOngoing()) {
-            out.println(CombatManager.getInstance().getCombatState());
-        }
+        out.println(CombatManager.getInstance().getCombatState());
 
         out.close();
 

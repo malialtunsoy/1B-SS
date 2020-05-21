@@ -149,32 +149,29 @@ public class Player extends CombatEntity {
 
     //==========================================INITIALIZE====================================
     public void intializeDeck(){
-
         deck.add( new Strike() );
-        deck.add( new Vigilance() );
-        deck.add( new Vigilance() );
-        deck.add( new Eruption() );
-        deck.add( new Eruption() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
+        deck.add( new Strike() );
 
-        deck.add(new Crescendo() );
-        deck.add(new CrescendoPlus() );
-        deck.add(new Survivor() );
-        deck.add(new Survivor() );
-        deck.add(new Defend() );
-        deck.add(new Anger());
-
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
+        deck.add( new Defend());
     }
 
     public void intializeRelic(){
         try {
-            if (playerChar == "Ironclad")
+            if (playerChar.equals("Ironclad"))
                 relics.add((Relic)SystemConstants.ironcladRelic.getConstructor().newInstance());
-            else if (playerChar == "Silent")
+            else if (playerChar.equals("Silent"))
                 relics.add((Relic)SystemConstants.silentRelic.getConstructor().newInstance());
-            else if (playerChar == "Watcher")
+            else if (playerChar.equals("Watcher"))
                 relics.add((Relic)SystemConstants.watcherRelic.getConstructor().newInstance());
         } catch (NoSuchMethodException e) {
-            System.err.println("Exception in initializeRelic caused by a Card in system without a default constructor: " + e.getMessage());
+            System.err.println("Exception in initializeRelic caused by a Relic in system without a default constructor: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("Generic Exception in initializeRelic: " + e.getMessage());
         }
@@ -350,7 +347,6 @@ public class Player extends CombatEntity {
         int numberOfEnemies = random.nextInt(3 ) + 1;
         for( int i = 0; i < numberOfEnemies; i++) {
             Enemy e = RandomUtil.getRandomEnemy();
-            e.setCurrentHP(1);
             CombatManager.getInstance().addEnemy(e);
         }
     }

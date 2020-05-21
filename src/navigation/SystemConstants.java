@@ -24,7 +24,10 @@ public class SystemConstants {
             Cleave.class,
             Clothesline.class,
             Pummel.class,
-            Strengthen.class
+            Strengthen.class,
+            IronWave.class,
+            Thunderclap.class,
+            TwinStrike.class
     };
 
     public static Class<?> ironcladRelic = BurningBlood.class;
@@ -49,8 +52,9 @@ public class SystemConstants {
             Crescendo.class,
             Tranquility.class
     };
-
-    public static Class<?> watcherRelic = RingOfTheSnake.class;
+    public static Class<?> watcherRelic = PureWater.class;
+    
+    //public static Class<?> watcherRelic = RingOfTheSnake.class;
 
     public static Class<?>[] potions = {
             DamagePotion.class,

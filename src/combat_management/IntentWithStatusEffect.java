@@ -1,17 +1,21 @@
+import javafx.scene.effect.Effect;
+
 public abstract class IntentWithStatusEffect extends Intent{
     // properties
-    private StatusEffect effect;
+    private StatusEffect [] effects;
 
     // constructors
-    public IntentWithStatusEffect( Enemy intendingEnemy, CombatEntity target, StatusEffect effect) {
+    public IntentWithStatusEffect( Enemy intendingEnemy, CombatEntity target, StatusEffect []effects) {
         super(intendingEnemy, target);
-        this.effect = effect;
+        this.effects = effects;
     }
 
     // methods
     public void realize() {
         // add the status effect to the target
-        effect.setAppliedByAnEnemy(true);
-        target.addStatusEffect(effect);
+        for (StatusEffect effect : effects) {
+            effect.setAppliedByAnEnemy(true);
+            target.addStatusEffect(effect);
+        }
     }
 }

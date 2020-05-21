@@ -3,7 +3,6 @@ public class RingOfTheSnake extends Relic {
     private static final String NAME = "Ring of the Snake";
     private static final int COST = 260;
     private static final String DESCRIPTION = "Draw " + NUM_EXTRA_DRAWS + " cards at the start of each combat";
-    private static final String IMAGE = "RingOfTheSnake.png";
 
     public class Effect extends RelicEffect implements CardDrawModifier {
         public int modify(int amount) {
@@ -16,7 +15,7 @@ public class RingOfTheSnake extends Relic {
     }
 
     public RingOfTheSnake() {
-        super(NAME, COST, DESCRIPTION, IMAGE);
+        super(NAME, COST, DESCRIPTION);
         setEffect(new Effect());
     }
 }

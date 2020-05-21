@@ -33,7 +33,7 @@ public class AcidSlimeMedium extends Enemy {
             addIntent(new AggressiveIntent(this, CORROSIVE_SPIT_DAMAGE));
         } else if (choice == 1) {
             // lick
-            addIntent(new StrategicIntent(this, new Weak(LICK_WEAK)));
+            addIntent(new StrategicIntent(this, new StatusEffect[]{new Weak(LICK_WEAK)}));
         } else if (choice == 2) {
             // tackle
             addIntent(new AggressiveIntent(this, TACKLE_DAMAGE));

@@ -253,7 +253,7 @@ public class RestController implements Initializable, ControlledScreen {
     void openSettings(ActionEvent event) { ///yeni fxml ve controller kur
         myController.setGetBackFromSettings(RunUIManager.restScreen);
         myController.changeScreen(NavigationUI.optionsScreen);
-        SaveAndExit.save();
+        //SaveAndExit.save();
     }
 
     @FXML

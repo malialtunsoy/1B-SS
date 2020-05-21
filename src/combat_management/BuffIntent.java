@@ -1,6 +1,6 @@
 public class BuffIntent extends IntentWithStatusEffect {
-    public BuffIntent( Enemy intendingEnemy, Enemy target, StatusEffect effect) {
-        super(intendingEnemy, target, effect);
+    public BuffIntent( Enemy intendingEnemy, Enemy target, StatusEffect [] effects) {
+        super(intendingEnemy, target, effects);
     }
 
     public String toString() {

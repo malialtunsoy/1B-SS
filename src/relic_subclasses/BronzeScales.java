@@ -3,7 +3,6 @@ public class BronzeScales extends Relic {
     private static final String NAME = "Bronze Scales";
     private static final int COST = 250;
     private static final String DESCRIPTION = "Start each combat with " + THORNS_COUNTER + " Thorns.";
-    private static final String IMAGE = "BronzeScales.png";
 
     private class Effect extends RelicEffect implements TriggeredAtCombatStart {
         public void triggered(Object triggerSource) {
@@ -12,7 +11,7 @@ public class BronzeScales extends Relic {
     }
 
     public BronzeScales() {
-        super(NAME, COST, DESCRIPTION, IMAGE);
+        super(NAME, COST, DESCRIPTION);
         setEffect(new Effect());
     }
 }

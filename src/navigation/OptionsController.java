@@ -69,5 +69,16 @@ public class OptionsController implements Initializable, ControlledScreen {
     }
 
 
+    @FXML
+    void saveGame(ActionEvent event) {
+        SaveAndExit.save();
+    }
+
+    @FXML
+    void saveAndExit(ActionEvent event) {
+        SaveAndExit.exit();
+    }
+
+
 
 }
