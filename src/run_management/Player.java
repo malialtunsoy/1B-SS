@@ -329,6 +329,15 @@ public class Player extends CombatEntity {
         CombatManager.getInstance().playCombat();
     }
 
+    public void setupBoss() {
+        CombatManager manager = CombatManager.getInstance();
+        manager.setPlayer(this);
+        manager.addEnemy(new TheGuardian());
+        setupRewards(true);
+        manager.playCombat();
+    }
+
+
     public void setupEnemies(boolean isElite) {
 
         Random random = new Random();
