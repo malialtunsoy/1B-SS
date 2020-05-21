@@ -46,21 +46,16 @@ public class RunUIManager{
     public static String gameOverScreen = "gameOverScreen";
     public static String gameOverScreenFile = "gameOverScreen.fxml";
 
+    public static String victoryScreen = "victoryScreen";
+    public static String victoryScreenFile = "victoryScene.fxml";
 
-
-
-    //public static String combatScreen = "CombatScreen";
-    //public static String combatScreenFile = "CombatUI.fxml";
 
     public ArrayList<String> screenNames;
     public ArrayList<String> screenFiles;
 
     public RunUIManager(){
-
-
         screenNames = new ArrayList<String>();
         screenFiles = new ArrayList<String>();
-
 
         screenNames.add(mainRunScreen);
         screenNames.add(merchantScreen);
@@ -69,6 +64,7 @@ public class RunUIManager{
         screenNames.add(deckScreen);
         screenNames.add(quickMapScreen);
         screenNames.add(gameOverScreen);
+        screenNames.add(victoryScreen);
 
         screenFiles.add(mainRunScreenFile);
         screenFiles.add(merchantScreenFile);
@@ -77,24 +73,7 @@ public class RunUIManager{
         screenFiles.add(deckScreenFile);
         screenFiles.add(quickMapScreenFile);
         screenFiles.add(gameOverScreenFile);
-
-
-
-
-
+        screenFiles.add(victoryScreenFile);
     }
-
-
-
-    /*public void startRun(){
-
-        runScreens = new ScreenController();
-
-        runScreens.loadScreen(RunUIManager.mainRunScreen, RunUIManager.mainRunScreenFile);
-
-    }*/
-
-
-
 
 }
