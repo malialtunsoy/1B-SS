@@ -61,6 +61,9 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot1;
     @FXML private ImageView potionSlot2;
     @FXML private ImageView potionSlot3;
+    @FXML private Button potionSlot1Button;
+    @FXML private Button potionSlot2Button;
+    @FXML private Button potionSlot3Button;
     @FXML ImageView closePopUp;
     @FXML private ImageView character;
 
@@ -110,44 +113,44 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         if(pots.size() > 0){
             Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
+            Tooltip.install(potionSlot1Button, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot1Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         CombatManager.getInstance().potionSelected(pots.get(0));
                     }
                 });
-            potionSlot1.setDisable(false);
+            potionSlot1Button.setDisable(false);
         }
         else{potionSlot1.setImage(null);potionSlot1.setDisable(true);}
 
 
 
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
+            Tooltip.install(potionSlot2Button, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot2Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         CombatManager.getInstance().potionSelected(pots.get(1));
                     }
 
                 });
-            potionSlot2.setDisable(false);
+            potionSlot2Button.setDisable(false);
         }
         else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
         if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
+            Tooltip.install(potionSlot3Button, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot3Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                    @Override
                     public void handle(MouseEvent event) {
                     CombatManager.getInstance().potionSelected(pots.get(2));
                 }
                 });
-            potionSlot3.setDisable(false);
+            potionSlot3Button.setDisable(false);
         }
         else{potionSlot3.setImage(null);potionSlot3.setDisable(true);}
     }
