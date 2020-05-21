@@ -15,7 +15,7 @@
 
 <?import javafx.scene.shape.*?>
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
-    <AnchorPane maxHeight="800" maxWidth="1200" prefHeight="800.0" prefWidth="1200.0">
+    <AnchorPane fx:id="mainAnchorPane" maxHeight="800" maxWidth="1200" prefHeight="800.0" prefWidth="1200.0">
       <children>
          <ImageView fitHeight="785.0" fitWidth="1213.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
             <image>

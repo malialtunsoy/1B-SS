@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,6 +35,7 @@ import java.util.ResourceBundle;
 public class CombatUIController implements  Initializable//,ControlledScreen {
 {
     //ScreenController myController;
+    @FXML AnchorPane mainAnchorPane;
 
     private CombatUIAdapter adapter;
      @FXML FlowPane potions;
@@ -82,6 +84,9 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Image curImg = new Image("cursor.png");
+        ImageCursor cursor = new ImageCursor(curImg, 30,30);
+        mainAnchorPane.setCursor(cursor);
 
         character.setImage(new Image(CombatManager.getInstance().getPlayer().playerChar + ".png"));
         rewardCardPicked = false;
