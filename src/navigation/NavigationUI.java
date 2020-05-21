@@ -5,14 +5,12 @@ import javafx.event.*;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.scene.Node;
+import javafx.scene.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -52,6 +50,9 @@ public class NavigationUI extends Application  {
         //System.out.println(System.getProperty("user.dir"));
 
         ScreenController myScreens = new ScreenController();
+        Image curImg = new Image("cursor.png");
+        ImageCursor cursor = new ImageCursor(curImg, 30,30);
+        myScreens.setCursor(cursor);
 
         myScreens.loadScreen(NavigationUI.mainMenuScreen, NavigationUI.mainMenuScreenFile);
         myScreens.loadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
@@ -69,6 +70,8 @@ public class NavigationUI extends Application  {
         CombatManager.getInstance().setMenuScene(scene);
         CombatManager.getInstance().setScreenController(myScreens);
 
+        /*primaryStage.setMaxHeight(810);
+        primaryStage.setMaxWidth(1210);*/
         primaryStage.setTitle("Slay the Spire");
         primaryStage.setScene(scene);
         primaryStage.show();

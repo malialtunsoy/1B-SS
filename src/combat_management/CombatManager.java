@@ -239,8 +239,10 @@ public class CombatManager {
             selectedPotion = p;
             uiAdapter.showPrompt(true,p.getName());
         } else {
+            myController.playPotionDrink();
             usePotion(p,null);
             uiAdapter.showPrompt(false, "");
+
         }
     }
 
@@ -249,9 +251,12 @@ public class CombatManager {
             uiAdapter.showPrompt(false, "");
             playCard(selectedCard,enemy);
             selectedCard = null;
+            //myController.playKnifeStab();
         } else if (selectedPotion != null) {
             uiAdapter.showPrompt(false, "");
             usePotion(selectedPotion, enemy);
+            myController.playPotionThrow(); //GUI sound
+            playerAttackAnimation(enemy); //GUI animation
             selectedPotion = null;
         }
         else {
@@ -506,8 +511,29 @@ public class CombatManager {
 
     public boolean combatOngoing() {return ongoing;}
 
+    public void playerTakeDamageAnmiation(){
+        myController.playTakeDamage();
+        uiAdapter.controller.takeDamageAnimation();
+    }
+
+    public void enemyAttackAnimation(Enemy e){
+
+        uiAdapter.controller.attackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
+    }
+
+    public void playerAttackAnimation(CombatEntity e){
+
+       uiAdapter.controller.playerAttackAnimation(uiAdapter.controller.EnemiesAndTheirFlowPanes.get(e));
+        myController.playKnifeStab();
+    }
+
+    public void playerDefenseAnimation(){
+        uiAdapter.controller.playerDefenceMotion();
+        myController.playShield();
+    }
 
     public void gameOver(){
+        myController.reloadScreen(RunUIManager.gameOverScreen, RunUIManager.gameOverScreenFile);
         myController.changeScreen(RunUIManager.gameOverScreen);
         stage.setScene(menu);
         enemies = new ArrayList<Enemy>();

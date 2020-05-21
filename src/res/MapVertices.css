@@ -1,0 +1,26 @@
+  .button {
+    -fx-background-color: rgba(100, 100, 100, 0.3);
+    -fx-border-color:rgba(234, 255, 0, 0.3);
+}
+
+.button:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+    -fx-border-color:rgba(144, 0, 255, 0.5);
+
+
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+    }
+
+.button:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color:rgba(171, 14, 0, 0.5);
+}
+
+.button:disabled {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color:rgba(234, 255, 0, 0.0);
+}
+
+

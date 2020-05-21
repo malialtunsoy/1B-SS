@@ -13,8 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.shape.*?>
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CombatUIController">
-    <AnchorPane prefHeight="800.0" prefWidth="1200.0">
+    <AnchorPane fx:id="mainAnchorPane" maxHeight="800" maxWidth="1200" prefHeight="800.0" prefWidth="1200.0">
       <children>
          <ImageView fitHeight="785.0" fitWidth="1213.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" scaleY="1.04">
             <image>
@@ -23,14 +24,15 @@
          </ImageView>
 
          <FlowPane fx:id="enemies" layoutX="240.0" layoutY="198.0" prefHeight="315.0" prefWidth="964.0" />
-         <ScrollPane layoutX="229.0" layoutY="570.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
+        <!-- <ScrollPane layoutX="229.0" layoutY="570.0" prefHeight="230.0" prefWidth="727.0" vbarPolicy="NEVER">
             <content>
                <AnchorPane fx:id="hand" prefHeight="200.0" prefWidth="200.0" />
             </content>
-         </ScrollPane>
-         <AnchorPane layoutX="15.0" layoutY="198.0" prefHeight="287.0" prefWidth="167.0">
+         </ScrollPane> -->
+         <HBox fx:id="hand" alignment="TOP_CENTER" layoutX="0.0" layoutY="670.0" prefHeight="132.0" prefWidth="1200.0" spacing="13" />
+         <AnchorPane layoutX="15.0" layoutY="250.0" prefHeight="287.0" prefWidth="167.0">
             <children>
-               <ImageView fx:id="character" fitHeight="279.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="character" fitHeight="350.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@Ironclad.png" />
                   </image>
@@ -142,23 +144,35 @@
                </HBox>
             </children>
          </HBox>
-         <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0" spacing="6.0">
+         <HBox layoutX="562.0" layoutY="9.0" prefHeight="53.0" prefWidth="148.0">
             <children>
-               <ImageView fx:id="potionSlot1" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@BlockPotion.png" />
-                  </image>
-               </ImageView>
-               <ImageView fx:id="potionSlot2" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@BlockPotion.png" />
-                  </image>
-               </ImageView>
-               <ImageView fx:id="potionSlot3" fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@BlockPotion.png" />
-                  </image>
-               </ImageView>
+               <Button fx:id="potionSlot1Button" mnemonicParsing="false"  stylesheets="@potions.css">
+                  <graphic>
+                     <ImageView fx:id="potionSlot1" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@BlockPotion.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button fx:id="potionSlot2Button" mnemonicParsing="false"  stylesheets="@potions.css">
+                  <graphic>
+                     <ImageView fx:id="potionSlot2" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@BlockPotion.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button fx:id="potionSlot3Button" mnemonicParsing="false"  stylesheets="@potions.css">
+                  <graphic>
+                     <ImageView fx:id="potionSlot3" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@BlockPotion.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
             </children>
          </HBox>
          <AnchorPane fx:id="popUpDisplay" disable="true" layoutX="161.0" layoutY="84.0" prefHeight="616.0" prefWidth="880.0">
@@ -185,27 +199,39 @@
                <Font size="30.0" />
             </font>
          </Label>
-         <ImageView fitHeight="67.0" fitWidth="151.0" layoutX="1038.0" layoutY="513.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
+         <Button layoutX="1038.0" layoutY="480.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="123.0" prefWidth="141.0" styleClass="pile" stylesheets="@Glowy.css">
+         <graphic>
+         <ImageView fitHeight="67.0" fitWidth="151.0"   pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@EndTurn.png" />
             </image>
          </ImageView>
+         </graphic>
+         </Button>
          <ImageView fitHeight="90.0" fitWidth="61.0" layoutX="68.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@Energy.png" />
             </image>
          </ImageView>
          <Label fx:id="energy" alignment="CENTER" layoutX="26.0" layoutY="530.0" prefHeight="34.0" prefWidth="145.0" text="Label" textFill="WHITE" />
-         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="29.0" layoutY="613.0" onMouseClicked="#showDrawPile" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@DrawPile.png" />
-            </image>
-         </ImageView>
-         <ImageView fitHeight="184.0" fitWidth="194.0" layoutX="1009.0" layoutY="590.0" onMouseClicked="#showDiscardPile" pickOnBounds="true" preserveRatio="true">
+         <Button layoutX="29.0" layoutY="613.0" mnemonicParsing="false" onAction="#showDrawPile" prefHeight="123.0" prefWidth="141.0" styleClass="pile" stylesheets="@Glowy.css">
+            <graphic>
+               <ImageView fitHeight="150.0" fitWidth="200.0"  pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@DrawPile.png" />
+                  </image>
+               </ImageView>
+         </graphic>
+         </Button>
+         <Button layoutX="1009.0" layoutY="590.0" mnemonicParsing="false" onAction="#showDiscardPile" prefHeight="123.0" prefWidth="141.0" styleClass="pile" stylesheets="@Glowy.css">
+         <graphic>
+         <ImageView fitHeight="184.0" fitWidth="194.0"  pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@DiscardPile.png" />
             </image>
          </ImageView>
+         </graphic>
+         </Button>
          <Label fx:id="numDraw" alignment="CENTER" layoutX="145.0" layoutY="712.0" text="Label" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font name="System Bold" size="13.0" />
@@ -269,5 +295,6 @@
                </ImageView>
             </children>
          </HBox>
+         <Rectangle  fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#c30000" height="810.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1210.0"  />
       </children></AnchorPane>
 </Scene>

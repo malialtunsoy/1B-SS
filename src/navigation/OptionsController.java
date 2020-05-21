@@ -47,6 +47,13 @@ public class OptionsController implements Initializable, ControlledScreen {
     @FXML
     void back(ActionEvent event) {
         if(myController.getGetBackFromSettings().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromSetting();}
+
+        else{myController.changeScreen(myController.getGetBackFromSettings());}
+    }
+
+    void back(){
+        if(myController.getGetBackFromSettings().equals("CombatUI.fxml")){CombatManager.getInstance().comeBackFromSetting();}
+
         else{myController.changeScreen(myController.getGetBackFromSettings());}
     }
 
@@ -79,6 +86,22 @@ public class OptionsController implements Initializable, ControlledScreen {
         SaveAndExit.exit();
     }
 
+
+    @FXML
+    void hpHack(ActionEvent event) {
+        if(Game.getInstance().myPlayer != null){Game.getInstance().myPlayer.setMaxHP(999); Game.getInstance().myPlayer.setCurrentHP(999);}  back();
+    }
+
+    @FXML
+    void moneyHack(ActionEvent event) {
+        if(Game.getInstance().myPlayer != null){Game.getInstance().myPlayer.setGold(999);} back();
+    }
+
+    @FXML
+    void cardHack(ActionEvent event) {
+        Game.getInstance().myPlayer.addToDeck(new StrikePlus());
+        myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile); back();
+    }
 
 
 }

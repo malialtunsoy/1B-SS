@@ -1,0 +1,28 @@
+.button {
+    -fx-background-color: rgba(100, 100, 100, 0.6);
+
+    -fx-font-family: "Assassin$";
+    -fx-text-fill: rgb(255,255,255);
+}
+
+.button:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.8);
+}
+
+.button:pressed {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+}
+
+#cardDisplay {
+
+}
+
+#cardDisplay:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+#bar{
+    -fx-border-color:rgba(144, 0, 255, 0.5);
+}

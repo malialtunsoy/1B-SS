@@ -43,7 +43,7 @@ public class NewGameController implements Initializable, ControlledScreen {
         if(playerName.equals("")){
             playerNameText.setPromptText("you must enter a name");
         }
-        if(playerName.length()>10){
+        else if(playerName.length()>10){
             playerNameText.clear();
             playerNameText.setPromptText("pick a shorter name");
         }

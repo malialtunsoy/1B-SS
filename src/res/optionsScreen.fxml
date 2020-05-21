@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OptionsController">
+<AnchorPane prefHeight="810.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OptionsController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -22,36 +22,45 @@
          </font>
       </Text>
       <ScrollPane layoutX="328.0" layoutY="171.0" opacity="0.7" prefHeight="326.0" prefWidth="569.0" />
-      <VBox alignment="BASELINE_LEFT" layoutX="340.0" layoutY="184.0" prefHeight="408.0" prefWidth="546.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="340.0" layoutY="184.0" prefHeight="408.0" prefWidth="546.0" spacing="30.0">
          <children>
-            <CheckBox fx:id="advancedMainMenuBox" mnemonicParsing="Controller.advancedMainMenuSelected" text="Cheat Mode" />
             <CheckBox fx:id="musicCheckBox" mnemonicParsing="Controller.advancedMainMenuSelected" selected="true" text="Play Music" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="546.0">
                <children>
-                  <ColorPicker />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Character Color" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cheat Mode">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#hpHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="HP Hack" />
+                        <Button mnemonicParsing="false" onAction="#moneyHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Money Hack" />
+                        <Button mnemonicParsing="false" onAction="#cardHack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Card Hack" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="235.0" layoutY="676.0" prefHeight="77.0" prefWidth="755.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Back">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#applySettings" text="Apply Changes">
+            <Button mnemonicParsing="false" onAction="#applySettings" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Apply Changes">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game">
+            <Button mnemonicParsing="false" onAction="#saveGame" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Save Game">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#saveAndExit" text="Save and Exit">
+            <Button mnemonicParsing="false" onAction="#saveAndExit" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Save and Exit">
                <font>
                   <Font size="20.0" />
                </font>

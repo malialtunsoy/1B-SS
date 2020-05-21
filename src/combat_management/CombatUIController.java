@@ -1,8 +1,13 @@
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,23 +21,27 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.shape.*;
+import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CombatUIController implements  Initializable//,ControlledScreen {
 {
     //ScreenController myController;
+    @FXML AnchorPane mainAnchorPane;
 
     private CombatUIAdapter adapter;
-
-    @FXML FlowPane potions;
+     @FXML FlowPane potions;
     @FXML FlowPane enemies;
-    @FXML AnchorPane hand;
+    //@FXML AnchorPane hand;
+    @FXML HBox hand;
     @FXML Button drawPile;
     @FXML Button discardPile;
     @FXML FlowPane statusEffects;
@@ -54,6 +63,9 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
     @FXML private ImageView potionSlot1;
     @FXML private ImageView potionSlot2;
     @FXML private ImageView potionSlot3;
+    @FXML private Button potionSlot1Button;
+    @FXML private Button potionSlot2Button;
+    @FXML private Button potionSlot3Button;
     @FXML ImageView closePopUp;
     @FXML private ImageView character;
 
@@ -67,8 +79,15 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
     boolean rewardCardPicked;
 
+    public HashMap<Enemy, FlowPane> EnemiesAndTheirFlowPanes = new HashMap<Enemy, FlowPane>(); //GUI++
+    public HashMap<Enemy, EnemyViewController> EnemiesAndTheirControllers = new HashMap<Enemy, EnemyViewController>(); //GUI++
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Image curImg = new Image("cursor.png");
+        ImageCursor cursor = new ImageCursor(curImg, 30,30);
+        mainAnchorPane.setCursor(cursor);
+
         character.setImage(new Image(CombatManager.getInstance().getPlayer().playerChar + ".png"));
         rewardCardPicked = false;
         playerNameLabel.setText(Game.getInstance().myPlayer.getPlayerName());
@@ -99,44 +118,44 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         if(pots.size() > 0){
             Image slot1  = new Image(pots.get(0).getImage()); potionSlot1.setImage(slot1);
-            Tooltip.install(potionSlot1, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
+            Tooltip.install(potionSlot1Button, new Tooltip(pots.get(0).getName() + ": " + pots.get(0).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot1Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         CombatManager.getInstance().potionSelected(pots.get(0));
                     }
                 });
-            potionSlot1.setDisable(false);
+            potionSlot1Button.setDisable(false);
         }
         else{potionSlot1.setImage(null);potionSlot1.setDisable(true);}
 
 
 
         if(pots.size() > 1){Image slot2  = new Image(pots.get(1).getImage()); potionSlot2.setImage(slot2);
-            Tooltip.install(potionSlot2, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
+            Tooltip.install(potionSlot2Button, new Tooltip( pots.get(1).getName() + ": " + pots.get(1).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot2Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         CombatManager.getInstance().potionSelected(pots.get(1));
                     }
 
                 });
-            potionSlot2.setDisable(false);
+            potionSlot2Button.setDisable(false);
         }
         else{potionSlot2.setImage(null);potionSlot2.setDisable(true);}
 
         if(pots.size() > 2){Image slot3  = new Image(pots.get(2).getImage()); potionSlot3.setImage(slot3);
-            Tooltip.install(potionSlot3, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
+            Tooltip.install(potionSlot3Button, new Tooltip( pots.get(2).getName() + ": " + pots.get(2).getPotionDescription()));
             if(CombatManager.getInstance().combatOngoing())
-                potionSlot3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                potionSlot3Button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                    @Override
                     public void handle(MouseEvent event) {
                     CombatManager.getInstance().potionSelected(pots.get(2));
                 }
                 });
-            potionSlot3.setDisable(false);
+            potionSlot3Button.setDisable(false);
         }
         else{potionSlot3.setImage(null);potionSlot3.setDisable(true);}
     }
@@ -190,22 +209,79 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         energy.setText(CombatManager.getInstance().uiEnergyString());
 
         currentHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getHP()));
+        maxHPLabel.setText(""+(CombatManager.getInstance().getPlayer().getMaxHP()));
     }
 
+    boolean firstTime = true;
     public void updateEnemies() throws IOException {
         enemies.getChildren().clear();
+        //==================================== new
+       // EnemiesAndTheirFlowPanes.clear(); //GUI++
+        if(firstTime){
+            for (Enemy e : CombatManager.getInstance().getEnemies()) {
+
+                FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
+                FXMLLoader loader = new FXMLLoader();
+                FlowPane pane = loader.load(file);
+                EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
+
+                EnemyViewController controller = loader.getController();
+
+                EnemiesAndTheirControllers.put(e, controller);
+                controller.setHp(e.getHP(), e.getMaxHP());
+                controller.setIntent(e.getIntents());
+                controller.getImage().setImage(new Image(e.getImage()));
+                controller.getImage().setFitWidth(150);
+                controller.getImage().setFitHeight(150);
+                controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().targetSelected(e);
+                    }
+                });
+                controller.setStatus(e.getStatusEffects());
+                controller.setName(e.getName());
+
+                enemies.getChildren().add(pane);
+            }
+            firstTime = false;
+        }
+        else{
+            for (Enemy e : CombatManager.getInstance().getEnemies()) {
+                FlowPane pane = EnemiesAndTheirFlowPanes.get(e);
+                EnemyViewController controller = EnemiesAndTheirControllers.get(e);
+                controller.setHp(e.getHP(), e.getMaxHP());
+                controller.setIntent(e.getIntents());
+                controller.getImage().setImage(new Image(e.getImage()));
+                controller.getImage().setFitWidth(150);
+                controller.getImage().setFitHeight(150);
+                controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        CombatManager.getInstance().targetSelected(e);
+                    }
+                });
+                controller.setStatus(e.getStatusEffects());
+                controller.setName(e.getName());
+
+                enemies.getChildren().add(pane);
+            }
+        }
+        //====================================================== old
+        /*
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
 
             FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
             FlowPane pane = loader.load(file);
+            EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
             EnemyViewController controller = loader.getController();
             controller.setHp(e.getHP(), e.getMaxHP());
             controller.setIntent(e.getIntents());
             controller.getImage().setImage(new Image(e.getImage()));
             controller.getImage().setFitWidth(150);
             controller.getImage().setFitHeight(150);
-            controller.getImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            controller.getButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     CombatManager.getInstance().targetSelected(e);
@@ -215,7 +291,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
             controller.setName(e.getName());
 
             enemies.getChildren().add(pane);
-        }
+        }*/
     }
 
     public void updatePotions(){
@@ -229,24 +305,27 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
 
         for (Card c : cards) {
             ImageView img = new ImageView(c.getImage());
-            img.setFitWidth(147);
-            img.setFitHeight(200.0);
-            img.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            img.setFitWidth(75);
+            img.setFitHeight(100);
+            Button imageButton = new Button("", img);
+            imageButton.getStylesheets().add("card.css");
+            imageButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     CombatManager.getInstance().cardSelected(c);
                 }
             });
-            hand.getChildren().add(img);
-            img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-            img.setLayoutX(147 * i);
-            img.setLayoutY(0);
+
+            hand.getChildren().add(imageButton);
+            //img.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+            imageButton.setLayoutX(147 * i);
+            imageButton.setLayoutY(0);
             i++;
         }
 
-        hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
-        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 1);");
+        /*hand.getParent().getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
+        hand.getParent().setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
+        hand.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");*/
         //hand.setPrefWrapLength(147 * cards.size());
 
         numDraw.setText(CombatManager.getInstance().getDrawPileSize() + "");
@@ -466,4 +545,211 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         targetPrompt.setText("Choose a target for " + name);
         targetPrompt.setVisible(show);
     }
+
+    @FXML
+    private Rectangle rect;
+    public void takeDamageAnimation(){
+
+        rect.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(500), rect);
+        ft.setFromValue(0.3);
+        ft.setToValue(0.0);
+        //ft.setCycleCount(Timeline.INDEFINITE);
+       //ft.setAutoReverse(true);
+        ft.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rect.setVisible(false);
+            }
+        });
+        ft.play();
+
+    }
+
+    public void attackAnimation(FlowPane pane){
+
+        TranslateTransition translateTransition =
+                new TranslateTransition(Duration.millis(250), pane);
+        translateTransition.setFromX(0);
+        translateTransition.setToX(-25);
+        translateTransition.setCycleCount(1);
+        translateTransition.setAutoReverse(true);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), pane);
+                back.setFromX(-25);
+                back.setToX(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        translateTransition.play();
+        //MAKE PLAYER SMALLER
+        ScaleTransition smallPlayer =
+                new ScaleTransition(Duration.millis(250), character);
+        smallPlayer.setFromX(1);
+        smallPlayer.setFromY(1);
+        smallPlayer.setToX(0.9);
+        smallPlayer.setToY(0.9);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        smallPlayer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizePlayer =
+                        new ScaleTransition(Duration.millis(250), character);
+                resizePlayer.setFromX(0.9);
+                resizePlayer.setFromY(0.9);
+                resizePlayer.setToX(1);
+                resizePlayer.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizePlayer.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizePlayer.play();
+            }
+
+
+        });
+
+        smallPlayer.play();
+
+
+    }
+
+    public void playerAttackAnimation(FlowPane pane) {
+
+        TranslateTransition translateTransition =
+                new TranslateTransition(Duration.millis(250), character);
+        translateTransition.setFromX(0);
+        translateTransition.setToX(25);
+        translateTransition.setCycleCount(1);
+        translateTransition.setAutoReverse(true);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), character);
+                back.setFromX(25);
+                back.setToX(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        translateTransition.play();
+
+        /*TranslateTransition target =
+                new TranslateTransition(Duration.millis(250), pane);
+        target.setFromY(0);
+        target.setToY(15);
+        target.setCycleCount(1);
+        target.setAutoReverse(true);
+        target.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition back =
+                        new TranslateTransition(Duration.millis(250), pane);
+                back.setFromY(15);
+                back.setToY(0);
+                back.setCycleCount(1);
+                //back.
+                back.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                    }
+                });
+                //back.setAutoReverse(true);
+                back.play();
+            }
+        });
+        target.play();*/
+
+        ScaleTransition smallEnemy =
+                new ScaleTransition(Duration.millis(250), pane);
+        smallEnemy.setFromX(1);
+        smallEnemy.setFromY(1);
+        smallEnemy.setToX(0.8);
+        smallEnemy.setToY(0.8);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        smallEnemy.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizeEnemy =
+                        new ScaleTransition(Duration.millis(250), pane);
+                resizeEnemy.setFromX(0.8);
+                resizeEnemy.setFromY(0.8);
+                resizeEnemy.setToX(1);
+                resizeEnemy.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizeEnemy.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizeEnemy.play();
+            }
+
+
+        });
+
+        smallEnemy.play();
+
+    }
+
+
+    public void playerDefenceMotion(){
+
+        ScaleTransition biggerPlayer =
+                new ScaleTransition(Duration.millis(350), character);
+        biggerPlayer.setFromX(1);
+        biggerPlayer.setFromY(1);
+        biggerPlayer.setToX(1.2);
+        biggerPlayer.setToY(1.2);
+        //scaleTransition.setCycleCount(1);
+        //scaleTransition.setAutoReverse(true);
+        biggerPlayer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ScaleTransition resizePlayer =
+                        new ScaleTransition(Duration.millis(350), character);
+                resizePlayer.setFromX(1.2);
+                resizePlayer.setFromY(1.2);
+                resizePlayer.setToX(1);
+                resizePlayer.setToY(1);
+                //scaleTransition.setCycleCount(1);
+                //scaleTransition.setAutoReverse(true);
+                resizePlayer.setOnFinished(new EventHandler<ActionEvent>() {   @Override
+                public void handle(ActionEvent event) {
+                }      });
+                resizePlayer.play();
+            }
+
+
+        });
+
+        biggerPlayer.play();
+
+
+
+    }
+
+
+
 }

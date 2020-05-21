@@ -34,7 +34,8 @@ public class Player extends CombatEntity {
     public Player(boolean isItNewGame, String name, String character, int hp, int maxHp, int maxPot, int gold, int relicCount, int cardCount) {
 
         super(maxHp);
-        this.loseHP(maxHp-hp);
+        //this.loseHP(maxHp-hp);
+        setCurrentHP(hp);
         playerName = name;
         playerChar = character;
         this.maxPot = maxPot;
@@ -67,6 +68,7 @@ public class Player extends CombatEntity {
 
     public void addGold(int lootedGold) {
         gold = gold + lootedGold;
+        if(gold > 999){setGold(999);}
     }
 
     public void subGold(int decrGold) {
@@ -410,5 +412,21 @@ public class Player extends CombatEntity {
     // called when the player dies
     public void die() { CombatManager.getInstance().gameOver();
         // TODO: combat lost
+    }
+
+    @Override
+    public boolean loseHP(int amount) { //Overritten for UI Animation Purposes
+       if(amount > 0){
+           CombatManager.getInstance().playerTakeDamageAnmiation();
+       }
+       return super.loseHP(amount);
+    }
+
+    @Override
+    public boolean dealDamage(int amount, CombatEntity target) { //Overritten for UI Animation Purposes
+        if(amount > 0){
+            CombatManager.getInstance().playerAttackAnimation(target);
+        }
+        return super.dealDamage(amount, target);
     }
 }

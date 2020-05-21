@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenuController">
+<AnchorPane id="AnchorPane" maxHeight="810" maxWidth="1210" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenuController">
   <children>
       <ImageView fitHeight="810.0" fitWidth="1210.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -17,22 +17,22 @@
       </ImageView>
       <HBox layoutX="162.0" layoutY="689.0" prefHeight="100.0" prefWidth="1021.0" spacing="20.0">
          <children>
-          <Button mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="200.0" text="New Game" textAlignment="CENTER">
+          <Button mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="200.0" styleClass="myButton" stylesheets="@Glowy.css" text="New Game" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-          <Button mnemonicParsing="false" onAction="#loadGame" prefHeight="50.0" prefWidth="200.0" text="Load Game" textAlignment="CENTER">
+          <Button mnemonicParsing="false" onAction="#loadGame" prefHeight="50.0" prefWidth="200.0" styleClass="myButton" stylesheets="@Glowy.css" text="Load Game" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-          <Button mnemonicParsing="false" onAction="#drawOptions" prefHeight="50.0" prefWidth="200.0" text="Options" textAlignment="CENTER">
+          <Button mnemonicParsing="false" onAction="#drawOptions" prefHeight="50.0" prefWidth="200.0" styleClass="myButton" stylesheets="@Glowy.css" text="Options" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-          <Button mnemonicParsing="false" onAction="#drawAchievements" prefHeight="50.0" prefWidth="200.0" text="Achievements" textAlignment="CENTER">
+          <Button mnemonicParsing="false" onAction="#drawAchievements" prefHeight="50.0" prefWidth="200.0" styleClass="myButton" stylesheets="@Glowy.css" text="Achievements" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>

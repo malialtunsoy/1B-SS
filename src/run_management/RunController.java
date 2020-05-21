@@ -276,7 +276,8 @@ public class RunController implements Initializable, ControlledScreen {
 
                 });
 
-
+                //CSS
+                vertices[index].getStylesheets().add("MapVertices.css");
                 mapAnchorPane.getChildren().add(vertices[index]);
 
             }
