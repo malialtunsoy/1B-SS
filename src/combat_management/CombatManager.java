@@ -239,8 +239,10 @@ public class CombatManager {
             selectedPotion = p;
             uiAdapter.showPrompt(true,p.getName());
         } else {
+            myController.playPotionDrink();
             usePotion(p,null);
             uiAdapter.showPrompt(false, "");
+
         }
     }
 
@@ -253,6 +255,8 @@ public class CombatManager {
         } else if (selectedPotion != null) {
             uiAdapter.showPrompt(false, "");
             usePotion(selectedPotion, enemy);
+            myController.playPotionThrow(); //GUI sound
+            playerAttackAnimation(enemy); //GUI animation
             selectedPotion = null;
         }
         else {
