@@ -40,4 +40,10 @@ public class gameOverController implements Initializable, ControlledScreen {
         myController.changeScreen(NavigationUI.mainMenuScreen);
     }
 
+    @FXML
+    void turnBack(ActionEvent event) {
+        myController.reloadScreen(NavigationUI.newGameFirstScreen, NavigationUI.newGameFirstScreenFile);
+        myController.changeScreen(NavigationUI.mainMenuScreen);
+    }
+
 }

@@ -90,6 +90,10 @@ public class OptionsController implements Initializable, ControlledScreen {
     @FXML
     void hpHack(ActionEvent event) {
         if(Game.getInstance().myPlayer != null){Game.getInstance().myPlayer.setMaxHP(999); Game.getInstance().myPlayer.setCurrentHP(999);}  back();
+        try{
+            CombatManager.getInstance().getUiAdapter().controller.updatePlayer();
+        }
+        catch (Exception e ){};
     }
 
     @FXML
@@ -99,8 +103,17 @@ public class OptionsController implements Initializable, ControlledScreen {
 
     @FXML
     void cardHack(ActionEvent event) {
-        Game.getInstance().myPlayer.addToDeck(new Hack());
+        //Game.getInstance().myPlayer.addToDeck(new Hack());
         myController.reloadScreen(RunUIManager.deckScreen, RunUIManager.deckScreenFile); back();
+        if(CombatManager.getInstance().combatOngoing()) {
+            CombatManager.getInstance().getHand().add(new Hack());
+            try {
+                CombatManager.getInstance().getUiAdapter().controller.updateCardPiles();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            ;
+        }
     }
 
 

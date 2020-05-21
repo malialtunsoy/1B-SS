@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPaneMain" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameOverController">
+    <children>
+        <ImageView fitHeight="810.0" fitWidth="1210.0" layoutX="21.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@background.png" />
+            </image>
+        </ImageView>
+        <ScrollPane layoutX="46.0" layoutY="112.0" opacity="0.6" prefHeight="581.0" prefWidth="1113.0" />
+      <VBox alignment="TOP_CENTER" layoutX="81.0" layoutY="153.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+              <ImageView fitHeight="452.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@slay-the-spire-logo.png" />
+                  </image>
+              </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="by">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cem Cebeci">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Can Cebeci">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gizem Karal">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gökberk Boz">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sena Sultan Karataş">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mehmet Ali Altunsoy">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+        <Button layoutX="534.0" layoutY="721.0" mnemonicParsing="false" onAction="#turnBack" styleClass="myButtonLight" stylesheets="@Glowy.css" text="Turn Back" textFill="RED">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Button>
+      <Text fill="#d8e300" layoutX="719.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with CHEAT MODE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
