@@ -266,12 +266,11 @@ public class RunController implements Initializable, ControlledScreen {
 
                     if(thisVertex.getVertex().equals("EliteCombat")){
                         Game.getInstance().myPlayer.setupCombat(true);
-                        //To be added
                     }
 
                     if(thisVertex.getVertex().equals("Boss")){
                         System.out.println("BOSS");
-                        //To be added
+                        Game.getInstance().myPlayer.setupBoss();
                     }
 
                 });

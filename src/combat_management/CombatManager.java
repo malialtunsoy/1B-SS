@@ -340,6 +340,8 @@ public class CombatManager {
         currentScene = stage.getScene();
         stage.setScene(menu);
         System.out.println("Show Map");
+        deckClickedBefore = false;
+        settingsClickedBefore = false;
     }
 
     public void showDeck(){
@@ -350,6 +352,8 @@ public class CombatManager {
         currentScene = stage.getScene();
         stage.setScene(menu);
         System.out.println("Show Deck");
+        mapClickedBefore = false;
+        settingsClickedBefore = false;
     }
 
     public void showSettings(){
@@ -359,6 +363,8 @@ public class CombatManager {
         currentScene = stage.getScene();
         stage.setScene(menu);
         System.out.println("Show Settings");
+        mapClickedBefore = false;
+        deckClickedBefore = false;
     }
 
     public void comeBackFromDeck(){
@@ -532,6 +538,12 @@ public class CombatManager {
         myController.playShield();
     }
 
+    public void bossDefeated() {
+        myController.reloadScreen(RunUIManager.victoryScreen, RunUIManager.victoryScreenFile);
+        myController.changeScreen(RunUIManager.victoryScreen);
+        stage.setScene(menu);
+    }
+
     public void gameOver(){
         myController.reloadScreen(RunUIManager.gameOverScreen, RunUIManager.gameOverScreenFile);
         myController.changeScreen(RunUIManager.gameOverScreen);
@@ -539,5 +551,9 @@ public class CombatManager {
         enemies = new ArrayList<Enemy>();
         myController.playGameOver();
         stage.show();
+    }
+
+    public CombatUIAdapter getUiAdapter(){
+        return uiAdapter;
     }
 }

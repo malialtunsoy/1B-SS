@@ -107,7 +107,7 @@
                </ImageView>
                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                   <children>
-                     <Button mnemonicParsing="false" onAction="#openMap" prefHeight="45.0" prefWidth="45.0">
+                     <Button mnemonicParsing="false" onAction="#openMap" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                         <graphic>
                            <ImageView fitHeight="31.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -116,7 +116,7 @@
                            </ImageView>
                         </graphic>
                      </Button>
-                     <Button mnemonicParsing="false" onAction="#showDeck" prefHeight="45.0" prefWidth="45.0">
+                     <Button mnemonicParsing="false" onAction="#showDeck" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                         <graphic>
                            <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -125,7 +125,7 @@
                            </ImageView>
                         </graphic>
                      </Button>
-                     <Button mnemonicParsing="false" onAction="#openSettings" prefHeight="45.0" prefWidth="45.0">
+                     <Button mnemonicParsing="false" onAction="#openSettings" prefHeight="45.0" prefWidth="45.0" styleClass="myButtonLight" stylesheets="@Glowy.css">
                         <graphic>
                            <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                               <image>
