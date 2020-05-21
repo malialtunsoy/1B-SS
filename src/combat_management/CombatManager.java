@@ -538,6 +538,12 @@ public class CombatManager {
         myController.playShield();
     }
 
+    public void bossDefeated() {
+        myController.reloadScreen(RunUIManager.victoryScreen, RunUIManager.victoryScreenFile);
+        myController.changeScreen(RunUIManager.victoryScreen);
+        stage.setScene(menu);
+    }
+
     public void gameOver(){
         myController.reloadScreen(RunUIManager.gameOverScreen, RunUIManager.gameOverScreenFile);
         myController.changeScreen(RunUIManager.gameOverScreen);

@@ -132,4 +132,9 @@ public class TheGuardian extends Enemy {
         }
     }
 
+    @Override
+    public void die(){
+        CombatManager.getInstance().bossDefeated();
+    }
+
 }
