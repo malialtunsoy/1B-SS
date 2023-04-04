@@ -26,7 +26,7 @@ public class CombatUIAdapter {
         this.primaryStage = primaryStage;
 
         //
-        FileInputStream file = new FileInputStream("src/res/CombatUI.fxml");
+        FileInputStream file = new FileInputStream("CombatUI.fxml");
         FXMLLoader loader = new FXMLLoader();
         Scene combatScene = loader.load(file);
         controller = (CombatUIController)loader.getController();

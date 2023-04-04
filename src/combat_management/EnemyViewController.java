@@ -53,7 +53,7 @@ public class EnemyViewController {
         statusEffects.getChildren().clear();
         try {
             for (StatusEffect effect : status){
-                FileInputStream file = new FileInputStream("src/res/StatusEffectView.fxml");
+                FileInputStream file = new FileInputStream("StatusEffectView.fxml");
                 FXMLLoader loader = new FXMLLoader();
                 AnchorPane pane = loader.load(file);
                 StatusEffectViewController controller = loader.getController();

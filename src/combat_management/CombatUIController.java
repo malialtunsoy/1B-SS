@@ -195,7 +195,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         statusEffects.getChildren().clear();
         for(StatusEffect effect : CombatManager.getInstance().getPlayer().getStatusEffects())
             if(! (effect instanceof RelicEffect)){
-                FileInputStream file = new FileInputStream("src/res/StatusEffectView.fxml");
+                FileInputStream file = new FileInputStream("StatusEffectView.fxml");
                 FXMLLoader loader = new FXMLLoader();
                 AnchorPane pane = loader.load(file);
                 StatusEffectViewController controller = loader.getController();
@@ -220,7 +220,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         if(firstTime){
             for (Enemy e : CombatManager.getInstance().getEnemies()) {
 
-                FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
+                FileInputStream file = new FileInputStream("EnemyView.fxml");
                 FXMLLoader loader = new FXMLLoader();
                 FlowPane pane = loader.load(file);
                 EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
@@ -271,7 +271,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         /*
         for (Enemy e : CombatManager.getInstance().getEnemies()) {
 
-            FileInputStream file = new FileInputStream("src/res/EnemyView.fxml");
+            FileInputStream file = new FileInputStream("EnemyView.fxml");
             FXMLLoader loader = new FXMLLoader();
             FlowPane pane = loader.load(file);
             EnemiesAndTheirFlowPanes.put(e, pane); //GUI++
@@ -406,7 +406,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         rewardsScreen.setDisable(false);
         rewardsScreen.setVisible(true);
 
-        FileInputStream goldFile = new FileInputStream("src/res/RewardPane.fxml");
+        FileInputStream goldFile = new FileInputStream("RewardPane.fxml");
         FXMLLoader goldLoader = new FXMLLoader();
         AnchorPane goldPane = goldLoader.load(goldFile);
         RewardPaneController goldController = goldLoader.getController();
@@ -415,7 +415,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         rewardPanes.getChildren().add(goldPane);
 
         for(Potion pot : CombatManager.getInstance().getPlayer().getRewardPotions()) {
-            FileInputStream file = new FileInputStream("src/res/RewardPane.fxml");
+            FileInputStream file = new FileInputStream("RewardPane.fxml");
             FXMLLoader loader = new FXMLLoader();
             AnchorPane rewardPane = loader.load(file);
             RewardPaneController controller = loader.getController();
@@ -426,7 +426,7 @@ public class CombatUIController implements  Initializable//,ControlledScreen {
         }
 
         for(Relic relic : CombatManager.getInstance().getPlayer().getRewardRelics()) {
-            FileInputStream file = new FileInputStream("src/res/RewardPane.fxml");
+            FileInputStream file = new FileInputStream("RewardPane.fxml");
             FXMLLoader loader = new FXMLLoader();
             AnchorPane rewardPane = loader.load(file);
             RewardPaneController controller = loader.getController();
